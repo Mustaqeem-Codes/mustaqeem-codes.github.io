@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Sign Up</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+}
+
+.form-container {
+  background: #222;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ffee88;
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-toggle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-toggle button {
+  flex: 1;
+  padding: 10px;
+  background-color: #00ffee;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.form-toggle button:hover {
+  background-color: #00ccdd;
+}
+
+.form {
+  display: none;
+  flex-direction: column;
+}
+
+.form.active {
+  display: flex;
+}
+
+form h2 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+form input {
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+form button {
+  padding: 10px;
+  background-color: #00ffee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: #00ccdd;
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-toggle">
+      <button id="showLogin">Login</button>
+      <button id="showSignup">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="form active">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm" class="form">
+      <h2>Sign Up</h2>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const showLogin = document.getElementById("showLogin");
+    const showSignup = document.getElementById("showSignup");
+
+    showLogin.addEventListener("click", () => {
+      loginForm.classList.add("active");
+      signupForm.classList.remove("active");
+    });
+
+    showSignup.addEventListener("click", () => {
+      signupForm.classList.add("active");
+      loginForm.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
