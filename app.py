@@ -9,7 +9,7 @@ DB_CONFIG = {
     "dbname": "portfolio",
     "user": "postgres",
     "password": "123",  # Replace with your PostgreSQL password
-    "host": "localhost"
+    "host": "https://mustaqeem.bytewisdom.tech/templates/Test.html"
 }
 
 def get_db_connection():
