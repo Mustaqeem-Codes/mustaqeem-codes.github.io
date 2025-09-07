@@ -584,12 +584,14 @@ h3 span {
     color: transparent;
   }
 
-  .btn-social-row {
-    margin-left: 40px;
-    flex-wrap: wrap;
-    /* allow wrapping if screen is too small */
-    gap: 10px;
-  }
+  /* New row style */
+.btn-social-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: nowrap;
+}
 
   .social {
     gap: 10px;
@@ -2621,4 +2623,5 @@ p#dates {
   p#dates {
     white-space: normal;
   }
+
 }
