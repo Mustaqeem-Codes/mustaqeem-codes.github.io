@@ -583,7 +583,11 @@ h3 span {
     /* For non-webkit browsers */
     color: transparent;
   }
-
+.btn-group .btn {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+  }
   /* New row style */
 .btn-social-row {
   display: flex;
@@ -2625,3 +2629,4 @@ p#dates {
   }
 
 }
+
