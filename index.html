@@ -43,21 +43,52 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Structured Data (JSON-LD) -->
+  <!-- Structured Data (JSON-LD: Person + Projects) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhammad Mustaqeem",
-    "url": "https://mustaqeem.bytewisdom.tech",
-    "image": "https://mustaqeem.bytewisdom.tech/Pics/logo.png",
-    "jobTitle": "Computer Science Student & Developer",
-    "description": "Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations.",
-    "knowsAbout": ["Web Development", "Desktop Applications", "C#", "Python", "Databases"],
-    "sameAs": [
-      "https://github.com/Mustaqeem-Codes",
-      "https://linkedin.com/in/muhammad-mustaqeem-95656b331",
-      "https://facebook.com/MustaqeemCodes"
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Muhammad Mustaqeem",
+        "url": "https://mustaqeem.bytewisdom.tech",
+        "image": "https://mustaqeem.bytewisdom.tech/Pics/logo.png",
+        "jobTitle": "Computer Science Student & Developer",
+        "description": "Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations.",
+        "knowsAbout": ["Web Development", "Desktop Applications", "C#", "Python", "Databases"],
+        "sameAs": [
+          "https://github.com/Mustaqeem-Codes",
+          "https://linkedin.com/in/muhammad-mustaqeem-95656b331",
+          "https://facebook.com/MustaqeemCodes"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Job Portal Management System",
+        "description": "A professional C# Windows Forms application with Oracle database backend for managing job postings and applications.",
+        "applicationCategory": "Business",
+        "operatingSystem": "Windows",
+        "programmingLanguage": "C#",
+        "url": "https://mustaqeem.bytewisdom.tech/#projects"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Portfolio Website",
+        "description": "Personal portfolio built with HTML, CSS, and JavaScript to showcase projects, skills, and experience.",
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Cross-platform",
+        "programmingLanguage": "HTML, CSS, JavaScript",
+        "url": "https://mustaqeem.bytewisdom.tech"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Fighter Jet Game",
+        "description": "A retro-inspired game developed in Python where the player controls a jet using keyboard keys.",
+        "applicationCategory": "Game",
+        "operatingSystem": "Cross-platform",
+        "programmingLanguage": "Python",
+        "url": "https://mustaqeem.bytewisdom.tech/#projects"
+      }
     ]
   }
   </script>
@@ -737,4 +768,5 @@
 </body>
 
 </html>
+
 
