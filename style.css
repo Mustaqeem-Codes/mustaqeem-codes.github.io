@@ -2562,6 +2562,10 @@ footer {
   box-sizing: border-box;
 }
 
+.contact-form textarea{
+  min-height: 45px;
+}
+
 /* Specific fix for 412px and below */
 @media (max-width: 412px) {
   .footer-container {
@@ -2629,4 +2633,5 @@ p#dates {
   }
 
 }
+
 
