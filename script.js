@@ -680,42 +680,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to send form data to server
   function sendFormData(formData) {
-    // In a real implementation, this would send to your backend
-    console.log('Form data to be sent:', formData);
+    // Show a "sending" state to the user
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
 
-    // For demonstration, we'll simulate a successful submission
-    setTimeout(() => {
+    // Using Fetch API to send data to your LOCAL backend
+    fetch('/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        // If the server responds with an error, throw it to be caught in the .catch() block
+        return response.json().then(errorData => {
+          throw new Error(errorData.error || 'Server error');
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
       alert('Thank you for your message! We will get back to you soon.');
       contactForm.reset();
-
-      // In a real implementation, you would:
-      // 1. Save to Excel (via backend)
-      // 2. Send email notification (via backend)
-      // Here's how you would typically do it:
-
-      /* 
-      // Using Fetch API to send data to backend
-      fetch('your-backend-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert('Thank you for your message! We will get back to you soon.');
-        contactForm.reset();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting your form. Please try again.');
-      });
-      */
-    }, 1000);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was an error submitting your form. Please try again. Error: ' + error.message);
+    })
+    .finally(() => {
+      // Re-enable the button regardless of success or failure
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+    });
   }
 });
-
 
 
 
