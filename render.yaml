@@ -1,13 +1,8 @@
 services:
   - type: web
-    name: contact-form-backend
+    name: contact-form-backend  # This can be different from repo name
     env: node
     plan: free
-    rootDir: .
+    rootDir: .  # Look in the root directory
     buildCommand: npm install
     startCommand: npm start
-    envVars:
-      - key: EMAIL_USER
-        value: your_email@gmail.com
-      - key: EMAIL_PASS
-        value: your_16_digit_app_password
