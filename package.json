@@ -1,7 +1,7 @@
 {
-  "name": "contact-form-backend",
+  "name": "mustaqeem-codes-website",
   "version": "1.0.0",
-  "description": "Backend to handle contact form submissions and send emails",
+  "description": "Contact form backend for personal website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "keywords": ["contact-form", "website", "portfolio"],
+  "author": "Mustaqeem",
+  "license": "MIT"
 }
