@@ -567,47 +567,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================= stats ==================================
-
-// ========== CARD 1: Total Visits Counter ==========
-const visitDisplay = document.getElementById('visitCount');
-const visitKey = 'visit_total';
-
-// Load previous visits or start at 500
-let currentVisits = parseInt(localStorage.getItem(visitKey) || '500');
-
-// Add 1 on every page load
-currentVisits += 1;
-localStorage.setItem(visitKey, currentVisits);
-
-animateCounter(visitDisplay, currentVisits); // No suffix for visits
-
-// ========== CARD 2: Project Counter ==========
-const projectDisplay = document.getElementById('projectCount');
-const totalProjects = 5;  // 🔶 TOTAL NUMBER OF PROJECTS SET HERE 🔶
-animateCounter(projectDisplay, totalProjects, false, '+', 300); // Add + and slow speed
-
-// ========== CARD 3: Accuracy Counter ==========
-const accuracyDisplay = document.getElementById('accuracyCount');
-const accuracyPercent = 99.4;
-animateCounter(accuracyDisplay, accuracyPercent, true); // No suffix for accuracy
-
-// ========== Counter Animation Function ==========
-function animateCounter(element, target, isDecimal = false, suffix = '', customDelay = null) {
-  let count = 0;
-  const step = isDecimal ? 0.1 : 1;
-  const delay = customDelay !== null ? customDelay : (isDecimal ? 10 : 15);
-
-  const interval = setInterval(() => {
-    count += step;
-    if (count >= target) {
-      count = target;
-      clearInterval(interval);
-    }
-    element.textContent = (isDecimal ? count.toFixed(1) : Math.floor(count)) + suffix;
-  }, delay);
-}
-
 
 
 // ============================== footer ==================================
@@ -783,3 +742,4 @@ function updateTime() {
 updateTime(); // initial run
 setInterval(updateTime, 1000); // update every second
 window.addEventListener("resize", updateTime); // update on screen resize
+
