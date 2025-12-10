@@ -1,36 +1,165 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.getElementById("main-header");
-  const menuIcon = document.getElementById("menu-icon");
-  const nav = document.getElementById("nav");
-
-  // Animate header on page load
-  setTimeout(() => {
-    header.classList.add("show");
-  }, 200);
-
-  // Toggle mobile nav
-  menuIcon.addEventListener("click", () => {
-    nav.classList.toggle("show");
+//================== Header ==================
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.getElementById('main-header');
+  const menuIcon = document.getElementById('menu-icon');
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const scrollProgress = document.querySelector('.scroll-progress');
+  
+  // Variables for scroll handling
+  let lastScrollTop = 0;
+  let scrollTimeout;
+  
+  // Show header initially
+  header.classList.remove('hidden');
+  
+  // Toggle mobile menu
+  menuIcon.addEventListener('click', function() {
+    nav.classList.toggle('show');
+    menuIcon.classList.toggle('active');
+    
+    // Toggle body overflow when menu is open
+    if (nav.classList.contains('show')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   });
-
-  // Auto-close nav on link click (mobile only)
-  const navLinks = nav.querySelectorAll("a");
+  
+  // Close mobile menu when clicking a link
   navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 850) {
-        nav.classList.remove("show");
+    link.addEventListener('click', function() {
+      if (nav.classList.contains('show')) {
+        nav.classList.remove('show');
+        menuIcon.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      // Update active nav link
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(event) {
+    const isClickInsideNav = nav.contains(event.target);
+    const isClickOnMenuIcon = menuIcon.contains(event.target);
+    
+    if (!isClickInsideNav && !isClickOnMenuIcon && nav.classList.contains('show')) {
+      nav.classList.remove('show');
+      menuIcon.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+  
+// ============ Scroll Handling ============
+
+
+
+  // Handle scroll events for sticky header
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Update scroll progress indicator
+    const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (scrollTop / windowHeight) * 100;
+    scrollProgress.style.width = scrolled + '%';
+    
+    // Add scrolled class for header styling
+    if (scrollTop > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    // Handle header show/hide on scroll direction
+    clearTimeout(scrollTimeout);
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      // Scrolling down
+      header.classList.add('hidden');
+    } else {
+      // Scrolling up
+      header.classList.remove('hidden');
+    }
+    
+    lastScrollTop = scrollTop;
+    
+    // Auto-hide header after stopping scrolling (mobile-friendly)
+    scrollTimeout = setTimeout(function() {
+      if (scrollTop > 100) {
+        header.classList.add('hidden');
+      }
+    }, 1500);
+    
+    // Update active nav link based on scroll position
+    updateActiveNavLink();
+  });
+  
+  // Function to update active nav link based on scroll position
+  function updateActiveNavLink() {
+    let current = '';
+    const sections = document.querySelectorAll('.demo-section');
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (window.scrollY >= (sectionTop - 150)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').substring(1) === current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  
+  // Initialize active nav link
+  updateActiveNavLink();
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
       }
     });
   });
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 920) {
+      // Close mobile menu on desktop
+      nav.classList.remove('show');
+      menuIcon.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 });
+
+
+// ================= Typing Progress Bar ============
 
 // Typing animation (already present)
 const words = [
-  "Frontend Designer",
-  "Backend Developer",
-  "Programmer",
-  "Graphic Designer",
-  "Teacher"
+  "Full Stack Developer", 
+  "React.js Specialist",
+  "Node.js Developer",
+  "JavaScript Developer"
 ];
 let wordIndex = 0;
 let charIndex = 0;
@@ -79,6 +208,87 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(el);
   });
 });
+
+
+// ============== loading screen ==================
+// Home Section Entrance Animation
+function animateHomeSection() {
+  const homeSection = document.getElementById('home');
+  const homeLeft = document.querySelector('.home-left');
+  const homeRight = document.querySelector('.home-right');
+  
+  if (!homeSection || !homeLeft || !homeRight) return;
+  
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+    // Trigger when element is 25% from the top of viewport
+    return rect.top <= windowHeight * 0.75;
+  }
+  
+  // Function to trigger animations
+  function triggerAnimations() {
+    if (isInViewport(homeSection)) {
+      homeLeft.classList.add('show-animate');
+      homeRight.classList.add('show-animate');
+      
+      // Remove event listener after animation triggers
+      window.removeEventListener('scroll', triggerAnimations);
+    }
+  }
+  
+  // Initial check on page load
+  setTimeout(() => {
+    triggerAnimations();
+  }, 300); // Small delay for page to settle
+  
+  // Check on scroll
+  window.addEventListener('scroll', triggerAnimations);
+  
+  // Also trigger on resize (in case of layout changes)
+  window.addEventListener('resize', triggerAnimations);
+}
+
+// Run when DOM is loaded
+document.addEventListener('DOMContentLoaded', animateHomeSection);
+
+// Also run on page load (in case images load slowly)
+window.addEventListener('load', animateHomeSection);
+
+// Scroll-triggered animation (repeats when scrolling up/down)
+function animateOnScroll() {
+  const homeSection = document.getElementById('home');
+  const homeLeft = document.querySelector('.home-left');
+  const homeRight = document.querySelector('.home-right');
+  
+  if (!homeSection || !homeLeft || !homeRight) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add animation classes
+        homeLeft.classList.add('show-animate');
+        homeRight.classList.add('show-animate');
+      } else {
+        // Remove classes when out of view (optional)
+        // homeLeft.classList.remove('show-animate');
+        // homeRight.classList.remove('show-animate');
+      }
+    });
+  }, {
+    threshold: 0.3, // Trigger when 30% visible
+    rootMargin: '0px 0px -100px 0px' // Trigger slightly before entering view
+  });
+  
+  observer.observe(homeSection);
+}
+
+document.addEventListener('DOMContentLoaded', animateOnScroll);
+
+
+
 
 // -----------------------Education Section--------------------------
 document.addEventListener('DOMContentLoaded', function () {

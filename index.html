@@ -1,424 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H38HJPPREN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-H38HJPPREN');
-  </script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Title & Description -->
-  <title>Mustaqeem | Computer Science Portfolio</title>
-  <meta name="description" content="Official portfolio of Muhammad Mustaqeem – Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations.">
-
-  <!-- Keywords -->
-  <meta name="keywords" content="Mustaqeem, portfolio, computer science, developer, web development, C#, Python, database, projects, freelancer">
-
-  <!-- Author -->
-  <meta name="author" content="Muhammad Mustaqeem">
-
-  <!-- Open Graph (for social sharing) -->
-  <meta property="og:title" content="Mustaqeem | Computer Science Portfolio">
-  <meta property="og:description" content="Explore projects and skills of Muhammad Mustaqeem – CS student and developer. Contact for freelance work and collaborations.">
-  <meta property="og:image" content="https://mustaqeem.bytewisdom.tech/Pics/logo.png">
-  <meta property="og:url" content="https://mustaqeem.bytewisdom.tech">
-  <meta property="og:type" content="website">
-
-  <!-- Google Site Verification -->
-  <meta name="google-site-verification" content="crWPtMh4NVKjUN4yjAYd-GX-n1tYEslLBQrxGU6-M6E" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="Pics/logo.png" type="image/png" />
-
-  <!-- CSS & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Structured Data (JSON-LD: Person + Projects) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "name": "Muhammad Mustaqeem",
-        "url": "https://mustaqeem.bytewisdom.tech",
-        "image": "https://mustaqeem.bytewisdom.tech/Pics/logo.png",
-        "jobTitle": "Computer Science Student & Developer",
-        "description": "Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations.",
-        "knowsAbout": ["Web Development", "Desktop Applications", "C#", "Python", "Databases"],
-        "sameAs": [
-          "https://github.com/Mustaqeem-Codes",
-          "https://linkedin.com/in/muhammad-mustaqeem-95656b331",
-          "https://facebook.com/MustaqeemCodes"
-        ]
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Job Portal Management System",
-        "description": "A professional C# Windows Forms application with Oracle database backend for managing job postings and applications.",
-        "applicationCategory": "Business",
-        "operatingSystem": "Windows",
-        "programmingLanguage": "C#",
-        "url": "https://mustaqeem.bytewisdom.tech/#projects"
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Portfolio Website",
-        "description": "Personal portfolio built with HTML, CSS, and JavaScript to showcase projects, skills, and experience.",
-        "applicationCategory": "WebApplication",
-        "operatingSystem": "Cross-platform",
-        "programmingLanguage": "HTML, CSS, JavaScript",
-        "url": "https://mustaqeem.bytewisdom.tech"
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Fighter Jet Game",
-        "description": "A retro-inspired game developed in Python where the player controls a jet using keyboard keys.",
-        "applicationCategory": "Game",
-        "operatingSystem": "Cross-platform",
-        "programmingLanguage": "Python",
-        "url": "https://mustaqeem.bytewisdom.tech/#projects"
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H38HJPPREN"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
       }
-    ]
-  }
-  </script>
-</head>
+      gtag("js", new Date());
+      gtag("config", "G-H38HJPPREN");
+    </script>
 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Title & Description -->
+    <title>Mustaqeem | Computer Science Portfolio</title>
+    <meta
+      name="description"
+      content="Official portfolio of Muhammad Mustaqeem – Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations."
+    />
 
-<body>
-  <header id="main-header" class="hidden">
-    <div class="header-container">
-      <div class="logo">MUHAMMAD MUSTAQEEM</div>
+    <!-- Keywords -->
+    <meta
+      name="keywords"
+      content="Mustaqeem, portfolio, computer science, developer, web development, C#, Python, database, projects, freelancer"
+    />
 
-      <!-- Hamburger Menu Icon -->
-      <div class="menu-icon" id="menu-icon">
-        ☰
+    <!-- Author -->
+    <meta name="author" content="Muhammad Mustaqeem" />
+
+    <!-- Open Graph (for social sharing) -->
+    <meta
+      property="og:title"
+      content="Mustaqeem | Computer Science Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Explore projects and skills of Muhammad Mustaqeem – CS student and developer. Contact for freelance work and collaborations."
+    />
+    <meta
+      property="og:image"
+      content="https://mustaqeem.bytewisdom.tech/Pics/logo.png"
+    />
+    <meta property="og:url" content="https://mustaqeem.bytewisdom.tech" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Site Verification -->
+    <meta
+      name="google-site-verification"
+      content="crWPtMh4NVKjUN4yjAYd-GX-n1tYEslLBQrxGU6-M6E"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="Pics/logo.png" type="image/png" />
+
+    <!-- CSS & Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Structured Data (JSON-LD: Person + Projects) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Muhammad Mustaqeem",
+            "url": "https://mustaqeem.bytewisdom.tech",
+            "image": "https://mustaqeem.bytewisdom.tech/Pics/logo.png",
+            "jobTitle": "Computer Science Student & Developer",
+            "description": "Computer Science student and developer specializing in web development, desktop apps, C#, Python, and databases. Open to freelance projects and collaborations.",
+            "knowsAbout": [
+              "Web Development",
+              "Desktop Applications",
+              "C#",
+              "Python",
+              "Databases"
+            ],
+            "sameAs": [
+              "https://github.com/Mustaqeem-Codes",
+              "https://linkedin.com/in/muhammad-mustaqeem-95656b331",
+              "https://facebook.com/MustaqeemCodes"
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Job Portal Management System",
+            "description": "A professional C# Windows Forms application with Oracle database backend for managing job postings and applications.",
+            "applicationCategory": "Business",
+            "operatingSystem": "Windows",
+            "programmingLanguage": "C#",
+            "url": "https://mustaqeem.bytewisdom.tech/#projects"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Portfolio Website",
+            "description": "Personal portfolio built with HTML, CSS, and JavaScript to showcase projects, skills, and experience.",
+            "applicationCategory": "WebApplication",
+            "operatingSystem": "Cross-platform",
+            "programmingLanguage": "HTML, CSS, JavaScript",
+            "url": "https://mustaqeem.bytewisdom.tech"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Fighter Jet Game",
+            "description": "A retro-inspired game developed in Python where the player controls a jet using keyboard keys.",
+            "applicationCategory": "Game",
+            "operatingSystem": "Cross-platform",
+            "programmingLanguage": "Python",
+            "url": "https://mustaqeem.bytewisdom.tech/#projects"
+          }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <header id="main-header">
+      <div class="header-container">
+        <div class="logo">
+          <span class="logo-text">MUHAMMAD MUSTAQEEM</span>
+          <span class="logo-dot">.</span>
+        </div>
+
+        <!-- Hamburger Menu Icon -->
+        <div class="menu-icon" id="menu-icon">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="nav" id="nav">
+          <a href="#home" class="nav-link"><span>Home</span></a>
+          <a href="#about" class="nav-link"><span>About</span></a>
+          <a href="#education" class="nav-link"><span>Education</span></a>
+          <a href="#skills" class="nav-link"><span>Skills</span></a>
+          <a href="#projects" class="nav-link"><span>Projects</span></a>
+          <a href="#testimonials" class="nav-link"><span>Testimonials</span></a>
+          <a href="#contact" class="nav-link"><span>Contact</span></a>
+        </nav>
       </div>
 
-      <!-- Nav Links -->
-      <nav class="nav" id="nav">
-        <a href="#home">Home</a>
-        <a href="#home">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+      <!-- Scroll progress indicator -->
+      <div class="scroll-progress"></div>
+    </header>
 
-
-  <!-- About Section -->
-
-  <section class="home" id="home">
-    <div class="home-content">
-      <h3 class="animate animate-left">Hi, It's <span>Mustaqeem</span></h3>
-      <h3 class="text-animation animate animate-left">I'm a <span class="typing-text"></span><span
-          class="cursor"></span></h3>
+    <!-- About Section -->
+<section class="home" id="home">
+  <div class="home-container">
+    <!-- Left Content Section -->
+    <div class="home-left">
+      <h3 class="animate animate-left">Hi, I'm <span>Mustaqeem</span></h3>
+      <h3 class="text-animation animate animate-left">
+        I'm a <span class="typing-text"></span><span class="cursor"></span>
+      </h3>
+      
       <p class="animate animate-left">
-        I am a passionate and dedicated individual, always striving for growth in both my personal and
-        professional life. With a keen interest in technology and programming, I am currently pursuing my degree
-        in Computer Science at UET Lahore, where I continue to expand my knowledge and skills. I enjoy taking on
-        new challenges and learning new things, especially in the fields of software development and artificial
-        intelligence. Alongside my academic journey, I actively engage in projects to hone my abilities, aiming
-        to make a positive impact in the tech world.</p>
-      <div class="btn-social-row animate animate-bottom">
-        <div class="btn-group">
-          <a href="#" class="btn">Follow @</a>
+        A passionate Full Stack Developer specializing in the MERN stack and modern web technologies. 
+        Currently pursuing Computer Science at UET Lahore, I build scalable applications with 
+        <strong>React.js, Node.js, and PostgreSQL</strong>. My focus is on creating efficient, 
+        user-centric solutions through clean code and innovative problem-solving.
+      </p>
+      
+      
+      <!-- Centered Stats -->
+      <div class="centered-stats animate animate-left">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Technologies</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Years Exp</div>
+          </div>
         </div>
-        <div class="social" id="social">
-          <a href="https://github.com/Mustaqeem-Codes" class="github" data-label="GitHub"><i
-              class="fab fa-github"></i></a>
-          <a href="https://web.facebook.com/MustaqeemCodes/" class="facebook" data-label="Facebook"><i
-              class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/mustaqeem_codes/#" class="instagram" data-label="Instagram"><i
-              class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/" class="linkedin" data-label="LinkedIn"><i
-              class="fab fa-linkedin-in"></i></a>
-          <!-- <a href="https://www.bytewisdom.tech/" data-label="ByteWisdom">
+      </div>
+      
+      <!-- Centered Tech Icons -->
+      <div class="centered-icons animate animate-left">
+        <div class="icon-item" title="React">
+          <i class="fab fa-react"></i>
+        </div>
+        <div class="icon-item" title="JavaScript">
+          <i class="fab fa-js-square"></i>
+        </div>
+        <div class="icon-item" title="Node.js">
+          <i class="fab fa-node-js"></i>
+        </div>
+        <div class="icon-item" title="Python">
+          <i class="fab fa-python"></i>
+        </div>
+        <div class="icon-item" title="Database">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="icon-item" title="Git">
+          <i class="fab fa-git-alt"></i>
+        </div>
+      </div>
+      
+      <!-- Centered Social Icons -->
+      <div class="social2" id="social">
+            <a
+              href="https://github.com/Mustaqeem-Codes"
+              class="github"
+              data-label="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://web.facebook.com/MustaqeemCodes/"
+              class="facebook"
+              data-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/mustaqeem_codes/#"
+              class="instagram"
+              data-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/"
+              class="linkedin"
+              data-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <!-- <a href="https://www.bytewisdom.tech/" data-label="ByteWisdom">
             <img src="Pics/BWT.svg" alt="ByteWisdom" />
           </a> -->
+          </div>
+    </div>
+    
+    <!-- Right Image Section -->
+    <div class="home-right animate animate-right">
+      <div class="image-wrapper">
+        <div class="image-container">
+          <img src="Pics/1920 x 1200.png" alt="Muhammad Mustaqeem" class="profile-image" />
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="home-img animate animate-right">
-      <img src="Pics/Pic1.png" alt="My Pic" />
-    </div>
-  </section>
+    <section class="education-section" id="education">
+      <div class="edu-container">
+        <div class="section-title">
+          <h2>Education</h2>
+          <p>Academic journey that shaped my knowledge and skills</p>
+        </div>
 
-
-
-  <section class="education-section" id="education">
-    <div class="edu-container">
-      <div class="section-title">
-        <h2>Education</h2>
-        <p>Academic journey that shaped my knowledge and skills</p>
-      </div>
-
-      <div class="education-container" id="educationContainer">
-        <!-- Education Card 1 - Matriculation -->
-        <div class="education-card" data-card-index="0">
-          <div class="education-icon">
-            <i class="fas fa-school"></i>
-          </div>
-          <div class="education-content">
-            <div class="education-header">
-              <div class="title-wrapper">
-                <h3 class="education-title" data-text="Matriculation"></h3>
-                <span class="education-duration" data-text="2016 - 2018"></span>
-                <p class="education-institution" data-text="Govt. High School Bhutta Pur Muzaffargarh"></p>
+        <div class="education-container" id="educationContainer">
+          <!-- Education Card 1 - Matriculation -->
+          <div class="education-card" data-card-index="0">
+            <div class="education-icon">
+              <i class="fas fa-school"></i>
+            </div>
+            <div class="education-content">
+              <div class="education-header">
+                <div class="title-wrapper">
+                  <h3 class="education-title" data-text="Matriculation"></h3>
+                  <span
+                    class="education-duration"
+                    data-text="2016 - 2018"
+                  ></span>
+                  <p
+                    class="education-institution"
+                    data-text="Govt. High School Bhutta Pur Muzaffargarh"
+                  ></p>
+                </div>
               </div>
+              <p
+                class="education-description"
+                data-text="Completed matriculation with science subjects including Physics, Chemistry, Biology and Mathematics. Achieved top grades in all subjects and secured 1st position in class."
+              ></p>
+              <div
+                class="badges-container"
+                data-badges='["Science", "A+ Grade", "93.45% Marks"]'
+              ></div>
             </div>
-            <p class="education-description"
-              data-text="Completed matriculation with science subjects including Physics, Chemistry, Biology and Mathematics. Achieved top grades in all subjects and secured 1st position in class.">
-            </p>
-            <div class="badges-container" data-badges='["Science", "A+ Grade", "93.45% Marks"]'></div>
           </div>
-        </div>
 
-        <!-- Education Card 2 - Intermediate -->
-        <div class="education-card" data-card-index="1">
-          <div class="education-icon">
-            <i class="fas fa-book-open"></i>
-          </div>
-          <div class="education-content">
-            <div class="education-header">
-              <div class="title-wrapper">
-                <h3 class="education-title" data-text="Intermediate"></h3>
-                <span class="education-duration" data-text="2018 - 2021"></span>
-                <p class="education-institution" data-text="Govt. Post Graduate College Muzaffargarh"></p>
+          <!-- Education Card 2 - Intermediate -->
+          <div class="education-card" data-card-index="1">
+            <div class="education-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="education-content">
+              <div class="education-header">
+                <div class="title-wrapper">
+                  <h3 class="education-title" data-text="Intermediate"></h3>
+                  <span
+                    class="education-duration"
+                    data-text="2018 - 2021"
+                  ></span>
+                  <p
+                    class="education-institution"
+                    data-text="Govt. Post Graduate College Muzaffargarh"
+                  ></p>
+                </div>
               </div>
+              <p
+                class="education-description"
+                data-text="Completed F.Sc Pre-Medical with major subjects of Physics, Chemistry, and Biology. Participated in science competitions."
+              ></p>
+              <div
+                class="badges-container"
+                data-badges='["Pre-Medical", "A+ Grade", "90% Marks"]'
+              ></div>
             </div>
-            <p class="education-description"
-              data-text="Completed F.Sc Pre-Medical with major subjects of Physics, Chemistry, and Biology. Participated in science competitions.">
-            </p>
-            <div class="badges-container" data-badges='["Pre-Medical", "A+ Grade", "90% Marks"]'></div>
           </div>
-        </div>
 
-        <!-- Education Card 3 - Medical Diploma -->
-        <div class="education-card" data-card-index="2">
-          <div class="education-icon">
-            <i class="fas fa-user-md"></i>
-          </div>
-          <div class="education-content">
-            <div class="education-header">
-              <div class="title-wrapper">
-                <h3 class="education-title" data-text="Surgical Diploma"></h3>
-                <span class="education-duration" data-text="2021 - 2023"></span>
-                <p class="education-institution" data-text="Nishtar Medical University and Hospital Multan"></p>
+          <!-- Education Card 3 - Medical Diploma -->
+          <div class="education-card" data-card-index="2">
+            <div class="education-icon">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="education-content">
+              <div class="education-header">
+                <div class="title-wrapper">
+                  <h3 class="education-title" data-text="Surgical Diploma"></h3>
+                  <span
+                    class="education-duration"
+                    data-text="2021 - 2023"
+                  ></span>
+                  <p
+                    class="education-institution"
+                    data-text="Nishtar Medical University and Hospital Multan"
+                  ></p>
+                </div>
               </div>
+              <p
+                class="education-description"
+                data-text="Completed 2-year diploma in Operation Theater Technician with focus on Human Anatomy, Medical and Surgical practice."
+              ></p>
+              <div
+                class="badges-container"
+                data-badges='["OTT", "A Grade", "70%"]'
+              ></div>
             </div>
-            <p class="education-description"
-              data-text="Completed 2-year diploma in Operation Theater Technician with focus on Human Anatomy, Medical and Surgical practice.">
-            </p>
-            <div class="badges-container" data-badges='["OTT", "A Grade", "70%"]'></div>
           </div>
-        </div>
 
-        <!-- Education Card 4 - BS Computer Science -->
-        <div class="education-card" data-card-index="3">
-          <div class="education-icon">
-            <i class="fas fa-laptop-code"></i>
-          </div>
-          <div class="education-content">
-            <div class="education-header">
-              <div class="title-wrapper">
-                <h3 class="education-title" data-text="BS Computer Science"></h3>
-                <span class="education-duration" data-text="2024 - 2028"></span>
-                <p class="education-institution" data-text="University of Engineering and Technology Lahore"></p>
+          <!-- Education Card 4 - BS Computer Science -->
+          <div class="education-card" data-card-index="3">
+            <div class="education-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="education-content">
+              <div class="education-header">
+                <div class="title-wrapper">
+                  <h3
+                    class="education-title"
+                    data-text="BS Computer Science"
+                  ></h3>
+                  <span
+                    class="education-duration"
+                    data-text="2024 - 2028"
+                  ></span>
+                  <p
+                    class="education-institution"
+                    data-text="University of Engineering and Technology Lahore"
+                  ></p>
+                </div>
               </div>
+              <p
+                class="education-description"
+                data-text="Bachelor of Science in Computer Science with highly interested in AI, Web Development, Real World Applications development."
+              ></p>
+              <div
+                class="badges-container"
+                data-badges='["Computer Scientist", "2 semesters completed", "Continue"]'
+              ></div>
             </div>
-            <p class="education-description"
-              data-text="Bachelor of Science in Computer Science with highly interested in AI, Web Development, Real World Applications development.">
-            </p>
-            <div class="badges-container" data-badges='["Computer Scientist", "2 semesters completed", "Continue"]'>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <main class="skills-container" id="skills">
-    <h1 class="main-heading">Skills</h1>
-
-    <div class="skills-grid">
-      <!-- Left Side - Programming Skills -->
-      <div class="programming-skills">
-        <div class="skill-item html" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class='bx bxl-html5 skill-icon' aria-hidden="true"></i>
-              <span>HTML</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="skill-item css" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class='bx bxl-css3 skill-icon' aria-hidden="true"></i>
-              <span>CSS</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="skill-item cpp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class='bx bx-code-alt skill-icon' aria-hidden="true"></i>
-              <span>C++</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="skill-item python" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class='bx bxl-python skill-icon' aria-hidden="true"></i>
-              <span>Python</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="skill-item csharp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class="devicon-csharp-plain colored skill-icon"></i>
-              <span>C#</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="skill-item database" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-          tabindex="0">
-          <div class="skill-info">
-            <div class="skill-name">
-              <i class='bx bx-data skill-icon' aria-hidden="true"></i>
-              <span>Database</span>
-            </div>
-            <span class="skill-percent">0%</span>
-          </div>
-          <div class="progress-container">
-            <div class="progress-bar"></div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Right Side - Professional Skills (Only 4 items now) -->
-      <div class="professional-skills">
-        <div class="circle-item" tabindex="0">
-          <div class="circle-container mstools" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100">
-            <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
-              <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
-              <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
-            </svg>
-            <div class="circle-text">0%</div>
+    <main class="skills-container" id="skills">
+      <h1 class="main-heading">Skills</h1>
+
+      <div class="skills-grid">
+        <!-- Left Side - Programming Skills -->
+        <div class="programming-skills">
+          <div
+            class="skill-item html"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="bx bxl-html5 skill-icon" aria-hidden="true"></i>
+                <span>HTML</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
           </div>
-          <div class="circle-label">
-            <i class='bx bxl-microsoft circle-icon' style="color: #0078D7;"></i>
-            <span>MS Tools</span>
+
+          <div
+            class="skill-item css"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="bx bxl-css3 skill-icon" aria-hidden="true"></i>
+                <span>CSS</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div
+            class="skill-item cpp"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="bx bx-code-alt skill-icon" aria-hidden="true"></i>
+                <span>C++</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div
+            class="skill-item python"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="bx bxl-python skill-icon" aria-hidden="true"></i>
+                <span>Python</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div
+            class="skill-item csharp"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="devicon-csharp-plain colored skill-icon"></i>
+                <span>C#</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
+          <div
+            class="skill-item database"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            tabindex="0"
+          >
+            <div class="skill-info">
+              <div class="skill-name">
+                <i class="bx bx-data skill-icon" aria-hidden="true"></i>
+                <span>Database</span>
+              </div>
+              <span class="skill-percent">0%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar"></div>
+            </div>
           </div>
         </div>
 
-        <div class="circle-item" tabindex="0">
-          <div class="circle-container git" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-            <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
-              <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
-              <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
-            </svg>
-            <div class="circle-text">0%</div>
+        <!-- Right Side - Professional Skills (Only 4 items now) -->
+        <div class="professional-skills">
+          <div class="circle-item" tabindex="0">
+            <div
+              class="circle-container mstools"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+                <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+                <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+              </svg>
+              <div class="circle-text">0%</div>
+            </div>
+            <div class="circle-label">
+              <i
+                class="bx bxl-microsoft circle-icon"
+                style="color: #0078d7"
+              ></i>
+              <span>MS Tools</span>
+            </div>
           </div>
-          <div class="circle-label">
-            <i class='bx bxl-git circle-icon' style="color: #F05032;"></i>
-            <span>Git & GitHub</span>
-          </div>
-        </div>
 
-        <div class="circle-item" tabindex="0">
-          <div class="circle-container teamwork" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100">
-            <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
-              <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
-              <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
-            </svg>
-            <div class="circle-text">0%</div>
+          <div class="circle-item" tabindex="0">
+            <div
+              class="circle-container git"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+                <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+                <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+              </svg>
+              <div class="circle-text">0%</div>
+            </div>
+            <div class="circle-label">
+              <i class="bx bxl-git circle-icon" style="color: #f05032"></i>
+              <span>Git & GitHub</span>
+            </div>
           </div>
-          <div class="circle-label">
-            <i class='bx bx-group circle-icon' style="color: #9C27B0;"></i>
-            <span>Team Work</span>
-          </div>
-        </div>
 
-        <div class="circle-item" tabindex="0">
-          <div class="circle-container communication" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-            aria-valuemax="100">
-            <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
-              <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
-              <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
-            </svg>
-            <div class="circle-text">0%</div>
+          <div class="circle-item" tabindex="0">
+            <div
+              class="circle-container teamwork"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+                <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+                <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+              </svg>
+              <div class="circle-text">0%</div>
+            </div>
+            <div class="circle-label">
+              <i class="bx bx-group circle-icon" style="color: #9c27b0"></i>
+              <span>Team Work</span>
+            </div>
           </div>
-          <div class="circle-label">
-            <i class='bx bx-conversation circle-icon' style="color: #03A9F4;"></i>
-            <span>Communication</span>
+
+          <div class="circle-item" tabindex="0">
+            <div
+              class="circle-container communication"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+                <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+                <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+              </svg>
+              <div class="circle-text">0%</div>
+            </div>
+            <div class="circle-label">
+              <i
+                class="bx bx-conversation circle-icon"
+                style="color: #03a9f4"
+              ></i>
+              <span>Communication</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
+    <!-- ====================================Projects================================================== -->
 
-  <!-- ====================================Projects================================================== -->
-
-  <section class="projects-section custom-projects-wrapper" id="projects">
-    <h1 class="section-title">Projects</h1>
-    <div class="projects-container">
-
-      <!-- Airline Management System -->
-      <div class="project-card" data-output-images="
+    <section class="projects-section custom-projects-wrapper" id="projects">
+      <h1 class="section-title">Projects</h1>
+      <div class="projects-container">
+        <!-- Airline Management System -->
+        <div
+          class="project-card"
+          data-output-images="
                     Pics/S1.png,
                     Pics/S2.png,
                     Pics/S3.png,
@@ -426,50 +631,68 @@
                     Pics/S5.png,
                     Pics/S6.png,
                     Pics/S7.png,
-                    Pics/S8.png">
+                    Pics/S8.png"
+        >
+          <img
+            src="Pics/Airline.jpg"
+            alt="Airline Management System"
+            class="project-image"
+          />
 
-        <img src="Pics/Airline.jpg" alt="Airline Management System" class="project-image">
-
-        <div class="project-info">
-          <h2 class="project-title">Airline Management System</h2>
-          <p class="project-description">
-            A comprehensive system to add, view, update, delete flights, Staff Memebers, Passengers and Staff Assigning
-            for flights.
-          </p>
-          <p class="project-tech"><br>Technologies: C++, Console Based, File Handling for data storage, Visual Studio
-          </p>
-        </div>
-
-        <div class="project-hover">
-          <h2 class="hover-title">Airline Management System</h2>
-          <p class="hover-description">
-            Developed fully functional solution for airline operations with main functionalities of flights, staff and
-            passengers managed by Admin and Bookings by Receptionists.</p>
-          <div class="action-buttons">
-            <button class="btn btn-primary view-output-btn">View Output</button>
-            <button class="btn btn-secondary download-btn" data-url="https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/AMS.zip
-">
-              <span class="btn-text">Download</span>
-              <span class="checkmark">✓</span>
-            </button>
+          <div class="project-info">
+            <h2 class="project-title">Airline Management System</h2>
+            <p class="project-description">
+              A comprehensive system to add, view, update, delete flights, Staff
+              Memebers, Passengers and Staff Assigning for flights.
+            </p>
+            <p class="project-tech">
+              <br />Technologies: C++, Console Based, File Handling for data
+              storage, Visual Studio
+            </p>
           </div>
+
+          <div class="project-hover">
+            <h2 class="hover-title">Airline Management System</h2>
+            <p class="hover-description">
+              Developed fully functional solution for airline operations with
+              main functionalities of flights, staff and passengers managed by
+              Admin and Bookings by Receptionists.
+            </p>
+            <div class="action-buttons">
+              <button class="btn btn-primary view-output-btn">
+                View Output
+              </button>
+              <button
+                class="btn btn-secondary download-btn"
+                data-url="https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/AMS.zip
+"
+              >
+                <span class="btn-text">Download</span>
+                <span class="checkmark">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <a
+            href="https://github.com/Mustaqeem-Codes/Airline_Management_System
+"
+            class="github-corner"
+            target="_blank"
+            aria-label="View source on GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
+            </svg>
+          </a>
         </div>
 
-        <a href="https://github.com/Mustaqeem-Codes/Airline_Management_System
-" class="github-corner" target="_blank" aria-label="View source on GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
-            </path>
-          </svg>
-        </a>
-      </div>
-
-
-
-
-      <!-- Job Portal Management System -->
-      <div class="project-card" data-output-images="
+        <!-- Job Portal Management System -->
+        <div
+          class="project-card"
+          data-output-images="
                     Pics/SS9.png,
                     Pics/SS2.png,
                     Pics/SS5.png,
@@ -477,50 +700,65 @@
                     Pics/SS1.png,
                     Pics/SS4.png,
                     Pics/SS4.png,
-                    Pics/SS4.png">
+                    Pics/SS4.png"
+        >
+          <img src="Pics/Job (1).jpg" alt="Job Portal" class="project-image" />
 
-
-        <img src="Pics/Job (1).jpg" alt="Job Portal" class="project-image">
-
-        <div class="project-info">
-          <h2 class="project-title">JP Management System</h2>
-          <p class="project-description">
-            Job Portal made to ease the employers as well as students for quick hiring actions. This system provides
-            comprehensive details and status all the way.
-          </p>
-          <p class="project-tech">Technologies: C#, Oracle Database, OOP, Windows Form, Classes, Visual Studio Community
-          </p>
-        </div>
-
-        <div class="project-hover">
-          <h2 class="hover-title">Job Portal Management System</h2>
-          <p class="hover-description">
-            Job Portal has active role based signup (Employer/Candidate). Employer can update his company and jobs,
-            application selection/rejection, Interview Scheduling.
-            Candidates have access on jobs, their applications, application statuses and interview dates.
-          </p>
-          <div class="action-buttons">
-            <button class="btn btn-primary view-output-btn">View Output</button>
-            <button class="btn btn-secondary download-btn"
-              data-url="https://github.com/Mustaqeem-Codes/Job_Portal_Management_System/raw/main/Job_Portal_Management_System.zip">
-              <span class="btn-text">Download</span>
-              <span class="checkmark">✓</span>
-            </button>
+          <div class="project-info">
+            <h2 class="project-title">JP Management System</h2>
+            <p class="project-description">
+              Job Portal made to ease the employers as well as students for
+              quick hiring actions. This system provides comprehensive details
+              and status all the way.
+            </p>
+            <p class="project-tech">
+              Technologies: C#, Oracle Database, OOP, Windows Form, Classes,
+              Visual Studio Community
+            </p>
           </div>
+
+          <div class="project-hover">
+            <h2 class="hover-title">Job Portal Management System</h2>
+            <p class="hover-description">
+              Job Portal has active role based signup (Employer/Candidate).
+              Employer can update his company and jobs, application
+              selection/rejection, Interview Scheduling. Candidates have access
+              on jobs, their applications, application statuses and interview
+              dates.
+            </p>
+            <div class="action-buttons">
+              <button class="btn btn-primary view-output-btn">
+                View Output
+              </button>
+              <button
+                class="btn btn-secondary download-btn"
+                data-url="https://github.com/Mustaqeem-Codes/Job_Portal_Management_System/raw/main/Job_Portal_Management_System.zip"
+              >
+                <span class="btn-text">Download</span>
+                <span class="checkmark">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <a
+            href="https://github.com/Mustaqeem-Codes/Job_Portal_Management_System"
+            class="github-corner"
+            target="_blank"
+            aria-label="View source on GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
+            </svg>
+          </a>
         </div>
 
-        <a href="https://github.com/Mustaqeem-Codes/Job_Portal_Management_System" class="github-corner" target="_blank"
-          aria-label="View source on GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
-            </path>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Number Guess Game -->
-      <div class="project-card" data-output-images="
+        <!-- Number Guess Game -->
+        <div
+          class="project-card"
+          data-output-images="
               Pics/SSS (6).png,
               Pics/SSS (2).png,
               Pics/SSS (3).png,
@@ -528,211 +766,265 @@
               Pics/SSS (5).png,
               Pics/SSS (7).png,
               Pics/SSS (1).png,
-              Pics/SSS (8).png">
+              Pics/SSS (8).png"
+        >
+          <img
+            src="Pics/Banner.jpg"
+            alt="Number Guess Game"
+            class="project-image"
+          />
 
-        <img src="Pics/Banner.jpg" alt="Number Guess Game" class="project-image">
-
-        <div class="project-info">
-          <h2 class="project-title">Number Guess Game</h2>
-          <p class="project-description">
-            A console-based game where players log in, guess numbers, and earn points. It includes user authentication,
-            personal score tracking, and a global leaderboard with ranks.
-          </p>
-          <p class="project-tech">Technologies: Python, File Handling, Libraries(os, random, pyjokes, time, colorama)
-          </p>
-        </div>
-
-        <div class="project-hover">
-          <h2 class="hover-title">Number Guess Game</h2>
-          <p class="hover-description">
-            The game rewards faster guesses with higher points, shows motivational jokes after wins, and maintains each
-            player’s progress in files. With features like top scores, rank display, and colorful interface, NGG is both
-            fun and skill-enhancing.
-          </p>
-          <div class="action-buttons">
-            <button class="btn btn-primary view-output-btn">View Output</button>
-            <button class="btn btn-secondary download-btn"
-              data-url="https://github.com/Mustaqeem-Codes/Number_Guess_Game/raw/main/Number_Guess_Game.zip">
-              <span class="btn-text">Download</span>
-              <span class="checkmark">✓</span>
-            </button>
+          <div class="project-info">
+            <h2 class="project-title">Number Guess Game</h2>
+            <p class="project-description">
+              A console-based game where players log in, guess numbers, and earn
+              points. It includes user authentication, personal score tracking,
+              and a global leaderboard with ranks.
+            </p>
+            <p class="project-tech">
+              Technologies: Python, File Handling, Libraries(os, random,
+              pyjokes, time, colorama)
+            </p>
           </div>
-        </div>
 
-        <a href="https://github.com/Mustaqeem-Codes/Number_Guess_Game/tree/main" class="github-corner" target="_blank"
-          aria-label="View source on GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z">
-            </path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal for project output -->
-  <div class="modal">
-    <button class="close-modal">&times;</button>
-    <div class="modal-content"></div>
-  </div>
-
-
-
-
-
-
-
-  <!-- =============================Testimonials============================= -->
-
-
-  <section class="tmq-testimonials" id="testimonials">
-    <div class="tmq-testimonials-box">
-      <h2 class="tmq-heading">Testimonials</h2>
-      <div class="tmq-wrapper">
-        <div class="tmq-testimonial-item" data-dir="right">
-          <img src="Pics/Waseem.jpeg" alt="Muhammad Waseem">
-          <h2>M Waseem</h2>
-          <div class="tmq-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <div class="project-hover">
+            <h2 class="hover-title">Number Guess Game</h2>
+            <p class="hover-description">
+              The game rewards faster guesses with higher points, shows
+              motivational jokes after wins, and maintains each player’s
+              progress in files. With features like top scores, rank display,
+              and colorful interface, NGG is both fun and skill-enhancing.
+            </p>
+            <div class="action-buttons">
+              <button class="btn btn-primary view-output-btn">
+                View Output
+              </button>
+              <button
+                class="btn btn-secondary download-btn"
+                data-url="https://github.com/Mustaqeem-Codes/Number_Guess_Game/raw/main/Number_Guess_Game.zip"
+              >
+                <span class="btn-text">Download</span>
+                <span class="checkmark">✓</span>
+              </button>
+            </div>
           </div>
-          <p class="tmq-testimonial-text">
-            I'm thrilled to recommend Mustaqeem for his exceptional skills and collaborative spirit!
-            We worked together on database projects, and I was consistently impressed by his
-            technical expertise, attention to detail, and problem-solving abilities.
-          </p>
-        </div>
-        <div class="tmq-testimonial-item" data-dir="top">
-          <img src="Pics/John Marc.jpeg" alt="Sajjad Ali">
-          <h2>John Marc</h2>
-          <div class="tmq-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="tmq-testimonial-text">
-            I appreciate Mustaqeem's help and craftsmanship! With the help of his website,
-            I was able to acquire additional customers,
-            many of whom returned because of the custom booking platform he created for me, all at no extra cost!
-          </p>
-        </div>
-        <div class="tmq-testimonial-item" data-dir="bottom">
-          <img src="Pics/Ali.jpeg" alt="Ali Tahir">
-          <h2>Ali Tahir</h2>
-          <div class="tmq-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="tmq-testimonial-text">
-            Mustaqeem is an exceptional collaborator and friend! Their technical expertise and
-            problem-solving skills were invaluable in our projects. We're not just project partners,
-            but great friends too!
-          </p>
-        </div>
-        <div class="tmq-testimonial-item" data-dir="left">
-          <img src="Pics/Umair.jpg" alt="Abdullah Jan">
-          <h2>M Umair</h2>
-          <div class="tmq-rating">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="tmq-testimonial-text">
-            Mustaqeem's problem-solving skills are exceptional. He played a key role
-            in optimizing our company's systems for better performance...
-          </p>
+
+          <a
+            href="https://github.com/Mustaqeem-Codes/Number_Guess_Game/tree/main"
+            class="github-corner"
+            target="_blank"
+            aria-label="View source on GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
+            </svg>
+          </a>
         </div>
       </div>
+    </section>
+
+    <!-- Modal for project output -->
+    <div class="modal">
+      <button class="close-modal">&times;</button>
+      <div class="modal-content"></div>
     </div>
-  </section>
 
-  
+    <!-- =============================Testimonials============================= -->
 
-  <!-- ===================================== footer ================================== -->
-
-
-
-  <footer>
-    <div class="footer-container" id="contact">
-      <!-- Left Section: Contact Info -->
-      <div class="footer-left">
-        <h2 class="footer-heading">Contact <span>Me</span></h2>
-
-        <div class="contact-info">
-          <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <a href="mailto:mustaqeem.business@gmail.com" target="_blank">
-              mustaqeem.business@gmail.com
-            </a>
+    <section class="tmq-testimonials" id="testimonials">
+      <div class="tmq-testimonials-box">
+        <h2 class="tmq-heading">Testimonials</h2>
+        <div class="tmq-wrapper">
+          <div class="tmq-testimonial-item" data-dir="right">
+            <img src="Pics/Waseem.jpeg" alt="Muhammad Waseem" />
+            <h2>M Waseem</h2>
+            <div class="tmq-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i> <i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="tmq-testimonial-text">
+              I'm thrilled to recommend Mustaqeem for his exceptional skills and
+              collaborative spirit! We worked together on database projects, and
+              I was consistently impressed by his technical expertise, attention
+              to detail, and problem-solving abilities.
+            </p>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <a href="mailto:mustaqeem.uet@gmail.com" target="_blank">
-              mustaqeem.uet@gmail.com
-            </a>
+          <div class="tmq-testimonial-item" data-dir="top">
+            <img src="Pics/John Marc.jpeg" alt="Sajjad Ali" />
+            <h2>John Marc</h2>
+            <div class="tmq-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i> <i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="tmq-testimonial-text">
+              I appreciate Mustaqeem's help and craftsmanship! With the help of
+              his website, I was able to acquire additional customers, many of
+              whom returned because of the custom booking platform he created
+              for me, all at no extra cost!
+            </p>
           </div>
-
-          <div class="contact-item">
-            <i class="fas fa-phone contact-icon"></i>
-            <a href="tel:+923225379161">
-              +923225379161
-            </a>
+          <div class="tmq-testimonial-item" data-dir="bottom">
+            <img src="Pics/Ali.jpeg" alt="Ali Tahir" />
+            <h2>Ali Tahir</h2>
+            <div class="tmq-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i> <i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="tmq-testimonial-text">
+              Mustaqeem is an exceptional collaborator and friend! Their
+              technical expertise and problem-solving skills were invaluable in
+              our projects. We're not just project partners, but great friends
+              too!
+            </p>
+          </div>
+          <div class="tmq-testimonial-item" data-dir="left">
+            <img src="Pics/Umair.jpg" alt="Abdullah Jan" />
+            <h2>M Umair</h2>
+            <div class="tmq-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i> <i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+            <p class="tmq-testimonial-text">
+              Mustaqeem's problem-solving skills are exceptional. He played a
+              key role in optimizing our company's systems for better
+              performance...
+            </p>
           </div>
         </div>
+      </div>
+    </section>
 
+    <!-- ===================================== footer ================================== -->
 
+    <footer>
+      <div class="footer-container" id="contact">
+        <!-- Left Section: Contact Info -->
+        <div class="footer-left">
+          <h2 class="footer-heading">Contact <span>Me</span></h2>
 
-        <div class="social2" id="social">
-          <a href="https://github.com/Mustaqeem-Codes" class="github" data-label="GitHub"><i
-              class="fab fa-github"></i></a>
-          <a href="https://web.facebook.com/MustaqeemCodes/" class="facebook" data-label="Facebook"><i
-              class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/mustaqeem_codes/#" class="instagram" data-label="Instagram"><i
-              class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/" class="linkedin" data-label="LinkedIn"><i
-              class="fab fa-linkedin-in"></i></a>
-          <!-- <a href="https://www.bytewisdom.tech/" data-label="ByteWisdom">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <a href="mailto:mustaqeem.business@gmail.com" target="_blank">
+                mustaqeem.business@gmail.com
+              </a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <a href="mailto:mustaqeem.uet@gmail.com" target="_blank">
+                mustaqeem.uet@gmail.com
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <i class="fas fa-phone contact-icon"></i>
+              <a href="tel:+923225379161"> +923225379161 </a>
+            </div>
+          </div>
+
+          <div class="social2" id="social">
+            <a
+              href="https://github.com/Mustaqeem-Codes"
+              class="github"
+              data-label="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://web.facebook.com/MustaqeemCodes/"
+              class="facebook"
+              data-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/mustaqeem_codes/#"
+              class="instagram"
+              data-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/"
+              class="linkedin"
+              data-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <!-- <a href="https://www.bytewisdom.tech/" data-label="ByteWisdom">
             <img src="Pics/BWT.svg" alt="ByteWisdom" />
           </a> -->
-        </div><br>
-        <h2 id="time">--:--:--</h2>
-        <p id="dates">Loading dates...</p>
+          </div>
+          <br />
+          <h2 id="time">--:--:--</h2>
+          <p id="dates">Loading dates...</p>
+        </div>
+
+        <!-- Right Section: Contact Form -->
+        <div class="footer-right">
+          <form id="contactForm" class="contact-form">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+            <div id="nameError" class="error">Please enter your name</div>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+            <div id="emailError" class="error">Please enter a valid email</div>
+
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your Phone Number"
+            />
+            <div id="phoneError" class="error">
+              Please enter a valid phone number
+            </div>
+
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Subject"
+              required
+            />
+            <div id="subjectError" class="error">Please enter a subject</div>
+
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <div id="messageError" class="error">Please enter your message</div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
       </div>
 
-      <!-- Right Section: Contact Form -->
-      <div class="footer-right">
-        <form id="contactForm" class="contact-form">
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-          <div id="nameError" class="error">Please enter your name</div>
-
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
-          <div id="emailError" class="error">Please enter a valid email</div>
-
-          <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
-          <div id="phoneError" class="error">Please enter a valid phone number</div>
-
-          <input type="text" id="subject" name="subject" placeholder="Subject" required>
-          <div id="subjectError" class="error">Please enter a subject</div>
-
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-          <div id="messageError" class="error">Please enter your message</div>
-
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
+      <div class="copyright">
+        <p>
+          Copyright &copy; 2025 Muhammad Mustaqeem. Created with passion and
+          purpose.
+        </p>
+        <p>Privacy Policy | Terms and Condition | All Rights Reserved.</p>
       </div>
-    </div>
+    </footer>
 
-    <div class="copyright">
-      <p>Copyright &copy; 2025 Muhammad Mustaqeem. Created with passion and purpose.</p>
-      <p> Privacy Policy | Terms and Condition | All Rights Reserved.</p>
-    </div>
-  </footer>
-
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
-
-
-
-
