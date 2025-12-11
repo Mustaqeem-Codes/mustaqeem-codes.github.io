@@ -291,71 +291,155 @@ document.addEventListener('DOMContentLoaded', animateOnScroll);
 
 
 // -----------------------Education Section--------------------------
-document.addEventListener('DOMContentLoaded', function () {
-  const educationContainer = document.getElementById('educationContainer');
-  const educationCards = educationContainer.querySelectorAll('.education-card');
-  let hasAnimated = false;
+      // Image URLs - using your existing images
+      const imageUrls = [
+        'Pics/home-intro.jpg',
+        'Pics/UET-Lahore-Admissions-Entry-Test.jpg',
+        'Pics/smart-classroom_01.jpg'
+      ];
 
-  function typeText(element, text, speed, callback) {
-    let i = 0;
-    element.innerHTML = '';
-    element.classList.add('typing');
+      const slider = document.getElementById('verticalSlider');
+      let currentSlide = 0;
+      let isAnimating = false;
 
-    const typingInterval = setInterval(() => {
-      if (i < text.length) {
-        element.innerHTML = text.substring(0, i + 1);
-        i++;
-      } else {
-        clearInterval(typingInterval);
-        element.classList.remove('typing');
-        if (callback) callback();
-      }
-    }, speed);
-  }
-
-  function animateEducationCards() {
-    if (hasAnimated) return;
-    hasAnimated = true;
-
-    educationCards.forEach((card, index) => {
-      const titleEl = card.querySelector('.education-title');
-      const durationEl = card.querySelector('.education-duration');
-      const institutionEl = card.querySelector('.education-institution');
-      const descEl = card.querySelector('.education-description');
-      const badgesContainer = card.querySelector('.badges-container');
-
-      // Start typing animations with delays
-      setTimeout(() => {
-        typeText(titleEl, titleEl.getAttribute('data-text'), 50, () => {
-          setTimeout(() => {
-            typeText(durationEl, `(${durationEl.getAttribute('data-text')})`, 40, () => {
-              setTimeout(() => {
-                typeText(institutionEl, institutionEl.getAttribute('data-text'), 40, () => {
-                  setTimeout(() => {
-                    typeText(descEl, descEl.getAttribute('data-text'), 30, () => {
-                      setTimeout(() => {
-                        const badges = JSON.parse(badgesContainer.getAttribute('data-badges'));
-                        badges.forEach(badge => {
-                          const badgeEl = document.createElement('span');
-                          badgeEl.className = 'badge';
-                          badgeEl.textContent = badge;
-                          badgesContainer.appendChild(badgeEl);
-                        });
-                      }, 200);
-                    });
-                  }, 200);
-                });
-              }, 200);
-            });
-          }, 200);
+      // Initialize slider with images
+      function initSlider() {
+        // Clear existing slides
+        slider.innerHTML = '';
+        
+        // Create duplicate images for seamless looping
+        // We need 3 copies: current set, next set (for smooth transition)
+        const allImages = [...imageUrls, ...imageUrls, ...imageUrls];
+        
+        allImages.forEach((url, index) => {
+          const slide = document.createElement('div');
+          slide.className = `slide-item ${index === imageUrls.length ? 'active-slide' : ''}`;
+          
+          const img = document.createElement('img');
+          img.src = url;
+          img.className = 'slide-img';
+          img.alt = `University Image ${(index % imageUrls.length) + 1}`;
+          
+          slide.appendChild(img);
+          slider.appendChild(slide);
         });
-      }, index * 300);
-    });
-  }
+        
+        // Start at the second set (middle section)
+        currentSlide = imageUrls.length;
+        updateSlider();
+      }
 
-  // Animate immediately on load
-  animateEducationCards();
-});
+      function updateSlider() {
+        // Compute slide height dynamically (responsive)
+        const firstSlide = document.querySelector('.slide-item');
+        const slideHeight = firstSlide ? firstSlide.offsetHeight : 400;
+
+        // Remove active class from all slides
+        const slides = document.querySelectorAll('.slide-item');
+        slides.forEach(slide => slide.classList.remove('active-slide'));
+
+        // Add active class to current slide
+        if (slides[currentSlide]) {
+          slides[currentSlide].classList.add('active-slide');
+        }
+
+        // Calculate translateY value using dynamic height
+        const translateY = -(currentSlide * slideHeight);
+        slider.style.transform = `translateY(${translateY}px)`;
+      }
+
+      function nextSlide() {
+        if (isAnimating) return;
+        
+        isAnimating = true;
+        currentSlide++;
+        
+        // Update slider position
+        updateSlider();
+        
+        // Check if we've reached the end of the second set
+        if (currentSlide >= imageUrls.length * 2) {
+          // Reset to middle section seamlessly
+          setTimeout(() => {
+            slider.style.transition = 'none';
+            currentSlide = imageUrls.length;
+            updateSlider();
+            
+            // Re-enable transition
+            setTimeout(() => {
+              slider.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+              isAnimating = false;
+            }, 50);
+          }, 800);
+        } else {
+          // Normal transition
+          setTimeout(() => {
+            isAnimating = false;
+          }, 800);
+        }
+      }
+
+      function prevSlide() {
+        if (isAnimating) return;
+        
+        isAnimating = true;
+        currentSlide--;
+        
+        // Update slider position
+        updateSlider();
+        
+        // Check if we've reached the beginning of the second set
+        if (currentSlide < imageUrls.length) {
+          // Reset to middle section seamlessly
+          setTimeout(() => {
+            slider.style.transition = 'none';
+            currentSlide = imageUrls.length * 2 - 1;
+            updateSlider();
+            
+            // Re-enable transition
+            setTimeout(() => {
+              slider.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+              isAnimating = false;
+            }, 50);
+          }, 800);
+        } else {
+          // Normal transition
+          setTimeout(() => {
+            isAnimating = false;
+          }, 800);
+        }
+      }
+
+      // Auto slide function
+      function autoSlide() {
+        if (!isAnimating) {
+          nextSlide();
+        }
+      }
+
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        initSlider();
+        
+        // Start auto-sliding every 3 seconds
+        setInterval(autoSlide, 3000);
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            prevSlide();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextSlide();
+          }
+        });
+      });
+
+      // Adjust on window resize
+      window.addEventListener('resize', () => {
+        updateSlider();
+      });
 
 
 
