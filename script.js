@@ -451,20 +451,20 @@ document.addEventListener('DOMContentLoaded', animateOnScroll);
 const skillsConfig = {
   // Programming skills (left side - linear bars)
   programmingSkills: [
-    { selector: '.html', percent: 96, label: 'HTML5 proficiency' },
-    { selector: '.css', percent: 85, label: 'CSS3 proficiency' },
-    { selector: '.cpp', percent: 78, label: 'C++ programming' },
-    { selector: '.python', percent: 70, label: 'Python programming' },
-    { selector: '.csharp', percent: 89, label: 'C# programming' },
-    { selector: '.database', percent: 76, label: 'Database management' }
+    { selector: '.oop', percent: 85, label: 'Object-Oriented Programming (OOP) concepts and implementation' },
+    { selector: '.database', percent: 80, label: 'Database Design & SQL Queries (PostgreSQL, Oracle SQL)' },
+    { selector: '.frontend', percent: 88, label: 'Frontend Development (HTML, CSS, JavaScript)' },
+    { selector: '.backend', percent: 75, label: 'Backend Fundamentals (REST APIs, Node.js basics)' },
+    { selector: '.problem-solving', percent: 90, label: 'Problem Solving & Programming Logic' },
+    { selector: '.version-control', percent: 82, label: 'Version Control (Git Workflows, GitHub)' }
   ],
 
   // Professional skills (right side - circular bars)
   professionalSkills: [
-    { selector: '.mstools', percent: 88, label: 'Microsoft Office tools' },
-    { selector: '.git', percent: 73, label: 'Git version control' },
-    { selector: '.teamwork', percent: 90, label: 'Teamwork skills' },
-    { selector: '.communication', percent: 84, label: 'Communication skills' }
+    { selector: '.mstools', percent: 88, label: 'Microsoft Office (Word, Excel, PowerPoint)' },
+    { selector: '.communication', percent: 84, label: 'Communication skills' },
+    { selector: '.teamwork', percent: 90, label: 'Teamwork and collaboration' },
+    { selector: '.git', percent: 82, label: 'Git & GitHub version control' }
   ],
 
   // Animation settings
@@ -658,7 +658,6 @@ class SkillsAnimator {
 document.addEventListener('DOMContentLoaded', () => {
   new SkillsAnimator(skillsConfig);
 });
-
 
 // ==================projects===============================
 

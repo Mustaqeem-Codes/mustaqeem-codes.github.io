@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.main-heading {
+  text-align: center;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--main-color);
+  position: relative;
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--main-color);
+  border-radius: 2px;
+}
+
+/* Scrollable Content Section */
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.skills-container {
+  width: 100%;
+  padding: 60px 4%;
+  position: relative;
+  background-color: var(--light-black);
+  margin: 0;
+}
+
+.skills-container > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 992px) {
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Programming Skills Section - Left Side */
+.programming-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-item {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.skill-item.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.skill-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.skill-icon {
+  font-size: 1.5rem;
+}
+
+.progress-container {
+  height: 8px;
+  background: var(--progress-bg);
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: 0px;
+  transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.skill-percent {
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Professional Skills Section - Right Side */
+.professional-skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.circle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.5s ease-out;
+}
+
+.circle-item.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.circle-container {
+  position: relative;
+  width: 110px;
+  height: 110px;
+}
+
+.circle-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: transparent;
+  stroke: var(--progress-bg);
+  stroke-width: 8;
+}
+
+.circle-progress {
+  fill: transparent;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.circle-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.circle-icon {
+  font-size: 1.2rem;
+}
+
+/* Programming Skills Colors */
+.html .skill-icon,
+.html .skill-percent {
+  color: var(--html-color);
+}
+
+.html .progress-bar {
+  background-color: var(--html-color);
+}
+
+.css .skill-icon,
+.css .skill-percent {
+  color: var(--css-color);
+}
+
+.css .progress-bar {
+  background-color: var(--css-color);
+}
+
+.cpp .skill-icon,
+.cpp .skill-percent {
+  color: var(--cpp-color);
+}
+
+.cpp .progress-bar {
+  background-color: var(--cpp-color);
+}
+
+.python .skill-icon,
+.python .skill-percent {
+  color: var(--python-text);
+}
+
+.python .progress-bar {
+  background-color: var(--python-color);
+}
+
+.csharp .skill-icon,
+.csharp .skill-percent {
+  color: var(--csharp-color);
+}
+
+.csharp .progress-bar {
+  background-color: var(--csharp-color);
+}
+
+.database .skill-icon,
+.database .skill-percent {
+  color: var(--database-color);
+}
+
+.database .progress-bar {
+  background-color: var(--database-color);
+}
+
+/* Professional Skills Colors */
+.teamwork .circle-progress {
+  stroke: var(--teamwork-color);
+}
+
+.teamwork .circle-text,
+.teamwork .circle-icon {
+  color: var(--teamwork-color);
+}
+
+.communication .circle-progress {
+  stroke: var(--communication-color);
+}
+
+.communication .circle-text,
+.communication .circle-icon {
+  color: var(--communication-color);
+}
+
+.git .circle-progress {
+  stroke: var(--git-color);
+}
+
+.git .circle-text,
+.git .circle-icon {
+  color: var(--git-color);
+}
+
+.mstools .circle-progress {
+  stroke: var(--mstools-color);
+}
+
+.mstools .circle-text,
+.mstools .circle-icon {
+  color: var(--mstools-color);
+}
+
+/* Accessibility */
+[role="progressbar"] {
+  outline: none;
+}
+
+[role="progressbar"]:focus-visible {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+/* Add new skill colors */
+.oop .skill-icon,
+.oop .skill-percent {
+  color: #FF6B6B;
+}
+
+.oop .progress-bar {
+  background-color: #FF6B6B;
+}
+
+.database .skill-icon,
+.database .skill-percent {
+  color: #4ECDC4;
+}
+
+.database .progress-bar {
+  background-color: #4ECDC4;
+}
+
+.frontend .skill-icon,
+.frontend .skill-percent {
+  color: #45B7D1;
+}
+
+.frontend .progress-bar {
+  background-color: #45B7D1;
+}
+
+.backend .skill-icon,
+.backend .skill-percent {
+  color: #96CEB4;
+}
+
+.backend .progress-bar {
+  background-color: #96CEB4;
+}
+
+.problem-solving .skill-icon,
+.problem-solving .skill-percent {
+  color: #FFEAA7;
+}
+
+.problem-solving .progress-bar {
+  background-color: #FFEAA7;
+}
+
+.version-control .skill-icon,
+.version-control .skill-percent {
+  color: #DDA0DD;
+}
+
+.version-control .progress-bar {
+  background-color: #DDA0DD;
+}
+
+/* Adjust skill-name for longer text */
+.skill-name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem; /* Slightly smaller for longer text */
+  min-width: 0; /* Allow text to shrink */
+}
+
+.skill-name span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Professional Skills Colors (Updated) */
+.teamwork .circle-progress {
+  stroke: #9c27b0;
+}
+
+.teamwork .circle-text,
+.teamwork .circle-icon {
+  color: #9c27b0;
+}
+
+.communication .circle-progress {
+  stroke: #03a9f4;
+}
+
+.communication .circle-text,
+.communication .circle-icon {
+  color: #03a9f4;
+}
+
+.git .circle-progress {
+  stroke: #f05032;
+}
+
+.git .circle-text,
+.git .circle-icon {
+  color: #f05032;
+}
+
+.mstools .circle-progress {
+  stroke: #0078d7;
+}
+
+.mstools .circle-text,
+.mstools .circle-icon {
+  color: #0078d7;
+}
+
+/* Responsive adjustments for longer skill names */
+@media (max-width: 768px) {
+  .skill-name {
+    font-size: 0.95rem;
+  }
+  
+  .skill-name span {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-name {
+    font-size: 0.9rem;
+  }
+  
+  .skill-name span {
+    max-width: 150px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    </style>
+</head>
+<body>
+   <main class="skills-container" id="skills">
+  <h1 class="main-heading">Skills</h1>
+
+  <div class="skills-grid">
+    <!-- Left Side - Programming Skills -->
+    <div class="programming-skills">
+      <!-- Object-Oriented Programming (OOP) -->
+      <div
+        class="skill-item oop"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bx-cube skill-icon" aria-hidden="true"></i>
+            <span>Object-Oriented Programming</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Database Design & SQL Queries -->
+      <div
+        class="skill-item database"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bx-data skill-icon" aria-hidden="true"></i>
+            <span>Database Design & SQL Queries</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Frontend Development (HTML, CSS, JS) -->
+      <div
+        class="skill-item frontend"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bx-code-alt skill-icon" aria-hidden="true"></i>
+            <span>Frontend Development</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Backend Fundamentals (APIs, Node.js basics) -->
+      <div
+        class="skill-item backend"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bx-server skill-icon" aria-hidden="true"></i>
+            <span>Backend Fundamentals</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Problem Solving & Programming Logic -->
+      <div
+        class="skill-item problem-solving"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bx-brain skill-icon" aria-hidden="true"></i>
+            <span>Problem Solving & Logic</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Version Control (Git Workflows) -->
+      <div
+        class="skill-item version-control"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        tabindex="0"
+      >
+        <div class="skill-info">
+          <div class="skill-name">
+            <i class="bx bxl-git skill-icon" aria-hidden="true"></i>
+            <span>Version Control</span>
+          </div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Professional Skills (Only 4 items now) -->
+    <div class="professional-skills">
+      <!-- MS Tools -->
+      <div class="circle-item" tabindex="0">
+        <div
+          class="circle-container mstools"
+          role="progressbar"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+            <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+            <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+          </svg>
+          <div class="circle-text">0%</div>
+        </div>
+        <div class="circle-label">
+          <i class="bx bxl-microsoft circle-icon" style="color: #0078d7"></i>
+          <span>MS Office</span>
+        </div>
+      </div>
+
+      <!-- Communication -->
+      <div class="circle-item" tabindex="0">
+        <div
+          class="circle-container communication"
+          role="progressbar"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+            <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+            <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+          </svg>
+          <div class="circle-text">0%</div>
+        </div>
+        <div class="circle-label">
+          <i class="bx bx-conversation circle-icon" style="color: #03a9f4"></i>
+          <span>Communication</span>
+        </div>
+      </div>
+
+      <!-- Team Work -->
+      <div class="circle-item" tabindex="0">
+        <div
+          class="circle-container teamwork"
+          role="progressbar"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+            <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+            <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+          </svg>
+          <div class="circle-text">0%</div>
+        </div>
+        <div class="circle-label">
+          <i class="bx bx-group circle-icon" style="color: #9c27b0"></i>
+          <span>Team Work</span>
+        </div>
+      </div>
+
+      <!-- Git & GitHub -->
+      <div class="circle-item" tabindex="0">
+        <div
+          class="circle-container git"
+          role="progressbar"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <svg class="circle-svg" viewBox="0 0 110 110" aria-hidden="true">
+            <circle class="circle-bg" cx="55" cy="55" r="50"></circle>
+            <circle class="circle-progress" cx="55" cy="55" r="50"></circle>
+          </svg>
+          <div class="circle-text">0%</div>
+        </div>
+        <div class="circle-label">
+          <i class="bx bxl-git circle-icon" style="color: #f05032"></i>
+          <span>Git & GitHub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+<script>
+const skillsConfig = {
+  // Programming skills (left side - linear bars)
+  programmingSkills: [
+    { selector: '.oop', percent: 85, label: 'Object-Oriented Programming (OOP) concepts and implementation' },
+    { selector: '.database', percent: 80, label: 'Database Design & SQL Queries (PostgreSQL, Oracle SQL)' },
+    { selector: '.frontend', percent: 88, label: 'Frontend Development (HTML, CSS, JavaScript)' },
+    { selector: '.backend', percent: 75, label: 'Backend Fundamentals (REST APIs, Node.js basics)' },
+    { selector: '.problem-solving', percent: 90, label: 'Problem Solving & Programming Logic' },
+    { selector: '.version-control', percent: 82, label: 'Version Control (Git Workflows, GitHub)' }
+  ],
+
+  // Professional skills (right side - circular bars)
+  professionalSkills: [
+    { selector: '.mstools', percent: 88, label: 'Microsoft Office (Word, Excel, PowerPoint)' },
+    { selector: '.communication', percent: 84, label: 'Communication skills' },
+    { selector: '.teamwork', percent: 90, label: 'Teamwork and collaboration' },
+    { selector: '.git', percent: 82, label: 'Git & GitHub version control' }
+  ],
+
+  // Animation settings
+  animation: {
+    linearDelay: 300,    // Delay between each linear skill animation (ms)
+    circularDelay: 200,  // Delay between each circular skill animation (ms)
+    duration: 1500       // Duration of each animation (ms)
+  }
+};
+
+// ==============================================
+// ANIMATION CONTROLLER - NO NEED TO EDIT BELOW
+// ==============================================
+
+/**
+ * Handles all skill animations and interactions
+ */
+class SkillsAnimator {
+  constructor(config) {
+    this.config = config;
+    this.animationStarted = false;
+    this.observer = null;
+    this.init();
+  }
+
+  /**
+   * Initialize the animation controller
+   */
+  init() {
+    if ('IntersectionObserver' in window) {
+      this.setupIntersectionObserver();
+    } else {
+      // Fallback for older browsers
+      window.addEventListener('load', () => this.startAnimations());
+    }
+  }
+
+  /**
+   * Set up IntersectionObserver to trigger animations when section is visible
+   */
+  setupIntersectionObserver() {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.animationStarted) {
+            this.animationStarted = true;
+            this.startAnimations();
+            this.observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    const section = document.querySelector('.skills-container');
+    if (section) {
+      this.observer.observe(section);
+    }
+  }
+
+  /**
+   * Start all animations
+   */
+  startAnimations() {
+    this.animateProgrammingSkills();
+  }
+
+  /**
+   * Animate programming skills (left side - linear bars)
+   */
+  animateProgrammingSkills() {
+    this.config.programmingSkills.forEach((skill, index) => {
+      setTimeout(() => {
+        const element = document.querySelector(skill.selector);
+        if (!element) return;
+
+        element.classList.add('visible');
+        element.setAttribute('aria-valuenow', skill.percent);
+        element.setAttribute('aria-label', skill.label);
+
+        this.animateProgress(
+          `${skill.selector} .progress-bar`,
+          `${skill.selector} .skill-percent`,
+          skill.percent,
+          element
+        );
+
+        // Start professional skills animations after programming ones complete
+        if (index === this.config.programmingSkills.length - 1) {
+          setTimeout(() => this.animateProfessionalSkills(), 500);
+        }
+      }, index * this.config.animation.linearDelay);
+    });
+  }
+
+  /**
+   * Animate professional skills (right side - circular bars)
+   */
+  animateProfessionalSkills() {
+    this.config.professionalSkills.forEach((skill, index) => {
+      setTimeout(() => {
+        const container = document.querySelector(`${skill.selector}`)?.closest('.circle-item');
+        if (!container) return;
+
+        container.classList.add('visible');
+        const progressElement = container.querySelector('[role="progressbar"]');
+        progressElement.setAttribute('aria-valuenow', skill.percent);
+        progressElement.setAttribute('aria-label', skill.label);
+
+        this.animateProgress(
+          `${skill.selector} .circle-progress`,
+          `${skill.selector} .circle-text`,
+          skill.percent,
+          progressElement,
+          true
+        );
+      }, index * this.config.animation.circularDelay);
+    });
+  }
+
+  /**
+   * Animate progress bar/circle
+   * @param {string} barSelector - Selector for the progress element
+   * @param {string} textSelector - Selector for the text element
+   * @param {number} targetPercent - Target percentage to animate to
+   * @param {HTMLElement} element - The ARIA progressbar element
+   * @param {boolean} isCircle - Whether this is a circular progress indicator
+   */
+  animateProgress(barSelector, textSelector, targetPercent, element, isCircle = false) {
+    const bar = document.querySelector(barSelector);
+    const text = document.querySelector(textSelector);
+    if (!bar || !text) return;
+
+    // Remove CSS transitions to control everything via JavaScript
+    bar.style.transition = 'none';
+
+    const startTime = performance.now();
+    const startValue = 0;
+    const duration = this.config.animation.duration;
+    const circumference = isCircle ? 2 * Math.PI * 50 : 0;
+
+    let animationFrameId;
+
+    const animate = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const currentValue = startValue + (targetPercent - startValue) * progress;
+      const displayValue = Math.floor(currentValue);
+
+      // Update both elements simultaneously with the same value
+      if (isCircle) {
+        const offset = circumference - (circumference * currentValue) / 100;
+        bar.style.strokeDashoffset = offset;
+      } else {
+        bar.style.width = currentValue + '%';
+      }
+
+      // Update text and ARIA attributes
+      text.textContent = displayValue + '%';
+      element.setAttribute('aria-valuenow', displayValue);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        // Ensure final values are exact when animation completes
+        if (isCircle) {
+          const finalOffset = circumference - (circumference * targetPercent) / 100;
+          bar.style.strokeDashoffset = finalOffset;
+        } else {
+          bar.style.width = targetPercent + '%';
+        }
+        text.textContent = targetPercent + '%';
+        element.setAttribute('aria-valuenow', targetPercent);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new SkillsAnimator(skillsConfig);
+});
+
+</script>
+</html>
