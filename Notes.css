@@ -1,82 +1,713 @@
 body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #0d1117;
-            color: #e6edf3;
-        }
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+}
 
-        header {
-            background: linear-gradient(135deg, #1f6feb, #238636);
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
 
-        header h1 {
-            font-size: 3rem;
-            margin: 0;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-top: 10px;
-        }
 
-        .container {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
 
-        .note-card {
-            background: #161b22;
-            border-radius: 16px;
-            padding: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            border: 1px solid #30363d;
-            position: relative;
-            overflow: hidden;
-        }
 
-        .note-card img {
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-        }
+header {
+  background: linear-gradient(135deg, #1f6feb, #238636);
+  padding: 48px 24px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
 
-        .watermark {
-            position: absolute;
-            bottom: 10px;
-            right: 15px;
-            font-size: 0.8rem;
-            opacity: 0.2;
-            pointer-events: none;
-            user-select: none;
-            color: #ffffff;
-        }
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  line-height: 1.2;
+}
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            color: #8b949e;
-            border-top: 1px solid #30363d;
-        }
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-top: 12px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 768px) {
+  header {
+    padding: 36px 18px;
+  }
 
-        footer a {
-            color: #58a6ff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
+  header h1 {
+    font-size: 2.4rem; /* same visual strength, just scaled */
+    letter-spacing: 0.6px;
+  }
+
+  header p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;          /* reduce size instead of wrapping */
+    letter-spacing: 0.4px;   /* tighter spacing */
+    line-height: 1.15;
+    white-space: nowrap;     /* force single line */
+  }
+  header{
+    width: 100%;
+  }
+
+  header {
+    padding: 28px 14px;
+  }
+}
+
+
+
+
+
+
+
+/* A4 Gallery Grid */
+.a4-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+/* A4 Thumbnail with Glowing Border */
+.a4-thumbnail {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #161b22;
+    border: 1px solid #30363d;
+    aspect-ratio: 1/1.4142; /* A4 portrait ratio (1:√2) */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle Glowing Border */
+.glowing-border {
+    position: absolute;
+    inset: -1px;
+    border-radius: 9px;
+    background: linear-gradient(45deg, 
+        rgba(88, 166, 255, 0.6),
+        rgba(31, 111, 235, 0.6),
+        rgba(88, 166, 255, 0.6)
+    );
+    background-size: 300% 300%;
+    z-index: 1;
+    animation: borderGlow 4s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.a4-thumbnail:hover .glowing-border {
+    opacity: 0.7;
+}
+
+.a4-thumbnail:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(88, 166, 255, 0.15);
+}
+
+.a4-thumb {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.a4-thumbnail:hover .a4-thumb {
+    transform: scale(1.05);
+}
+
+/* Minimal Page Number */
+.page-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    z-index: 3;
+}
+
+/* A4 Full Screen Viewer */
+.a4-viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 17, 23, 0.98);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(20px);
+}
+
+.a4-viewer.active {
+    display: flex;
+    opacity: 1;
+}
+
+.a4-viewer-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* ========== FIXED: A4 Page Container for ALL screen sizes ========== */
+/* Base A4 container - will be overridden by media queries */
+.a4-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* A4 Image styling */
+.a4-image {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    background: #0d1117;
+    animation: imageFadeIn 0.4s ease;
+}
+
+@keyframes imageFadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Modern Minimal Navigation Buttons */
+.a4-nav {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.a4-nav:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(88, 166, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.a4-nav:active {
+    transform: scale(0.95);
+}
+
+/* Close Button - Top Right */
+.a4-close {
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.a4-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Navigation Arrows - Center Sides */
+.a4-prev, .a4-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+}
+
+.a4-prev {
+    left: 20px;
+}
+
+.a4-next {
+    right: 20px;
+}
+
+/* Minimal Page Indicator */
+.a4-page-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* ========== MEDIA QUERIES ========== */
+
+/* Large screens (1200px and above) - A4 with generous margins */
+@media (min-width: 1200px) {
+    .a4-page-container {
+        width: 800px; /* Standard A4 width */
+        height: 1131px; /* A4 height (800 * 1.4142) */
+    }
+}
+
+/* Medium-large screens (900px to 1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .a4-page-container {
+        width: 700px;
+        height: 991px; /* 700 * 1.4142 */
+    }
+}
+
+/* Medium screens (768px to 899px) */
+@media (min-width: 768px) and (max-width: 899px) {
+    .a4-page-container {
+        width: 600px;
+        height: 849px; /* 600 * 1.4142 */
+    }
+    
+    .a4-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+/* Small screens (600px to 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+    .a4-page-container {
+        width: 500px;
+        height: 707px; /* 500 * 1.4142 */
+    }
+    
+    .a4-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+/* Extra small screens (480px to 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+    .a4-page-container {
+        width: 400px;
+        height: 566px; /* 400 * 1.4142 */
+    }
+    
+    .a4-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+/* Mobile screens (below 480px) */
+@media (max-width: 479px) {
+    .a4-page-container {
+        width: 350px;
+        height: 495px; /* 350 * 1.4142 */
+    }
+    
+    .a4-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .a4-thumbnail:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* ========== COMMON MOBILE STYLES (applied to all mobile sizes) ========== */
+@media (max-width: 768px) {
+    .a4-nav {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+    
+    .a4-close {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .a4-prev, .a4-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .a4-prev {
+        left: 10px;
+    }
+    
+    .a4-next {
+        right: 10px;
+    }
+    
+    .a4-page-indicator {
+        bottom: 10px;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* For very small mobile screens */
+@media (max-width: 360px) {
+    .a4-page-container {
+        width: 300px;
+        height: 424px; /* 300 * 1.4142 */
+    }
+    
+    .a4-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .a4-nav {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Ensure A4 fits when screen height is limited */
+@media (max-height: 1200px) and (min-width: 768px) {
+    .a4-page-container {
+        max-height: calc(100vh - 100px);
+        width: calc((100vh - 100px) / 1.4142);
+    }
+}
+
+@media (max-height: 900px) and (min-width: 768px) {
+    .a4-page-container {
+        max-height: calc(100vh - 80px);
+        width: calc((100vh - 80px) / 1.4142);
+    }
+}
+
+@media (max-height: 700px) and (min-width: 768px) {
+    .a4-page-container {
+        max-height: calc(100vh - 60px);
+        width: calc((100vh - 60px) / 1.4142);
+    }
+}
+
+
+
+
+
+
+
+/* Modern Professional Footer */
+.professional-footer {
+    text-align: center;
+    padding: 35px 25px;
+    margin-top: 60px;
+    color: #8b949e;
+    border-top: 1px solid #30363d;
+    position: relative;
+    background: linear-gradient(to top, rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.5));
+    backdrop-filter: blur(5px);
+}
+
+/* Top gradient accent line */
+.professional-footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        #58a6ff, 
+        #1f6feb, 
+        #58a6ff, 
+        transparent
+    );
+    opacity: 0.7;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Main line with name */
+.main-line {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #c9d1d9;
+}
+
+/* Heart animation */
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.3));
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+
+
+
+/* Editable Name Effect - TEXT EDITOR STYLE */
+.editable-name {
+    color: #58a6ff;
+    font-weight: 600;
+    position: relative;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: text;
+    display: inline-block;
+}
+
+/* Pulsing glow effect - NO BORDER */
+.editable-name:hover {
+    color: #79c0ff;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(88, 166, 255, 0.4);
+    }
+    50% { 
+        text-shadow: 
+            0 0 20px rgba(88, 166, 255, 0.6),
+            0 0 40px rgba(88, 166, 255, 0.2);
+    }
+}
+
+/* Simulated text cursor - Optional blinking line */
+.editable-name:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 8px;
+    right: 8px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        #58a6ff, 
+        transparent
+    );
+    border-radius: 1px;
+    animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+
+
+
+/* Portfolio Section - On New Line */
+.portfolio-section {
+    margin: 25px 0;
+    padding: 15px 0;
+    position: relative;
+}
+
+/* Add a subtle separator line */
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(88, 166, 255, 0.5), 
+        transparent
+    );
+}
+
+/* Portfolio Link - Modern Background Fill Effect */
+.portfolio-link {
+    color: #58a6ff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(88, 166, 255, 0.08);
+    border: 2px solid rgba(88, 166, 255, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+/* Link icon */
+.portfolio-link i {
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(88, 166, 255, 0.25), 
+        transparent
+    );
+    transition: left 0.7s ease;
+}
+
+.portfolio-link:hover {
+    color: #ffffff;
+    background: rgba(88, 166, 255, 0.15);
+    border-color: rgba(88, 166, 255, 0.6);
+    box-shadow: 
+        0 8px 25px rgba(88, 166, 255, 0.3),
+        0 0 0 1px rgba(88, 166, 255, 0.1),
+        inset 0 0 20px rgba(88, 166, 255, 0.1);
+    transform: translateY(-3px) scale(1.05);
+    padding: 12px 32px;
+}
+
+.portfolio-link:hover i {
+    transform: translateX(3px) rotate(-45deg);
+}
+
+.portfolio-link:hover::before {
+    left: 100%;
+}
+
+/* Footer signature */
+.footer-signature {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(48, 54, 61, 0.5);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: #8b949e;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.copyright:hover {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .professional-footer {
+        padding: 25px 15px;
+        margin-top: 40px;
+    }
+    
+    .main-line {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+    
+    .portfolio-section {
+        margin: 20px 0;
+        padding: 10px 0;
+    }
+    
+    .portfolio-link {
+        padding: 10px 22px;
+        font-size: 1rem;
+        min-width: 180px;
+    }
+    
+    .portfolio-link:hover {
+        padding: 10px 26px;
+        transform: translateY(-2px) scale(1.03);
+    }
+}
+
+@media (max-width: 480px) {
+    .main-line {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .portfolio-section::before {
+        width: 80px;
+    }
+    
+    .portfolio-link {
+        padding: 8px 20px;
+        min-width: 160px;
+        font-size: 0.95rem;
+    }
+    
+    .footer-signature {
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+}

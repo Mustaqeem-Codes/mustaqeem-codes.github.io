@@ -73,26 +73,80 @@
 
 <body>
     <header>
-        <h1>Linear Algebra Notes</h1>
+        <h1>📚 Linear Algebra Notes</h1>
         <!-- <p>Clean • Modern • Professional — Built for serious learners</p> -->
     </header>
 
-    <div class="container">
-        <!-- Note Image Example 1 -->
-        <div class="note-card">
-            <img src="Pics/Mid DateSheet.jpg" alt="Note 1 Page 1" />
-        </div>
-
-        <!-- Note Image Example 2 -->
-        <div class="note-card">
-            <img src="Pics/TimeTable.jpg" alt="Note 1 Page 2" />
-        </div>
-
-        <!-- Additional note images can be added in same structure -->
+<!-- A4 Notes Gallery -->
+<div class="a4-gallery" id="a4Gallery">
+    <!-- Note 1 -->
+    <div class="a4-thumbnail" data-index="0" onclick="openA4Viewer(0)">
+        <div class="glowing-border"></div>
+        <img src="Pics/Mid DateSheet.jpg" alt="Mid Term Schedule" class="a4-thumb" />
+        <div class="page-number">1</div>
     </div>
 
-    <footer>
-        Crafted with ❤️ — Visit: <a href="https://mustaqeem.bytewisdom.tech/">My Portfolio</a>
-    </footer>
+    <!-- Note 2 -->
+    <div class="a4-thumbnail" data-index="1" onclick="openA4Viewer(1)">
+        <div class="glowing-border"></div>
+        <img src="Pics/TimeTable.jpg" alt="Weekly TimeTable" class="a4-thumb" />
+        <div class="page-number">2</div>
+    </div>
+</div>
+
+<!-- A4 Full Screen Viewer -->
+<div class="a4-viewer" id="a4Viewer">
+    <div class="a4-viewer-content">
+        <!-- Minimal Navigation Controls -->
+        <button class="a4-nav a4-close" onclick="closeA4Viewer()" title="Close (Esc)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <button class="a4-nav a4-prev" onclick="changePage(-1)" title="Previous (←)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        
+        <button class="a4-nav a4-next" onclick="changePage(1)" title="Next (→)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        
+        <!-- Clean Page Container -->
+        <div class="a4-page-container">
+            <div class="a4-page" id="a4Page">
+                <img id="a4FullImage" src="" alt="A4 Note" class="a4-image" />
+            </div>
+        </div>
+        
+        <!-- Minimal Page Indicator -->
+        <div class="a4-page-indicator">
+            <span id="currentImgNum">1</span> / <span id="totalImgNum">2</span>
+        </div>
+    </div>
+</div>
+
+    <footer class="professional-footer">
+    <div class="footer-content">
+        <p class="main-line">Crafted with <span class="heart">❤️</span> by 
+        <span class="editable-name" contenteditable="false">Muhammad Mustaqeem</span></p>
+        
+        <div class="portfolio-section">
+            <a href="index.html" class="portfolio-link">
+                <i class="fas fa-external-link-alt"></i> View Portfolio
+            </a>
+        </div>
+        
+        <div class="footer-signature">
+            <span class="copyright">© 2025 All Rights Reserved</span>
+        </div>
+    </div>
+</footer>
+
+<script src="notes.js"></script>
 </body>
 </html>

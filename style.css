@@ -1224,13 +1224,14 @@ body {
 .profile-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   filter: grayscale(15%) contrast(110%) brightness(1.05);
   transition: all 0.5s ease;
   background: transparent !important; /* Force transparent */
   display: block;
   position: relative;
   z-index: 1;
+  object-position: top;  /* keeps face visible */
 }
 
 .image-container:hover .profile-image {
@@ -1380,8 +1381,11 @@ body {
 
   .image-wrapper {
     width: 350px;
-    height: 350px;
+    height: 450px;
     margin: 0 auto;
+  }
+  .image-container{
+    border: none;
   }
 
   .stats-grid {
@@ -1457,6 +1461,15 @@ body {
     width: 45px;
     height: 45px;
     font-size: 1.4rem;
+  }
+  .image-wrapper {
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  .image-container{
+    border: none;
   }
 }
 
@@ -2334,6 +2347,8 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
+
+
 
 .portfolio-projects-section .portfolio-container h2 {
   text-align: center;
