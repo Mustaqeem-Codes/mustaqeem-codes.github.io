@@ -4,9 +4,15 @@ body {
   font-family: "Segoe UI", sans-serif;
   background: #0d1117;
   color: #e6edf3;
+  width: 100%;
 }
-
-
+* {
+    box-sizing: border-box; /* Makes padding/border included in width calculations */
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 
 
@@ -17,6 +23,7 @@ header {
   text-align: center;
   color: white;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  width: 100%;
 }
 
 header h1 {
@@ -38,6 +45,7 @@ header p {
 @media (max-width: 768px) {
   header {
     padding: 36px 18px;
+    width: 100%;
   }
 
   header h1 {
@@ -56,6 +64,7 @@ header p {
     letter-spacing: 0.4px;   /* tighter spacing */
     line-height: 1.15;
     white-space: nowrap;     /* force single line */
+    width: 100%;
   }
   header{
     width: 100%;
@@ -80,6 +89,9 @@ header p {
     max-width: 1200px;
     margin: 50px auto;
     padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent any internal overflow */
 }
 
 /* A4 Thumbnail with Glowing Border */
@@ -291,8 +303,10 @@ header p {
 /* Large screens (1200px and above) - A4 with generous margins */
 @media (min-width: 1200px) {
     .a4-page-container {
-        width: 800px; /* Standard A4 width */
-        height: 1131px; /* A4 height (800 * 1.4142) */
+        max-width: 800px; /* Changed from width to max-width */
+        width: 95vw; /* Responsive width */
+        height: auto;
+        aspect-ratio: 1/1.4142; /* A4 ratio */
     }
 }
 
@@ -301,6 +315,9 @@ header p {
     .a4-page-container {
         width: 700px;
         height: 991px; /* 700 * 1.4142 */
+    }
+    .a4-gallery{
+        width: 100%;
     }
 }
 
@@ -315,6 +332,7 @@ header p {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 20px;
         padding: 20px;
+        width: 100%;
     }
 }
 
@@ -326,9 +344,10 @@ header p {
     }
     
     .a4-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 20px;
-        padding: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 18px;
+        padding: 18px;
+        width: 100%;
     }
 }
 
@@ -340,9 +359,11 @@ header p {
     }
     
     .a4-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 15px;
         padding: 15px;
+        width: 100%;
+        margin: 30px auto;
     }
 }
 
@@ -354,9 +375,11 @@ header p {
     }
     
     .a4-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 15px;
-        padding: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
+        padding: 12px;
+        width: 100%;
+        margin: 20px auto;
     }
     
     .a4-thumbnail:hover {
@@ -396,6 +419,11 @@ header p {
         padding: 6px 12px;
         font-size: 0.85rem;
     }
+    .a4-gallery {
+        padding: 20px;
+        margin: 30px auto;
+        gap: 20px;
+    }
 }
 
 /* For very small mobile screens */
@@ -407,8 +435,9 @@ header p {
     
     .a4-gallery {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 12px;
-        padding: 12px;
+        gap: 10px;
+        padding: 10px;
+        width: 100%;
     }
     
     .a4-nav {
@@ -421,6 +450,9 @@ header p {
     .a4-page-container {
         max-height: calc(100vh - 100px);
         width: calc((100vh - 100px) / 1.4142);
+    }
+    .a4-gallery{
+        width: 100%;
     }
 }
 
