@@ -697,183 +697,382 @@ document.addEventListener("DOMContentLoaded", () => {
   new SkillsAnimator(skillsConfig);
 });
 
-// ==================projects===============================
 
 
-// Namespaced JavaScript to prevent conflicts
-let portfolioActiveCard = null;
-const portfolioGrid = document.getElementById('portfolio-project-grid');
 
-function portfolioToggleDetails(button, projectId) {
-  const card = document.querySelector(`[data-portfolio-project-id="${projectId}"]`);
-  const isClosing = card.classList.contains('portfolio-active');
 
-  // Close previously active card if necessary
-  if (portfolioActiveCard && portfolioActiveCard !== card) {
-    // Close previous active card and clean up media
-    portfolioActiveCard.classList.remove('portfolio-active');
-    const prevExpanded = portfolioActiveCard.querySelector('.portfolio-expanded-content-wrapper');
-    const prevInfo = portfolioActiveCard.querySelector('.portfolio-card-info-section');
-    if (prevExpanded) prevExpanded.style.display = 'none';
-    if (prevInfo) prevInfo.style.display = 'block';
-    // Pause videos and remove playing class
-    portfolioActiveCard.querySelectorAll('video').forEach(v => {
-      v.pause();
-      v.classList.remove('portfolio-playing');
-    });
-    // Restore body scroll if it was locked
-    document.body.style.overflow = '';
-  }
+// ================== projects  ===============================
 
-  // Toggling Logic
-  if (isClosing) {
-    // Close
-    portfolioGrid.classList.remove('portfolio-expanded');
-    card.classList.remove('portfolio-active');
-    const expanded = card.querySelector('.portfolio-expanded-content-wrapper');
-    const info = card.querySelector('.portfolio-card-info-section');
-    if (expanded) expanded.style.display = 'none';
-    if (info) info.style.display = 'block';
-    // Pause any videos inside the card when closing
-    card.querySelectorAll('video').forEach(v => {
-      v.pause();
-      v.classList.remove('portfolio-playing');
-    });
-    // Restore body scroll
-    document.body.style.overflow = '';
-    portfolioActiveCard = null;
 
-  } else {
-    // Open
-    portfolioGrid.classList.add('portfolio-expanded');
-    card.classList.add('portfolio-active');
-    const expanded = card.querySelector('.portfolio-expanded-content-wrapper');
-    const info = card.querySelector('.portfolio-card-info-section');
-    if (expanded) expanded.style.display = 'flex';
-    if (info) info.style.display = 'none';
 
-    // Pause all other videos to avoid duplicate playback
-    document.querySelectorAll('.portfolio-project-card video').forEach(v => v.pause());
 
-    // Play expanded-left-side video for this card (muted to allow autoplay)
-    const expandedVideo = card.querySelector('.portfolio-expanded-left-side video');
-    if (expandedVideo) {
-      expandedVideo.currentTime = 0;
-      expandedVideo.muted = true; // keep muted for autoplay compatibility
-      expandedVideo.play().then(() => {
-        expandedVideo.classList.add('portfolio-playing');
-      }).catch(e => console.log('Video play prevented:', e));
-    }
+    // ==================================== Portfolio State Management ====================================
+    const portfolioState = {
+        activeProjectId: null,
+        expandedVideo: null, // Track expanded video element
+        expandedData: {
+            1: {
+                title: "DSA Visualization Website",
+                videoSrc: "Pics/Kehndi a nehre a.mp4",
+                timeline: {
+                    start: "November 2025",
+                    end: "January 2026"
+                },
+                description: "A dynamic React-based web application that brings data structures and algorithms to life through interactive visual animations. Users can explore how core structures such as stacks, queues, linked lists, trees, and graphs behave step-by-step, with intuitive controls to play, pause, and step through operations. This tool transforms abstract concepts into visual learning experiences, making it easier to grasp algorithm execution flow and state changes in real time.",
+                collaborators: [
+                    {
+                        name: "M Zeewaqar",
+                        avatar: "",
+                        link: "",
+                        commentShort: "Contributed to algorithm visualization logic and React component architecture.",
+                        commentFull: "Led the development of algorithm visualization modules, implementing interactive step-by-step controls and real-time state updates. Architected the React component structure for maintainability and performance."
+                    },
+                    {
+                        name: "Abdullah Umar",
+                        avatar: "",
+                        link: "",
+                        commentShort: "Focused on UI/UX design and responsive layout implementation.",
+                        commentFull: "Designed and implemented the user interface with a focus on intuitive controls and responsive design. Created the visual theme and animation system that makes complex algorithms easy to understand."
+                    }
+                ]
+            },
+            2: {
+                title: "Flood Aid Website",
+                videoSrc: "Pics/Khush Naseeb.mp4",
+                timeline: {
+                    start: "November 2025",
+                    end: "January 2026"
+                },
+                description: "A responsive, full-stack web platform to support flood relief coordination and assistance efforts. Built with a React frontend, C# backend API, and MongoDB database, the site enables users to submit and view requests for aid, connect with volunteers or helpers, and access essential information during flood emergencies. The system streamlines relief efforts by organizing real-time requests, fostering community support, and ensuring effective resource distribution when every moment counts.",
+                collaborators: [
+                    {
+                        name: "Farhan Shakeel",
+                        avatar: "",
+                        link: "",
+                        commentShort: "Backend development and database architecture.",
+                        commentFull: "Developed the C# backend API with secure authentication and data validation. Architected the MongoDB database schema for optimal performance and scalability, implementing geospatial queries for location-based services."
+                    }
+                ]
+            }
+        }
+    };
 
-    // Prevent background scrolling while expanded on mobile
-    document.body.style.overflow = 'hidden';
-
-    // On mobile, ensure the expanded card is at the top of viewport
-    if (window.innerWidth <= 900) {
-      setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
-    }
-
-    portfolioActiveCard = card;
-  }
-}
-
-// FIXED: Improved comment toggle function
-function portfolioToggleComment(commentId) {
-  const shortComment = document.getElementById(`portfolio-comment-${commentId}`);
-  const fullComment = document.getElementById(`portfolio-full-comment-${commentId}`);
-  const button = document.querySelector(`.portfolio-read-more-btn[onclick*="${commentId}"]`);
-
-  if (!shortComment || !fullComment || !button) return;
-
-  if (fullComment.style.display === 'none') {
-    // Show full comment, hide short
-    shortComment.style.display = 'none';
-    fullComment.style.display = 'block';
-    button.textContent = 'Show less';
-  } else {
-    // Show short comment, hide full
-    shortComment.style.display = 'block';
-    fullComment.style.display = 'none';
-    button.textContent = 'Read more';
-  }
-}
-
-// Initialize videos to play when visible
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target.querySelector('video');
-      if (video) {
-        if (entry.isIntersecting) {
-          video.play().catch(e => console.log("Auto-play prevented:", e));
+    // ==================================== Core Functions ====================================
+    function portfolioToggleDetails(projectId) {
+        const isOpening = portfolioState.activeProjectId !== projectId;
+        
+        if (isOpening) {
+            openExpandedView(projectId);
         } else {
-          video.pause();
+            closeExpandedView();
         }
-      }
-    });
-  }, { threshold: 0.5 });
+    }
 
-  document.querySelectorAll('.portfolio-project-card').forEach(card => {
-    observer.observe(card);
-  });
+    function openExpandedView(projectId) {
+        // Pause all videos in grid FIRST
+        document.querySelectorAll('.portfolio-project-video').forEach(video => {
+            video.pause();
+            video.currentTime = 0; // Reset to start
+        });
+        
+        // Also pause any previously expanded video
+        if (portfolioState.expandedVideo) {
+            portfolioState.expandedVideo.pause();
+            portfolioState.expandedVideo.currentTime = 0;
+            portfolioState.expandedVideo = null;
+        }
 
-  // Allow user to toggle mute by clicking expanded videos
-  document.querySelectorAll('.portfolio-expanded-left-side video').forEach(v => {
-    v.style.cursor = 'pointer';
-    v.addEventListener('click', () => {
-      v.muted = !v.muted;
-      if (v.muted) v.classList.remove('portfolio-unmuted');
-      else v.classList.add('portfolio-unmuted');
-    });
-  });
-});
+        // Update grid state
+        const grid = document.getElementById('portfolio-project-grid');
+        grid.classList.add('portfolio-expanded');
 
-// Ensure only the active card video plays
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('portfolio-btn-readmore') ||
-    e.target.classList.contains('portfolio-close-expanded')) {
+        // Hide all cards except the active one
+        document.querySelectorAll('.portfolio-project-card').forEach(card => {
+            if (card.dataset.portfolioProjectId !== projectId) {
+                card.classList.add('portfolio-inactive');
+            } else {
+                card.classList.add('portfolio-active');
+            }
+        });
 
-    // Pause all videos
-    document.querySelectorAll('video').forEach(video => video.pause());
+        // Update state
+        portfolioState.activeProjectId = projectId;
 
-    // Play only the active card video
-    setTimeout(() => {
-      const activeCard = document.querySelector('.portfolio-project-card.portfolio-active');
-      if (activeCard) {
-        const video = activeCard.querySelector('.portfolio-expanded-left-side video') ||
-          activeCard.querySelector('video');
+        // Load and show expanded content
+        loadExpandedContent(projectId);
+        
+        // Show overlay and container
+        document.getElementById('portfolio-expanded-overlay').classList.add('active');
+        document.getElementById('portfolio-expanded-container').style.display = 'flex';
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+        
+        // Scroll to top for mobile
+        if (window.innerWidth <= 900) {
+            window.scrollTo(0, 0);
+        }
+    }
+
+    function closeExpandedView() {
+        // CRITICAL FIX: Stop expanded video audio BEFORE cleaning up UI
+        if (portfolioState.expandedVideo) {
+            portfolioState.expandedVideo.pause();
+            portfolioState.expandedVideo.currentTime = 0;
+            portfolioState.expandedVideo.muted = true; // Also mute it
+            portfolioState.expandedVideo = null;
+        }
+
+        // Reset grid state
+        const grid = document.getElementById('portfolio-project-grid');
+        grid.classList.remove('portfolio-expanded');
+
+        // Reset all cards
+        document.querySelectorAll('.portfolio-project-card').forEach(card => {
+            card.classList.remove('portfolio-active', 'portfolio-inactive');
+        });
+
+        // Clear expanded content
+        const contentDiv = document.getElementById('portfolio-expanded-content');
+        contentDiv.innerHTML = '';
+
+        // Update state
+        portfolioState.activeProjectId = null;
+
+        // Hide overlay and container
+        document.getElementById('portfolio-expanded-overlay').classList.remove('active');
+        document.getElementById('portfolio-expanded-container').style.display = 'none';
+        
+        // Allow body scroll
+        document.body.style.overflow = '';
+
+        // Resume video playback in visible cards (muted)
+        restartGridVideos();
+    }
+
+    function loadExpandedContent(projectId) {
+        const data = portfolioState.expandedData[projectId];
+        if (!data) return;
+
+        const contentDiv = document.getElementById('portfolio-expanded-content');
+        
+        // Create HTML structure
+        contentDiv.innerHTML = `
+            <div class="portfolio-expanded-left">
+                <h2>${data.title}</h2>
+                <div class="portfolio-expanded-video-container">
+                    <video class="portfolio-expanded-video" autoplay loop playsinline>
+                        <source src="${data.videoSrc}" type="video/mp4">
+                    </video>
+                </div>
+                ${window.innerWidth > 900 ? `
+                    <div class="portfolio-vertical-separator">
+                        <div class="portfolio-separator-dot"></div>
+                    </div>
+                ` : ''}
+            </div>
+            <div class="portfolio-expanded-right">
+                <div class="portfolio-project-timeline">
+                    <span class="portfolio-start-date">${data.timeline.start}</span>
+                    <div class="portfolio-timeline-dot"></div>
+                    <span class="portfolio-end-date">${data.timeline.end}</span>
+                </div>
+                
+                <p class="portfolio-project-description">${data.description}</p>
+                
+                ${data.collaborators.length > 0 ? `
+                    <div class="portfolio-collaborators-section">
+                        <h3 class="portfolio-collaborators-title">
+                            <i class="fas fa-users"></i> Collaborators
+                        </h3>
+                        ${data.collaborators.map((collaborator, index) => `
+                            <div class="portfolio-collaborator">
+                                <a href="${collaborator.link}" target="_blank" class="portfolio-collaborator-avatar">
+                                    <img src="${collaborator.avatar || 'https://via.placeholder.com/60'}" alt="${collaborator.name}">
+                                </a>
+                                <div class="portfolio-collaborator-info">
+                                    <div class="portfolio-collaborator-name">${collaborator.name}</div>
+                                    <div class="portfolio-collaborator-comment portfolio-collapsed" 
+                                         id="portfolio-comment-${projectId}-${index}">
+                                        "${collaborator.commentShort}"
+                                    </div>
+                                    <div class="portfolio-collaborator-comment portfolio-full" 
+                                         id="portfolio-full-comment-${projectId}-${index}" 
+                                         style="display: none">
+                                        "${collaborator.commentFull}"
+                                    </div>
+                                    <button class="portfolio-read-more-btn" 
+                                            onclick="portfolioToggleComment('${projectId}-${index}')">
+                                        Read more
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
+        // Initialize video - Start WITH sound in expanded view
+        const video = contentDiv.querySelector('.portfolio-expanded-video');
         if (video) {
-          video.play()
-            .then(() => video.classList.add('portfolio-playing'))
-            .catch(e => console.log("Video play error:", e));
+            // Store reference to expanded video
+            portfolioState.expandedVideo = video;
+            
+            // Start with sound (unmuted) for expanded view
+            video.muted = false;
+            
+            // Add mute toggle on click
+            video.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event bubbling
+                this.muted = !this.muted;
+                
+                // Add visual feedback when unmuted
+                if (this.muted) {
+                    this.style.boxShadow = 'none';
+                    this.title = 'Click to unmute';
+                } else {
+                    this.style.boxShadow = '0 0 20px rgba(0, 255, 238, 0.5)';
+                    this.title = 'Click to mute';
+                }
+            });
+            
+            // Set initial title and visual feedback
+            video.title = 'Click to mute';
+            video.style.boxShadow = '0 0 20px rgba(0, 255, 238, 0.5)';
+            
+            // Play with sound
+            video.play().catch(e => {
+                console.log("Video autoplay prevented:", e);
+                // If autoplay fails due to sound policy, set to muted and try again
+                video.muted = true;
+                video.title = 'Click to unmute';
+                video.style.boxShadow = 'none';
+                video.play().catch(e2 => console.log("Muted play also failed:", e2));
+            });
+            
+            // Also pause video when user closes via overlay click
+            video.addEventListener('click', function(e) {
+                e.stopPropagation();
+            }, true);
         }
-      }
-    }, 300);
-  }
-});
+    }
 
-// Close expanded card when clicking outside on desktop
-document.addEventListener('click', (e) => {
-  if (portfolioActiveCard &&
-    window.innerWidth > 900 &&
-    !portfolioActiveCard.contains(e.target) &&
-    !e.target.classList.contains('portfolio-btn-readmore')) {
+    function portfolioToggleComment(commentId) {
+        const shortComment = document.getElementById(`portfolio-comment-${commentId}`);
+        const fullComment = document.getElementById(`portfolio-full-comment-${commentId}`);
+        const button = document.querySelector(`button[onclick*="${commentId}"]`);
+        
+        if (!shortComment || !fullComment || !button) return;
+        
+        if (fullComment.style.display === 'none') {
+            shortComment.style.display = 'none';
+            fullComment.style.display = 'block';
+            button.textContent = 'Show less';
+        } else {
+            shortComment.style.display = 'block';
+            fullComment.style.display = 'none';
+            button.textContent = 'Read more';
+        }
+    }
 
-    portfolioToggleDetails(null, portfolioActiveCard.getAttribute('data-portfolio-project-id'));
-  }
-});
+    function restartGridVideos() {
+        // Clear any existing observers
+        if (window.portfolioVideoObserver) {
+            window.portfolioVideoObserver.disconnect();
+        }
+        
+        // Create new observer for grid videos
+        window.portfolioVideoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('.portfolio-project-video');
+                if (video) {
+                    // Reset video to muted for grid view
+                    video.muted = true;
+                    
+                    if (entry.isIntersecting) {
+                        video.play().catch(e => {
+                            // Autoplay was prevented
+                            console.log("Grid video autoplay prevented");
+                        });
+                    } else {
+                        video.pause();
+                        video.currentTime = 0; // Reset to start
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
 
-// Close expanded card on Escape key press
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && portfolioActiveCard) {
-    portfolioToggleDetails(
-      null,
-      portfolioActiveCard.getAttribute('data-portfolio-project-id')
-    );
-  }
-});
+        document.querySelectorAll('.portfolio-project-card').forEach(card => {
+            window.portfolioVideoObserver.observe(card);
+        });
+    }
+
+    // ==================================== Event Listeners ====================================
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize grid videos
+        restartGridVideos();
+        
+        // Close button event
+        document.getElementById('portfolio-close-expanded').addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeExpandedView();
+        });
+        
+        // Overlay click to close
+        document.getElementById('portfolio-expanded-overlay').addEventListener('click', closeExpandedView);
+        
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portfolioState.activeProjectId) {
+                closeExpandedView();
+            }
+        });
+        
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (portfolioState.activeProjectId) {
+                    // Reload content to adapt to new layout
+                    loadExpandedContent(portfolioState.activeProjectId);
+                }
+            }, 250);
+        });
+        
+        // Also clean up on page visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && portfolioState.expandedVideo) {
+                // If user switches tabs, pause the video
+                portfolioState.expandedVideo.pause();
+            }
+        });
+    });
+
+    // ==================================== Video Optimization ====================================
+    // Lazy load videos when they come into view
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const video = entry.target;
+                const source = video.querySelector('source[data-src]');
+                if (source) {
+                    source.src = source.dataset.src;
+                    video.load();
+                    videoObserver.unobserve(video);
+                }
+            }
+        });
+    }, { rootMargin: '50px' });
+
+    // Mark videos for lazy loading (optional optimization)
+    document.querySelectorAll('.portfolio-project-video[data-lazy]').forEach(video => {
+        videoObserver.observe(video);
+    });
+
+
+
 
 
 // ================================= Static Projects =================================

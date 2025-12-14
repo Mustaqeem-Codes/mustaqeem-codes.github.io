@@ -1231,7 +1231,7 @@ body {
   display: block;
   position: relative;
   z-index: 1;
-  object-position: top;  /* keeps face visible */
+  object-position: top; /* keeps face visible */
 }
 
 .image-container:hover .profile-image {
@@ -1340,7 +1340,7 @@ body {
   .text-animation {
     font-size: 2rem;
   }
-  .image-container{
+  .image-container {
     border: 2px solid var(--main-color);
   }
 }
@@ -1387,7 +1387,7 @@ body {
     height: 450px;
     margin: 0 auto;
   }
-  .image-container{
+  .image-container {
     border: 2px solid var(--main-color);
   }
 
@@ -1471,7 +1471,7 @@ body {
     margin: 0 auto;
     margin-top: 5px;
   }
-  .image-container{
+  .image-container {
     border: 2px solid var(--main-color);
   }
 }
@@ -1546,208 +1546,198 @@ body {
     height: 40px;
     font-size: 1.2rem;
   }
-  .image-container{
+  .image-container {
     border: 2px solid var(--main-color);
   }
 }
-
-
 
 /* ================================
    CV BUTTONS CONTAINER
    ================================ */
 .cv-buttons-wrapper {
-    display: flex;                 /* Arrange buttons in a single row */
-    justify-content: center;       /* Center buttons horizontally */
-    align-items: center;           /* Vertically align items */
-    gap: 2px;                      /* VERY SMALL gap between View CV & Download icon */
-    margin-top: 6px;               /* Reduced top spacing */
-    margin-bottom: 6px;            /* Reduced bottom spacing */
-    padding: 0;                    /* No internal padding */
-    width: 100%;                   /* Full width container */
+  display: flex; /* Arrange buttons in a single row */
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Vertically align items */
+  gap: 2px; /* VERY SMALL gap between View CV & Download icon */
+  margin-top: 6px; /* Reduced top spacing */
+  margin-bottom: 6px; /* Reduced bottom spacing */
+  padding: 0; /* No internal padding */
+  width: 100%; /* Full width container */
 }
-
 
 /* ================================
    VIEW CV BUTTON
    ================================ */
 .cv-portfolio-view-btn {
-    display: inline-flex;          /* Inline flex for icon + text */
-    align-items: center;           /* Vertically center content */
-    justify-content: center;       /* Center text */
-    padding: 10px 26px;            /* Button internal spacing */
-    border-radius: 6px;            /* Slight rounded corners */
-    font-size: 1rem;               /* Text size */
-    font-weight: 600;              /* Medium-bold text */
-    text-decoration: none;         /* Remove underline */
-    cursor: pointer;               /* Pointer cursor */
-    transition: all 0.3s ease;     /* Smooth hover animation */
+  display: inline-flex; /* Inline flex for icon + text */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Center text */
+  padding: 10px 26px; /* Button internal spacing */
+  border-radius: 6px; /* Slight rounded corners */
+  font-size: 1rem; /* Text size */
+  font-weight: 600; /* Medium-bold text */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Pointer cursor */
+  transition: all 0.3s ease; /* Smooth hover animation */
 
-    background-color: transparent; /* 🔹 ALWAYS TRANSPARENT */
-    color: var(--main-color);      /* Main color text initially */
-    border: 2px solid var(--main-color); /* Border visible initially */
+  background-color: transparent; /* 🔹 ALWAYS TRANSPARENT */
+  color: var(--main-color); /* Main color text initially */
+  border: 2px solid var(--main-color); /* Border visible initially */
 
-    min-width: 140px;              /* Button width consistency */
-    box-shadow: none;              /* No shadow initially */
-    margin-top: 0px;
-    margin-bottom: 20px;
+  min-width: 140px; /* Button width consistency */
+  box-shadow: none; /* No shadow initially */
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 
 /* Icon inside View CV */
 .cv-portfolio-view-btn i {
-    margin-left: 8px;              /* Space between text & icon */
-    font-size: 1rem;               /* Icon size */
-    transition: transform 0.3s ease; /* Smooth icon motion */
+  margin-left: 8px; /* Space between text & icon */
+  font-size: 1rem; /* Icon size */
+  transition: transform 0.3s ease; /* Smooth icon motion */
 }
 
 /* View CV hover effect */
 .cv-portfolio-view-btn:hover {
-    background-color: var(--main-color); /* 🔹 Fill with main color on hover */
-    color: white;                        /* Text becomes white */
-    transform: translateY(-2px);         /* Slight lift */
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25); /* Modern shadow */
-    color: var(--bg-color);
+  background-color: var(--main-color); /* 🔹 Fill with main color on hover */
+  color: white; /* Text becomes white */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* Modern shadow */
+  color: var(--bg-color);
 }
 
 /* Icon animation on hover */
 .cv-portfolio-view-btn:hover i {
-    transform: translateX(4px);    /* Slide icon slightly right */
+  transform: translateX(4px); /* Slide icon slightly right */
 }
-
 
 /* ================================
    DOWNLOAD CV BUTTON (ICON ONLY)
    ================================ */
 .cv-portfolio-download-btn {
-    display: inline-flex;          /* Inline flex wrapper */
-    align-items: center;           /* Center icon vertically */
-    justify-content: center;       /* Center icon horizontally */
-    text-decoration: none;         /* Remove underline */
-    background: none;              /* 🔹 NO background EVER */
-    border: none;                  /* No border */
-    padding: 0;                    /* No padding */
-    margin: 0;                     /* No margin */
-    cursor: pointer;               /* Pointer cursor */
-    position: relative;            /* Required for pseudo elements */
-    margin-bottom: 20px;
+  display: inline-flex; /* Inline flex wrapper */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  text-decoration: none; /* Remove underline */
+  background: none; /* 🔹 NO background EVER */
+  border: none; /* No border */
+  padding: 0; /* No padding */
+  margin: 0; /* No margin */
+  cursor: pointer; /* Pointer cursor */
+  position: relative; /* Required for pseudo elements */
+  margin-bottom: 20px;
 }
 
 /* Outer icon wrapper */
 .download-icon-wrapper {
-    width: 54px;                   /* Icon wrapper width */
-    height: 54px;                  /* Icon wrapper height */
-    display: flex;                 /* Flex container */
-    align-items: center;           /* Center icon vertically */
-    justify-content: center;       /* Center icon horizontally */
+  width: 54px; /* Icon wrapper width */
+  height: 54px; /* Icon wrapper height */
+  display: flex; /* Flex container */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
 }
 
 /* Rotating circular border */
 .rotating-border {
-    width: 46px;                   /* Circle size */
-    height: 46px;                  /* Circle size */
-    border-radius: 50%;            /* Perfect circle */
-    display: flex;                 /* Flex for centering icon */
-    align-items: center;           /* Vertical center */
-    justify-content: center;       /* Horizontal center */
-    position: relative;            /* For pseudo elements */
-    background: transparent;       /* 🔹 ALWAYS TRANSPARENT */
+  width: 46px; /* Circle size */
+  height: 46px; /* Circle size */
+  border-radius: 50%; /* Perfect circle */
+  display: flex; /* Flex for centering icon */
+  align-items: center; /* Vertical center */
+  justify-content: center; /* Horizontal center */
+  position: relative; /* For pseudo elements */
+  background: transparent; /* 🔹 ALWAYS TRANSPARENT */
 }
 
 /* Animated gradient ring */
 /* Animated gradient ring (BORDER-ONLY GLOW FIXED) */
 .rotating-border::before {
-    content: '';                           /* Required pseudo element */
-    position: absolute;                   /* Absolute positioning */
-    inset: -3px;                          /* Border thickness */
-    border-radius: 50%;                   /* Circular ring */
+  content: ""; /* Required pseudo element */
+  position: absolute; /* Absolute positioning */
+  inset: -3px; /* Border thickness */
+  border-radius: 50%; /* Circular ring */
 
-    background: linear-gradient(
-        60deg,                            /* Slight angle for flow */
-        var(--main-color),                /* Main color */
-        #4facfe,                          /* Blue */
-        #9b59b6,                          /* Purple */
-        #4facfe,                          /* Blue again */
-        var(--main-color)                 /* Loop back */
-    );
+  background: linear-gradient(
+    60deg,
+    /* Slight angle for flow */ var(--main-color),
+    /* Main color */ #4facfe,
+    /* Blue */ #9b59b6,
+    /* Purple */ #4facfe,
+    /* Blue again */ var(--main-color) /* Loop back */
+  );
 
-    background-size: 300% 300%;           /* Smooth flowing gradient */
-    animation: rotateAndChangeColor 2.5s linear infinite;
+  background-size: 300% 300%; /* Smooth flowing gradient */
+  animation: rotateAndChangeColor 2.5s linear infinite;
 
-    /* 🔑 BORDER-ONLY GLOW TECHNIQUE */
-    -webkit-mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - 6px),     /* Hollow center */
-        black calc(100% - 5px)             /* Visible ring */
-    );
-    mask: radial-gradient(
-        farthest-side,
-        transparent calc(100% - 6px),
-        black calc(100% - 5px)
-    );
+  /* 🔑 BORDER-ONLY GLOW TECHNIQUE */
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    /* Hollow center */ black calc(100% - 5px) /* Visible ring */
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 6px),
+    black calc(100% - 5px)
+  );
 
-    filter: drop-shadow(0 0 6px rgba(79, 172, 254, 0.6))
-            drop-shadow(0 0 10px rgba(155, 89, 182, 0.5)); /* Glow stays on ring */
+  filter: drop-shadow(0 0 6px rgba(79, 172, 254, 0.6))
+    drop-shadow(0 0 10px rgba(155, 89, 182, 0.5)); /* Glow stays on ring */
 
-    z-index: -1;                          /* Behind icon */
+  z-index: -1; /* Behind icon */
 }
-
 
 /* Inner layer (NO FILL EVER) */
 .rotating-border::after {
-    content: '';                   /* Required */
-    position: absolute;            /* Overlay */
-    inset: 0;                      /* Fill container */
-    border-radius: 50%;            /* Circular */
-    background: transparent;       /* 🔹 NO BACKGROUND */
-    z-index: 0;                    /* Above gradient */
+  content: ""; /* Required */
+  position: absolute; /* Overlay */
+  inset: 0; /* Fill container */
+  border-radius: 50%; /* Circular */
+  background: transparent; /* 🔹 NO BACKGROUND */
+  z-index: 0; /* Above gradient */
 }
 
 /* Download icon */
 .rotating-border i {
-    font-size: 1.4rem;             /* Icon size */
-    color: var(--main-color);      /* Main color */
-    z-index: 1;                    /* Above layers */
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation */
+  font-size: 1.4rem; /* Icon size */
+  color: var(--main-color); /* Main color */
+  z-index: 1; /* Above layers */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation */
 }
 
 /* Hover: faster rotation only */
 .cv-portfolio-download-btn:hover .rotating-border::before {
-    animation-duration: 1.5s;      /* Faster rotation */
-    filter: blur(1.5px);           /* Slightly stronger glow */
+  animation-duration: 1.5s; /* Faster rotation */
+  filter: blur(1.5px); /* Slightly stronger glow */
 }
 
 /* Hover: icon grows only (NO BG CHANGE) */
 .cv-portfolio-download-btn:hover .rotating-border i {
-    transform: scale(1.2);         /* Increase icon size */
-    color: var(--main-color);      /* Color stays same */
+  transform: scale(1.2); /* Increase icon size */
+  color: var(--main-color); /* Color stays same */
 }
 
 /* Active press effect */
 .cv-portfolio-download-btn:active .rotating-border {
-    transform: scale(0.95);        /* Press feedback */
+  transform: scale(0.95); /* Press feedback */
 }
-
 
 /* ================================
    KEYFRAMES
    ================================ */
 @keyframes rotateAndChangeColor {
-    0% {
-        transform: rotate(0deg);          /* Start rotation */
-        background-position: 0% 50%;     /* Gradient start */
-    }
-    50% {
-        background-position: 100% 50%;   /* Gradient shift */
-    }
-    100% {
-        transform: rotate(360deg);        /* Full rotation */
-        background-position: 0% 50%;     /* Reset gradient */
-    }
+  0% {
+    transform: rotate(0deg); /* Start rotation */
+    background-position: 0% 50%; /* Gradient start */
+  }
+  50% {
+    background-position: 100% 50%; /* Gradient shift */
+  }
+  100% {
+    transform: rotate(360deg); /* Full rotation */
+    background-position: 0% 50%; /* Reset gradient */
+  }
 }
-
-
-
-
 
 /* ---------Education------------ */
 
@@ -2541,18 +2531,19 @@ body {
   }
 }
 
-/* ====================================   Projects  ================================================ */
-
+/* ==================================== Projects Section ==================================== */
 .portfolio-projects-section {
-  background-color: var(--light-black);
-  color: var(--text-color);
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  margin: 0;
-  padding: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  position: relative;
   overflow-x: hidden;
 }
 
-
+.portfolio-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 .portfolio-projects-section .portfolio-container h2 {
   text-align: center;
@@ -2561,18 +2552,10 @@ body {
   color: var(--main-color);
   text-shadow: var(--portfolio-neon-glow);
   transition: opacity 0.3s;
-  /* Add this line to reduce the top spacing */
-  margin-top: 0; /* or margin-top: 20px; for a smaller gap */
+  margin-top: 0;
 }
 
-/* --- Project Grid Base Setup --- */
-.portfolio-projects-section .portfolio-container {
-  padding: 30px 30px 20px;
-  min-height: auto;
-  position: relative;
-  z-index: 10;
-}
-
+/* ==================================== Project Grid ==================================== */
 .portfolio-project-grid {
   display: flex;
   flex-wrap: wrap;
@@ -2584,7 +2567,15 @@ body {
   padding-bottom: 0;
 }
 
-/* --- Project Card Base Styles --- */
+.portfolio-project-grid.portfolio-expanded {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* ==================================== Project Card (Your Original Layout) ==================================== */
 .portfolio-project-card {
   background: var(--portfolio-card-bg);
   border-radius: 12px;
@@ -2596,14 +2587,17 @@ body {
   position: relative;
   z-index: 10;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
 
 .portfolio-project-card:hover:not(.portfolio-active) {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 238, 0.6);
 }
 
-/* --- Non-active Cards (Desktop Shrink/Fade) --- */
+/* Shrunken state for non-active cards when expanded */
 .portfolio-project-grid.portfolio-expanded
   .portfolio-project-card:not(.portfolio-active) {
   opacity: 0.2;
@@ -2616,53 +2610,11 @@ body {
 
 .portfolio-project-grid.portfolio-expanded
   .portfolio-project-card:not(.portfolio-active)
-  .portfolio-card-info-section,
-.portfolio-project-grid.portfolio-expanded
-  .portfolio-project-card:not(.portfolio-active)
-  .portfolio-card-video-section {
-  display: none;
-}
-
-/* Show video in shrunken circle state */
-.portfolio-project-grid.portfolio-expanded
-  .portfolio-project-card:not(.portfolio-active)::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--portfolio-card-bg);
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.portfolio-project-grid.portfolio-expanded
-  .portfolio-project-card:not(.portfolio-active)
-  video {
-  /* Hide preview videos on other cards when one is expanded */
+  * {
   display: none !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  z-index: 2;
-  opacity: 0.7;
 }
 
-.portfolio-project-card:not(.portfolio-active) {
-  opacity: 1;
-  pointer-events: auto;
-  max-width: 380px;
-  height: auto;
-  margin: 0;
-  margin-bottom: 30px;
-}
-
-/* --- Upper Half: Video Section --- */
+/* Video section in collapsed card */
 .portfolio-card-video-section {
   aspect-ratio: 16/9;
   width: 100%;
@@ -2678,9 +2630,12 @@ body {
   object-fit: cover;
 }
 
-/* --- Lower Half: Tech Stack & Actions --- */
+/* Card info section */
 .portfolio-card-info-section {
   padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio-card-info-section h3 {
@@ -2690,7 +2645,7 @@ body {
   font-size: 1.4em;
 }
 
-/* Tech Stack Icons with Brand Colors */
+/* Tech stack */
 .portfolio-tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -2714,7 +2669,12 @@ body {
   font-size: 1.8rem;
 }
 
-/* Brand colors for tech icons */
+.portfolio-tech-icon span {
+  font-size: 0.7rem;
+  color: var(--portfolio-muted-text);
+}
+
+/* Tech brand colors */
 .portfolio-tech-icon .devicon-react-original {
   color: #61dafb;
 }
@@ -2748,12 +2708,17 @@ body {
 .portfolio-tech-icon .devicon-cplusplus-plain {
   color: #00599c;
 }
-
-.portfolio-tech-icon span {
-  font-size: 0.7rem;
-  color: var(--portfolio-muted-text);
+.portfolio-tech-icon .devicon-csharp-plain {
+  color: #9a4f96;
+}
+.portfolio-tech-icon .devicon-express-original {
+  color: #ffffff;
+}
+.portfolio-tech-icon .devicon-github-original {
+  color: #ffffff;
 }
 
+/* ==================================== Action Buttons (Your Original Styles) ==================================== */
 .portfolio-card-actions {
   display: flex;
   gap: 10px;
@@ -2774,6 +2739,10 @@ body {
   text-align: center;
   white-space: nowrap;
   will-change: transform, box-shadow, opacity;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .portfolio-btn-live {
@@ -2797,213 +2766,262 @@ body {
   box-shadow: 0 12px 30px rgba(0, 255, 238, 0.06);
   opacity: 1;
 }
+
 .portfolio-action-btn:focus-visible {
   outline: 2px solid rgba(0, 255, 238, 0.12);
   outline-offset: 2px;
   box-shadow: 0 12px 30px rgba(0, 255, 238, 0.12);
 }
 
+/* ==================================== EXPANDED VIEW ==================================== */
+/* Overlay for expanded state */
+.portfolio-expanded-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 10, 15, 0.95);
+  z-index: 9999;
+  display: none;
+  backdrop-filter: blur(5px);
+}
 
+.portfolio-expanded-overlay.active {
+  display: block;
+}
 
+/* Expanded card container */
+.portfolio-expanded-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-/* --- ACTIVE (Expanded) Card Styles (Desktop) --- */
+/* ==================================== Close Button (Reduced Size) ==================================== */
+.portfolio-close-expanded {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--portfolio-separator-color);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10001;
+}
+
+.portfolio-close-expanded:hover {
+  background: var(--portfolio-separator-color);
+  transform: rotate(90deg);
+  color: var(--bg-color);
+}
+
+/* Desktop close button */
 @media (min-width: 901px) {
-  .portfolio-project-card.portfolio-active {
-    width: 95vw;
-    max-width: 1200px;
-    height: 80vh;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 1);
-    margin-top: 20px; /* Added margin from top */
-  }
-
-  .portfolio-project-card.portfolio-active .portfolio-expanded-content-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative; /* For close button positioning */
-  }
-
-  /* Left side - Video replaces circles */
-  .portfolio-expanded-left-side {
-    width: 40%;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background: rgba(0, 0, 0, 0.7);
-  }
-
-  /* FIX: Left-side video should be 16:9 for better viewing */
-  .portfolio-expanded-left-side .portfolio-card-video-section {
-    aspect-ratio: 16/9;
-    width: 100%;
-    height: auto;
-    max-height: calc(80vh - 120px);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 18px; /* <-- increased top gap under heading */
-    margin-bottom: 0;
-    display: block !important; /* Ensure it shows */
-  }
-
-  .portfolio-expanded-left-side .portfolio-card-video-section video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.3s ease;
-    transform-origin: center center;
-  }
-
-  .portfolio-expanded-left-side
-    .portfolio-card-video-section
-    video.portfolio-playing {
-    opacity: 1;
-  }
-
-  /* Mobile: keep expanded video at a reasonable height while preserving 16:9 */
-  @media (max-width: 900px) {
-    .portfolio-expanded-left-side .portfolio-card-video-section {
-      max-height: 40vh;
-      aspect-ratio: 16/9;
-      margin-top: 12px; /* smaller top gap on mobile */
-    }
-  }
-
-  .portfolio-expanded-left-side
-    .portfolio-card-video-section
-    video.portfolio-unmuted {
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-  }
-  /* Hide original top video when card is expanded to avoid duplicates */
-  .portfolio-project-card.portfolio-active > .portfolio-card-video-section {
-    display: none;
-  }
-
-  /* Hide the extra video that was causing distortion */
-  .portfolio-expanded-left-side .portfolio-project-video {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Right side - Project Details */
-  .portfolio-expanded-right-side {
-    width: 60%;
-    padding: 30px;
-    overflow-y: auto;
-    position: relative; /* For close button positioning */
-  }
-
-  /* Desktop close button positioning - UPDATED */
   .portfolio-close-expanded {
     position: absolute;
-    top: 20px; /* Increased from 15px */
-    right: 20px; /* Increased from 15px */
-    width: 45px; /* Slightly larger */
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.7); /* Darker for better contrast */
-    border: 2px solid var(--portfolio-main-color);
-    color: var(--portfolio-main-color);
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
     font-size: 1.4rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 1001;
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
   }
 
   .portfolio-close-expanded:hover {
-    background: var(--portfolio-main-color);
+    background: var(--main-color);
     color: var(--portfolio-dark-color);
     transform: rotate(90deg) scale(1.1);
   }
+}
 
-  /* Remove action buttons in expanded view */
-  .portfolio-project-card.portfolio-active
-    .portfolio-expanded-right-side
-    .portfolio-card-actions {
-    display: none;
+/* Mobile close button */
+@media (max-width: 900px) {
+  .portfolio-close-expanded {
+    top: 40px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #000000;
+    color: #00ffee;
+    border: 2px solid #00ffee;
+    font-size: 1.6rem;
+    box-shadow: 0 0 25px #00ffee, 0 0 50px rgba(0, 255, 238, 0.5);
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .portfolio-close-expanded {
+    top: 35px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+  }
+}
+
+/* ==================================== Expanded Content ==================================== */
+.portfolio-expanded-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+/* DESKTOP EXPANDED VIEW (901px and up) */
+@media (min-width: 901px) {
+  .portfolio-expanded-content {
+    flex-direction: row;
+    max-width: 1200px;
+    margin: 40px auto;
+    height: calc(100vh - 80px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 1);
+    background: var(--portfolio-card-bg);
+    border: var(--portfolio-neon-border);
+    position: relative;
   }
 
-  /* Cyan Separator Line with Dot */
+  .portfolio-expanded-left {
+    flex: 0 0 40%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.7);
+    position: relative;
+  }
+
+  .portfolio-expanded-right {
+    flex: 0 0 60%;
+    padding: 30px;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  /* Vertical separator */
   .portfolio-vertical-separator {
     width: 2px;
-    background-color: var(--portfolio-main-color);
+    background-color: var(--main-color);
     position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
-    box-shadow: 0 0 18px var(--portfolio-main-color);
+    box-shadow: 0 0 18px var(--main-color);
   }
 
   .portfolio-separator-dot {
     width: 12px;
     height: 12px;
-    background-color: var(--portfolio-main-color);
+    background-color: var(--main-color);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     right: -6px;
     transform: translateY(-50%);
-    box-shadow: 0 0 10px rgba(255, 58, 58, 0.8);
   }
 }
 
-/* Hide the original info section when active */
-.portfolio-project-card.portfolio-active .portfolio-card-info-section {
-  display: none;
+/* MOBILE EXPANDED VIEW (900px and below) */
+@media (max-width: 900px) {
+  .portfolio-expanded-container {
+    padding: 0;
+  }
+
+  .portfolio-expanded-content {
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0;
+    background: var(--portfolio-card-bg);
+  }
+
+  .portfolio-expanded-left {
+    padding: 20px 20px 15px;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .portfolio-expanded-right {
+    padding: 20px 20px 40px;
+    overflow-y: visible;
+    padding-top: 70px;
+  }
 }
 
-.portfolio-expanded-content-wrapper {
-  display: none;
+/* ==================================== Expanded Content Styles (Reduced Font Sizes) ==================================== */
+.portfolio-expanded-left h2 {
+  color: var(--main-color);
+  font-size: 1.8rem; /* Reduced from 2.2rem */
+  margin-bottom: 15px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.portfolio-project-card.portfolio-active .portfolio-expanded-content-wrapper {
-  display: flex;
-}
-/* --- Project Details in Expanded View --- */
-.portfolio-detail-header {
-  margin-bottom: 2rem;
-}
-
-.portfolio-detail-header h2 {
-  font-size: 2.2rem;
-  color: var(--portfolio-main-color);
-  margin-bottom: 0.5rem;
+.portfolio-expanded-video-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: #000;
+  margin-top: 10px;
 }
 
-/* Heading moved to left side in expanded view */
-.portfolio-expanded-left-side .portfolio-detail-heading {
-  font-size: 1.6rem;
-  color: var(--portfolio-main-color);
-  margin: 0 0 12px 0;
-  line-height: 1.1;
+.portfolio-expanded-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
 }
 
-/* Ensure right pane doesn't show a duplicate heading if present */
-.portfolio-expanded-right-side .portfolio-detail-header h2 {
-  display: none;
+/* Desktop video sizing */
+@media (min-width: 901px) {
+  .portfolio-expanded-video-container {
+    aspect-ratio: 16/9;
+    max-height: calc(80vh - 120px);
+    margin-top: 18px;
+  }
 }
 
+/* Mobile video sizing */
+@media (max-width: 900px) {
+  .portfolio-expanded-video-container {
+    aspect-ratio: 16/9;
+    max-height: 40vh;
+    margin-top: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ==================================== Expanded Right Side (Reduced Font Sizes) ==================================== */
 .portfolio-project-timeline {
   display: flex;
   align-items: center;
   gap: 1rem;
   color: var(--portfolio-muted-text);
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Reduced from 1rem */
+  margin-bottom: 1.5rem; /* Reduced from 25px */
 }
 
 .portfolio-timeline-dot {
@@ -3014,24 +3032,24 @@ body {
 }
 
 .portfolio-project-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1rem; /* Reduced from 1.1rem */
+  line-height: 1.6; /* Reduced from 1.7 */
   color: var(--text-color);
-  margin-bottom: 2rem;
-  padding: 1.5rem;
+  margin-bottom: 1.8rem; /* Reduced from 30px */
+  padding: 1.2rem; /* Reduced from 1.5rem */
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   border-left: 4px solid var(--portfolio-primary-color);
 }
 
-/* Collaborators Section - FIXED: Removed black shadow */
+/* Collaborators section with reduced sizes */
 .portfolio-collaborators-section {
-  margin-top: 2rem;
+  margin-top: 1.8rem; /* Reduced from 30px */
 }
 
 .portfolio-collaborators-title {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.2rem; /* Reduced from 1.4rem */
+  margin-bottom: 1.2rem; /* Reduced from 20px */
   color: var(--text-color);
   display: flex;
   align-items: center;
@@ -3045,11 +3063,11 @@ body {
 .portfolio-collaborator {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1.2rem;
+  gap: 1.2rem; /* Reduced from 1.5rem */
+  padding: 1rem; /* Reduced from 1.2rem */
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
   transition: all 0.3s ease;
 }
 
@@ -3059,8 +3077,8 @@ body {
 }
 
 .portfolio-collaborator-avatar {
-  width: 60px;
-  height: 60px;
+  width: 55px; /* Reduced from 60px */
+  height: 55px; /* Reduced from 60px */
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--portfolio-primary-color);
@@ -3087,14 +3105,14 @@ body {
 .portfolio-collaborator-name {
   font-weight: 600;
   color: var(--text-color);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem; /* Reduced from 0.5rem */
+  font-size: 1rem; /* Reduced from 1.1rem */
 }
 
-/* FIXED: Comment styling without black shadow */
 .portfolio-collaborator-comment {
   color: var(--portfolio-muted-text);
   line-height: 1.5;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Reduced from 0.95rem */
   transition: all 0.3s ease;
 }
 
@@ -3112,12 +3130,12 @@ body {
   color: var(--portfolio-primary-color);
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
+  font-size: 0.8rem; /* Reduced from 0.9rem */
+  margin-left: 0.3rem; /* Reduced from 0.5rem */
   text-decoration: none;
   border-bottom: 1px dashed var(--portfolio-primary-color);
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem; /* Reduced from 0.5rem */
   background: none;
   border: none;
   padding: 0;
@@ -3128,167 +3146,45 @@ body {
   border-bottom-color: var(--portfolio-separator-color);
 }
 
-/* Close Button */
-.portfolio-close-expanded {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--portfolio-separator-color);
-  color: var(--portfolio-text-color);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 1001;
-}
-
-.portfolio-close-expanded:hover {
-  background: var(--portfolio-separator-color);
-  transform: rotate(90deg);
-}
-
-/* --- Responsive Adjustments --- */
+/* ==================================== Responsive Adjustments ==================================== */
 @media (max-width: 900px) {
   .portfolio-project-card {
     max-width: 100%;
   }
 
-  .portfolio-project-grid.portfolio-expanded .portfolio-project-card:not(.portfolio-active) {
+  .portfolio-project-grid.portfolio-expanded
+    .portfolio-project-card:not(.portfolio-active) {
     opacity: 0.5;
     max-width: 60px;
     height: 60px;
     margin: 0 auto 80px;
   }
 
-  /* Mobile expanded (make expanded card full-screen and scrollable) */
-  .portfolio-project-card.portfolio-active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    transform: none;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    background: var(--portfolio-card-bg);
-    border-radius: 0;
-    overflow-y: auto; /* Changed from hidden to auto */
-    overflow-x: hidden;
+  .portfolio-expanded-left h2 {
+    font-size: 1.6rem; /* Smaller on mobile */
   }
 
-  .portfolio-project-card.portfolio-active .portfolio-expanded-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative; /* Added for close button positioning */
+  .portfolio-project-description {
+    font-size: 0.95rem; /* Smaller on mobile */
+    padding: 1rem;
   }
 
-  .portfolio-expanded-left-side,
-  .portfolio-expanded-right-side {
-    width: 100%;
-    padding: 20px;
-    position: relative; /* Added for close button positioning */
-  }
-
-  /* IMPORTANT FIX: Close button positioning for mobile */
-  .portfolio-project-card.portfolio-active .portfolio-close-expanded {
-    /* Positioning */
-    position: fixed !important;
-    top: 40px !important; /* Much lower to avoid browser UI */
-    right: 20px !important;
-    left: auto !important;
-    bottom: auto !important;
-    
-    /* Size & Appearance */
-    width: 55px !important;
-    height: 55px !important;
-    border-radius: 50% !important;
-    
-    /* Colors & Borders */
-    background: #000000 !important;
-    color: #00ffee !important;
-    border: 3px solid #00ffee !important;
-    
-    /* Text */
-    font-size: 2rem !important;
-    font-weight: bold !important;
-    line-height: 1 !important;
-    text-align: center !important;
-    
-    /* Layout */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    
-    /* Effects */
-    box-shadow: 
-      0 0 25px #00ffee,
-      0 0 50px rgba(0, 255, 238, 0.5),
-      inset 0 0 15px rgba(0, 255, 238, 0.3) !important;
-    
-    /* Z-index */
-    z-index: 99999 !important;
-    
-    /* Reset any transforms */
-    transform: none !important;
-    
-    /* Cursor */
-    cursor: pointer !important;
-    
-    /* Visibility */
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-   .portfolio-project-card.portfolio-active {
-    overflow: visible !important;
-  }
-
-  .portfolio-project-card.portfolio-active .portfolio-close-expanded:hover {
-    background: var(--portfolio-main-color);
-    color: var(--portfolio-dark-color);
-  }
-
-  .portfolio-vertical-separator {
-    display: none;
-  }
-
-  .portfolio-expanded-left-side .portfolio-card-video-section {
-    aspect-ratio: 16/9;
-    width: 100%;
-    height: auto;
-    max-height: 40vh;
-    margin-top: 12px;
-    overflow: hidden;
-  }
-
-  .portfolio-expanded-right-side {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding-top: 60px; /* Added padding for close button */
-    padding-bottom: 40px;
-  }
-
-  .portfolio-expanded-content-wrapper,
-  .portfolio-expanded-right-side {
-    overflow: visible !important;
-  }
-  
-  /* Add space so content doesn't hide under button */
-  .portfolio-expanded-right-side {
-    padding-top: 90px !important;
+  .portfolio-collaborator {
+    flex-direction: row;
+    text-align: left;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .portfolio-project-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-project-card {
+    max-width: 380px;
+  }
+
   .portfolio-projects-section .portfolio-container h2 {
     font-size: 2rem;
   }
@@ -3301,56 +3197,45 @@ body {
     justify-content: center;
   }
 
-  .portfolio-expanded-left-side .portfolio-card-video-section {
-    aspect-ratio: 16/9;
-    width: 100%;
-    height: auto;
-    max-height: 30vh;
-    margin-top: 8px;
-    overflow: hidden;
+  .portfolio-collaborator {
+    flex-direction: column;
+    text-align: center;
   }
 
-  /* Smaller close button on very small screens */
-  .portfolio-project-card.portfolio-active .portfolio-close-expanded {
-    top: 35px !important;
-    right: 15px !important;
-    width: 50px !important;
-    height: 50px !important;
-    font-size: 1.8rem !important;
+  .portfolio-collaborator-avatar {
+    margin: 0 auto;
   }
 
-  .portfolio-expanded-right-side {
-    padding-top: 80px !important;
+  .portfolio-expanded-left h2 {
+    font-size: 1.4rem;
   }
 }
 
-/* For extremely small screens */
-@media (max-width: 360px) {
-  .portfolio-project-card.portfolio-active .portfolio-close-expanded {
-    top: 30px !important;
-    right: 12px !important;
-    width: 45px !important;
-    height: 45px !important;
-    font-size: 1.6rem !important;
-  }
-  
-  .portfolio-expanded-right-side {
-    padding-top: 70px !important;
-  }
-}
-
-/* Scrollbar Styling */
-.portfolio-expanded-right-side::-webkit-scrollbar {
+/* ==================================== Scrollbar Styling ==================================== */
+.portfolio-expanded-right::-webkit-scrollbar {
   width: 6px;
 }
 
-.portfolio-expanded-right-side::-webkit-scrollbar-track {
+.portfolio-expanded-right::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
 }
 
-.portfolio-expanded-right-side::-webkit-scrollbar-thumb {
-  background: var(--portfolio-main-color);
+.portfolio-expanded-right::-webkit-scrollbar-thumb {
+  background: var(--main-color);
   border-radius: 3px;
+}
+
+/* ==================================== Utility Classes ==================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ============================= Static Projects ============================*/
@@ -4376,7 +4261,7 @@ p#dates {
   text-decoration: underline;
 }
 
-.rights-res{
+.rights-res {
   color: var(--main-color);
 }
 
