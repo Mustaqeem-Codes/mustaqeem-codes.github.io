@@ -1340,6 +1340,9 @@ body {
   .text-animation {
     font-size: 2rem;
   }
+  .image-container{
+    border: 2px solid var(--main-color);
+  }
 }
 
 @media (max-width: 992px) {
@@ -1385,7 +1388,7 @@ body {
     margin: 0 auto;
   }
   .image-container{
-    border: none;
+    border: 2px solid var(--main-color);
   }
 
   .stats-grid {
@@ -1469,7 +1472,7 @@ body {
     margin-top: 5px;
   }
   .image-container{
-    border: none;
+    border: 2px solid var(--main-color);
   }
 }
 
@@ -1542,6 +1545,9 @@ body {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
+  }
+  .image-container{
+    border: 2px solid var(--main-color);
   }
 }
 
