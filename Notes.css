@@ -14,19 +14,32 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Scrollbar Styling */
-.portfolio-expanded-right-side::-webkit-scrollbar {
-  width: 6px;
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-.portfolio-expanded-right-side::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+/* Background of the scrollbar (track) */
+::-webkit-scrollbar-track {
+    background: #000000; /* very black */
 }
 
-.portfolio-expanded-right-side::-webkit-scrollbar-thumb {
-  background: var(--portfolio-main-color);
-  border-radius: 3px;
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background: #00ffee;
+    border-radius: 10px;
 }
+
+/* Hover effect (optional but recommended) */
+::-webkit-scrollbar-thumb:hover {
+    background: #00ccbb;
+}
+/* Scrollbar color: thumb track */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #00ffee #000000;
+}
+
 
 
 
@@ -272,14 +285,14 @@ header p {
 }
 
 .a4-close:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(0, 255, 238, 0.2);
+    border-color: #00ffee;
 }
+
 
 /* Navigation Arrows - Center Sides */
 .a4-prev, .a4-next {
     top: 50%;
-    transform: translateY(-50%);
     width: 44px;
     height: 44px;
     border-radius: 8px;
