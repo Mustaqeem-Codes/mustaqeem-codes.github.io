@@ -107,15 +107,23 @@ const images = [
   "LA/Linear Algebra _91.jpg"
 ];
 
+let currentImageIndex = 0;
+let isAnimating = false;
+
+/* =======================
+   OPEN / CLOSE VIEWER
+======================= */
 function openA4Viewer(index) {
     if (isAnimating) return;
-    
+
+    // Guard: invalid index protection
+    if (index < 0 || index >= images.length) return;
+
     currentImageIndex = index;
+
     const viewer = document.getElementById('a4Viewer');
-    const thumbnail = document.querySelector(`[data-index="${index}"]`);
-    
-    // Simple fade in
     viewer.classList.add('active');
+
     updateViewer();
     document.body.style.overflow = 'hidden';
 }
@@ -126,64 +134,92 @@ function closeA4Viewer() {
     document.body.style.overflow = 'auto';
 }
 
+/* =======================
+   PAGE NAVIGATION
+======================= */
 function changePage(direction) {
     if (isAnimating) return;
-    
+
+    const nextIndex = currentImageIndex + direction;
+
+    // ❌ Stop at edges — no wrap-around bug
+    if (nextIndex < 0 || nextIndex >= images.length) return;
+
     isAnimating = true;
-    currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-    
-    // Smooth transition
+    currentImageIndex = nextIndex;
+
     const imgElement = document.getElementById('a4FullImage');
     imgElement.style.opacity = '0';
-    
+
     setTimeout(() => {
         updateViewer();
-        setTimeout(() => {
-            imgElement.style.opacity = '1';
-            isAnimating = false;
-        }, 50);
+        imgElement.style.opacity = '1';
+        isAnimating = false;
     }, 200);
 }
 
+/* =======================
+   UPDATE VIEWER
+======================= */
 function updateViewer() {
     const imgElement = document.getElementById('a4FullImage');
     const currentNum = document.getElementById('currentImgNum');
     const totalNum = document.getElementById('totalImgNum');
-    
-    imgElement.src = images[currentImageIndex];
+
+    const src = images[currentImageIndex];
+
+    // Guard: prevent empty src assignment
+    if (!src) return;
+
+    imgElement.src = src;
     currentNum.textContent = currentImageIndex + 1;
     totalNum.textContent = images.length;
 }
 
-// Keyboard navigation
+/* =======================
+   KEYBOARD CONTROLS
+======================= */
 document.addEventListener('keydown', (e) => {
     const viewer = document.getElementById('a4Viewer');
     if (!viewer.classList.contains('active')) return;
-    
-    if (e.key === 'Escape') closeA4Viewer();
-    if (e.key === 'ArrowLeft') changePage(-1);
-    if (e.key === 'ArrowRight') changePage(1);
+
+    switch (e.key) {
+        case 'Escape':
+            closeA4Viewer();
+            break;
+        case 'ArrowLeft':
+            changePage(-1);
+            break;
+        case 'ArrowRight':
+            changePage(1);
+            break;
+    }
 });
 
-// Close on background click
+/* =======================
+   BACKGROUND CLICK CLOSE
+======================= */
 document.getElementById('a4Viewer').addEventListener('click', (e) => {
-    if (e.target.id === 'a4Viewer') {
+    if (e.target === e.currentTarget) {
         closeA4Viewer();
     }
 });
 
-// Preload first few images for better performance
+/* =======================
+   IMAGE PRELOADING
+======================= */
 function preloadImages() {
-    const maxPreload = 5;
-    for (let i = 0; i < Math.min(maxPreload, images.length); i++) {
+    const maxPreload = Math.min(5, images.length);
+    for (let i = 0; i < maxPreload; i++) {
         const img = new Image();
         img.src = images[i];
     }
 }
 
-// Initialize on page load
+/* =======================
+   INITIALIZATION
+======================= */
 window.addEventListener('DOMContentLoaded', () => {
     preloadImages();
-    // Set total images count
     document.getElementById('totalImgNum').textContent = images.length;
 });
