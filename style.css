@@ -1545,6 +1545,204 @@ body {
   }
 }
 
+
+
+/* ================================
+   CV BUTTONS CONTAINER
+   ================================ */
+.cv-buttons-wrapper {
+    display: flex;                 /* Arrange buttons in a single row */
+    justify-content: center;       /* Center buttons horizontally */
+    align-items: center;           /* Vertically align items */
+    gap: 2px;                      /* VERY SMALL gap between View CV & Download icon */
+    margin-top: 6px;               /* Reduced top spacing */
+    margin-bottom: 6px;            /* Reduced bottom spacing */
+    padding: 0;                    /* No internal padding */
+    width: 100%;                   /* Full width container */
+}
+
+
+/* ================================
+   VIEW CV BUTTON
+   ================================ */
+.cv-portfolio-view-btn {
+    display: inline-flex;          /* Inline flex for icon + text */
+    align-items: center;           /* Vertically center content */
+    justify-content: center;       /* Center text */
+    padding: 10px 26px;            /* Button internal spacing */
+    border-radius: 6px;            /* Slight rounded corners */
+    font-size: 1rem;               /* Text size */
+    font-weight: 600;              /* Medium-bold text */
+    text-decoration: none;         /* Remove underline */
+    cursor: pointer;               /* Pointer cursor */
+    transition: all 0.3s ease;     /* Smooth hover animation */
+
+    background-color: transparent; /* 🔹 ALWAYS TRANSPARENT */
+    color: var(--main-color);      /* Main color text initially */
+    border: 2px solid var(--main-color); /* Border visible initially */
+
+    min-width: 140px;              /* Button width consistency */
+    box-shadow: none;              /* No shadow initially */
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+/* Icon inside View CV */
+.cv-portfolio-view-btn i {
+    margin-left: 8px;              /* Space between text & icon */
+    font-size: 1rem;               /* Icon size */
+    transition: transform 0.3s ease; /* Smooth icon motion */
+}
+
+/* View CV hover effect */
+.cv-portfolio-view-btn:hover {
+    background-color: var(--main-color); /* 🔹 Fill with main color on hover */
+    color: white;                        /* Text becomes white */
+    transform: translateY(-2px);         /* Slight lift */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25); /* Modern shadow */
+    color: var(--bg-color);
+}
+
+/* Icon animation on hover */
+.cv-portfolio-view-btn:hover i {
+    transform: translateX(4px);    /* Slide icon slightly right */
+}
+
+
+/* ================================
+   DOWNLOAD CV BUTTON (ICON ONLY)
+   ================================ */
+.cv-portfolio-download-btn {
+    display: inline-flex;          /* Inline flex wrapper */
+    align-items: center;           /* Center icon vertically */
+    justify-content: center;       /* Center icon horizontally */
+    text-decoration: none;         /* Remove underline */
+    background: none;              /* 🔹 NO background EVER */
+    border: none;                  /* No border */
+    padding: 0;                    /* No padding */
+    margin: 0;                     /* No margin */
+    cursor: pointer;               /* Pointer cursor */
+    position: relative;            /* Required for pseudo elements */
+    margin-bottom: 20px;
+}
+
+/* Outer icon wrapper */
+.download-icon-wrapper {
+    width: 54px;                   /* Icon wrapper width */
+    height: 54px;                  /* Icon wrapper height */
+    display: flex;                 /* Flex container */
+    align-items: center;           /* Center icon vertically */
+    justify-content: center;       /* Center icon horizontally */
+}
+
+/* Rotating circular border */
+.rotating-border {
+    width: 46px;                   /* Circle size */
+    height: 46px;                  /* Circle size */
+    border-radius: 50%;            /* Perfect circle */
+    display: flex;                 /* Flex for centering icon */
+    align-items: center;           /* Vertical center */
+    justify-content: center;       /* Horizontal center */
+    position: relative;            /* For pseudo elements */
+    background: transparent;       /* 🔹 ALWAYS TRANSPARENT */
+}
+
+/* Animated gradient ring */
+/* Animated gradient ring (BORDER-ONLY GLOW FIXED) */
+.rotating-border::before {
+    content: '';                           /* Required pseudo element */
+    position: absolute;                   /* Absolute positioning */
+    inset: -3px;                          /* Border thickness */
+    border-radius: 50%;                   /* Circular ring */
+
+    background: linear-gradient(
+        60deg,                            /* Slight angle for flow */
+        var(--main-color),                /* Main color */
+        #4facfe,                          /* Blue */
+        #9b59b6,                          /* Purple */
+        #4facfe,                          /* Blue again */
+        var(--main-color)                 /* Loop back */
+    );
+
+    background-size: 300% 300%;           /* Smooth flowing gradient */
+    animation: rotateAndChangeColor 2.5s linear infinite;
+
+    /* 🔑 BORDER-ONLY GLOW TECHNIQUE */
+    -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 6px),     /* Hollow center */
+        black calc(100% - 5px)             /* Visible ring */
+    );
+    mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 6px),
+        black calc(100% - 5px)
+    );
+
+    filter: drop-shadow(0 0 6px rgba(79, 172, 254, 0.6))
+            drop-shadow(0 0 10px rgba(155, 89, 182, 0.5)); /* Glow stays on ring */
+
+    z-index: -1;                          /* Behind icon */
+}
+
+
+/* Inner layer (NO FILL EVER) */
+.rotating-border::after {
+    content: '';                   /* Required */
+    position: absolute;            /* Overlay */
+    inset: 0;                      /* Fill container */
+    border-radius: 50%;            /* Circular */
+    background: transparent;       /* 🔹 NO BACKGROUND */
+    z-index: 0;                    /* Above gradient */
+}
+
+/* Download icon */
+.rotating-border i {
+    font-size: 1.4rem;             /* Icon size */
+    color: var(--main-color);      /* Main color */
+    z-index: 1;                    /* Above layers */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation */
+}
+
+/* Hover: faster rotation only */
+.cv-portfolio-download-btn:hover .rotating-border::before {
+    animation-duration: 1.5s;      /* Faster rotation */
+    filter: blur(1.5px);           /* Slightly stronger glow */
+}
+
+/* Hover: icon grows only (NO BG CHANGE) */
+.cv-portfolio-download-btn:hover .rotating-border i {
+    transform: scale(1.2);         /* Increase icon size */
+    color: var(--main-color);      /* Color stays same */
+}
+
+/* Active press effect */
+.cv-portfolio-download-btn:active .rotating-border {
+    transform: scale(0.95);        /* Press feedback */
+}
+
+
+/* ================================
+   KEYFRAMES
+   ================================ */
+@keyframes rotateAndChangeColor {
+    0% {
+        transform: rotate(0deg);          /* Start rotation */
+        background-position: 0% 50%;     /* Gradient start */
+    }
+    50% {
+        background-position: 100% 50%;   /* Gradient shift */
+    }
+    100% {
+        transform: rotate(360deg);        /* Full rotation */
+        background-position: 0% 50%;     /* Reset gradient */
+    }
+}
+
+
+
+
+
 /* ---------Education------------ */
 
 .education-section {
