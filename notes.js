@@ -17,7 +17,7 @@ const images = [
 
   "LA/Linear Algebra _11.jpg",
   "LA/Linear Algebra _12.jpg",
-  "LA/Linear Algebra _13.jpg",
+  "LA/Linear Algebra _13.png",
   "LA/Linear Algebra _14.jpg",
   "LA/Linear Algebra _15.jpg",
   "LA/Linear Algebra _16.jpg",
