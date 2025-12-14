@@ -14,6 +14,19 @@ html, body {
     overflow-x: hidden;
 }
 
+/* Scrollbar Styling */
+.portfolio-expanded-right-side::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portfolio-expanded-right-side::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-expanded-right-side::-webkit-scrollbar-thumb {
+  background: var(--portfolio-main-color);
+  border-radius: 3px;
+}
 
 
 
