@@ -4,7 +4,7 @@ let isAnimating = false;
 
 // Image data for 91 pages
 const images = [
-    'LA/Linear Algebra _1.jpg',
+    'Pics/Pic1.png',
     'LA/Linear Algebra _2.jpg',
     'LA/Linear Algebra _3.jpg',
     'LA/Linear Algebra _4.jpg',
