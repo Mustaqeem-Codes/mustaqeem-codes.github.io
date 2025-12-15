@@ -707,7 +707,7 @@ const portfolioState = {
   expandedData: {
     1: {
       title: "DSA Visualization Website",
-      videoSrc: "Pics/Kehndi a nehre a.mp4",
+      videoSrc: "Pics/DSA-Web.mp4",
       timeline: {
         start: "November 2025",
         end: "January 2026",
