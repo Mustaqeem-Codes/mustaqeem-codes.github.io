@@ -753,6 +753,14 @@ const portfolioState = {
           commentFull:
             "Developed the C# backend API with secure authentication and data validation. Architected the MongoDB database schema for optimal performance and scalability, implementing geospatial queries for location-based services.",
         },
+        {
+          name: "M Umair",
+          avatar: "Pics/Umair.jpg",
+          link: "",
+          commentShort: "Frontend development and user interface architecture.",
+          commentFull:
+            "Developed an intuitive React frontend with focus on user experience: implemented smooth animations with Framer Motion, accessible navigation patterns, dark/light theme toggling, and offline-first capabilities. Integrated interactive maps for location services and real-time notifications, ensuring cross-browser compatibility and mobile responsiveness.",
+        },
       ],
     },
   },
