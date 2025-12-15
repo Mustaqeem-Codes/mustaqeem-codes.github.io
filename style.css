@@ -4343,9 +4343,10 @@ p#dates {
 
 @media (max-width: 360px) {
   .contact-item {
-    flex-direction: column;
     text-align: center;
     gap: 5px;
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .contact-icon {
@@ -4358,3 +4359,4 @@ p#dates {
     font-size: 0.85rem;
   }
 }
+
