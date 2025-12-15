@@ -698,7 +698,7 @@ document.addEventListener("DOMContentLoaded", () => {
   new SkillsAnimator(skillsConfig);
 });
 
-// ================== projects  ===============================
+// ==================                       projects    ===============================
 
 // ==================================== Portfolio State Management ====================================
 const portfolioState = {
