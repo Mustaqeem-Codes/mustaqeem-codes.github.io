@@ -1615,130 +1615,157 @@ body {
    DOWNLOAD CV BUTTON (ICON ONLY)
    ================================ */
 .cv-portfolio-download-btn {
-  display: inline-flex; /* Inline flex wrapper */
-  align-items: center; /* Center icon vertically */
-  justify-content: center; /* Center icon horizontally */
-  text-decoration: none; /* Remove underline */
-  background: none; /* 🔹 NO background EVER */
-  border: none; /* No border */
-  padding: 0; /* No padding */
-  margin: 0; /* No margin */
-  cursor: pointer; /* Pointer cursor */
-  position: relative; /* Required for pseudo elements */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
   margin-bottom: 20px;
 }
 
 /* Outer icon wrapper */
 .download-icon-wrapper {
-  width: 54px; /* Icon wrapper width */
-  height: 54px; /* Icon wrapper height */
-  display: flex; /* Flex container */
-  align-items: center; /* Center icon vertically */
-  justify-content: center; /* Center icon horizontally */
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Rotating circular border */
 .rotating-border {
-  width: 46px; /* Circle size */
-  height: 46px; /* Circle size */
-  border-radius: 50%; /* Perfect circle */
-  display: flex; /* Flex for centering icon */
-  align-items: center; /* Vertical center */
-  justify-content: center; /* Horizontal center */
-  position: relative; /* For pseudo elements */
-  background: transparent; /* 🔹 ALWAYS TRANSPARENT */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
 }
 
-/* Animated gradient ring */
-/* Animated gradient ring (BORDER-ONLY GLOW FIXED) */
+/* Gemini-style animated gradient ring */
 .rotating-border::before {
-  content: ""; /* Required pseudo element */
-  position: absolute; /* Absolute positioning */
-  inset: -3px; /* Border thickness */
-  border-radius: 50%; /* Circular ring */
-
-  background: linear-gradient(
-    60deg,
-    /* Slight angle for flow */ var(--main-color),
-    /* Main color */ #4facfe,
-    /* Blue */ #9b59b6,
-    /* Purple */ #4facfe,
-    /* Blue again */ var(--main-color) /* Loop back */
+  content: "";
+  position: absolute;
+  inset: -2px; /* Gemini's thinner border */
+  border-radius: 50%;
+  
+  /* Gemini's exact gradient colors */
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #4285f4 0deg,    /* Google Blue */
+    #34a853 90deg,   /* Google Green */
+    #fbbc05 180deg,  /* Google Yellow */
+    #ea4335 270deg,  /* Google Red */
+    #4285f4 360deg   /* Back to Blue */
   );
-
-  background-size: 300% 300%; /* Smooth flowing gradient */
-  animation: rotateAndChangeColor 2.5s linear infinite;
-
-  /* 🔑 BORDER-ONLY GLOW TECHNIQUE */
-  -webkit-mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 6px),
-    /* Hollow center */ black calc(100% - 5px) /* Visible ring */
-  );
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 6px),
-    black calc(100% - 5px)
-  );
-
-  filter: drop-shadow(0 0 6px rgba(79, 172, 254, 0.6))
-    drop-shadow(0 0 10px rgba(155, 89, 182, 0.5)); /* Glow stays on ring */
-
-  z-index: -1; /* Behind icon */
+  
+  background-size: 400% 400%;
+  animation: geminiRotate 2s linear infinite;
+  
+  /* Clean border-only effect */
+  -webkit-mask: 
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      black calc(100% - 2px)
+    ),
+    linear-gradient(black, black);
+  -webkit-mask-composite: source-in;
+  mask: 
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      black calc(100% - 2px)
+    ),
+    linear-gradient(black, black);
+  mask-composite: intersect;
+  
+  /* Subtle glow like Gemini */
+  filter: drop-shadow(0 0 2px rgba(66, 133, 244, 0.3));
+  z-index: -1;
 }
 
-/* Inner layer (NO FILL EVER) */
+/* Inner circle with subtle shadow */
 .rotating-border::after {
-  content: ""; /* Required */
-  position: absolute; /* Overlay */
-  inset: 0; /* Fill container */
-  border-radius: 50%; /* Circular */
-  background: transparent; /* 🔹 NO BACKGROUND */
-  z-index: 0; /* Above gradient */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Very subtle inner border */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  z-index: 0;
 }
 
 /* Download icon */
 .rotating-border i {
-  font-size: 1.4rem; /* Icon size */
-  color: var(--main-color); /* Main color */
-  z-index: 1; /* Above layers */
-  transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation */
+  font-size: 1.4rem;
+  color: var(--main-color);
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover: faster rotation only */
+/* Hover: faster rotation and glow */
 .cv-portfolio-download-btn:hover .rotating-border::before {
-  animation-duration: 1.5s; /* Faster rotation */
-  filter: blur(1.5px); /* Slightly stronger glow */
+  animation-duration: 1s; /* Faster on hover */
+  filter: drop-shadow(0 0 4px rgba(66, 133, 244, 0.4))
+          drop-shadow(0 0 8px rgba(66, 133, 244, 0.2));
 }
 
-/* Hover: icon grows only (NO BG CHANGE) */
+/* Hover: icon animation */
 .cv-portfolio-download-btn:hover .rotating-border i {
-  transform: scale(1.2); /* Increase icon size */
-  color: var(--main-color); /* Color stays same */
+  transform: scale(1.15);
+  color: #4285f4; /* Google Blue on hover */
+  text-shadow: 0 0 8px rgba(66, 133, 244, 0.4);
 }
 
 /* Active press effect */
 .cv-portfolio-download-btn:active .rotating-border {
-  transform: scale(0.95); /* Press feedback */
+  transform: scale(0.92);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ================================
-   KEYFRAMES
+   GEMINI-STYLE KEYFRAMES
    ================================ */
-@keyframes rotateAndChangeColor {
+@keyframes geminiRotate {
   0% {
-    transform: rotate(0deg); /* Start rotation */
-    background-position: 0% 50%; /* Gradient start */
+    transform: rotate(0deg);
+    background-position: 0% 0%;
   }
   50% {
-    background-position: 100% 50%; /* Gradient shift */
+    background-position: 100% 100%;
   }
   100% {
-    transform: rotate(360deg); /* Full rotation */
-    background-position: 0% 50%; /* Reset gradient */
+    transform: rotate(360deg);
+    background-position: 0% 0%;
   }
 }
 
+/* Smooth color shift within the gradient */
+@keyframes geminiColors {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* For modern browsers that support conic-gradient animations */
+@supports (background: conic-gradient(red, blue)) {
+  .rotating-border::before {
+    animation: geminiRotate 2s linear infinite,
+               geminiColors 8s linear infinite;
+  }
+}
 /* ---------Education------------ */
 
 .education-section {
