@@ -1826,7 +1826,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--main-color);
+  /* border: 2px solid var(--main-color); */
   border-radius: 5px;
   animation: pulse 2s infinite;
   pointer-events: none;
@@ -2052,7 +2052,7 @@ body {
   }
 
   .slide-img {
-    height: 200px;
+    height: 250px;
   }
 
   .education-section h2 {
@@ -2537,6 +2537,7 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  background-color: var(--light-black);
 }
 
 .portfolio-container {
