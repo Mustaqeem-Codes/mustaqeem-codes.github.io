@@ -660,10 +660,13 @@ header p {
     min-width: 200px;
 }
 
-/* Link icon */
-.portfolio-link i {
-    font-size: 0.9em;
+/* Link icon - replaced with image */
+.portfolio-icon {
+    width: 30px; /* Matches the original icon size */
+    height: 30px;
     transition: transform 0.3s ease;
+    filter: brightness(1) saturate(1); /* Ensures consistent color */
+    /* For SVG images, you can also use fill: currentColor to inherit link color */
 }
 
 .portfolio-link::before {
@@ -693,14 +696,15 @@ header p {
     padding: 12px 32px;
 }
 
-.portfolio-link:hover i {
+.portfolio-link:hover .portfolio-icon {
     transform: translateX(3px) rotate(-45deg);
+    /* If you want the image to change color on hover */
+    filter: brightness(2) saturate(0.8);
 }
 
 .portfolio-link:hover::before {
     left: 100%;
 }
-
 /* Footer signature */
 .footer-signature {
     margin-top: 25px;
