@@ -726,7 +726,7 @@ const portfolioState = {
         },
         {
           name: "Abdullah Umar",
-          avatar: "Pics/Abdullah_Umar.jpg",
+          avatar: "Pics/Abdullah_Umar.png",
           link: "https://cv-iota-murex.vercel.app/",
           commentShort:
             "Focused on UI/UX design and responsive layout implementation.",
