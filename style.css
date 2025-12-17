@@ -2561,7 +2561,7 @@ body {
 /* ==================================== Projects Section ==================================== */
 .portfolio-projects-section {
   padding: 40px 20px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   position: relative;
   overflow-x: hidden;
   background-color: var(--light-black);
@@ -2591,7 +2591,7 @@ body {
   justify-content: center;
   position: relative;
   z-index: 5;
-  margin-bottom: 0;
+  margin-bottom: -2rem;
   padding-bottom: 0;
 }
 
@@ -2617,7 +2617,22 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 420px;
+  width: 320px;
+  border-bottom: 1px solid var(--main-color);
+}
+
+@media (max-width: 420px) {
+  .portfolio-project-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers all cards */
+  }
+  
+  .portfolio-project-card {
+    width: 90%;
+    max-width: 350px;
+  }
 }
 
 .portfolio-project-card:hover:not(.portfolio-active) {
@@ -2646,7 +2661,7 @@ body {
 .portfolio-card-video-section {
   aspect-ratio: 16/9;
   width: 100%;
-  height: auto;
+  height: 50%;
   overflow: hidden;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -3067,6 +3082,8 @@ body {
   }
 }
 
+
+
 /* ==================================== Expanded Content Styles (Reduced Font Sizes) ==================================== */
 .portfolio-expanded-left h2 {
   color: var(--main-color);
@@ -3358,7 +3375,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: -1rem;
 }
 
 .projects-section {
@@ -3383,6 +3400,7 @@ body {
   justify-content: center;
   gap: 2rem;
   background-color: var(--light-black);
+  padding-top: 30px;
 }
 
 .project-card {
@@ -3700,7 +3718,8 @@ body {
 
 @media (max-width: 770px) {
   .project-card {
-    width: 300px;
+    width: 100px;
+    height: 300px;
   }
 
   #projects {
@@ -3747,9 +3766,8 @@ body {
   }
 
   .project-card {
-    width: 100%;
-    max-width: 400px;
-    height: 350px;
+    width: 325px;
+    height: auto;
   }
 
   .modal-content {
@@ -3802,6 +3820,15 @@ body {
   .github-corner svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .project-card {
+    width: 90%; /* Takes 90% of screen width */
+    max-width: 280px; /* Won't exceed original size */
+    min-width: 200px; /* Won't shrink below this */
+    margin: 0 auto; /* Centers the card */
   }
 }
 
