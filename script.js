@@ -717,7 +717,7 @@ const portfolioState = {
       collaborators: [
         {
           name: "M Zeewaqar",
-          avatar: "Pics/Zeewaqar.jpg",
+          avatar: "Pics/Zeewaqar.png",
           link: "https://www.linkedin.com/in/m-zeewaqar-58786636a/",
           commentShort:
             "Contributed to algorithm visualization logic and React component architecture.",
@@ -755,7 +755,7 @@ const portfolioState = {
         },
         {
           name: "M Umair",
-          avatar: "Pics/Muhammad_umair.jpg",
+          avatar: "Pics/Muhammad_umair.png",
           link: "https://www.linkedin.com/in/muhammad-umair-03037b338/",
           commentShort: "Frontend development and user interface architecture.",
           commentFull:
