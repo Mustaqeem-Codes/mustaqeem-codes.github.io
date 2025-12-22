@@ -755,7 +755,7 @@ const portfolioState = {
         },
         {
           name: "M Umair",
-          avatar: "Pics/Muhammad_umair.png",
+          avatar: "Pics/Muhammad_Umair.png",
           link: "https://www.linkedin.com/in/muhammad-umair-03037b338/",
           commentShort: "Frontend development and user interface architecture.",
           commentFull:
