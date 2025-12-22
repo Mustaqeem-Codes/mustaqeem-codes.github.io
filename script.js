@@ -717,8 +717,8 @@ const portfolioState = {
       collaborators: [
         {
           name: "M Zeewaqar",
-          avatar: "",
-          link: "",
+          avatar: "Pics/Zeewaqar.jpg",
+          link: "https://www.linkedin.com/in/m-zeewaqar-58786636a/",
           commentShort:
             "Contributed to algorithm visualization logic and React component architecture.",
           commentFull:
@@ -727,7 +727,7 @@ const portfolioState = {
         {
           name: "Abdullah Umar",
           avatar: "Pics/Abdullah_Umar.png",
-          link: "https://cv-iota-murex.vercel.app/",
+          link: "https://www.linkedin.com/in/abdullah-umar-990562352/",
           commentShort:
             "Focused on UI/UX design and responsive layout implementation.",
           commentFull:
@@ -737,7 +737,7 @@ const portfolioState = {
     },
     2: {
       title: "Flood Aid Website",
-      videoSrc: "Pics/Khush Naseeb.mp4",
+      videoSrc: "",
       timeline: {
         start: "November 2025",
         end: "January 2026",
@@ -747,16 +747,16 @@ const portfolioState = {
       collaborators: [
         {
           name: "Farhan Shakeel",
-          avatar: "",
-          link: "",
+          avatar: "Pics/Farhan_Shakeel.png",
+          link: "https://www.linkedin.com/in/farhan-shakeel-47b505349/",
           commentShort: "Backend development and database architecture.",
           commentFull:
             "Developed the C# backend API with secure authentication and data validation. Architected the MongoDB database schema for optimal performance and scalability, implementing geospatial queries for location-based services.",
         },
         {
           name: "M Umair",
-          avatar: "Pics/Umair.jpg",
-          link: "",
+          avatar: "Pics/muhammad_umair.jpg",
+          link: "https://www.linkedin.com/in/muhammad-umair-03037b338/",
           commentShort: "Frontend development and user interface architecture.",
           commentFull:
             "Developed an intuitive React frontend with focus on user experience: implemented smooth animations with Framer Motion, accessible navigation patterns, dark/light theme toggling, and offline-first capabilities. Integrated interactive maps for location services and real-time notifications, ensuring cross-browser compatibility and mobile responsiveness.",
