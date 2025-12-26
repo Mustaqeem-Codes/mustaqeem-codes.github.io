@@ -103,7 +103,19 @@ const images = [
   "LA/Linear Algebra _89.png",
   "LA/Linear Algebra _90.png",
 
-  "LA/Linear Algebra _91.png"
+  "LA/Linear Algebra _91.png",
+  "LA/Linear Algebra_92.png",
+  "LA/Linear Algebra_93.png",
+  "LA/Linear Algebra_94.png",
+    "LA/Linear Algebra_95.png",
+    "LA/Linear Algebra_96.png",
+    "LA/Linear Algebra_97.png",
+    "LA/Linear Algebra_98.png",
+    "LA/Linear Algebra_99.png",
+    "LA/Linear Algebra_100.png",
+    "LA/Linear Algebra_101.png",
+    "LA/Linear Algebra_102.png",
+    "LA/Linear Algebra_103.png"
 ];
 function openA4Viewer(index) {
     if (isAnimating) return;
