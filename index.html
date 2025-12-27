@@ -161,7 +161,7 @@
       <div class="scroll-progress"></div>
     </header>
 
-    <!-- About Section -->
+    <!-- Home Section -->
     <section class="home" id="home">
       <div class="home-container">
         <!-- Left Content Section -->
@@ -197,12 +197,6 @@
               </div>
             </div>
           </div>
-
-
-
-          
-
-
 
           <!-- Centered Tech Icons -->
           <div class="centered-icons animate animate-left">
@@ -244,9 +238,6 @@
             </div>
           </div>
 
-
-
-
           <div class="cv-buttons-wrapper">
             <!-- View CV Button -->
             <a
@@ -274,9 +265,6 @@
               </div>
             </a>
           </div>
-
-
-
 
           <!-- Centered Social Icons -->
           <div class="social2" id="social">
@@ -310,15 +298,60 @@
           </div>
         </div>
 
-        <!-- Right Image Section -->
+        <!-- Right Image Section - 3D Carousel -->
+        <!-- Right Image Section - Minimal 3D Carousel -->
         <div class="home-right animate animate-right">
-          <div class="image-wrapper">
-            <div class="image-container">
-              <img
-                src="Pics/Pic1.png"
-                alt="Muhammad Mustaqeem"
-                class="profile-image"
-              />
+          <div class="carousel-container">
+            <!-- Slides Container -->
+            <div class="carousel-slides">
+              <!-- Slide 1 -->
+              <div class="slide active" data-index="0">
+                <div class="slide-image-container">
+                  <img
+                    src="Pics/Pic_Face.png"
+                    alt="Muhammad Mustaqeem"
+                    class="slide-image"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="slide" data-index="1">
+                <div class="slide-image-container">
+                  <img
+                    src="Pics/Pic_Coding.png"
+                    alt="Muhammad Mustaqeem"
+                    class="slide-image"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slide" data-index="2">
+                <div class="slide-image-container">
+                  <img
+                    src="Pics/Pic_Library.png"
+                    alt="Muhammad Mustaqeem"
+                    class="slide-image"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              <div class="slide" data-index="1">
+                <div class="slide-image-container">
+                  <img
+                    src="Pics/Pic_Walk.png"
+                    alt="Muhammad Mustaqeem"
+                    class="slide-image"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -590,142 +623,176 @@
       </div>
     </main>
 
-
-
     <!-- ================== Projects =========================== -->
 
     <section class="portfolio-projects-section" id="projects">
-        <div class="portfolio-container">
-            <h2>🎯 Featured Projects</h2>
+      <div class="portfolio-container">
+        <h2>🎯 Featured Projects</h2>
 
-            <div class="portfolio-project-grid" id="portfolio-project-grid">
-                <!-- Project 1 -->
-                <div class="portfolio-project-card" data-portfolio-project-id="1">
-                    <div class="portfolio-card-video-section">
-                        <video class="portfolio-project-video" muted loop playsinline preload="metadata">
-                            <source src="Pics/DSA-Web.mp4" type="video/mp4">
-                        </video>
-                    </div>
+        <div class="portfolio-project-grid" id="portfolio-project-grid">
+          <!-- Project 1 -->
+          <div class="portfolio-project-card" data-portfolio-project-id="1">
+            <div class="portfolio-card-video-section">
+              <video
+                class="portfolio-project-video"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              >
+                <source src="Pics/DSA-Web.mp4" type="video/mp4" />
+              </video>
+            </div>
 
-                    <div class="portfolio-card-info-section">
-                        <h3>DSA Visualization Website</h3>
-                        <div class="portfolio-tech-stack">
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-react-original"></i>
-                                <span>React</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-javascript-plain"></i>
-                                <span>JavaScript</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-html5-plain"></i>
-                                <span>HTML5</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-css3-plain"></i>
-                                <span>CSS3</span>
-                            </div>
-                            
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-github-original"></i>
-                                <span>GitHub</span>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-card-actions">
-                            <a href="https://dsa-insight.vercel.app/" target="_blank" 
-                               class="portfolio-action-btn portfolio-btn-live">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/Mustaqeem-Codes/DSA_Insight" target="_blank" 
-                               class="portfolio-action-btn portfolio-btn-github">
-                                GitHub
-                            </a>
-                            <button class="portfolio-action-btn portfolio-btn-readmore" 
-                                    onclick="portfolioToggleDetails('1')">
-                                Read More
-                            </button>
-                        </div>
-                    </div>
+            <div class="portfolio-card-info-section">
+              <h3>DSA Visualization Website</h3>
+              <div class="portfolio-tech-stack">
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-react-original"></i>
+                  <span>React</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-javascript-plain"></i>
+                  <span>JavaScript</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-html5-plain"></i>
+                  <span>HTML5</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-css3-plain"></i>
+                  <span>CSS3</span>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="portfolio-project-card" data-portfolio-project-id="2">
-                    <div class="portfolio-card-video-section">
-                        <video class="portfolio-project-video" muted loop playsinline preload="metadata">
-                            <source src="Pics/Khush Naseeb.mp4" type="video/mp4">
-                        </video>
-                    </div>
-
-                    <div class="portfolio-card-info-section">
-                        <h3>Flood Aid Website</h3>
-                        <div class="portfolio-tech-stack">
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-react-original"></i>
-                                <span>React</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-csharp-plain"></i>
-                                <span>C#</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-mongodb-plain"></i>
-                                <span>MongoDB</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-css3-plain"></i>
-                                <span>CSS3</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-nodejs-plain"></i>
-                                <span>Node.js</span>
-                            </div>
-                            <div class="portfolio-tech-icon">
-                                <i class="devicon-express-original"></i>
-                                <span>Express</span>
-                            </div>
-                        </div>
-
-                        <div class="portfolio-card-actions">
-                            <a href="https://flood-aid-94zg.vercel.app/" target="_blank" 
-                               class="portfolio-action-btn portfolio-btn-live">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/FarhanShakeel25/Flood_Aid/" target="_blank" 
-                               class="portfolio-action-btn portfolio-btn-github">
-                                GitHub
-                            </a>
-                            <button class="portfolio-action-btn portfolio-btn-readmore" 
-                                    onclick="portfolioToggleDetails('2')">
-                                Read More
-                            </button>
-                        </div>
-                    </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-github-original"></i>
+                  <span>GitHub</span>
                 </div>
-            </div>
-        </div>
+              </div>
 
-        <!-- Expanded View Overlay -->
-        <div class="portfolio-expanded-overlay" id="portfolio-expanded-overlay"></div>
-
-        <!-- Expanded Content Template (Dynamically Loaded) -->
-        <div class="portfolio-expanded-container" id="portfolio-expanded-container" style="display: none;">
-            <button class="portfolio-close-expanded" id="portfolio-close-expanded" aria-label="Close expanded view">
-                &times;
-            </button>
-            
-            <div class="portfolio-expanded-content" id="portfolio-expanded-content">
-                <!-- Content will be loaded here dynamically -->
+              <div class="portfolio-card-actions">
+                <a
+                  href="https://dsa-insight.vercel.app/"
+                  target="_blank"
+                  class="portfolio-action-btn portfolio-btn-live"
+                >
+                  Live Demo
+                </a>
+                <a
+                  href="https://github.com/Mustaqeem-Codes/DSA_Insight"
+                  target="_blank"
+                  class="portfolio-action-btn portfolio-btn-github"
+                >
+                  GitHub
+                </a>
+                <button
+                  class="portfolio-action-btn portfolio-btn-readmore"
+                  onclick="portfolioToggleDetails('1')"
+                >
+                  Read More
+                </button>
+              </div>
             </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="portfolio-project-card" data-portfolio-project-id="2">
+            <div class="portfolio-card-video-section">
+              <video
+                class="portfolio-project-video"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              >
+                <source src="Pics/Khush Naseeb.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            <div class="portfolio-card-info-section">
+              <h3>Flood Aid Website</h3>
+              <div class="portfolio-tech-stack">
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-react-original"></i>
+                  <span>React</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-csharp-plain"></i>
+                  <span>C#</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-mongodb-plain"></i>
+                  <span>MongoDB</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-css3-plain"></i>
+                  <span>CSS3</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-nodejs-plain"></i>
+                  <span>Node.js</span>
+                </div>
+                <div class="portfolio-tech-icon">
+                  <i class="devicon-express-original"></i>
+                  <span>Express</span>
+                </div>
+              </div>
+
+              <div class="portfolio-card-actions">
+                <a
+                  href="https://flood-aid-94zg.vercel.app/"
+                  target="_blank"
+                  class="portfolio-action-btn portfolio-btn-live"
+                >
+                  Live Demo
+                </a>
+                <a
+                  href="https://github.com/FarhanShakeel25/Flood_Aid/"
+                  target="_blank"
+                  class="portfolio-action-btn portfolio-btn-github"
+                >
+                  GitHub
+                </a>
+                <button
+                  class="portfolio-action-btn portfolio-btn-readmore"
+                  onclick="portfolioToggleDetails('2')"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Expanded View Overlay -->
+      <div
+        class="portfolio-expanded-overlay"
+        id="portfolio-expanded-overlay"
+      ></div>
+
+      <!-- Expanded Content Template (Dynamically Loaded) -->
+      <div
+        class="portfolio-expanded-container"
+        id="portfolio-expanded-container"
+        style="display: none"
+      >
+        <button
+          class="portfolio-close-expanded"
+          id="portfolio-close-expanded"
+          aria-label="Close expanded view"
+        >
+          &times;
+        </button>
+
+        <div class="portfolio-expanded-content" id="portfolio-expanded-content">
+          <!-- Content will be loaded here dynamically -->
+        </div>
+      </div>
     </section>
 
-
-    
-
     <!--========================== Static Projects ======================================-->
-    <section class="projects-section custom-projects-wrapper" >
+    <section class="projects-section custom-projects-wrapper">
       <div class="projects-container">
         <!-- Airline Management System -->
         <div
@@ -943,18 +1010,14 @@
 
     <footer>
       <div class="footer-container" id="contact">
-
-
-
         <div class="footer-section footer-mission">
-        <h4>Vision & <span>Leadership</span></h4>
-        <p>
-          Driving technological innovation and sustainable growth through
-          ethical leadership and strategic execution. Prepared to lead and
-          deliver measurable results.
-        </p>
-      </div>
-
+          <h4>Vision & <span>Leadership</span></h4>
+          <p>
+            Driving technological innovation and sustainable growth through
+            ethical leadership and strategic execution. Prepared to lead and
+            deliver measurable results.
+          </p>
+        </div>
 
         <!-- Left Section: Contact Info -->
         <div class="footer-left">
@@ -1013,22 +1076,21 @@
         </div>
 
         <!-- Right Section: Contact Form -->
-        
       </div>
 
       <div class="copyright">
-      <p>
-        Copyright &copy; 2025 Muhammad Mustaqeem. Created with passion and purpose.
-      </p>
-      <p class="copyright-links">
-        <a href="Privacy Policy.html">Privacy Policy</a> | 
-        <a href="Terms and Conditions.html">Terms and Condition </a> |    
-        <span class="rights-res">  All Rights Reserved.</span>
-      </p>
-    </div>
+        <p>
+          Copyright &copy; 2025 Muhammad Mustaqeem. Created with passion and
+          purpose.
+        </p>
+        <p class="copyright-links">
+          <a href="Privacy Policy.html">Privacy Policy</a> |
+          <a href="Terms and Conditions.html">Terms and Condition </a> |
+          <span class="rights-res"> All Rights Reserved.</span>
+        </p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
   </body>
 </html>
-

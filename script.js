@@ -292,6 +292,113 @@ function animateOnScroll() {
 
 document.addEventListener("DOMContentLoaded", animateOnScroll);
 
+
+
+
+// =========================== image slider ==========================
+
+// Minimal Auto-play Carousel
+class AutoCarousel {
+    constructor(container) {
+        this.container = container;
+        this.slides = Array.from(container.querySelectorAll('.slide'));
+        this.currentIndex = 0;
+        this.totalSlides = this.slides.length;
+        this.interval = null;
+        this.delay = 4000; // 4 seconds per slide
+        this.isAnimating = false;
+        
+        if (this.totalSlides > 1) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Initialize first slide
+        this.updateSlides();
+        
+        // Start auto-play
+        this.start();
+        
+        // Pause on hover (optional - remove if you want continuous)
+        this.container.addEventListener('mouseenter', () => this.stop());
+        this.container.addEventListener('mouseleave', () => this.start());
+    }
+    
+    updateSlides() {
+        // Remove all classes
+        this.slides.forEach(slide => {
+            slide.classList.remove('active', 'prev', 'next');
+        });
+        
+        // Calculate indices
+        const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+        const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+        
+        // Apply classes
+        if (this.slides[prevIndex]) {
+            this.slides[prevIndex].classList.add('prev');
+        }
+        
+        this.slides[this.currentIndex].classList.add('active');
+        
+        if (this.slides[nextIndex]) {
+            this.slides[nextIndex].classList.add('next');
+        }
+    }
+    
+    next() {
+        if (this.isAnimating || this.totalSlides <= 1) return;
+        
+        this.isAnimating = true;
+        this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+        this.updateSlides();
+        
+        // Reset animation flag
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 800);
+    }
+    
+    start() {
+        if (this.interval || this.totalSlides <= 1) return;
+        
+        this.interval = setInterval(() => {
+            this.next();
+        }, this.delay);
+    }
+    
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
+    
+    destroy() {
+        this.stop();
+        this.container.removeEventListener('mouseenter', () => this.stop());
+        this.container.removeEventListener('mouseleave', () => this.start());
+    }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const carouselContainer = document.querySelector('.carousel-container');
+    
+    if (carouselContainer) {
+        window.imageCarousel = new AutoCarousel(carouselContainer);
+    }
+});
+
+
+
+
+
+
+
+
+
 // -----------------------Education Section--------------------------
 // Image URLs - using your existing images
 const imageUrls = [
