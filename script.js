@@ -1,3 +1,81 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const nameToType = "MUHAMMAD MUSTAQEEM";
+    const typingElement = document.getElementById("intro-typing-text");
+    const logoText = document.querySelector(".logo-text");
+    const header = document.getElementById("main-header");
+    const homeSection = document.getElementById("home");
+    const introOverlay = document.getElementById("intro-overlay");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    let charIndex = 0;
+
+    function typeEffect() {
+        if (charIndex < nameToType.length) {
+            typingElement.textContent += nameToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 160); 
+        } else {
+            setTimeout(startIdentityFlow, 900);
+        }
+    }
+
+    function startIdentityFlow() {
+        typingElement.style.borderRight = "none";
+        const startRect = typingElement.getBoundingClientRect();
+        const endRect = logoText.getBoundingClientRect();
+
+        const moveX = endRect.left - startRect.left;
+        const moveY = endRect.top - startRect.top;
+        const scale = endRect.height / startRect.height;
+
+        typingElement.style.transition = "transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)";
+        typingElement.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+
+        setTimeout(() => {
+            introOverlay.style.background = "transparent";
+            header.classList.add("flow-active");
+            homeSection.classList.add("flow-active"); // Make home section visible
+            
+            navLinks.forEach((link, index) => {
+                link.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Trigger the Home Section Showcase
+            setTimeout(triggerHomeCinematic, 800);
+        }, 300);
+
+        setTimeout(() => {
+            logoText.classList.remove("anchor-hidden");
+            typingElement.style.opacity = "0";
+            introOverlay.style.display = "none";
+        }, 1300);
+    }
+
+    function triggerHomeCinematic() {
+        // Step 1: Slide Left and Right content in
+        homeSection.classList.add("content-visible");
+
+        // Step 2: Stagger the bottom elements for smoothness
+        const bottomSelectors = [
+            ".centered-stats",
+            ".centered-icons",
+            ".cv-buttons-wrapper",
+            ".social2"
+        ];
+
+        bottomSelectors.forEach((selector, index) => {
+            const el = document.querySelector(selector);
+            if (el) {
+                // They start sliding up after the side-panels are halfway in
+                el.style.transitionDelay = `${0.4 + (index * 0.15)}s`;
+            }
+        });
+    }
+
+    logoText.classList.add("anchor-hidden");
+    typeEffect();
+});
+
 //================== Header ==================
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.getElementById("main-header");
@@ -211,193 +289,105 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ============== loading screen ==================
-// Home Section Entrance Animation
-function animateHomeSection() {
-  const homeSection = document.getElementById("home");
-  const homeLeft = document.querySelector(".home-left");
-  const homeRight = document.querySelector(".home-right");
-
-  if (!homeSection || !homeLeft || !homeRight) return;
-
-  // Function to check if element is in viewport
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-
-    // Trigger when element is 25% from the top of viewport
-    return rect.top <= windowHeight * 0.75;
-  }
-
-  // Function to trigger animations
-  function triggerAnimations() {
-    if (isInViewport(homeSection)) {
-      homeLeft.classList.add("show-animate");
-      homeRight.classList.add("show-animate");
-
-      // Remove event listener after animation triggers
-      window.removeEventListener("scroll", triggerAnimations);
-    }
-  }
-
-  // Initial check on page load
-  setTimeout(() => {
-    triggerAnimations();
-  }, 300); // Small delay for page to settle
-
-  // Check on scroll
-  window.addEventListener("scroll", triggerAnimations);
-
-  // Also trigger on resize (in case of layout changes)
-  window.addEventListener("resize", triggerAnimations);
-}
-
-// Run when DOM is loaded
-document.addEventListener("DOMContentLoaded", animateHomeSection);
-
-// Also run on page load (in case images load slowly)
-window.addEventListener("load", animateHomeSection);
-
-// Scroll-triggered animation (repeats when scrolling up/down)
-function animateOnScroll() {
-  const homeSection = document.getElementById("home");
-  const homeLeft = document.querySelector(".home-left");
-  const homeRight = document.querySelector(".home-right");
-
-  if (!homeSection || !homeLeft || !homeRight) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Add animation classes
-          homeLeft.classList.add("show-animate");
-          homeRight.classList.add("show-animate");
-        } else {
-          // Remove classes when out of view (optional)
-          // homeLeft.classList.remove('show-animate');
-          // homeRight.classList.remove('show-animate');
-        }
-      });
-    },
-    {
-      threshold: 0.3, // Trigger when 30% visible
-      rootMargin: "0px 0px -100px 0px", // Trigger slightly before entering view
-    }
-  );
-
-  observer.observe(homeSection);
-}
-
-document.addEventListener("DOMContentLoaded", animateOnScroll);
-
-
-
+// ============== Home Section Animation ====================
+// Home entrance is now handled by triggerHomeCinematic() in the intro flow above
 
 // =========================== image slider ==========================
 
 // Minimal Auto-play Carousel
 class AutoCarousel {
-    constructor(container) {
-        this.container = container;
-        this.slides = Array.from(container.querySelectorAll('.slide'));
-        this.currentIndex = 0;
-        this.totalSlides = this.slides.length;
-        this.interval = null;
-        this.delay = 4000; // 4 seconds per slide
-        this.isAnimating = false;
-        
-        if (this.totalSlides > 1) {
-            this.init();
-        }
+  constructor(container) {
+    this.container = container;
+    this.slides = Array.from(container.querySelectorAll(".slide"));
+    this.currentIndex = 0;
+    this.totalSlides = this.slides.length;
+    this.interval = null;
+    this.delay = 4000; // 4 seconds per slide
+    this.isAnimating = false;
+
+    if (this.totalSlides > 1) {
+      this.init();
     }
-    
-    init() {
-        // Initialize first slide
-        this.updateSlides();
-        
-        // Start auto-play
-        this.start();
-        
-        // Pause on hover (optional - remove if you want continuous)
-        this.container.addEventListener('mouseenter', () => this.stop());
-        this.container.addEventListener('mouseleave', () => this.start());
+  }
+
+  init() {
+    // Initialize first slide
+    this.updateSlides();
+
+    // Start auto-play
+    this.start();
+
+    // Pause on hover (optional - remove if you want continuous)
+    this.container.addEventListener("mouseenter", () => this.stop());
+    this.container.addEventListener("mouseleave", () => this.start());
+  }
+
+  updateSlides() {
+    // Remove all classes
+    this.slides.forEach((slide) => {
+      slide.classList.remove("active", "prev", "next");
+    });
+
+    // Calculate indices
+    const prevIndex =
+      (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+    const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+
+    // Apply classes
+    if (this.slides[prevIndex]) {
+      this.slides[prevIndex].classList.add("prev");
     }
-    
-    updateSlides() {
-        // Remove all classes
-        this.slides.forEach(slide => {
-            slide.classList.remove('active', 'prev', 'next');
-        });
-        
-        // Calculate indices
-        const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
-        const nextIndex = (this.currentIndex + 1) % this.totalSlides;
-        
-        // Apply classes
-        if (this.slides[prevIndex]) {
-            this.slides[prevIndex].classList.add('prev');
-        }
-        
-        this.slides[this.currentIndex].classList.add('active');
-        
-        if (this.slides[nextIndex]) {
-            this.slides[nextIndex].classList.add('next');
-        }
+
+    this.slides[this.currentIndex].classList.add("active");
+
+    if (this.slides[nextIndex]) {
+      this.slides[nextIndex].classList.add("next");
     }
-    
-    next() {
-        if (this.isAnimating || this.totalSlides <= 1) return;
-        
-        this.isAnimating = true;
-        this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-        this.updateSlides();
-        
-        // Reset animation flag
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 800);
+  }
+
+  next() {
+    if (this.isAnimating || this.totalSlides <= 1) return;
+
+    this.isAnimating = true;
+    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+    this.updateSlides();
+
+    // Reset animation flag
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 800);
+  }
+
+  start() {
+    if (this.interval || this.totalSlides <= 1) return;
+
+    this.interval = setInterval(() => {
+      this.next();
+    }, this.delay);
+  }
+
+  stop() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
     }
-    
-    start() {
-        if (this.interval || this.totalSlides <= 1) return;
-        
-        this.interval = setInterval(() => {
-            this.next();
-        }, this.delay);
-    }
-    
-    stop() {
-        if (this.interval) {
-            clearInterval(this.interval);
-            this.interval = null;
-        }
-    }
-    
-    destroy() {
-        this.stop();
-        this.container.removeEventListener('mouseenter', () => this.stop());
-        this.container.removeEventListener('mouseleave', () => this.start());
-    }
+  }
+
+  destroy() {
+    this.stop();
+    this.container.removeEventListener("mouseenter", () => this.stop());
+    this.container.removeEventListener("mouseleave", () => this.start());
+  }
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    const carouselContainer = document.querySelector('.carousel-container');
-    
-    if (carouselContainer) {
-        window.imageCarousel = new AutoCarousel(carouselContainer);
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const carouselContainer = document.querySelector(".carousel-container");
+
+  if (carouselContainer) {
+    window.imageCarousel = new AutoCarousel(carouselContainer);
+  }
 });
-
-
-
-
-
-
-
-
 
 // -----------------------Education Section--------------------------
 // Image URLs - using your existing images
@@ -454,7 +444,8 @@ function updateSlider() {
     slides[currentSlide].classList.add("active-slide");
   }
 
-  // Calculate translateY value using dynamic height
+  // Reusing the same Cubic Bezier as the Home entrance for the slide move
+  slider.style.transition = "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
   const translateY = -(currentSlide * slideHeight);
   slider.style.transform = `translateY(${translateY}px)`;
 }
@@ -528,12 +519,32 @@ function autoSlide() {
   }
 }
 
+// Education Section Scroll-Reveal Observer
+function initEducationObserver() {
+  const educationSection = document.getElementById("education");
+  if (!educationSection) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Trigger the cinematic slide-in
+        educationSection.classList.add("active");
+        // Stop observing once triggered
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 }); // Trigger when 20% of section is visible
+
+  observer.observe(educationSection);
+}
+
 // Initialize when page loads
 document.addEventListener("DOMContentLoaded", () => {
   initSlider();
+  initEducationObserver(); // Start the scroll-reveal logic
 
-  // Start auto-sliding every 3 seconds
-  setInterval(autoSlide, 3000);
+  // Start auto-sliding every 4 seconds (slower for better readability)
+  setInterval(autoSlide, 4000);
 
   // Add keyboard navigation
   document.addEventListener("keydown", (e) => {

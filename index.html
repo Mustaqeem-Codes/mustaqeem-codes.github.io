@@ -60,9 +60,13 @@
     <link rel="icon" href="Pics/logo.png" type="image/png" />
 
     <!-- CSS & Icons -->
+    <link rel="stylesheet" href="fonts/fontawesome/all.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -129,9 +133,16 @@
         ]
       }
     </script>
+
+    <!-- Add preload for critical images -->
+    <link rel="preload" as="image" href="Pics/logo.png">
+    <link rel="preload" as="image" href="Pics/Pic_Face.png">
   </head>
 
   <body>
+    <div id="intro-overlay">
+      <div id="intro-typing-text"></div>
+    </div>
     <header id="main-header">
       <div class="header-container">
         <div class="logo">
@@ -165,13 +176,13 @@
     <section class="home" id="home">
       <div class="home-container">
         <!-- Left Content Section -->
-        <div class="home-left">
-          <h3 class="animate animate-left">Hi, I'm <span>Mustaqeem</span></h3>
-          <h3 class="text-animation animate animate-left">
+        <div class="home-left cinematic-hidden-left">
+          <h3>Hi, I'm <span>Mustaqeem</span></h3>
+          <h3 class="text-animation">
             I'm a <span class="typing-text"></span><span class="cursor"></span>
           </h3>
 
-          <p class="animate animate-left">
+          <p>
             A passionate Full Stack Developer specializing in the MERN stack and
             modern web technologies. Currently pursuing Computer Science at UET
             Lahore, I build scalable applications with
@@ -181,7 +192,7 @@
           </p>
 
           <!-- Centered Stats -->
-          <div class="centered-stats animate animate-left">
+          <div class="centered-stats cinematic-hidden-bottom">
             <div class="stats-grid">
               <div class="stat-item">
                 <div class="stat-number">20+</div>
@@ -199,7 +210,7 @@
           </div>
 
           <!-- Centered Tech Icons -->
-          <div class="centered-icons animate animate-left">
+          <div class="centered-icons cinematic-hidden-bottom">
             <div class="icon-item" title="C++">
               <i class="fab fa-cuttlefish"></i>
             </div>
@@ -238,7 +249,7 @@
             </div>
           </div>
 
-          <div class="cv-buttons-wrapper">
+          <div class="cv-buttons-wrapper cinematic-hidden-bottom">
             <!-- View CV Button -->
             <a
               href="https://mustaqeem.vercel.app/"
@@ -267,7 +278,7 @@
           </div>
 
           <!-- Centered Social Icons -->
-          <div class="social2" id="social">
+          <div class="social2 cinematic-hidden-bottom" id="social">
             <a
               href="https://github.com/Mustaqeem-Codes"
               class="github"
@@ -292,26 +303,24 @@
               data-label="LinkedIn"
               ><i class="fab fa-linkedin-in"></i
             ></a>
-            <!-- <a href="https://www.bytewisdom.tech/" data-label="ByteWisdom">
-            <img src="Pics/BWT.svg" alt="ByteWisdom" />
-          </a> -->
           </div>
         </div>
 
         <!-- Right Image Section - 3D Carousel -->
-        <!-- Right Image Section - Minimal 3D Carousel -->
-        <div class="home-right animate animate-right">
+        <div class="home-right cinematic-hidden-right">
           <div class="carousel-container">
             <!-- Slides Container -->
             <div class="carousel-slides">
               <!-- Slide 1 -->
               <div class="slide active" data-index="0">
                 <div class="slide-image-container">
+                  <!-- First image should load immediately -->
                   <img
                     src="Pics/Pic_Face.png"
                     alt="Muhammad Mustaqeem"
                     class="slide-image"
-                    loading="lazy"
+                    loading="eager"
+                    fetchpriority="high"
                   />
                 </div>
               </div>
@@ -319,6 +328,7 @@
               <!-- Slide 2 -->
               <div class="slide" data-index="1">
                 <div class="slide-image-container">
+                  <!-- Rest can be lazy -->
                   <img
                     src="Pics/Pic_Coding.png"
                     alt="Muhammad Mustaqeem"
@@ -340,7 +350,7 @@
                 </div>
               </div>
 
-              <div class="slide" data-index="1">
+              <div class="slide" data-index="3">
                 <div class="slide-image-container">
                   <img
                     src="Pics/Pic_Walk.png"
@@ -351,7 +361,7 @@
                 </div>
               </div>
 
-              <div class="slide" data-index="1">
+              <div class="slide" data-index="4">
                 <div class="slide-image-container">
                   <img
                     src="Pics/Pic_Sitting.png"
@@ -361,8 +371,6 @@
                   />
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -404,7 +412,7 @@
       </div>
     </section>
 
-    <!-- ==================================== skilss ==============================-->
+    <!-- ========================== skills ==============================-->
 
     <main class="skills-container" id="skills">
       <h1 class="main-heading">⚡ Skills</h1>
@@ -1103,5 +1111,19 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // Safe version
+      const homeSection = document.getElementById("home");
+      if (homeSection) {
+          homeSection.classList.add("flow-active");
+      }
+
+      // For video with empty src
+      if (data.videoSrc && data.videoSrc.trim() !== "") {
+          // Render video
+      } else {
+          // Render placeholder image
+      }
+    </script>
   </body>
 </html>

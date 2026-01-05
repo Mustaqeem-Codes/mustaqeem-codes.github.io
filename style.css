@@ -498,10 +498,16 @@ body {
   flex-direction: column;
   justify-content: center;
   padding-right: 2rem;
-  transform: translateX(-100px);
-  opacity: 0;
-  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- CINEMATIC HOME INITIAL STATE --- */
+.cinematic-hidden-left {
+  opacity: 0 !important;
+  transform: translateX(-150px) !important;
+  filter: blur(15px);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 1.2s ease, 
+              filter 1.2s ease;
 }
 
 .home-left h3 {
@@ -752,17 +758,44 @@ body {
   justify-content: center;
   align-items: center;
   padding-left: 1rem;
-  transform: translateX(100px);
-  opacity: 0;
-  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition-delay: 0.2s; /* Slight delay for right side */
 }
 
+.cinematic-hidden-right {
+  opacity: 0 !important;
+  transform: translateX(150px) !important;
+  filter: blur(15px);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 1.2s ease, 
+              filter 1.2s ease;
+}
+
+/* Bottom-up elements */
+.cinematic-hidden-bottom {
+  opacity: 0 !important;
+  transform: translateY(100px) !important;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 1.4s ease;
+}
+
+/* --- THE TRIGGER (Lens Effect Activation) --- */
+#home.content-visible .cinematic-hidden-left,
+#home.content-visible .cinematic-hidden-right {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  filter: blur(0);
+}
+
+#home.content-visible .cinematic-hidden-bottom {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Keep backward compatibility with show-animate class */
 .home-left.show-animate,
 .home-right.show-animate {
   transform: translateX(0);
   opacity: 1;
+  filter: blur(0px);
 }
 
 /* Optional: Stagger animation for child elements inside home-left */
@@ -1655,38 +1688,36 @@ body {
   position: absolute;
   inset: -2px; /* Gemini's thinner border */
   border-radius: 50%;
-  
+
   /* Gemini's exact gradient colors */
   background: conic-gradient(
     from 0deg at 50% 50%,
-    #4285f4 0deg,    /* Google Blue */
-    #34a853 90deg,   /* Google Green */
-    #fbbc05 180deg,  /* Google Yellow */
-    #ea4335 270deg,  /* Google Red */
-    #4285f4 360deg   /* Back to Blue */
+    #4285f4 0deg,
+    /* Google Blue */ #34a853 90deg,
+    /* Google Green */ #fbbc05 180deg,
+    /* Google Yellow */ #ea4335 270deg,
+    /* Google Red */ #4285f4 360deg /* Back to Blue */
   );
-  
+
   background-size: 400% 400%;
   animation: geminiRotate 2s linear infinite;
-  
+
   /* Clean border-only effect */
-  -webkit-mask: 
-    radial-gradient(
+  -webkit-mask: radial-gradient(
       farthest-side,
       transparent calc(100% - 3px),
       black calc(100% - 2px)
     ),
     linear-gradient(black, black);
   -webkit-mask-composite: source-in;
-  mask: 
-    radial-gradient(
+  mask: radial-gradient(
       farthest-side,
       transparent calc(100% - 3px),
       black calc(100% - 2px)
     ),
     linear-gradient(black, black);
   mask-composite: intersect;
-  
+
   /* Subtle glow like Gemini */
   filter: drop-shadow(0 0 2px rgba(66, 133, 244, 0.3));
   z-index: -1;
@@ -1716,7 +1747,7 @@ body {
 .cv-portfolio-download-btn:hover .rotating-border::before {
   animation-duration: 1s; /* Faster on hover */
   filter: drop-shadow(0 0 4px rgba(66, 133, 244, 0.4))
-          drop-shadow(0 0 8px rgba(66, 133, 244, 0.2));
+    drop-shadow(0 0 8px rgba(66, 133, 244, 0.2));
 }
 
 /* Hover: icon animation */
@@ -1762,14 +1793,9 @@ body {
 /* For modern browsers that support conic-gradient animations */
 @supports (background: conic-gradient(red, blue)) {
   .rotating-border::before {
-    animation: geminiRotate 2s linear infinite,
-               geminiColors 8s linear infinite;
+    animation: geminiRotate 2s linear infinite, geminiColors 8s linear infinite;
   }
 }
-
-
-
-
 
 /* ===== MINIMAL 3D CAROUSEL ===== */
 .carousel-container {
@@ -1787,6 +1813,7 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  perspective: 1000px; /* Essential for 3D depth to work correctly */
 }
 
 /* Individual Slide */
@@ -1796,48 +1823,46 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  
+  /* --- FIX 1: Strict Hidden State --- */
   opacity: 0;
-  transform: 
-    translateX(35px) 
-    rotateY(-15deg) 
-    scale(0.9);
-  transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-  transform-style: preserve-3d;
+  visibility: hidden; /* This prevents the "ghosting" bleed-through */
   z-index: 1;
+  
+  /* --- FIX 2: Prevent 3D Ghosting --- */
+  backface-visibility: hidden; 
+  background-color: var(--light-black); /* Matches your site bg to block light */
+  
+  transform: translateX(35px) rotateY(-15deg) scale(0.9);
+  transition: opacity 0.8s ease, visibility 0.8s, transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-style: preserve-3d;
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid transparent;
 }
 
 .slide.active {
-  opacity: 1;
-  transform: 
-    translateX(0) 
-    rotateY(0deg) 
-    scale(1);
-  z-index: 3;
+  /* --- FIX 3: Solid Priority --- */
+  opacity: 1 !important;
+  visibility: visible;
+  z-index: 10; /* Bring it far above the "ghost" slides */
+  
+  background-color: #000; /* Ensures 100% opacity even if image has light spots */
+  transform: translateX(0) rotateY(0deg) scale(1);
   border-color: rgba(0, 255, 238, 0.4);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(0, 255, 238, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 238, 0.2);
 }
 
 .slide.prev {
   opacity: 0.5;
-  transform: 
-    translateX(-30%) 
-    rotateY(12deg) 
-    scale(0.85);
+  transform: translateX(-30%) rotateY(12deg) scale(0.85);
   z-index: 2;
   filter: blur(1px) brightness(0.8);
 }
 
 .slide.next {
   opacity: 0.5;
-  transform: 
-    translateX(30%) 
-    rotateY(-12deg) 
-    scale(0.85);
+  transform: translateX(30%) rotateY(-12deg) scale(0.85);
   z-index: 2;
   filter: blur(1px) brightness(0.8);
 }
@@ -1888,7 +1913,7 @@ body {
     max-height: 380px;
     perspective: 800px;
   }
-  
+
   .slide {
     border-width: 1px;
   }
@@ -1918,22 +1943,82 @@ body {
   .home-right {
     min-height: 350px;
   }
-  
+
   .carousel-container {
     max-width: 220px;
     max-height: 320px;
   }
 }
 
+/* --- IDENTITY FLOW INTEGRATION --- */
 
+/* 1. Initial State: Hide existing header & home until move starts */
+#main-header {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: none; /* We will trigger animations via JS */
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+.home {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
+/* 2. The Typing Intro Overlay */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+#intro-typing-text {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 800;
+  color: var(--main-color);
+  border-right: 3px solid var(--main-color);
+  white-space: nowrap;
+  transform-origin: 0 0;
+  letter-spacing: 2px;
+}
 
+/* 3. Staggered Nav Links (The flow effect) */
+.nav-link {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.3s ease;
+}
 
+/* 4. Activation Classes (Triggered by JS) */
+#main-header.flow-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#main-header.flow-active .nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home.flow-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure the real logo text is hidden while the clone is moving */
+.logo-text.anchor-hidden {
+  visibility: hidden;
+}
 
 /* ---------Education------------ */
 
+/* --- Education Cinematic Entrance --- */
 .education-section {
   width: 100%;
   padding: 30px 4% 40px; /* Even more compact */
@@ -1941,6 +2026,42 @@ body {
   border: none;
   border-radius: 0;
   box-shadow: none;
+  opacity: 1; /* Section container stays visible, children hide */
+  overflow: hidden;
+}
+
+/* Reusing the logic from Home Section for matching style */
+.education-section.cinematic-reveal .cinematic-hidden-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  filter: blur(15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.education-section.cinematic-reveal .cinematic-hidden-right {
+  opacity: 0;
+  transform: translateX(100px);
+  filter: blur(15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.education-section.cinematic-reveal .cinematic-hidden-bottom {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+/* --- The Active State (Triggered on Scroll) --- */
+.education-section.cinematic-reveal.active .cinematic-hidden-left,
+.education-section.cinematic-reveal.active .cinematic-hidden-right {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.education-section.cinematic-reveal.active .cinematic-hidden-bottom {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .education-section h2 {
@@ -2794,7 +2915,7 @@ body {
     flex-direction: column;
     align-items: center; /* Centers all cards */
   }
-  
+
   .portfolio-project-card {
     width: 90%;
     max-width: 350px;
@@ -3247,8 +3368,6 @@ body {
     padding-top: 70px;
   }
 }
-
-
 
 /* ==================================== Expanded Content Styles (Reduced Font Sizes) ==================================== */
 .portfolio-expanded-left h2 {
