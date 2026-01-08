@@ -2,6 +2,14 @@
 <html lang="en">
   <head>
     <!-- Google Analytics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-H38HJPPREN"
@@ -114,700 +122,76 @@
   </head>
 
   <body>
-    <header>
-      <h1>📚 Linear Algebra Notes</h1>
-      <!-- <p>Clean • Modern • Professional — Built for serious learners</p> -->
-    </header>
-
-    <!-- A4 Notes Gallery -->
-    <div class="a4-gallery" id="a4Gallery">
-      <!-- Notes 1-91 -->
-      <div class="a4-thumbnail" data-index="0" onclick="openA4Viewer(0)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _1.png" alt="Page 1" class="a4-thumb" />
-        <div class="page-number">1</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="1" onclick="openA4Viewer(1)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _2.png" alt="Page 2" class="a4-thumb" />
-        <div class="page-number">2</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="2" onclick="openA4Viewer(2)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _3.png" alt="Page 3" class="a4-thumb" />
-        <div class="page-number">3</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="3" onclick="openA4Viewer(3)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _4.png" alt="Page 4" class="a4-thumb" />
-        <div class="page-number">4</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="4" onclick="openA4Viewer(4)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _5.png" alt="Page 5" class="a4-thumb" />
-        <div class="page-number">5</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="5" onclick="openA4Viewer(5)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _6.png" alt="Page 6" class="a4-thumb" />
-        <div class="page-number">6</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="6" onclick="openA4Viewer(6)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _7.png" alt="Page 7" class="a4-thumb" />
-        <div class="page-number">7</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="7" onclick="openA4Viewer(7)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _8.png" alt="Page 8" class="a4-thumb" />
-        <div class="page-number">8</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="8" onclick="openA4Viewer(8)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _9.png" alt="Page 9" class="a4-thumb" />
-        <div class="page-number">9</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="9" onclick="openA4Viewer(9)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _10.png" alt="Page 10" class="a4-thumb" />
-        <div class="page-number">10</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="10" onclick="openA4Viewer(10)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _11.png" alt="Page 11" class="a4-thumb" />
-        <div class="page-number">11</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="11" onclick="openA4Viewer(11)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _12.png" alt="Page 12" class="a4-thumb" />
-        <div class="page-number">12</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="12" onclick="openA4Viewer(12)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _13.png" alt="Page 13" class="a4-thumb" />
-        <div class="page-number">13</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="13" onclick="openA4Viewer(13)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _14.png" alt="Page 14" class="a4-thumb" />
-        <div class="page-number">14</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="14" onclick="openA4Viewer(14)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _15.png" alt="Page 15" class="a4-thumb" />
-        <div class="page-number">15</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="15" onclick="openA4Viewer(15)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _16.png" alt="Page 16" class="a4-thumb" />
-        <div class="page-number">16</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="16" onclick="openA4Viewer(16)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _17.png" alt="Page 17" class="a4-thumb" />
-        <div class="page-number">17</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="17" onclick="openA4Viewer(17)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _18.png" alt="Page 18" class="a4-thumb" />
-        <div class="page-number">18</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="18" onclick="openA4Viewer(18)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _19.png" alt="Page 19" class="a4-thumb" />
-        <div class="page-number">19</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="19" onclick="openA4Viewer(19)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _20.png" alt="Page 20" class="a4-thumb" />
-        <div class="page-number">20</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="20" onclick="openA4Viewer(20)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _21.png" alt="Page 21" class="a4-thumb" />
-        <div class="page-number">21</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="21" onclick="openA4Viewer(21)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _22.png" alt="Page 22" class="a4-thumb" />
-        <div class="page-number">22</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="22" onclick="openA4Viewer(22)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _23.png" alt="Page 23" class="a4-thumb" />
-        <div class="page-number">23</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="23" onclick="openA4Viewer(23)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _24.png" alt="Page 24" class="a4-thumb" />
-        <div class="page-number">24</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="24" onclick="openA4Viewer(24)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _25.png" alt="Page 25" class="a4-thumb" />
-        <div class="page-number">25</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="25" onclick="openA4Viewer(25)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _26.png" alt="Page 26" class="a4-thumb" />
-        <div class="page-number">26</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="26" onclick="openA4Viewer(26)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _27.png" alt="Page 27" class="a4-thumb" />
-        <div class="page-number">27</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="27" onclick="openA4Viewer(27)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _28.png" alt="Page 28" class="a4-thumb" />
-        <div class="page-number">28</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="28" onclick="openA4Viewer(28)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _29.png" alt="Page 29" class="a4-thumb" />
-        <div class="page-number">29</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="29" onclick="openA4Viewer(29)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _30.png" alt="Page 30" class="a4-thumb" />
-        <div class="page-number">30</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="30" onclick="openA4Viewer(30)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _31.png" alt="Page 31" class="a4-thumb" />
-        <div class="page-number">31</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="31" onclick="openA4Viewer(31)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _32.png" alt="Page 32" class="a4-thumb" />
-        <div class="page-number">32</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="32" onclick="openA4Viewer(32)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _33.png" alt="Page 33" class="a4-thumb" />
-        <div class="page-number">33</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="33" onclick="openA4Viewer(33)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _34.png" alt="Page 34" class="a4-thumb" />
-        <div class="page-number">34</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="34" onclick="openA4Viewer(34)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _35.png" alt="Page 35" class="a4-thumb" />
-        <div class="page-number">35</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="35" onclick="openA4Viewer(35)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _36.png" alt="Page 36" class="a4-thumb" />
-        <div class="page-number">36</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="36" onclick="openA4Viewer(36)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _37.png" alt="Page 37" class="a4-thumb" />
-        <div class="page-number">37</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="37" onclick="openA4Viewer(37)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _38.png" alt="Page 38" class="a4-thumb" />
-        <div class="page-number">38</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="38" onclick="openA4Viewer(38)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _39.png" alt="Page 39" class="a4-thumb" />
-        <div class="page-number">39</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="39" onclick="openA4Viewer(39)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _40.png" alt="Page 40" class="a4-thumb" />
-        <div class="page-number">40</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="40" onclick="openA4Viewer(40)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _41.png" alt="Page 41" class="a4-thumb" />
-        <div class="page-number">41</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="41" onclick="openA4Viewer(41)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _42.png" alt="Page 42" class="a4-thumb" />
-        <div class="page-number">42</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="42" onclick="openA4Viewer(42)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _43.png" alt="Page 43" class="a4-thumb" />
-        <div class="page-number">43</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="43" onclick="openA4Viewer(43)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _44.png" alt="Page 44" class="a4-thumb" />
-        <div class="page-number">44</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="44" onclick="openA4Viewer(44)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _45.png" alt="Page 45" class="a4-thumb" />
-        <div class="page-number">45</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="45" onclick="openA4Viewer(45)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _46.png" alt="Page 46" class="a4-thumb" />
-        <div class="page-number">46</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="46" onclick="openA4Viewer(46)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _47.png" alt="Page 47" class="a4-thumb" />
-        <div class="page-number">47</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="47" onclick="openA4Viewer(47)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _48.png" alt="Page 48" class="a4-thumb" />
-        <div class="page-number">48</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="48" onclick="openA4Viewer(48)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _49.png" alt="Page 49" class="a4-thumb" />
-        <div class="page-number">49</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="49" onclick="openA4Viewer(49)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _50.png" alt="Page 50" class="a4-thumb" />
-        <div class="page-number">50</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="50" onclick="openA4Viewer(50)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _51.png" alt="Page 51" class="a4-thumb" />
-        <div class="page-number">51</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="51" onclick="openA4Viewer(51)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _52.png" alt="Page 52" class="a4-thumb" />
-        <div class="page-number">52</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="52" onclick="openA4Viewer(52)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _53.png" alt="Page 53" class="a4-thumb" />
-        <div class="page-number">53</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="53" onclick="openA4Viewer(53)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _54.png" alt="Page 54" class="a4-thumb" />
-        <div class="page-number">54</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="54" onclick="openA4Viewer(54)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _55.png" alt="Page 55" class="a4-thumb" />
-        <div class="page-number">55</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="55" onclick="openA4Viewer(55)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _56.png" alt="Page 56" class="a4-thumb" />
-        <div class="page-number">56</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="56" onclick="openA4Viewer(56)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _57.png" alt="Page 57" class="a4-thumb" />
-        <div class="page-number">57</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="57" onclick="openA4Viewer(57)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _58.png" alt="Page 58" class="a4-thumb" />
-        <div class="page-number">58</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="58" onclick="openA4Viewer(58)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _59.png" alt="Page 59" class="a4-thumb" />
-        <div class="page-number">59</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="59" onclick="openA4Viewer(59)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _60.png" alt="Page 60" class="a4-thumb" />
-        <div class="page-number">60</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="60" onclick="openA4Viewer(60)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _61.png" alt="Page 61" class="a4-thumb" />
-        <div class="page-number">61</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="61" onclick="openA4Viewer(61)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _62.png" alt="Page 62" class="a4-thumb" />
-        <div class="page-number">62</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="62" onclick="openA4Viewer(62)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _63.png" alt="Page 63" class="a4-thumb" />
-        <div class="page-number">63</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="63" onclick="openA4Viewer(63)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _64.png" alt="Page 64" class="a4-thumb" />
-        <div class="page-number">64</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="64" onclick="openA4Viewer(64)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _65.png" alt="Page 65" class="a4-thumb" />
-        <div class="page-number">65</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="65" onclick="openA4Viewer(65)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _66.png" alt="Page 66" class="a4-thumb" />
-        <div class="page-number">66</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="66" onclick="openA4Viewer(66)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _67.png" alt="Page 67" class="a4-thumb" />
-        <div class="page-number">67</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="67" onclick="openA4Viewer(67)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _68.png" alt="Page 68" class="a4-thumb" />
-        <div class="page-number">68</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="68" onclick="openA4Viewer(68)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _69.png" alt="Page 69" class="a4-thumb" />
-        <div class="page-number">69</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="69" onclick="openA4Viewer(69)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _70.png" alt="Page 70" class="a4-thumb" />
-        <div class="page-number">70</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="70" onclick="openA4Viewer(70)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _71.png" alt="Page 71" class="a4-thumb" />
-        <div class="page-number">71</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="71" onclick="openA4Viewer(71)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _72.png" alt="Page 72" class="a4-thumb" />
-        <div class="page-number">72</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="72" onclick="openA4Viewer(72)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _73.png" alt="Page 73" class="a4-thumb" />
-        <div class="page-number">73</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="73" onclick="openA4Viewer(73)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _74.png" alt="Page 74" class="a4-thumb" />
-        <div class="page-number">74</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="74" onclick="openA4Viewer(74)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _75.png" alt="Page 75" class="a4-thumb" />
-        <div class="page-number">75</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="75" onclick="openA4Viewer(75)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _76.png" alt="Page 76" class="a4-thumb" />
-        <div class="page-number">76</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="76" onclick="openA4Viewer(76)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _77.png" alt="Page 77" class="a4-thumb" />
-        <div class="page-number">77</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="77" onclick="openA4Viewer(77)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _78.png" alt="Page 78" class="a4-thumb" />
-        <div class="page-number">78</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="78" onclick="openA4Viewer(78)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _79.png" alt="Page 79" class="a4-thumb" />
-        <div class="page-number">79</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="79" onclick="openA4Viewer(79)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _80.png" alt="Page 80" class="a4-thumb" />
-        <div class="page-number">80</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="80" onclick="openA4Viewer(80)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _81.png" alt="Page 81" class="a4-thumb" />
-        <div class="page-number">81</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="81" onclick="openA4Viewer(81)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _82.png" alt="Page 82" class="a4-thumb" />
-        <div class="page-number">82</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="82" onclick="openA4Viewer(82)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _83.png" alt="Page 83" class="a4-thumb" />
-        <div class="page-number">83</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="83" onclick="openA4Viewer(83)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _84.png" alt="Page 84" class="a4-thumb" />
-        <div class="page-number">84</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="84" onclick="openA4Viewer(84)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _85.png" alt="Page 85" class="a4-thumb" />
-        <div class="page-number">85</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="85" onclick="openA4Viewer(85)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _86.png" alt="Page 86" class="a4-thumb" />
-        <div class="page-number">86</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="86" onclick="openA4Viewer(86)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _87.png" alt="Page 87" class="a4-thumb" />
-        <div class="page-number">87</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="87" onclick="openA4Viewer(87)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _88.png" alt="Page 88" class="a4-thumb" />
-        <div class="page-number">88</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="88" onclick="openA4Viewer(88)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _89.png" alt="Page 89" class="a4-thumb" />
-        <div class="page-number">89</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="89" onclick="openA4Viewer(89)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _90.png" alt="Page 90" class="a4-thumb" />
-        <div class="page-number">90</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="90" onclick="openA4Viewer(90)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra _91.png" alt="Page 91" class="a4-thumb" />
-        <div class="page-number">91</div>
-      </div>
-
-      <div class="a4-thumbnail" data-index="90" onclick="openA4Viewer(90)">
-        <div class="glowing-border"></div>
-        <img src="LA/Linear Algebra_92.png" alt="Page 92" class="a4-thumb" />
-        <div class="page-number">92</div>
-      </div>
-
-      <!-- add thumbnails till 103 -->
-       <div class="a4-thumbnail" data-index="91" onclick="openA4Viewer(91)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_93.png" alt="Page 93" class="a4-thumb" />
-  <div class="page-number">93</div>
-</div>
-
-<div class="a4-thumbnail" data-index="92" onclick="openA4Viewer(92)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_94.png" alt="Page 94" class="a4-thumb" />
-  <div class="page-number">94</div>
-</div>
-
-<div class="a4-thumbnail" data-index="93" onclick="openA4Viewer(93)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_95.png" alt="Page 95" class="a4-thumb" />
-  <div class="page-number">95</div>
-</div>
-
-<div class="a4-thumbnail" data-index="94" onclick="openA4Viewer(94)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_96.png" alt="Page 96" class="a4-thumb" />
-  <div class="page-number">96</div>
-</div>
-
-<div class="a4-thumbnail" data-index="95" onclick="openA4Viewer(95)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_97.png" alt="Page 97" class="a4-thumb" />
-  <div class="page-number">97</div>
-</div>
-
-<div class="a4-thumbnail" data-index="96" onclick="openA4Viewer(96)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_98.png" alt="Page 98" class="a4-thumb" />
-  <div class="page-number">98</div>
-</div>
-
-<div class="a4-thumbnail" data-index="97" onclick="openA4Viewer(97)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_99.png" alt="Page 99" class="a4-thumb" />
-  <div class="page-number">99</div>
-</div>
-
-<div class="a4-thumbnail" data-index="98" onclick="openA4Viewer(98)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_100.png" alt="Page 100" class="a4-thumb" />
-  <div class="page-number">100</div>
-</div>
-
-<div class="a4-thumbnail" data-index="99" onclick="openA4Viewer(99)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_101.png" alt="Page 101" class="a4-thumb" />
-  <div class="page-number">101</div>
-</div>
-
-<div class="a4-thumbnail" data-index="100" onclick="openA4Viewer(100)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_102.png" alt="Page 102" class="a4-thumb" />
-  <div class="page-number">102</div>
-</div>
-
-<div class="a4-thumbnail" data-index="101" onclick="openA4Viewer(101)">
-  <div class="glowing-border"></div>
-  <img src="LA/Linear Algebra_103.png" alt="Page 103" class="a4-thumb" />
-  <div class="page-number">103</div>
-</div>
-
-
-      
-    </div>
-
-    <!-- A4 Full Screen Viewer -->
-    <div class="a4-viewer" id="a4Viewer">
-      <div class="a4-viewer-content">
-        <!-- Minimal Navigation Controls -->
-        <button
-          class="a4-nav a4-close"
-          onclick="closeA4Viewer()"
-          title="Close (Esc)"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
+    <!-- Animated Matrix Background -->
+    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
+
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="title">ALGORITHMIC INTELLIGENCE</h1>
+        <div class="subtitle">CS Core Subjects & Mathematical Prerequisites</div>
+        <div class="author">BY: COMPUTER SCIENCE DEPARTMENT • UET LAHORE</div>
+      </header>
+
+      <!-- Search -->
+      <div class="controls">
+        <input type="text" id="searchBar" placeholder="SEARCH COURSES..." />
+      </div>
+
+      <!-- Courses Grid -->
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Cards will be inserted here by JavaScript -->
+      </div>
+
+      <!-- PDF Viewer -->
+      <section class="pdf-section" id="pdfSection">
+        <div class="pdf-header">
+          <h2
+            id="pdfTitle"
+            style="
+              color: var(--accent-cyan);
+              font-family: 'Orbitron', sans-serif;
+            "
+          ></h2>
+        </div>
+
+        <div class="pdf-container">
+          <div
+            id="loadingIndicator"
+            style="display: none; text-align: center; padding: 50px"
           >
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
+            <div
+              class="skeleton"
+              style="width: 200px; height: 30px; margin: 0 auto 30px"
+            ></div>
+            <div
+              class="skeleton"
+              style="width: 100%; height: 600px; margin: 0 auto"
+            ></div>
+          </div>
+          <canvas id="pdfCanvas"></canvas>
+        </div>
 
-        <button
-          class="a4-nav a4-prev"
-          onclick="changePage(-1)"
-          title="Previous (←)"
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-
-        <button class="a4-nav a4-next" onclick="changePage(1)" title="Next (→)">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-
-        <!-- Clean Page Container -->
-        <div class="a4-page-container">
-          <div class="a4-page" id="a4Page">
-            <img id="a4FullImage" src="" alt="A4 Note" class="a4-image" />
+        <div class="pdf-controls">
+          <div class="pdf-actions">
+            <button class="action-btn" id="downloadBtn">
+              <span>⬇️</span> DOWNLOAD PDF
+            </button>
+            <a class="action-btn" id="openFullBtn" target="_blank">
+              <span>📖</span> OPEN FULL PDF
+            </a>
+          </div>
+          <div class="page-nav">
+            <button class="action-btn" id="prevPage">◀ PREV</button>
+            <span style="color: var(--text-primary); font-size: 1.1rem">
+              Page:
+              <input type="number" id="pageNum" class="page-input" min="1" /> /
+              <span id="pageCount">0</span>
+            </span>
+            <button class="action-btn" id="nextPage">NEXT ▶</button>
           </div>
         </div>
-
-        <!-- Minimal Page Indicator -->
-        <div class="a4-page-indicator">
-          <span id="currentImgNum">1</span> / <span id="totalImgNum">103</span>
-        </div>
-      </div>
+      </section>
     </div>
 
     <footer class="professional-footer">
@@ -836,6 +220,6 @@
       </div>
     </footer>
 
-    <script src="notes.js"></script>
+    <script src="Notes.js"></script>
   </body>
 </html>

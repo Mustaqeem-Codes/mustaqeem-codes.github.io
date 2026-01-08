@@ -1,199 +1,573 @@
-// Clean JavaScript for A4 Viewer
-let currentImageIndex = 0;
-let isAnimating = false;
+// Configure PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-// Image data for 91 pages
-const images = [
-  "LA/Linear Algebra _1.png",
-  "LA/Linear Algebra _2.png",
-  "LA/Linear Algebra _3.png",
-  "LA/Linear Algebra _4.png",
-  "LA/Linear Algebra _5.png",
-  "LA/Linear Algebra _6.png",
-  "LA/Linear Algebra _7.png",
-  "LA/Linear Algebra _8.png",
-  "LA/Linear Algebra _9.png",
-  "LA/Linear Algebra _10.png",
-
-  "LA/Linear Algebra _11.png",
-  "LA/Linear Algebra _12.png",
-  "LA/Linear Algebra _13.png",
-  "LA/Linear Algebra _14.png",
-  "LA/Linear Algebra _15.png",
-  "LA/Linear Algebra _16.png",
-  "LA/Linear Algebra _17.png",
-  "LA/Linear Algebra _18.png",
-  "LA/Linear Algebra _19.png",
-  "LA/Linear Algebra _20.png",
-
-  "LA/Linear Algebra _21.png",
-  "LA/Linear Algebra _22.png",
-  "LA/Linear Algebra _23.png",
-  "LA/Linear Algebra _24.png",
-  "LA/Linear Algebra _25.png",
-  "LA/Linear Algebra _26.png",
-  "LA/Linear Algebra _27.png",
-  "LA/Linear Algebra _28.png",
-  "LA/Linear Algebra _29.png",
-  "LA/Linear Algebra _30.png",
-
-  "LA/Linear Algebra _31.png",
-  "LA/Linear Algebra _32.png",
-  "LA/Linear Algebra _33.png",
-  "LA/Linear Algebra _34.png",
-  "LA/Linear Algebra _35.png",
-  "LA/Linear Algebra _36.png",
-  "LA/Linear Algebra _37.png",
-  "LA/Linear Algebra _38.png",
-  "LA/Linear Algebra _39.png",
-  "LA/Linear Algebra _40.png",
-
-  "LA/Linear Algebra _41.png",
-  "LA/Linear Algebra _42.png",
-  "LA/Linear Algebra _43.png",
-  "LA/Linear Algebra _44.png",
-  "LA/Linear Algebra _45.png",
-  "LA/Linear Algebra _46.png",
-  "LA/Linear Algebra _47.png",
-  "LA/Linear Algebra _48.png",
-  "LA/Linear Algebra _49.png",
-  "LA/Linear Algebra _50.png",
-
-  "LA/Linear Algebra _51.png",
-  "LA/Linear Algebra _52.png",
-  "LA/Linear Algebra _53.png",
-  "LA/Linear Algebra _54.png",
-  "LA/Linear Algebra _55.png",
-  "LA/Linear Algebra _56.png",
-  "LA/Linear Algebra _57.png",
-  "LA/Linear Algebra _58.png",
-  "LA/Linear Algebra _59.png",
-  "LA/Linear Algebra _60.png",
-
-  "LA/Linear Algebra _61.png",
-  "LA/Linear Algebra _62.png",
-  "LA/Linear Algebra _63.png",
-  "LA/Linear Algebra _64.png",
-  "LA/Linear Algebra _65.png",
-  "LA/Linear Algebra _66.png",
-  "LA/Linear Algebra _67.png",
-  "LA/Linear Algebra _68.png",
-  "LA/Linear Algebra _69.png",
-  "LA/Linear Algebra _70.png",
-
-  "LA/Linear Algebra _71.png",
-  "LA/Linear Algebra _72.png",
-  "LA/Linear Algebra _73.png",
-  "LA/Linear Algebra _74.png",
-  "LA/Linear Algebra _75.png",
-  "LA/Linear Algebra _76.png",
-  "LA/Linear Algebra _77.png",
-  "LA/Linear Algebra _78.png",
-  "LA/Linear Algebra _79.png",
-  "LA/Linear Algebra _80.png",
-
-  "LA/Linear Algebra _81.png",
-  "LA/Linear Algebra _82.png",
-  "LA/Linear Algebra _83.png",
-  "LA/Linear Algebra _84.png",
-  "LA/Linear Algebra _85.png",
-  "LA/Linear Algebra _86.png",
-  "LA/Linear Algebra _87.png",
-  "LA/Linear Algebra _88.png",
-  "LA/Linear Algebra _89.png",
-  "LA/Linear Algebra _90.png",
-
-  "LA/Linear Algebra _91.png",
-  "LA/Linear Algebra_92.png",
-  "LA/Linear Algebra_93.png",
-  "LA/Linear Algebra_94.png",
-    "LA/Linear Algebra_95.png",
-    "LA/Linear Algebra_96.png",
-    "LA/Linear Algebra_97.png",
-    "LA/Linear Algebra_98.png",
-    "LA/Linear Algebra_99.png",
-    "LA/Linear Algebra_100.png",
-    "LA/Linear Algebra_101.png",
-    "LA/Linear Algebra_102.png",
-    "LA/Linear Algebra_103.png"
+// ============================================
+// COURSE DATA - UPDATE PATHS HERE
+// ============================================
+const COURSES = [
+  {
+    id: "la",
+    title: "MATRIX THEORY",
+    subtitle: "Linear Algebra & Vector Spaces",
+    filename: "linear_algebra_notes.pdf",
+    size: "24.7 MB",
+    color: "#00ffff",
+    progress: 45,
+    // TRY THESE OPTIONS:
+    pdfUrl: "./LA/Week-15.pdf", // OPTION 1: Relative path
+    // pdfUrl: 'http://localhost:8000/LA/Week-15.pdf'  // OPTION 2: Local server
+    // pdfUrl: 'https://yourdomain.com/notes/Week-15.pdf'  // OPTION 3: Online
+  },
+  {
+    id: "dm",
+    title: "LOGIC GRIDS",
+    subtitle: "Discrete Mathematics & Graph Theory",
+    filename: "discrete_math_notes.pdf",
+    size: "18.3 MB",
+    color: "#9d00ff",
+    progress: 30,
+    pdfUrl: "./DM/Week-12.pdf",
+  },
+  {
+    id: "aps",
+    title: "STOCHASTIC ENGINE",
+    subtitle: "Applied Probability & Statistical Models",
+    filename: "probability_stats_notes.pdf",
+    size: "32.1 MB",
+    color: "#00ffaa",
+    progress: 60,
+    pdfUrl: "./APS/Week-10.pdf",
+  },
+  // ============================================
+  // TO ADD NEW COURSE: Copy the object above and update values
+  // Required fields: id, title, subtitle, icon, filename, size, color, pdfUrl
+  // ============================================
 ];
-function openA4Viewer(index) {
-    if (isAnimating) return;
-    
-    currentImageIndex = index;
-    const viewer = document.getElementById('a4Viewer');
-    const thumbnail = document.querySelector(`[data-index="${index}"]`);
-    
-    // Simple fade in
-    viewer.classList.add('active');
-    updateViewer();
-    document.body.style.overflow = 'hidden';
+
+// ============================================
+// GLOBAL STATE
+// ============================================
+let state = {
+  currentCourse: null,
+  currentPdf: null,
+  currentPage: 1,
+  totalPages: 0,
+  zoom: 100,
+  searchQuery: "",
+  // Hash map for faster searching
+  searchIndex: new Map(),
+};
+
+// ============================================
+// DOM ELEMENTS
+// ============================================
+const elements = {
+  coursesGrid: document.getElementById("coursesGrid"),
+  pdfSection: document.getElementById("pdfSection"),
+  pdfCanvas: document.getElementById("pdfCanvas"),
+  pdfTitle: document.getElementById("pdfTitle"),
+  pageNum: document.getElementById("pageNum"),
+  pageCount: document.getElementById("pageCount"),
+  prevPage: document.getElementById("prevPage"),
+  nextPage: document.getElementById("nextPage"),
+  zoomSlider: document.getElementById("zoomSlider"),
+  zoomValue: document.getElementById("zoomValue"),
+  searchBar: document.getElementById("searchBar"),
+  downloadBtn: document.getElementById("downloadBtn"),
+  openFullBtn: document.getElementById("openFullBtn"),
+  loadingIndicator: document.getElementById("loadingIndicator"),
+};
+
+// ============================================
+// MATRIX BACKGROUND ANIMATION
+// ============================================
+class MatrixBackground {
+  constructor() {
+    this.canvas = document.getElementById("matrixCanvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.columns = [];
+    this.resize();
+    this.init();
+    window.addEventListener("resize", () => this.resize());
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.init();
+  }
+
+  init() {
+    const fontSize = 14;
+    const columns = Math.floor(this.canvas.width / fontSize);
+    this.columns = Array(columns).fill(0);
+  }
+
+  draw() {
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.fillStyle = "#0f0";
+    this.ctx.font = '14px "Share Tech Mono"';
+
+    this.columns.forEach((y, index) => {
+      const x = index * 14;
+      const char = String.fromCharCode(0x30a0 + Math.random() * 96);
+      this.ctx.fillText(char, x, y);
+
+      if (y > 100 + Math.random() * 10000) {
+        this.columns[index] = 0;
+      } else {
+        this.columns[index] = y + 14;
+      }
+    });
+  }
+
+  animate() {
+    this.draw();
+    requestAnimationFrame(() => this.animate());
+  }
 }
 
-function closeA4Viewer() {
-    const viewer = document.getElementById('a4Viewer');
-    viewer.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+// ============================================
+// INITIALIZATION
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize matrix background
+  const matrix = new MatrixBackground();
+  matrix.animate();
 
-function changePage(direction) {
-    if (isAnimating) return;
-    
-    isAnimating = true;
-    currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-    
-    // Smooth transition
-    const imgElement = document.getElementById('a4FullImage');
-    imgElement.style.opacity = '0';
-    
-    setTimeout(() => {
-        updateViewer();
-        setTimeout(() => {
-            imgElement.style.opacity = '1';
-            isAnimating = false;
-        }, 50);
-    }, 200);
-}
+  // Build search index
+  buildSearchIndex();
 
-function updateViewer() {
-    const imgElement = document.getElementById('a4FullImage');
-    const currentNum = document.getElementById('currentImgNum');
-    const totalNum = document.getElementById('totalImgNum');
-    
-    imgElement.src = images[currentImageIndex];
-    currentNum.textContent = currentImageIndex + 1;
-    totalNum.textContent = images.length;
-}
+  // Render courses
+  renderCourses();
 
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    const viewer = document.getElementById('a4Viewer');
-    if (!viewer.classList.contains('active')) return;
-    
-    if (e.key === 'Escape') closeA4Viewer();
-    if (e.key === 'ArrowLeft') changePage(-1);
-    if (e.key === 'ArrowRight') changePage(1);
+  // Setup event listeners
+  setupEventListeners();
+
+  // Preload first course PDF
+  preloadFirstCourse();
 });
 
-// Close on background click
-document.getElementById('a4Viewer').addEventListener('click', (e) => {
-    if (e.target.id === 'a4Viewer') {
-        closeA4Viewer();
+// ============================================
+// SEARCH INDEXING (Hashing for better search)
+// ============================================
+function buildSearchIndex() {
+  COURSES.forEach((course) => {
+    // Create searchable string with course data
+    const searchableText = (
+      course.title.toLowerCase() +
+      " " +
+      course.subtitle.toLowerCase() +
+      " " +
+      course.filename.toLowerCase()
+    ).replace(/[^a-z0-9\s]/g, "");
+
+    // Store in hash map with course ID
+    state.searchIndex.set(course.id, searchableText);
+  });
+}
+
+// ============================================
+// RENDER COURSE CARDS
+// ============================================
+function renderCourses() {
+  const filteredCourses = COURSES.filter((course) => {
+    if (!state.searchQuery) return true;
+
+    const searchText = state.searchIndex.get(course.id);
+    if (!searchText) return false;
+
+    // Split query into words for better matching
+    const queryWords = state.searchQuery.toLowerCase().split(/\s+/);
+
+    // Check if ALL query words are found in search text
+    return queryWords.every((word) => searchText.includes(word));
+  });
+
+  elements.coursesGrid.innerHTML = filteredCourses
+    .map(
+      (course) => `
+                    <div class="course-card ${
+                      state.currentCourse?.id === course.id ? "active" : ""
+                    }" 
+                         data-id="${course.id}">
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-subtitle">${course.subtitle}</p>
+                        <div class="course-meta">
+                            <span class="file-size" data-url="${
+                              course.pdfUrl
+                            }">Loading...</span>
+                        </div>
+                    </div>
+                `
+    )
+    .join("");
+
+  // Fetch and animate real file sizes after rendering
+  fetchAndAnimateFileSizes();
+}
+
+// ============================================
+// FETCH REAL FILE SIZES AND ANIMATE
+// ============================================
+async function fetchAndAnimateFileSizes() {
+  const fileSizeElements = document.querySelectorAll(".file-size[data-url]");
+
+  fileSizeElements.forEach(async (element) => {
+    const url = element.dataset.url;
+
+    try {
+      // Fetch file to get actual size
+      const response = await fetch(url, { method: "HEAD" });
+
+      if (response.ok) {
+        const contentLength = response.headers.get("content-length");
+
+        if (contentLength) {
+          // Convert bytes to MB
+          const sizeInMB = parseInt(contentLength) / (1024 * 1024);
+          animateSizeValue(element, sizeInMB);
+        } else {
+          // If content-length not available, try full fetch
+          const fullResponse = await fetch(url);
+          const blob = await fullResponse.blob();
+          const sizeInMB = blob.size / (1024 * 1024);
+          animateSizeValue(element, sizeInMB);
+        }
+      } else {
+        element.textContent = "N/A";
+      }
+    } catch (error) {
+      console.log("Could not fetch file size for:", url);
+      element.textContent = "N/A";
     }
-});
-
-// Preload first few images for better performance
-function preloadImages() {
-    const maxPreload = 5;
-    for (let i = 0; i < Math.min(maxPreload, images.length); i++) {
-        const img = new Image();
-        img.src = images[i];
-    }
+  });
 }
 
-// Initialize on page load
-window.addEventListener('DOMContentLoaded', () => {
-    preloadImages();
-    // Set total images count
-    document.getElementById('totalImgNum').textContent = images.length;
-});
+// ============================================
+// ANIMATE SIZE VALUE
+// ============================================
+function animateSizeValue(element, targetMB) {
+  const duration = 1500; // Animation duration in ms
+  const startTime = performance.now();
+
+  function updateSize(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Easing function for smooth animation
+    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+    const currentValue = targetMB * easeOutQuart;
+
+    element.textContent = currentValue.toFixed(2) + " MB";
+
+    if (progress < 1) {
+      requestAnimationFrame(updateSize);
+    } else {
+      element.textContent = targetMB.toFixed(2) + " MB";
+    }
+  }
+
+  requestAnimationFrame(updateSize);
+}
+
+// ============================================
+// LOAD PDF FUNCTION - CORRECTED VERSION
+// ============================================
+async function loadPDF(course) {
+  console.log("Loading PDF for:", course.title);
+  console.log("PDF URL:", course.pdfUrl);
+
+  // Reset state
+  state.currentCourse = course;
+  state.currentPdf = null;
+  state.currentPage = 1;
+  state.totalPages = 0;
+
+  // Update UI
+  elements.pdfSection.classList.add("active");
+  elements.pdfTitle.innerHTML = `<span class="tech-gradient">${course.title}</span>`;
+
+  // Set download and open URLs
+  elements.downloadBtn.onclick = () => window.open(course.pdfUrl, "_blank");
+  elements.openFullBtn.href = course.pdfUrl;
+
+  // Show loading skeleton
+  elements.loadingIndicator.style.display = "block";
+  elements.pdfCanvas.style.display = "none";
+
+  // Reset page controls safely
+  elements.pageCount.textContent = "0";
+  elements.pageNum.value = "1";
+  if (elements.zoomSlider) elements.zoomSlider.value = state.zoom;
+  if (elements.zoomValue) elements.zoomValue.textContent = `${state.zoom}%`;
+
+  // Auto-scroll to PDF section
+  setTimeout(() => {
+    elements.pdfSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, 100);
+
+  try {
+    // Test if URL is accessible first
+    console.log("Testing file accessibility...");
+
+    // Simple fetch to check if file exists
+    const testFetch = await fetch(course.pdfUrl);
+    if (!testFetch.ok) {
+      throw new Error(`HTTP ${testFetch.status}: File not accessible`);
+    }
+    console.log("File is accessible, proceeding with PDF.js");
+
+    // Load PDF using PDF.js
+    const loadingTask = pdfjsLib.getDocument(course.pdfUrl);
+    loadingTask.promise.then(
+      (pdf) => {
+        // Success callback
+        state.currentPdf = pdf;
+        state.totalPages = pdf.numPages;
+        state.currentPage = 1;
+
+        console.log(`✅ PDF loaded successfully! Pages: ${state.totalPages}`);
+
+        // Update page controls SAFELY
+        if (elements.pageCount)
+          elements.pageCount.textContent = state.totalPages;
+        if (elements.pageNum) elements.pageNum.value = state.currentPage;
+
+        // Render first page
+        renderPage().then(() => {
+          // Hide loading skeleton
+          elements.loadingIndicator.style.display = "none";
+          elements.pdfCanvas.style.display = "block";
+
+          // Update active card
+          document.querySelectorAll(".course-card").forEach((card) => {
+            card.classList.toggle("active", card.dataset.id === course.id);
+          });
+        });
+      },
+      (error) => {
+        // Error callback
+        console.error("PDF.js loading error:", error);
+        showPDFError(course, error);
+      }
+    );
+  } catch (error) {
+    console.error("Initial fetch error:", error);
+    showPDFError(course, error);
+  }
+}
+
+// ============================================
+// ERROR HANDLER FUNCTION
+// ============================================
+function showPDFError(course, error) {
+  console.error("Showing error for:", course.title, error);
+
+  // Ensure loading indicator is visible
+  elements.loadingIndicator.style.display = "block";
+  elements.pdfCanvas.style.display = "none";
+
+  // Create error message
+  const errorMessage = `
+                <div style="color: #ff5555; text-align: center; max-width: 700px; margin: 50px auto; padding: 30px; background: rgba(255,85,85,0.1); border-radius: 10px; border: 1px solid rgba(255,85,85,0.3);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+                    <h2 style="margin-bottom: 20px; color: #ff5555; font-family: var(--font-heading);">PDF LOADING FAILED</h2>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; margin-bottom: 25px; text-align: left;">
+                        <p><strong style="color: var(--accent-cyan);">COURSE:</strong> ${
+                          course.title
+                        }</p>
+                        <p><strong style="color: var(--accent-cyan);">FILE:</strong> ${
+                          course.filename || "N/A"
+                        }</p>
+                        <p><strong style="color: var(--accent-cyan);">PATH:</strong> <code style="color: #ff9999;">${
+                          course.pdfUrl
+                        }</code></p>
+                        <p><strong style="color: var(--accent-cyan);">ERROR:</strong> ${
+                          error.message || "Unknown error"
+                        }</p>
+                    </div>
+                    
+                    <h3 style="color: var(--accent-cyan); margin: 25px 0 15px;">TROUBLESHOOTING STEPS:</h3>
+                    <ol style="text-align: left; margin-bottom: 30px; padding-left: 25px;">
+                        <li style="margin-bottom: 10px;">Check if file exists at: <code>${
+                          window.location.origin
+                        }/${course.pdfUrl}</code></li>
+                        <li style="margin-bottom: 10px;">Right-click the link below and check if PDF opens</li>
+                        <li style="margin-bottom: 10px;">Run a local server (python -m http.server 8000)</li>
+                        <li style="margin-bottom: 10px;">Check browser console (F12) for CORS errors</li>
+                        <li>Try opening PDF directly: <a href="${
+                          course.pdfUrl
+                        }" target="_blank" style="color: #00ffff;">Open PDF</a></li>
+                    </ol>
+                    
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <button class="action-btn" onclick="retryLoad()" style="background: #ff5555; border-color: #ff5555;">
+                            <span>🔄</span> RETRY LOADING
+                        </button>
+                        <a href="${
+                          course.pdfUrl
+                        }" class="action-btn" target="_blank">
+                            <span>📄</span> OPEN PDF DIRECTLY
+                        </a>
+                        <button class="action-btn" onclick="loadTestPDF()">
+                            <span>🧪</span> TEST WITH SAMPLE PDF
+                        </button>
+                    </div>
+                </div>
+            `;
+
+  elements.loadingIndicator.innerHTML = errorMessage;
+}
+
+// ============================================
+// TEST FUNCTION FOR DEBUGGING
+// ============================================
+window.loadTestPDF = function () {
+  // Load a publicly accessible test PDF
+  const testCourse = {
+    title: "TEST PDF",
+    subtitle: "For debugging purposes",
+    filename: "dummy.pdf",
+    pdfUrl:
+      "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  };
+  loadPDF(testCourse);
+};
+
+// ============================================
+// SAFE RENDER PAGE FUNCTION
+// ============================================
+async function renderPage() {
+  if (!state.currentPdf || state.currentPage < 1) {
+    console.error("Cannot render: No PDF loaded or invalid page");
+    return;
+  }
+
+  try {
+    const page = await state.currentPdf.getPage(state.currentPage);
+
+    // A4 dimensions at 72 DPI: 595 x 842 pixels
+    const A4_WIDTH = 595;
+    const A4_HEIGHT = 842;
+    const containerWidth = elements.pdfCanvas.parentElement.clientWidth - 60; // Account for padding
+
+    // Calculate scale to fit container while maintaining A4 ratio
+    const scale = Math.min(
+      (containerWidth / A4_WIDTH) * (state.zoom / 100),
+      1.5 // Max zoom limit
+    );
+
+    const viewport = page.getViewport({ scale });
+
+    // Set canvas dimensions
+    elements.pdfCanvas.height = viewport.height;
+    elements.pdfCanvas.width = viewport.width;
+
+    // Render PDF page
+    const renderContext = {
+      canvasContext: elements.pdfCanvas.getContext("2d"),
+      viewport: viewport,
+    };
+
+    await page.render(renderContext).promise;
+  } catch (error) {
+    console.error("Error rendering page:", error);
+  }
+}
+
+// ============================================
+// PRELOAD FIRST COURSE
+// ============================================
+function preloadFirstCourse() {
+  if (COURSES.length > 0) {
+    // Preload without displaying
+    pdfjsLib
+      .getDocument(COURSES[0].pdfUrl)
+      .promise.then((pdf) => console.log("First course PDF preloaded"))
+      .catch((err) => console.log("Preload failed (may be offline):", err));
+  }
+}
+
+// ============================================
+// EVENT LISTENERS SETUP
+// ============================================
+function setupEventListeners() {
+  // Course Card Click
+  elements.coursesGrid.addEventListener("click", (e) => {
+    const card = e.target.closest(".course-card");
+    if (card) {
+      const courseId = card.dataset.id;
+      const course = COURSES.find((c) => c.id === courseId);
+      if (course) loadPDF(course);
+    }
+  });
+
+  // Page Navigation
+  elements.prevPage.addEventListener("click", () => {
+    if (state.currentPage > 1) {
+      state.currentPage--;
+      elements.pageNum.value = state.currentPage;
+      renderPage();
+    }
+  });
+
+  elements.nextPage.addEventListener("click", () => {
+    if (state.currentPage < state.totalPages) {
+      state.currentPage++;
+      elements.pageNum.value = state.currentPage;
+      renderPage();
+    }
+  });
+
+  elements.pageNum.addEventListener("change", () => {
+    const page = parseInt(elements.pageNum.value);
+    if (page >= 1 && page <= state.totalPages) {
+      state.currentPage = page;
+      renderPage();
+    } else {
+      elements.pageNum.value = state.currentPage;
+    }
+  });
+
+  // Zoom Control
+  elements.zoomSlider.addEventListener("input", () => {
+    state.zoom = parseInt(elements.zoomSlider.value);
+    elements.zoomValue.textContent = `${state.zoom}%`;
+    debouncedRender();
+  });
+
+  // Search with debouncing
+  let searchTimeout;
+  elements.searchBar.addEventListener("input", (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      state.searchQuery = e.target.value.trim().toLowerCase();
+      renderCourses();
+    }, 300);
+  });
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+// Debounced render for performance
+let renderTimeout;
+function debouncedRender() {
+  clearTimeout(renderTimeout);
+  renderTimeout = setTimeout(renderPage, 150);
+}
+
+// Retry loading function
+window.retryLoad = function () {
+  if (state.currentCourse) {
+    loadPDF(state.currentCourse);
+  }
+};
