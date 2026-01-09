@@ -8,65 +8,53 @@ const CONFIG = {
   animationDuration: 1500
 };
 
-// Configure PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = CONFIG.pdfWorkerSrc;
 
 // ============================================
-// COURSE DATA
+// COURSE DATA (Using Local Paths for Speed/CORS)
 // ============================================
 const COURSES = [
   {
     id: "la",
     title: "LINEAR ALGEBRA",
-    subtitle: "Systems of Linear Equations, Matrix Theory, Vector Spaces.",
+    subtitle: "Systems of Linear Equations, Matrix Operations, Vector Spaces, Linear Transformations, Eigenvalues & Eigenvectors, Diagonalization, Applications in Engineering & CS",
+    pdfPath: "Academic_Notes/Linear_Algebra.pdf",
     filename: "Linear_Algebra.pdf",
-    size: "52.9 MB",
+    pages: 115,
+    size: "24.7 MB",
+    highlight: "Comprehensive Linear Algebra Concepts for CS & Engineering",
+    description: "Covers fundamental linear algebra topics including matrix operations, vector spaces, linear transformations, eigenvalues and eigenvectors, and their applications in engineering and computer science.",
     color: "#00ffff",
-
-    // Open in browser (direct PDF view)
-     openUrl: "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Linear_Algebra.pdf",
-
-    // ⬇️ Force download
-    downloadUrl: "https://github.com/Mustaqeem-Codes/Academic_Notes/raw/main/Linear_Algebra.pdf",
-
-    description: "Linear Transformations, Eigen Theory, Applications of Linear Algebra",
-    pages: 115
+    guidance: "Click to preview, download, and explore course content"
   },
-
   {
     id: "aps",
-    title: "STOCHASTIC ENGINE",
-    subtitle: "Applied Probability & Statistical Models",
-    filename: "Applied_Probability.pdf",
+    title: "APPLIED PROBABILITY & STATISTICS",
+    subtitle: "Probability Theory, Random Variables, Distributions, Markov Chains, Statistical Models, Queueing Theory, CS Applications, Predictive Modeling",
+    pdfPath: "APS/Week-10.pdf",
+    filename: "Week-10.pdf",
+    pages: 89,
     size: "32.1 MB",
+    highlight: "Applied Probability & Statistical Concepts for Data & CS",
+    description: "Introduces probability theory, stochastic processes, and statistical modeling with practical applications in computer science, data analysis, and predictive modeling.",
     color: "#00ffaa",
-
-    // Open in browser (direct PDF view)
-    openUrl: "./APS/Week-10.pdf",
-
-    // Force download
-    downloadUrl: "./APS/Week-10.pdf",
-
-    description: "Probability theory, statistical models, and their applications in computer science.",
-    pages: 210
+    guidance: "Click to preview, download, and explore course content"
   },
   {
     id: "dm",
-    title: "DISCRETE MATHEMAICS",
-    subtitle: "Discrete Mathematics & Graph Theory",
+    title: "DISCRETE MATHEMATICS",
+    subtitle: "Logic, Set Theory, Combinatorics, Graph Theory, Boolean Algebra, Relations & Functions, Algorithms & Complexity, CS Applications",
+    pdfPath: "Academic_Notes/Discrete_Mathematics.pdf",
     filename: "Discrete_Mathematics.pdf",
-    size: "68.3 MB",
+    pages: 92,
+    size: "18.3 MB",
+    highlight: "Key Discrete Math Concepts for Algorithms & Computer Science",
+    description: "Covers key topics in discrete mathematics including propositional logic, set theory, combinatorial analysis, graph theory, and their applications in algorithms and computer science.",
     color: "#9d00ff",
-
-    // Open in browser (direct PDF view)
-    openUrl: "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Discrete_Mathematics.pdf",
-
-    // ⬇️ Force download
-    downloadUrl: "https://github.com/Mustaqeem-Codes/Academic_Notes/raw/main/Discrete_Mathematics.pdf",
-    description: "Discrete mathematics topics including logic, set theory, combinatorics and graph theory.",
-    pages: 92
+    guidance: "Click to preview, download, and explore course content"
   }
 ];
+
 
 
 // ============================================
@@ -79,13 +67,9 @@ let appState = {
   totalPages: 0,
   zoom: CONFIG.defaultZoom,
   searchQuery: "",
-  isLoading: false,
-  error: null
+  isLoading: false
 };
 
-// ============================================
-// DOM ELEMENTS
-// ============================================
 const elements = {
   coursesGrid: document.getElementById('coursesGrid'),
   pdfSection: document.getElementById('pdfSection'),
@@ -98,7 +82,6 @@ const elements = {
   nextPage: document.getElementById('nextPage'),
   lastPage: document.getElementById('lastPage'),
   searchBar: document.getElementById('searchBar'),
-  searchResults: document.getElementById('searchResults'),
   downloadBtn: document.getElementById('downloadBtn'),
   openFullBtn: document.getElementById('openFullBtn'),
   loadingIndicator: document.getElementById('loadingIndicator'),
@@ -111,280 +94,112 @@ const elements = {
 // ============================================
 // INITIALIZATION
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Initializing Notes Viewer...');
-  
-  // Set current year
-  if (elements.currentYear) {
-    elements.currentYear.textContent = new Date().getFullYear();
-  }
-  
-  // Start matrix background
+document.addEventListener('DOMContentLoaded', () => {
+  if (elements.currentYear) elements.currentYear.textContent = new Date().getFullYear();
   initMatrixBackground();
-  
-  // Render courses
   renderCourses();
-  
-  // Setup event listeners
   setupEventListeners();
-  
-  console.log('Notes Viewer initialized successfully');
 });
 
-// ============================================
-// MATRIX BACKGROUND
-// ============================================
 function initMatrixBackground() {
   const canvas = document.getElementById('matrixCanvas');
   if (!canvas) return;
-  
   const ctx = canvas.getContext('2d');
-  let animationId = null;
   
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  
-  function drawMatrix() {
-    // Fade effect
+  const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Matrix characters
     ctx.fillStyle = '#0f0';
     ctx.font = '14px "Share Tech Mono"';
-    
-    // Draw random matrix characters
-    for (let i = 0; i < 100; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const char = String.fromCharCode(0x30a0 + Math.random() * 96);
-      ctx.fillText(char, x, y);
+    for (let i = 0; i < 50; i++) {
+      ctx.fillText(String.fromCharCode(0x30a0 + Math.random() * 96), Math.random() * canvas.width, Math.random() * canvas.height);
     }
-    
-    animationId = requestAnimationFrame(drawMatrix);
+    requestAnimationFrame(draw);
   }
-  
-  // Handle resize
-  window.addEventListener('resize', resizeCanvas);
-  
-  // Start animation
-  resizeCanvas();
-  drawMatrix();
-  
-  // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-  });
+  draw();
 }
 
 // ============================================
-// COURSE RENDERING
+// RENDERING & LOGIC
 // ============================================
 function renderCourses() {
-  if (!elements.coursesGrid) {
-    console.error('Courses grid element not found');
-    return;
-  }
-  
-  // Filter courses based on search
-  const filteredCourses = filterCourses();
-  
-  // Generate HTML
-  const coursesHTML = filteredCourses.map(course => `
+  const query = appState.searchQuery.toLowerCase();
+
+  const filtered = COURSES.filter(c =>
+    c.title.toLowerCase().includes(query) ||
+    c.subtitle.toLowerCase().includes(query)
+  );
+
+  elements.coursesGrid.innerHTML = filtered.map(course => `
     <div class="course-card" data-id="${course.id}" tabindex="0" role="button">
       <h3 class="course-title">${course.title}</h3>
       <p class="course-subtitle">${course.subtitle}</p>
-      <p class="course-description">${course.description}</p>
+      <p class="course-guidance">${course.guidance}</p>
       <div class="course-meta">
-        <span class="file-size" data-url="${course.pdfUrl}">Loading size...</span>
-        <span class="page-count">${course.pages} pages</span>
+        <span class="course-info">
+          ${course.size} — ${course.pages} pages — ${course.highlight}
+        </span>
       </div>
     </div>
   `).join('');
-  
-  elements.coursesGrid.innerHTML = coursesHTML;
-  
-  // Add click events to cards
+
+  // Add click & keyboard accessibility
   document.querySelectorAll('.course-card').forEach(card => {
-    card.addEventListener('click', function() {
-      const courseId = this.dataset.id;
-      const course = COURSES.find(c => c.id === courseId);
-      if (course) {
+    const course = COURSES.find(c => c.id === card.dataset.id);
+
+    // Click
+    card.addEventListener('click', () => {
+      if (course) loadPDF(course);
+    });
+
+    // Keyboard: Enter or Space
+    card.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && course) {
+        e.preventDefault();
         loadPDF(course);
       }
     });
-    
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const courseId = this.dataset.id;
-        const course = COURSES.find(c => c.id === courseId);
-        if (course) {
-          loadPDF(course);
-        }
-      }
-    });
-  });
-  
-  // Load file sizes
-  loadFileSizes();
-}
-
-function filterCourses() {
-  if (!appState.searchQuery.trim()) {
-    return COURSES;
-  }
-  
-  const query = appState.searchQuery.toLowerCase();
-  return COURSES.filter(course => {
-    return course.title.toLowerCase().includes(query) ||
-           course.subtitle.toLowerCase().includes(query) ||
-           course.description.toLowerCase().includes(query);
   });
 }
 
-// ============================================
-// FILE SIZE LOADING
-// ============================================
-async function loadFileSizes() {
-  const fileSizeElements = document.querySelectorAll('.file-size[data-url]');
-  
-  for (const element of fileSizeElements) {
-    const url = element.dataset.url;
-    element.classList.add('loading');
-    
-    try {
-      const size = await getFileSize(url);
-      animateFileSize(element, size);
-    } catch (error) {
-      console.warn('Failed to load file size for:', url);
-      element.textContent = 'Size unavailable';
-      element.classList.remove('loading');
-    }
-  }
-}
 
-async function getFileSize(url) {
-  try {
-    const response = await fetch(url, { method: 'HEAD' });
-    
-    if (response.ok) {
-      const contentLength = response.headers.get('content-length');
-      if (contentLength) {
-        return parseInt(contentLength);
-      }
-    }
-    
-    // Fallback to GET request
-    const fullResponse = await fetch(url);
-    const blob = await fullResponse.blob();
-    return blob.size;
-    
-  } catch (error) {
-    throw new Error(`Failed to fetch file size: ${error.message}`);
-  }
-}
-
-function animateFileSize(element, bytes) {
-  const duration = CONFIG.animationDuration;
-  const startTime = performance.now();
-  const targetMB = bytes / (1024 * 1024);
-  
-  function formatSize(mb) {
-    if (mb < 0.1) {
-      return (mb * 1024).toFixed(2) + ' KB';
-    } else if (mb > 1024) {
-      return (mb / 1024).toFixed(2) + ' GB';
-    }
-    return mb.toFixed(2) + ' MB';
-  }
-  
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    // Easing function
-    const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-    const currentSize = targetMB * easeOutCubic;
-    
-    element.textContent = formatSize(currentSize);
-    
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      element.textContent = formatSize(targetMB);
-      element.classList.remove('loading');
-    }
-  }
-  
-  requestAnimationFrame(update);
-}
-
-// ============================================
-// PDF LOADING
-// ============================================
 async function loadPDF(course) {
-  if (!course) return;
+  if (!course || appState.isLoading) return;
   
-  // Update state
   appState.currentCourse = course;
   appState.currentPage = 1;
   appState.isLoading = true;
-  appState.error = null;
-  
-  // Update UI
+
   showPDFViewer();
   showLoading();
   hideError();
-  
-  if (elements.pdfTitle) {
-    elements.pdfTitle.textContent = course.title;
-  }
-  
-  // Open Full PDF button
-  if (elements.openFullBtn) {
-    elements.openFullBtn.href = course.openUrl;
-    elements.openFullBtn.target = "_blank";
-  }
-  
-  // Download button
-  if (elements.downloadBtn) {
-    elements.downloadBtn.onclick = () => {
-      const a = document.createElement("a");
-      a.href = course.downloadUrl;
-      a.download = course.filename;
-      a.click();
-    };
-  }
-  
+
+  elements.pdfTitle.textContent = course.title;
+  elements.openFullBtn.href = course.pdfPath;
+  elements.downloadBtn.onclick = () => {
+    const a = document.createElement("a");
+    a.href = course.pdfPath;
+    a.download = course.filename;
+    a.click();
+  };
+
   try {
-    // Load PDF
-    const loadingTask = pdfjsLib.getDocument(course.pdfUrl);
+    // Instant loading from local path
+    const loadingTask = pdfjsLib.getDocument(course.pdfPath);
     const pdf = await loadingTask.promise;
     
     appState.currentPdf = pdf;
     appState.totalPages = pdf.numPages;
     
-    console.log(`PDF loaded: ${pdf.numPages} pages`);
-    
-    // Update page controls
     updatePageControls();
-    
-    // Render first page
-    await renderPage();
-    
-    // Update UI
+    await renderPage(); // Initial render is instant
     hideLoading();
-    
-    // Update active card
     updateActiveCard(course.id);
-    
   } catch (error) {
-    console.error('PDF loading error:', error);
     showPDFError(error);
   } finally {
     appState.isLoading = false;
@@ -392,273 +207,78 @@ async function loadPDF(course) {
 }
 
 async function renderPage() {
-  if (!appState.currentPdf || appState.currentPage < 1) {
-    throw new Error('No PDF loaded');
-  }
+  if (!appState.currentPdf) return;
   
   try {
     const page = await appState.currentPdf.getPage(appState.currentPage);
     const container = elements.pdfCanvas.parentElement;
-    
-    if (!container) {
-      throw new Error('PDF container not found');
-    }
-    
-    // Calculate dimensions
-    const A4_WIDTH = 595;
-    const containerWidth = container.clientWidth - 60;
-    const scale = Math.min((containerWidth / A4_WIDTH) * (appState.zoom / 100), 1.5);
-    
-    const viewport = page.getViewport({ scale });
-    
-    // Set canvas dimensions
     const canvas = elements.pdfCanvas;
     const ctx = canvas.getContext('2d');
     
-    // Handle high DPI
+    const viewport = page.getViewport({ scale: (container.clientWidth / page.getViewport({scale:1}).width) * 0.95 });
+    
     const dpr = window.devicePixelRatio || 1;
     canvas.width = viewport.width * dpr;
     canvas.height = viewport.height * dpr;
     canvas.style.width = `${viewport.width}px`;
     canvas.style.height = `${viewport.height}px`;
     
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     
-    // Render page
-    const renderContext = {
-      canvasContext: ctx,
-      viewport: viewport
-    };
-    
-    await page.render(renderContext).promise;
-    
+    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
   } catch (error) {
-    console.error('Error rendering page:', error);
-    throw error;
+    console.error('Render error:', error);
   }
-}
-
-// ============================================
-// UI UPDATES
-// ============================================
-function showPDFViewer() {
-  if (elements.pdfSection) {
-    elements.pdfSection.classList.add('active');
-    setTimeout(() => {
-      elements.pdfSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  }
-}
-
-function showLoading() {
-  if (elements.loadingIndicator) {
-    elements.loadingIndicator.hidden = false;
-  }
-  if (elements.pdfCanvas) {
-    elements.pdfCanvas.style.display = 'none';
-  }
-}
-
-function hideLoading() {
-  if (elements.loadingIndicator) {
-    elements.loadingIndicator.hidden = true;
-  }
-  if (elements.pdfCanvas) {
-    elements.pdfCanvas.style.display = 'block';
-  }
-}
-
-function showError(message) {
-  if (elements.errorIndicator && elements.errorMessage) {
-    elements.errorMessage.textContent = message;
-    elements.errorIndicator.hidden = false;
-  }
-  hideLoading();
-}
-
-function hideError() {
-  if (elements.errorIndicator) {
-    elements.errorIndicator.hidden = true;
-  }
-}
-
-function showPDFError(error) {
-  let errorMessage = 'Failed to load PDF. ';
-  
-  if (error.name === 'InvalidPDFException') {
-    errorMessage += 'The PDF file appears to be corrupted or invalid.';
-  } else if (error.message.includes('NetworkError')) {
-    errorMessage += 'Network error. Please check your internet connection.';
-  } else if (error.message.includes('CORS')) {
-    errorMessage += 'Cross-origin request blocked. The PDF may need to be hosted on the same domain.';
-  } else {
-    errorMessage += error.message || 'Unknown error occurred.';
-  }
-  
-  showError(errorMessage);
 }
 
 function updatePageControls() {
-  if (elements.pageNum) {
-    elements.pageNum.value = appState.currentPage;
-    elements.pageNum.max = appState.totalPages;
-  }
-  
-  if (elements.pageCount) {
-    elements.pageCount.textContent = appState.totalPages;
-  }
-  
-  // Update button states
-  const isFirstPage = appState.currentPage === 1;
-  const isLastPage = appState.currentPage === appState.totalPages;
-  
-  if (elements.firstPage) elements.firstPage.disabled = isFirstPage;
-  if (elements.prevPage) elements.prevPage.disabled = isFirstPage;
-  if (elements.nextPage) elements.nextPage.disabled = isLastPage;
-  if (elements.lastPage) elements.lastPage.disabled = isLastPage;
+  elements.pageNum.value = appState.currentPage;
+  elements.pageCount.textContent = appState.totalPages;
+  elements.prevPage.disabled = appState.currentPage <= 1;
+  elements.nextPage.disabled = appState.currentPage >= appState.totalPages;
 }
 
-function updateActiveCard(courseId) {
-  document.querySelectorAll('.course-card').forEach(card => {
-    card.classList.toggle('active', card.dataset.id === courseId);
-  });
-}
-
-function downloadPDF(course) {
-  if (!course || !course.pdfUrl) return;
-  
-  const a = document.createElement('a');
-  a.href = course.pdfUrl;
-  a.download = course.filename || 'document.pdf';
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+function goToPage(num) {
+  const newPage = Math.max(1, Math.min(appState.totalPages, num));
+  if (newPage !== appState.currentPage) {
+    appState.currentPage = newPage;
+    updatePageControls();
+    renderPage(); // Quick update
+  }
 }
 
 // ============================================
-// EVENT LISTENERS
+// UI HELPERS
 // ============================================
+function showPDFViewer() { 
+  elements.pdfSection.classList.add('active');
+  elements.pdfSection.scrollIntoView({ behavior: 'smooth' });
+}
+function showLoading() { elements.loadingIndicator.hidden = false; elements.pdfCanvas.style.opacity = '0'; }
+function hideLoading() { elements.loadingIndicator.hidden = true; elements.pdfCanvas.style.opacity = '1'; }
+function hideError() { elements.errorIndicator.hidden = true; }
+function updateActiveCard(id) {
+  document.querySelectorAll('.course-card').forEach(c => c.classList.toggle('active', c.dataset.id === id));
+}
+
+function showPDFError(error) {
+  elements.errorMessage.textContent = error.message;
+  elements.errorIndicator.hidden = false;
+  hideLoading();
+}
+
 function setupEventListeners() {
-  // Search
-  if (elements.searchBar) {
-    let searchTimeout;
-    elements.searchBar.addEventListener('input', (e) => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        appState.searchQuery = e.target.value.trim();
-        renderCourses();
-      }, CONFIG.debounceDelay);
-    });
-  }
-  
-  // Page navigation
-  if (elements.firstPage) {
-    elements.firstPage.addEventListener('click', () => goToPage(1));
-  }
-  
-  if (elements.prevPage) {
-    elements.prevPage.addEventListener('click', () => goToPage(appState.currentPage - 1));
-  }
-  
-  if (elements.nextPage) {
-    elements.nextPage.addEventListener('click', () => goToPage(appState.currentPage + 1));
-  }
-  
-  if (elements.lastPage) {
-    elements.lastPage.addEventListener('click', () => goToPage(appState.totalPages));
-  }
-  
-  // Page number input
-  if (elements.pageNum) {
-    elements.pageNum.addEventListener('change', (e) => {
-      const page = parseInt(e.target.value);
-      if (!isNaN(page)) {
-        goToPage(page);
-      }
-    });
-    
-    elements.pageNum.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const page = parseInt(e.target.value);
-        if (!isNaN(page)) {
-          goToPage(page);
-        }
-      }
-    });
-  }
-  
-  // Retry button
-  if (elements.retryBtn) {
-    elements.retryBtn.addEventListener('click', () => {
-      if (appState.currentCourse) {
-        loadPDF(appState.currentCourse);
-      }
-    });
-  }
-  
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    
-    if (appState.currentPdf) {
-      switch(e.key) {
-        case 'ArrowLeft':
-          if (appState.currentPage > 1) {
-            e.preventDefault();
-            goToPage(appState.currentPage - 1);
-          }
-          break;
-        case 'ArrowRight':
-          if (appState.currentPage < appState.totalPages) {
-            e.preventDefault();
-            goToPage(appState.currentPage + 1);
-          }
-          break;
-      }
-    }
+  elements.searchBar.addEventListener('input', (e) => {
+    appState.searchQuery = e.target.value;
+    renderCourses();
   });
-}
 
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-let renderTimeout;
-
-function goToPage(pageNumber) {
-  if (!appState.currentPdf) return;
+  elements.prevPage.addEventListener('click', () => goToPage(appState.currentPage - 1));
+  elements.nextPage.addEventListener('click', () => goToPage(appState.currentPage + 1));
+  elements.firstPage.addEventListener('click', () => goToPage(1));
+  elements.lastPage.addEventListener('click', () => goToPage(appState.totalPages));
   
-  const page = Math.max(1, Math.min(appState.totalPages, pageNumber));
-  if (page !== appState.currentPage) {
-    appState.currentPage = page;
-    debouncedRender();
-  }
+  elements.pageNum.addEventListener('change', (e) => goToPage(parseInt(e.target.value)));
+  
+  elements.retryBtn.addEventListener('click', () => loadPDF(appState.currentCourse));
 }
-
-function debouncedRender() {
-  clearTimeout(renderTimeout);
-  renderTimeout = setTimeout(() => {
-    renderPage().catch(error => {
-      console.error('Error in debounced render:', error);
-      showPDFError(error);
-    });
-  }, CONFIG.debounceDelay);
-}
-
-// ============================================
-// ERROR HANDLING
-// ============================================
-window.addEventListener('error', function(e) {
-  console.error('Global error:', e.error);
-});
-
-// Export for debugging
-window.NOTES_APP = {
-  state: appState,
-  courses: COURSES,
-  loadPDF: loadPDF
-};
-
-console.log('Notes.js loaded successfully');

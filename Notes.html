@@ -1,216 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Character Encoding & Viewport -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Mobile App Capable -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     
-    <!-- Title & SEO Meta Tags -->
     <title>Mustaqeem | Interactive Notes Viewer</title>
-    <meta name="description" content="Access and navigate through Muhammad Mustaqeem's A4 notes with an interactive viewer. Computer Science study notes for various subjects." />
-    <meta name="keywords" content="Mustaqeem, notes, computer science, study, A4 notes, mathematics, physics, chemistry, biology, CS notes" />
+    <meta name="description" content="Access and navigate through Muhammad Mustaqeem's A4 notes with an interactive viewer." />
     <meta name="author" content="Muhammad Mustaqeem" />
     
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Mustaqeem | Notes Viewer" />
-    <meta property="og:description" content="Explore and navigate through A4 notes of Muhammad Mustaqeem – Computer Science student." />
-    <meta property="og:image" content="https://mustaqeem.bytewisdom.tech/Pics/logo.png" />
-    <meta property="og:url" content="https://mustaqeem.bytewisdom.tech/Notes.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Mustaqeem Notes Viewer" />
-    
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="crWPtMh4NVKjUN4yjAYd-GX-n1tYEslLBQrxGU6-M6E" />
-    
-    <!-- Preconnect for External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-    
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     
-    <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     
-    <!-- Favicon -->
     <link rel="icon" href="Pics/logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="Pics/logo.png" />
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="Notes.css" />
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Notes Viewer",
-        "description": "An interactive A4 notes viewer for various subjects.",
         "applicationCategory": "EducationalApplication",
         "author": {
           "@type": "Person",
-          "name": "Muhammad Mustaqeem",
-          "url": "https://mustaqeem.bytewisdom.tech",
-          "jobTitle": "Computer Science Student & Developer"
+          "name": "Muhammad Mustaqeem"
         }
       }
     </script>
-    
-    <!-- Theme Color -->
     <meta name="theme-color" content="#0a0a0a">
   </head>
 
   <body>
-    <!-- Animated Matrix Background -->
     <canvas id="matrixCanvas" class="matrix-bg" aria-hidden="true"></canvas>
-
-    <!-- Skip to Main Content Link for Accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
     <div class="container">
-      <!-- Header -->
       <header class="header" role="banner">
         <h1 class="title">ALGORITHMIC INTELLIGENCE</h1>
         <div class="subtitle">CS Core Subjects & Mathematical Prerequisites</div>
         <div class="author">BY: COMPUTER SCIENCE DEPARTMENT • UET LAHORE</div>
       </header>
 
-      <!-- Main Content -->
       <main id="main-content" role="main">
-        <!-- Search -->
         <div class="controls">
-          <input 
-            type="text" 
-            id="searchBar" 
-            placeholder="SEARCH COURSES..." 
-            aria-label="Search courses by title, subtitle or filename"
-          />
-          <div id="searchResults" class="search-results" aria-live="polite" aria-atomic="true"></div>
+          <input type="text" id="searchBar" placeholder="SEARCH COURSES..." aria-label="Search courses" />
+          <div id="searchResults" class="search-results"></div>
         </div>
 
-        <!-- Courses Grid -->
-        <div class="courses-grid" id="coursesGrid">
-          <!-- Cards will be inserted here by JavaScript -->
-        </div>
+        <div class="courses-grid" id="coursesGrid"></div>
 
-        <!-- PDF Viewer -->
         <section class="pdf-section" id="pdfSection" aria-label="PDF Document Viewer">
           <div class="pdf-header">
             <h2 id="pdfTitle" tabindex="-1"></h2>
           </div>
 
           <div class="pdf-container">
-            <!-- Loading State -->
-            <div id="loadingIndicator" class="loading-indicator" role="alert" aria-live="assertive">
+            <div id="loadingIndicator" class="loading-indicator" role="alert" hidden>
               <div class="skeleton skeleton-title"></div>
               <div class="skeleton skeleton-content"></div>
             </div>
 
-            <!-- Error State -->
-            <div id="errorIndicator" class="error-indicator" role="alert" aria-live="assertive" hidden>
+            <div id="errorIndicator" class="error-indicator" role="alert" hidden>
               <div class="error-icon">⚠️</div>
               <h3>PDF Loading Failed</h3>
               <p id="errorMessage"></p>
               <button class="action-btn" id="retryBtn">Retry Loading</button>
             </div>
 
-            <!-- PDF Canvas -->
             <canvas id="pdfCanvas" aria-label="PDF Document"></canvas>
           </div>
 
           <div class="pdf-controls">
             <div class="page-nav">
               <div class="pdf-actions">
-                <button class="action-btn" id="downloadBtn" aria-label="Download current PDF">
+                <button class="action-btn" id="downloadBtn">
                   <span aria-hidden="true">⬇️</span> DOWNLOAD PDF
                 </button>
-                <a class="action-btn" id="openFullBtn" target="_blank" rel="noopener noreferrer" aria-label="Open PDF in new tab">
+                <a class="action-btn" id="openFullBtn" target="_blank" rel="noopener noreferrer">
                   <span aria-hidden="true">📖</span> OPEN FULL PDF
                 </a>
               </div>
-              <button class="action-btn" id="firstPage" aria-label="Go to first page">
-                <span aria-hidden="true">⏮</span> FIRST
-              </button>
-              <button class="action-btn" id="prevPage" aria-label="Go to previous page">
-                <span aria-hidden="true">◀</span> PREV
-              </button>
+              <button class="action-btn" id="firstPage">⏮ FIRST</button>
+              <button class="action-btn" id="prevPage">◀ PREV</button>
               <span class="page-info">
-                Page: 
-                <input 
-                  type="number" 
-                  id="pageNum" 
-                  class="page-input" 
-                  min="1" 
-                  aria-label="Current page number"
-                  aria-owns="pageCount"
-                /> 
-                of 
-                <span id="pageCount" aria-live="polite">0</span>
+                Page: <input type="number" id="pageNum" class="page-input" min="1" /> of <span id="pageCount">0</span>
               </span>
-              <button class="action-btn" id="nextPage" aria-label="Go to next page">
-                NEXT <span aria-hidden="true">▶</span>
-              </button>
-              <button class="action-btn" id="lastPage" aria-label="Go to last page">
-                LAST <span aria-hidden="true">⏭</span>
-              </button>
+              <button class="action-btn" id="nextPage">NEXT ▶</button>
+              <button class="action-btn" id="lastPage">LAST ⏭</button>
             </div>
           </div>
         </section>
       </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="professional-footer" role="contentinfo">
+    <footer class="professional-footer">
       <div class="footer-content">
-        <p class="main-line">
-          Crafted with <span class="heart" aria-label="love">❤️</span> by
-          <span class="author-name">Muhammad Mustaqeem</span>
-        </p>
-
-        <div class="portfolio-section">
-          <a href="index.html" class="portfolio-link" aria-label="Visit portfolio homepage">
-            <img
-              src="Pics/logo.png"
-              alt="Portfolio Logo - Return to homepage"
-              class="portfolio-icon"
-              width="30"
-              height="30"
-              loading="lazy"
-            />
-            View Portfolio
-          </a>
-        </div>
-
+        <p class="main-line">Crafted with <span class="heart">❤️</span> by <span class="author-name">Muhammad Mustaqeem</span></p>
         <div class="footer-signature">
           <span class="copyright">© <span id="currentYear"></span> All Rights Reserved</span>
         </div>
       </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="Notes.js"></script>
-    
-    <!-- Noscript fallback -->
-    <noscript>
-      <style>
-        .matrix-bg, .pdf-section, .controls { display: none; }
-        body::before {
-          content: "JavaScript is required for the Notes Viewer to function properly.";
-          display: block;
-          padding: 2rem;
-          text-align: center;
-          background: #ff5555;
-          color: white;
-          font-size: 1.2rem;
-        }
-      </style>
-    </noscript>
   </body>
 </html>
