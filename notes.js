@@ -11,47 +11,44 @@ const CONFIG = {
 pdfjsLib.GlobalWorkerOptions.workerSrc = CONFIG.pdfWorkerSrc;
 
 // ============================================
-// COURSE DATA (Using Local Paths for Speed/CORS)
+// COURSE DATA (Using GitHub Pages URLs)
 // ============================================
 const COURSES = [
   {
     id: "la",
     title: "LINEAR ALGEBRA",
     subtitle: "Systems of Linear Equations, Matrix Operations, Vector Spaces, Linear Transformations, Eigenvalues & Eigenvectors, Diagonalization, Applications in Engineering & CS",
-    pdfPath: "Academic_Notes/Linear_Algebra.pdf",
+    pdfPath: "https://mustaqeem-codes.github.io/Academic_Notes/Linear_Algebra.pdf",
     filename: "Linear_Algebra.pdf",
     pages: 115,
-    size: "24.7 MB",
+    size: "52.9 MB",
     highlight: "Comprehensive Linear Algebra Concepts for CS & Engineering",
     description: "Covers fundamental linear algebra topics including matrix operations, vector spaces, linear transformations, eigenvalues and eigenvectors, and their applications in engineering and computer science.",
-    color: "#00ffff",
-    guidance: "Click to preview, download, and explore course content"
+    color: "#00ffff"
   },
   {
     id: "aps",
     title: "APPLIED PROBABILITY & STATISTICS",
     subtitle: "Probability Theory, Random Variables, Distributions, Markov Chains, Statistical Models, Queueing Theory, CS Applications, Predictive Modeling",
-    pdfPath: "Academic_Notes/Applied_Probability_and_Statistics.pdf",
+    pdfPath: "https://mustaqeem-codes.github.io/Academic_Notes/Applied_Probability_and_Statistics.pdf",
     filename: "Applied_Probability_and_Statistics.pdf",
     pages: 89,
     size: "73.7 MB",
     highlight: "Applied Probability & Statistical Concepts for Data & CS",
     description: "Introduces probability theory, stochastic processes, and statistical modeling with practical applications in computer science, data analysis, and predictive modeling.",
-    color: "#00ffaa",
-    guidance: "Click to preview, download, and explore course content"
+    color: "#00ffaa"
   },
   {
     id: "dm",
     title: "DISCRETE MATHEMATICS",
     subtitle: "Logic, Set Theory, Combinatorics, Graph Theory, Boolean Algebra, Relations & Functions, Algorithms & Complexity, CS Applications",
-    pdfPath: "Academic_Notes/Discrete_Mathematics.pdf",
+    pdfPath: "https://mustaqeem-codes.github.io/Academic_Notes/Discrete_Mathematics.pdf",
     filename: "Discrete_Mathematics.pdf",
     pages: 92,
     size: "68.3 MB",
     highlight: "Key Discrete Math Concepts for Algorithms & Computer Science",
     description: "Covers key topics in discrete mathematics including propositional logic, set theory, combinatorial analysis, graph theory, and their applications in algorithms and computer science.",
-    color: "#9d00ff",
-    guidance: "Click to preview, download, and explore course content"
+    color: "#9d00ff"
   }
 ];
 
@@ -138,7 +135,6 @@ function renderCourses() {
     <div class="course-card" data-id="${course.id}" tabindex="0" role="button">
       <h3 class="course-title">${course.title}</h3>
       <p class="course-subtitle">${course.subtitle}</p>
-      <p class="course-guidance">${course.guidance}</p>
       <div class="course-meta">
         <span class="course-info">
           ${course.size} — ${course.pages} pages — ${course.highlight}
@@ -179,28 +175,44 @@ async function loadPDF(course) {
   hideError();
 
   elements.pdfTitle.textContent = course.title;
+  
+  // Fix: Set proper href and click handler for open button
   elements.openFullBtn.href = course.pdfPath;
+  elements.openFullBtn.onclick = (e) => {
+    e.preventDefault();
+    window.open(course.pdfPath, '_blank', 'noopener,noreferrer');
+  };
+  
+  // Fix: Download button with proper cleanup
   elements.downloadBtn.onclick = () => {
     const a = document.createElement("a");
     a.href = course.pdfPath;
     a.download = course.filename;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
   };
 
   try {
-    // Instant loading from local path
-    const loadingTask = pdfjsLib.getDocument(course.pdfPath);
+    // Use PDF.js with proper config for GitHub Pages
+    const loadingTask = pdfjsLib.getDocument({
+      url: course.pdfPath,
+      withCredentials: false
+    });
     const pdf = await loadingTask.promise;
     
     appState.currentPdf = pdf;
     appState.totalPages = pdf.numPages;
     
+    console.log(`✅ PDF loaded: ${pdf.numPages} pages`);
+    
     updatePageControls();
-    await renderPage(); // Initial render is instant
+    await renderPage();
     hideLoading();
     updateActiveCard(course.id);
   } catch (error) {
-    showPDFError(error);
+    console.error('PDF loading error:', error);
+    showPDFError(new Error(`Failed to load PDF. Please check: ${course.pdfPath}`));
   } finally {
     appState.isLoading = false;
   }
