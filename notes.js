@@ -25,12 +25,10 @@ const COURSES = [
     color: "#00ffff",
 
     // 👁️ Open in browser (NO download)
-    openUrl:
-      "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Linear%20Algebra%20.pdf",
+    openUrl: "https://raw.githubusercontent.com/<username>/Academic_Notes/main/Linear_Algebra.pdf",
 
-    // ⬇️ Force download
-    downloadUrl:
-      "https://github.com/Mustaqeem-Codes/Academic_Notes/blob/main/Linear%20Algebra%20.pdf?raw=1",
+    // Force download
+    downloadUrl: "https://github.com/<username>/Academic_Notes/blob/main/Linear_Algebra.pdf?raw=1",
 
     description:
       "Linear Transformations, Eigen Theory, Applications of Linear Algebra",
