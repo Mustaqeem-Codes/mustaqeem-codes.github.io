@@ -555,13 +555,20 @@ h3, h4, h5, h6 {
 }
 
 .text-animation {
-  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  /* font-size: clamp(1.2rem, 3.2vw, 1.6rem); */
   margin-bottom: 1.5rem;
+  font-size: 32px !important;
   color: var(--text-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
+  max-width: 95%;
+}
+@media (max-width: 768px) {
+  .text-animation {
+    font-size: 24px !important;
+    white-space: wrap;
+  }
 }
 
 .typing-text {
