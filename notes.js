@@ -20,35 +20,17 @@ const COURSES = [
     title: "LINEAR ALGEBRA",
     subtitle: "Systems of Linear Equations, Matrix Theory, Vector Spaces.",
     filename: "Linear_Algebra.pdf",
-    size: "24.7 MB",
+    size: "52.9 MB",
     color: "#00ffff",
 
     // Open in browser (direct PDF view)
-    openUrl: "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Linear_Algebra.pdf",
+     openUrl: "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Linear_Algebra.pdf",
 
-    // Force download
-    downloadUrl: "https://github.com/Mustaqeem-Codes/Academic_Notes/blob/main/Linear_Algebra.pdf?raw=1",
+    // ⬇️ Force download
+    downloadUrl: "https://github.com/Mustaqeem-Codes/Academic_Notes/raw/main/Linear_Algebra.pdf",
 
     description: "Linear Transformations, Eigen Theory, Applications of Linear Algebra",
     pages: 115
-  },
-
-  {
-    id: "dm",
-    title: "LOGIC GRIDS",
-    subtitle: "Discrete Mathematics & Graph Theory",
-    filename: "Discrete_Mathematics.pdf",
-    size: "18.3 MB",
-    color: "#9d00ff",
-
-    // Open in browser (direct PDF view)
-    openUrl: "./DM/Week-12.pdf",
-
-    // Force download
-    downloadUrl: "./DM/Week-12.pdf",
-
-    description: "Discrete mathematics topics including logic, set theory, combinatorics and graph theory.",
-    pages: 120
   },
 
   {
@@ -67,6 +49,22 @@ const COURSES = [
 
     description: "Probability theory, statistical models, and their applications in computer science.",
     pages: 210
+  },
+  {
+    id: "dm",
+    title: "DISCRETE MATHEMAICS",
+    subtitle: "Discrete Mathematics & Graph Theory",
+    filename: "Discrete_Mathematics.pdf",
+    size: "68.3 MB",
+    color: "#9d00ff",
+
+    // Open in browser (direct PDF view)
+    openUrl: "https://raw.githubusercontent.com/Mustaqeem-Codes/Academic_Notes/main/Discrete_Mathematics.pdf",
+
+    // ⬇️ Force download
+    downloadUrl: "https://github.com/Mustaqeem-Codes/Academic_Notes/raw/main/Discrete_Mathematics.pdf",
+    description: "Discrete mathematics topics including logic, set theory, combinatorics and graph theory.",
+    pages: 92
   }
 ];
 
