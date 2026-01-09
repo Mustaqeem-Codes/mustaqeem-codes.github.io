@@ -327,6 +327,21 @@ body {
   border-top: 1px solid var(--border-color);
 }
 
+.course-guidance {
+  color: var(--accent-cyan);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  margin-bottom: var(--space-md);
+  opacity: 0.8;
+}
+
+.course-info {
+  color: var(--accent-purple);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+
 .file-size {
   color: var(--accent-purple);
   font-size: var(--font-size-lg);
