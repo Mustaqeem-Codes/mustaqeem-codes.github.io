@@ -154,26 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
       header.classList.remove("scrolled");
     }
 
-    // Handle header show/hide on scroll direction
-    clearTimeout(scrollTimeout);
-
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      // Scrolling down
-      header.classList.add("hidden");
-    } else {
-      // Scrolling up
-      header.classList.remove("hidden");
-    }
-
-    lastScrollTop = scrollTop;
-
-    // Auto-hide header after stopping scrolling (mobile-friendly)
-    scrollTimeout = setTimeout(function () {
-      if (scrollTop > 100) {
-        header.classList.add("hidden");
-      }
-    }, 1500);
-
     // Update active nav link based on scroll position
     updateActiveNavLink();
   });
@@ -1357,4 +1337,109 @@ document.addEventListener("DOMContentLoaded", function () {
   // newCard.innerHTML = `...your card HTML...`;
   // document.querySelector('.projects-container').appendChild(newCard);
   // applyAnimationsToCards(document.querySelector('.projects-container'));
+});
+
+// ==================================== 3D Background & Animations ====================================
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if THREE is loaded
+  if (typeof THREE === 'undefined') return;
+
+  const container = document.getElementById('canvas-container');
+  if (!container) return;
+
+  // Scene Setup
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
+
+  // Particles (Digital Dust)
+  const particlesGeometry = new THREE.BufferGeometry();
+  const count = 5000;
+  const positions = new Float32Array(count * 3);
+
+  for(let i = 0; i < count * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 15;
+  }
+
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.015,
+      color: 0x00f3ff,
+      transparent: true,
+      opacity: 0.8
+  });
+  const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particleMesh);
+
+  // Central Hologram (A wireframe dodecahedron)
+  const geometry = new THREE.IcosahedronGeometry(2, 1);
+  const material = new THREE.MeshBasicMaterial({ 
+      color: 0x00f3ff, 
+      wireframe: true,
+      transparent: true,
+      opacity: 0.2
+  });
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
+
+  camera.position.z = 5;
+
+  // Mouse Movement Effect
+  let mouseX = 0;
+  let mouseY = 0;
+  window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+  });
+
+  // Animation Loop
+  function animate() {
+      requestAnimationFrame(animate);
+      
+      // Smooth Camera Follow
+      camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      particleMesh.rotation.y += 0.001;
+      sphere.rotation.x += 0.002;
+      
+      renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Handle Resize
+  window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // Scroll Animations with GSAP
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to(camera.position, {
+          z: 2,
+          scrollTrigger: {
+              trigger: "#education", // Mapped from #about in index2.html
+              start: "top bottom",
+              end: "top top",
+              scrub: 1
+          }
+      });
+
+      gsap.to(sphere.rotation, {
+          y: Math.PI * 2,
+          scrollTrigger: {
+              trigger: "body", // Mapped to body to cover full page scroll
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 2
+          }
+      });
+  }
 });

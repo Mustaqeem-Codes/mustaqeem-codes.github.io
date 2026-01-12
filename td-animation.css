@@ -1,0 +1,50 @@
+/* 3D Animation Background Styles - Prefixed to avoid conflicts */
+
+:root {
+    /* Prefixed variables to avoid conflicts with your existing ones */
+    --td-neon-cyan: #00f3ff;
+    --td-dark-bg: #050a0f;
+    --td-glass: rgba(0, 243, 255, 0.05);
+    --td-border: rgba(0, 243, 255, 0.2);
+}
+
+/* 3D Canvas Container */
+#td-canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind everything */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Fallback for browsers that don't support WebGL/3D */
+.no-webgl #td-canvas-container {
+    display: none;
+}
+
+.no-webgl body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color, #080808);
+    z-index: -1;
+}
+
+/* Performance optimization for mobile */
+@media (max-width: 768px) {
+    #td-canvas-container {
+        /* Reduce particle count will be handled in JS */
+    }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    #td-canvas-container {
+        opacity: 0.5;
+    }
+}

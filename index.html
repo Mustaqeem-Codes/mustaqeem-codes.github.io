@@ -78,6 +78,11 @@
     />
     <link rel="stylesheet" href="style.css" />
 
+    <!-- 3D Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <!-- Structured Data (JSON-LD: Person + Projects) -->
     <script type="application/ld+json">
       {
@@ -135,14 +140,20 @@
     </script>
 
     <!-- Add preload for critical images -->
-    <link rel="preload" as="image" href="Pics/logo.png">
-    <link rel="preload" as="image" href="Pics/Pic_Face.png">
+    <link rel="preload" as="image" href="Pics/logo.png" />
+    <link rel="preload" as="image" href="Pics/Pic_Face.png" />
+
+    <!-- 3D & Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
 
   <body>
     <div id="intro-overlay">
       <div id="intro-typing-text"></div>
     </div>
+    <div id="canvas-container"></div>
     <header id="main-header">
       <div class="header-container">
         <div class="logo">
@@ -305,68 +316,16 @@
           </div>
         </div>
 
-        <!-- Right Image Section - 3D Carousel -->
         <div class="home-right cinematic-hidden-right">
           <div class="carousel-container">
-            <!-- Slides Container -->
             <div class="carousel-slides">
-              <!-- Slide 1 -->
-              <div class="slide active" data-index="0">
-                <div class="slide-image-container">
-                  <!-- First image should load immediately -->
-                  <img
-                    src="Pics/Pic_Face.png"
-                    alt="Muhammad Mustaqeem"
-                    class="slide-image"
-                    loading="eager"
-                    fetchpriority="high"
-                  />
-                </div>
-              </div>
-
-              <!-- Slide 2 -->
-              <div class="slide" data-index="1">
-                <div class="slide-image-container">
-                  <!-- Rest can be lazy -->
-                  <img
-                    src="Pics/Pic_Coding.png"
-                    alt="Muhammad Mustaqeem"
-                    class="slide-image"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="slide" data-index="2">
-                <div class="slide-image-container">
-                  <img
-                    src="Pics/Pic_Library.png"
-                    alt="Muhammad Mustaqeem"
-                    class="slide-image"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              <div class="slide" data-index="3">
-                <div class="slide-image-container">
-                  <img
-                    src="Pics/Pic_Walk.png"
-                    alt="Muhammad Mustaqeem"
-                    class="slide-image"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              <div class="slide" data-index="4">
+              <div class="slide active" data-index="4">
                 <div class="slide-image-container">
                   <img
                     src="Pics/Pic_Sitting.png"
                     alt="Muhammad Mustaqeem"
                     class="slide-image"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -1088,7 +1047,6 @@
             ></a>
           </div>
 
-          
           <br />
         </div>
 
@@ -1113,14 +1071,14 @@
       // Safe version
       const homeSection = document.getElementById("home");
       if (homeSection) {
-          homeSection.classList.add("flow-active");
+        homeSection.classList.add("flow-active");
       }
 
       // For video with empty src
       if (data.videoSrc && data.videoSrc.trim() !== "") {
-          // Render video
+        // Render video
       } else {
-          // Render placeholder image
+        // Render placeholder image
       }
     </script>
   </body>
