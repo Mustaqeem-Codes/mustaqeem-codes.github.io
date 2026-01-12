@@ -1764,133 +1764,101 @@ section,
   justify-content: center;
 }
 
-/* Rotating circular border */
-.rotating-border {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
+:root {
+  --cyan-bright: #00ffff;
+  --cyan-mid: #00ced1;
+  --cyan-dark: #008b8b;
+  --glow-shadow: rgba(0, 255, 255, 0.5);
+}
+
+.download-icon-wrapper {
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.rotating-border {
+  width: 46px;
+  height: 46px;
   position: relative;
-  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Gemini-style animated gradient ring */
-.rotating-border::before {
-  content: "";
+/* The SVG Container - Constant rotation */
+.gemini-loader {
   position: absolute;
-  inset: -2px; /* Gemini's thinner border */
-  border-radius: 50%;
-
-  /* Gemini's exact gradient colors */
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    #4285f4 0deg,
-    /* Google Blue */ #34a853 90deg,
-    /* Google Green */ #fbbc05 180deg,
-    /* Google Yellow */ #ea4335 270deg,
-    /* Google Red */ #4285f4 360deg /* Back to Blue */
-  );
-
-  background-size: 400% 400%;
-  animation: geminiRotate 2s linear infinite;
-
-  /* Clean border-only effect */
-  -webkit-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 3px),
-      black calc(100% - 2px)
-    ),
-    linear-gradient(black, black);
-  -webkit-mask-composite: source-in;
-  mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 3px),
-      black calc(100% - 2px)
-    ),
-    linear-gradient(black, black);
-  mask-composite: intersect;
-
-  /* Subtle glow like Gemini */
-  filter: drop-shadow(0 0 2px rgba(66, 133, 244, 0.3));
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  animation: fullRotate 2s linear infinite;
+  filter: drop-shadow(0 0 5px var(--glow-shadow));
 }
 
-/* Inner circle with subtle shadow */
-.rotating-border::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Very subtle inner border */
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-  z-index: 0;
-}
-
-/* Download icon */
-.rotating-border i {
-  font-size: 1.4rem;
-  color: var(--main-color);
-  z-index: 1;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Hover: faster rotation and glow */
-.cv-portfolio-download-btn:hover .rotating-border::before {
-  animation-duration: 1s; /* Faster on hover */
-  filter: drop-shadow(0 0 4px rgba(66, 133, 244, 0.4))
-    drop-shadow(0 0 8px rgba(66, 133, 244, 0.2));
-}
-
-/* Hover: icon animation */
-.cv-portfolio-download-btn:hover .rotating-border i {
-  transform: scale(1.15);
-  color: #4285f4; /* Google Blue on hover */
-  text-shadow: 0 0 8px rgba(66, 133, 244, 0.4);
-}
-
-/* Active press effect */
-.cv-portfolio-download-btn:active .rotating-border {
-  transform: scale(0.92);
-  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+/* The Path - Expanding, Contracting, and Color Shifting */
+.loader-path {
+  stroke-linecap: round;
+  stroke-width: 3;
+  fill: none;
+  /* Chasing physics + Color cycle */
+  animation: 
+    geminiChaser 1.5s ease-in-out infinite,
+    cyanColorCycle 3s linear infinite;
 }
 
 /* ================================
-   GEMINI-STYLE KEYFRAMES
+   CYAN PHYSICS & COLOR LOGIC
    ================================ */
-@keyframes geminiRotate {
+
+/* Rotates the entire coordinate system */
+@keyframes fullRotate {
+  100% { transform: rotate(360deg); }
+}
+
+/* The "Chasing" segment logic (Expanding/Contracting) */
+@keyframes geminiChaser {
   0% {
-    transform: rotate(0deg);
-    background-position: 0% 0%;
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
   }
   50% {
-    background-position: 100% 100%;
+    /* Segment grows to 90px length */
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
   }
   100% {
-    transform: rotate(360deg);
-    background-position: 0% 0%;
+    /* Segment shrinks back to 1px while advancing */
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: -124;
   }
 }
 
-/* Smooth color shift within the gradient */
-@keyframes geminiColors {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
+/* Cycles through technical cyan shades */
+@keyframes cyanColorCycle {
+  0%, 100% { stroke: var(--cyan-bright); }
+  33% { stroke: var(--cyan-mid); }
+  66% { stroke: var(--cyan-dark); }
 }
 
-/* For modern browsers that support conic-gradient animations */
-@supports (background: conic-gradient(red, blue)) {
-  .rotating-border::before {
-    animation: geminiRotate 2s linear infinite, geminiColors 8s linear infinite;
-  }
+/* Inner Icon - Static or subtle pulse */
+.rotating-border i {
+  font-size: 1.2rem;
+  color: var(--cyan-bright);
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
+/* Hover: Turbo Mode */
+.cv-portfolio-download-btn:hover .gemini-loader {
+  animation-duration: 1s;
+  filter: drop-shadow(0 0 8px var(--cyan-bright));
+}
+
+.cv-portfolio-download-btn:hover .loader-path {
+  animation-duration: 0.75s; /* Faster chasing on hover */
+}
 /* ===== MINIMAL 3D CAROUSEL ===== */
 .carousel-container {
   position: relative;
@@ -2945,13 +2913,14 @@ section,
   /* min-height: 100vh; */
   position: relative;
   overflow-x: hidden;
-  /* background-color: var(--light-black); */
+  background-color: transparent;
 }
 
 .portfolio-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  background: transparent;
 }
 
 .portfolio-projects-section .portfolio-container h2 {
@@ -3206,7 +3175,7 @@ section,
   right: 0;
   bottom: 0;
   background: rgba(5, 10, 15, 0.95);
-  z-index: 9999;
+  z-index: 99999;
   display: none;
   backdrop-filter: blur(5px);
 }
@@ -3222,7 +3191,7 @@ section,
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
+  z-index: 100000;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -3245,7 +3214,7 @@ section,
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  z-index: 10001;
+  z-index: 100001;
 }
 
 .portfolio-close-expanded:hover {
@@ -3666,6 +3635,9 @@ section,
   .portfolio-collaborator {
     flex-direction: row;
     text-align: left;
+  }
+  .portfolio-container{
+    background: transparent;
   }
 }
 
@@ -4102,7 +4074,7 @@ section,
   }
 
   #projects {
-    background-color: var(--light-black);
+    background-color: transparent;
     height: auto;
   }
 

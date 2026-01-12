@@ -281,6 +281,16 @@
             >
               <div class="download-icon-wrapper">
                 <div class="rotating-border">
+                  <svg class="gemini-loader" viewBox="0 0 50 50">
+                    <circle
+                      class="loader-path"
+                      cx="25"
+                      cy="25"
+                      r="20"
+                      fill="none"
+                      stroke-width="3"
+                    ></circle>
+                  </svg>
                   <i class="fas fa-download"></i>
                 </div>
               </div>
@@ -742,31 +752,32 @@
         </div>
       </div>
 
-      <!-- Expanded View Overlay -->
-      <div
-        class="portfolio-expanded-overlay"
-        id="portfolio-expanded-overlay"
-      ></div>
-
-      <!-- Expanded Content Template (Dynamically Loaded) -->
-      <div
-        class="portfolio-expanded-container"
-        id="portfolio-expanded-container"
-        style="display: none"
-      >
-        <button
-          class="portfolio-close-expanded"
-          id="portfolio-close-expanded"
-          aria-label="Close expanded view"
-        >
-          &times;
-        </button>
-
-        <div class="portfolio-expanded-content" id="portfolio-expanded-content">
-          <!-- Content will be loaded here dynamically -->
-        </div>
-      </div>
     </section>
+
+    <!-- Expanded View Overlay (Outside section for proper z-index) -->
+    <div
+      class="portfolio-expanded-overlay"
+      id="portfolio-expanded-overlay"
+    ></div>
+
+    <!-- Expanded Content Template (Dynamically Loaded) -->
+    <div
+      class="portfolio-expanded-container"
+      id="portfolio-expanded-container"
+      style="display: none"
+    >
+      <button
+        class="portfolio-close-expanded"
+        id="portfolio-close-expanded"
+        aria-label="Close expanded view"
+      >
+        &times;
+      </button>
+
+      <div class="portfolio-expanded-content" id="portfolio-expanded-content">
+        <!-- Content will be loaded here dynamically -->
+      </div>
+    </div>
 
     <!--========================== Static Projects ======================================-->
     <section class="projects-section custom-projects-wrapper">
