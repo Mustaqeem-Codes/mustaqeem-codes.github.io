@@ -860,7 +860,7 @@ const portfolioState = {
     },
     3: {
       title: "Collaborative White Board",
-      videoSrc: "",
+      videoSrc: "Pics/Khush Naseeb.mp4",
       posterSrc: "Pics/Whiteboard-Poster.png",
       timeline: {
         start: "November 2025",
