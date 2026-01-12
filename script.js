@@ -1,79 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const nameToType = "MUHAMMAD MUSTAQEEM";
-    const typingElement = document.getElementById("intro-typing-text");
-    const logoText = document.querySelector(".logo-text");
-    const header = document.getElementById("main-header");
-    const homeSection = document.getElementById("home");
-    const introOverlay = document.getElementById("intro-overlay");
-    const navLinks = document.querySelectorAll(".nav-link");
+  const nameToType = "MUHAMMAD MUSTAQEEM";
+  const typingElement = document.getElementById("intro-typing-text");
+  const logoText = document.querySelector(".logo-text");
+  const header = document.getElementById("main-header");
+  const homeSection = document.getElementById("home");
+  const introOverlay = document.getElementById("intro-overlay");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-    let charIndex = 0;
+  let charIndex = 0;
 
-    function typeEffect() {
-        if (charIndex < nameToType.length) {
-            typingElement.textContent += nameToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 160); 
-        } else {
-            setTimeout(startIdentityFlow, 900);
-        }
+  function typeEffect() {
+    if (charIndex < nameToType.length) {
+      typingElement.textContent += nameToType.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeEffect, 160);
+    } else {
+      setTimeout(startIdentityFlow, 900);
     }
+  }
 
-    function startIdentityFlow() {
-        typingElement.style.borderRight = "none";
-        const startRect = typingElement.getBoundingClientRect();
-        const endRect = logoText.getBoundingClientRect();
+  function startIdentityFlow() {
+    typingElement.style.borderRight = "none";
+    const startRect = typingElement.getBoundingClientRect();
+    const endRect = logoText.getBoundingClientRect();
 
-        const moveX = endRect.left - startRect.left;
-        const moveY = endRect.top - startRect.top;
-        const scale = endRect.height / startRect.height;
+    const moveX = endRect.left - startRect.left;
+    const moveY = endRect.top - startRect.top;
+    const scale = endRect.height / startRect.height;
 
-        typingElement.style.transition = "transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)";
-        typingElement.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+    typingElement.style.transition =
+      "transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)";
+    typingElement.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
 
-        setTimeout(() => {
-            introOverlay.style.background = "transparent";
-            header.classList.add("flow-active");
-            homeSection.classList.add("flow-active"); // Make home section visible
-            
-            navLinks.forEach((link, index) => {
-                link.style.transitionDelay = `${index * 0.1}s`;
-            });
+    setTimeout(() => {
+      introOverlay.style.background = "transparent";
+      header.classList.add("flow-active");
+      homeSection.classList.add("flow-active"); // Make home section visible
 
-            // Trigger the Home Section Showcase
-            setTimeout(triggerHomeCinematic, 800);
-        }, 300);
+      navLinks.forEach((link, index) => {
+        link.style.transitionDelay = `${index * 0.1}s`;
+      });
 
-        setTimeout(() => {
-            logoText.classList.remove("anchor-hidden");
-            typingElement.style.opacity = "0";
-            introOverlay.style.display = "none";
-        }, 1300);
-    }
+      // Trigger the Home Section Showcase
+      setTimeout(triggerHomeCinematic, 800);
+    }, 300);
 
-    function triggerHomeCinematic() {
-        // Step 1: Slide Left and Right content in
-        homeSection.classList.add("content-visible");
+    setTimeout(() => {
+      logoText.classList.remove("anchor-hidden");
+      typingElement.style.opacity = "0";
+      introOverlay.style.display = "none";
+    }, 1300);
+  }
 
-        // Step 2: Stagger the bottom elements for smoothness
-        const bottomSelectors = [
-            ".centered-stats",
-            ".centered-icons",
-            ".cv-buttons-wrapper",
-            ".social2"
-        ];
+  function triggerHomeCinematic() {
+    // Step 1: Slide Left and Right content in
+    homeSection.classList.add("content-visible");
 
-        bottomSelectors.forEach((selector, index) => {
-            const el = document.querySelector(selector);
-            if (el) {
-                // They start sliding up after the side-panels are halfway in
-                el.style.transitionDelay = `${0.4 + (index * 0.15)}s`;
-            }
-        });
-    }
+    // Step 2: Stagger the bottom elements for smoothness
+    const bottomSelectors = [
+      ".centered-stats",
+      ".centered-icons",
+      ".cv-buttons-wrapper",
+      ".social2",
+    ];
 
-    logoText.classList.add("anchor-hidden");
-    typeEffect();
+    bottomSelectors.forEach((selector, index) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        // They start sliding up after the side-panels are halfway in
+        el.style.transitionDelay = `${0.4 + index * 0.15}s`;
+      }
+    });
+  }
+
+  logoText.classList.add("anchor-hidden");
+  typeEffect();
 });
 
 //================== Header ==================
@@ -504,16 +505,19 @@ function initEducationObserver() {
   const educationSection = document.getElementById("education");
   if (!educationSection) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Trigger the cinematic slide-in
-        educationSection.classList.add("active");
-        // Stop observing once triggered
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 }); // Trigger when 20% of section is visible
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Trigger the cinematic slide-in
+          educationSection.classList.add("active");
+          // Stop observing once triggered
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  ); // Trigger when 20% of section is visible
 
   observer.observe(educationSection);
 }
@@ -801,11 +805,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==================================== Portfolio State Management ====================================
 const portfolioState = {
   activeProjectId: null,
-  expandedVideo: null, // Track expanded video element
+  expandedVideo: null,
   expandedData: {
     1: {
-      title: "DSA Visualization Website",
+      title: "DSA Insight Website",
       videoSrc: "Pics/DSA-Web.mp4",
+      posterSrc: "Pics/DSA-Poster.png", // ADDED POSTER PATH
       timeline: {
         start: "November 2025",
         end: "January 2026",
@@ -813,15 +818,6 @@ const portfolioState = {
       description:
         "A dynamic React-based web application that brings data structures and algorithms to life through interactive visual animations. Users can explore how core structures such as stacks, queues, linked lists, trees, and graphs behave step-by-step, with intuitive controls to play, pause, and step through operations. This tool transforms abstract concepts into visual learning experiences, making it easier to grasp algorithm execution flow and state changes in real time.",
       collaborators: [
-        {
-          name: "M Zeewaqar",
-          avatar: "Pics/Zeewaqar.png",
-          link: "https://www.linkedin.com/in/m-zeewaqar-58786636a/",
-          commentShort:
-            "Contributed to algorithm visualization logic and React component architecture.",
-          commentFull:
-            "Led the development of algorithm visualization modules, implementing interactive step-by-step controls and real-time state updates. Architected the React component structure for maintainability and performance.",
-        },
         {
           name: "Abdullah Umar",
           avatar: "Pics/Abdullah_Umar.png",
@@ -835,7 +831,8 @@ const portfolioState = {
     },
     2: {
       title: "Flood Aid Website",
-      videoSrc: "",
+      videoSrc: "Pics/Khush Naseeb.mp4",
+      posterSrc: "Pics/Flood-Aid-Poster.png", // ADDED POSTER PATH
       timeline: {
         start: "November 2025",
         end: "January 2026",
@@ -861,13 +858,41 @@ const portfolioState = {
         },
       ],
     },
+    3: {
+      title: "Collaborative White Board",
+      videoSrc: "",
+      posterSrc: "Pics/Whiteboard-Poster.png",
+      timeline: {
+        start: "November 2025",
+        end: "January 2026",
+      },
+      description:
+        "A Windows desktop application built with C# and .NET Framework, designed for real-time collaborative whiteboarding. Users can draw, write, and share ideas simultaneously, making it ideal for team collaboration, brainstorming sessions, and interactive presentations. The system supports multiple users, session management, and intuitive drawing tools, providing a seamless and responsive experience on Windows platforms.",
+      collaborators: [
+        {
+          name: "Adil Ur Rehman",
+          avatar: "Pics/Adil.png",
+          link: "https://www.linkedin.com/in/adilurrehmanofficial/",
+          commentShort: "Frontend development and UI architecture.",
+          commentFull:
+            "Developed the Windows Forms frontend with focus on usability and responsiveness: implemented drawing tools, real-time collaboration features, session management, and an intuitive user interface. Ensured smooth performance, keyboard shortcuts, and an accessible, user-friendly experience for desktop users.",
+        },
+        {
+          name: "Farhan Shakeel",
+          avatar: "Pics/Farhan_Shakeel.png",
+          link: "https://www.linkedin.com/in/farhan-shakeel-47b505349/",
+          commentShort: "Backend logic and application architecture.",
+          commentFull:
+            "Implemented the C# backend logic to handle real-time updates, user sessions, and data synchronization across multiple clients. Designed an efficient architecture using .NET Framework for performance, stability, and scalability of the collaborative features.",
+        },
+      ],
+    },
   },
 };
 
 // ==================================== Core Functions ====================================
 function portfolioToggleDetails(projectId) {
   const isOpening = portfolioState.activeProjectId !== projectId;
-
   if (isOpening) {
     openExpandedView(projectId);
   } else {
@@ -876,24 +901,19 @@ function portfolioToggleDetails(projectId) {
 }
 
 function openExpandedView(projectId) {
-  // Pause all videos in grid FIRST
+  // Pause grid videos
   document.querySelectorAll(".portfolio-project-video").forEach((video) => {
     video.pause();
-    video.currentTime = 0; // Reset to start
   });
 
-  // Also pause any previously expanded video
   if (portfolioState.expandedVideo) {
     portfolioState.expandedVideo.pause();
-    portfolioState.expandedVideo.currentTime = 0;
     portfolioState.expandedVideo = null;
   }
 
-  // Update grid state
   const grid = document.getElementById("portfolio-project-grid");
   grid.classList.add("portfolio-expanded");
 
-  // Hide all cards except the active one
   document.querySelectorAll(".portfolio-project-card").forEach((card) => {
     if (card.dataset.portfolioProjectId !== projectId) {
       card.classList.add("portfolio-inactive");
@@ -902,62 +922,37 @@ function openExpandedView(projectId) {
     }
   });
 
-  // Update state
   portfolioState.activeProjectId = projectId;
-
-  // Load and show expanded content
   loadExpandedContent(projectId);
 
-  // Show overlay and container
   document.getElementById("portfolio-expanded-overlay").classList.add("active");
   document.getElementById("portfolio-expanded-container").style.display =
     "flex";
-
-  // Prevent body scroll
   document.body.style.overflow = "hidden";
-
-  // REMOVE THIS ENTIRE BLOCK - No need to scroll to top
-  // if (window.innerWidth <= 900) {
-  //   window.scrollTo(0, 0);
-  // }
 }
 
 function closeExpandedView() {
-  // CRITICAL FIX: Stop expanded video audio BEFORE cleaning up UI
   if (portfolioState.expandedVideo) {
     portfolioState.expandedVideo.pause();
-    portfolioState.expandedVideo.currentTime = 0;
-    portfolioState.expandedVideo.muted = true; // Also mute it
     portfolioState.expandedVideo = null;
   }
 
-  // Reset grid state
   const grid = document.getElementById("portfolio-project-grid");
   grid.classList.remove("portfolio-expanded");
 
-  // Reset all cards
   document.querySelectorAll(".portfolio-project-card").forEach((card) => {
     card.classList.remove("portfolio-active", "portfolio-inactive");
   });
 
-  // Clear expanded content
-  const contentDiv = document.getElementById("portfolio-expanded-content");
-  contentDiv.innerHTML = "";
-
-  // Update state
+  document.getElementById("portfolio-expanded-content").innerHTML = "";
   portfolioState.activeProjectId = null;
-
-  // Hide overlay and container
   document
     .getElementById("portfolio-expanded-overlay")
     .classList.remove("active");
   document.getElementById("portfolio-expanded-container").style.display =
     "none";
-
-  // Allow body scroll
   document.body.style.overflow = "";
 
-  // Resume video playback in visible cards (muted)
   restartGridVideos();
 }
 
@@ -967,22 +962,19 @@ function loadExpandedContent(projectId) {
 
   const contentDiv = document.getElementById("portfolio-expanded-content");
 
-  // Create HTML structure
   contentDiv.innerHTML = `
             <div class="portfolio-expanded-left">
                 <h2>${data.title}</h2>
                 <div class="portfolio-expanded-video-container">
-                    <video class="portfolio-expanded-video" autoplay loop playsinline>
+                    <video class="portfolio-expanded-video" autoplay loop playsinline poster="${
+                      data.posterSrc
+                    }">
                         <source src="${data.videoSrc}" type="video/mp4">
                     </video>
                 </div>
                 ${
                   window.innerWidth > 900
-                    ? `
-                    <div class="portfolio-vertical-separator">
-                        <div class="portfolio-separator-dot"></div>
-                    </div>
-                `
+                    ? `<div class="portfolio-vertical-separator"><div class="portfolio-separator-dot"></div></div>`
                     : ""
                 }
             </div>
@@ -994,151 +986,88 @@ function loadExpandedContent(projectId) {
                     <div class="portfolio-timeline-dot"></div>
                     <span class="portfolio-end-date">${data.timeline.end}</span>
                 </div>
-                
                 <p class="portfolio-project-description">${data.description}</p>
-                
                 ${
                   data.collaborators.length > 0
                     ? `
                     <div class="portfolio-collaborators-section">
-                        <h3 class="portfolio-collaborators-title">
-                            <i class="fas fa-users"></i> Collaborators
-                        </h3>
+                        <h3 class="portfolio-collaborators-title"><i class="fas fa-users"></i> Collaborators</h3>
                         ${data.collaborators
                           .map(
-                            (collaborator, index) => `
+                            (collab, i) => `
                             <div class="portfolio-collaborator">
                                 <a href="${
-                                  collaborator.link
+                                  collab.link
                                 }" target="_blank" class="portfolio-collaborator-avatar">
                                     <img src="${
-                                      collaborator.avatar ||
+                                      collab.avatar ||
                                       "https://via.placeholder.com/60"
-                                    }" alt="${collaborator.name}">
+                                    }" alt="${collab.name}">
                                 </a>
                                 <div class="portfolio-collaborator-info">
                                     <div class="portfolio-collaborator-name">${
-                                      collaborator.name
+                                      collab.name
                                     }</div>
-                                    <div class="portfolio-collaborator-comment portfolio-collapsed" 
-                                         id="portfolio-comment-${projectId}-${index}">
-                                        "${collaborator.commentShort}"
-                                    </div>
-                                    <div class="portfolio-collaborator-comment portfolio-full" 
-                                         id="portfolio-full-comment-${projectId}-${index}" 
-                                         style="display: none">
-                                        "${collaborator.commentFull}"
-                                    </div>
-                                    <button class="portfolio-read-more-btn" 
-                                            onclick="portfolioToggleComment('${projectId}-${index}')">
-                                        Read more
-                                    </button>
+                                    <div class="portfolio-collaborator-comment portfolio-collapsed" id="portfolio-comment-${projectId}-${i}">"${
+                              collab.commentShort
+                            }"</div>
+                                    <div class="portfolio-collaborator-comment portfolio-full" id="portfolio-full-comment-${projectId}-${i}" style="display: none">"${
+                              collab.commentFull
+                            }"</div>
+                                    <button class="portfolio-read-more-btn" onclick="portfolioToggleComment('${projectId}-${i}')">Read more</button>
                                 </div>
                             </div>
                         `
                           )
                           .join("")}
-                    </div>
-                `
+                    </div>`
                     : ""
                 }
             </div>
         `;
 
-  // Initialize video - Start WITH sound in expanded view
   const video = contentDiv.querySelector(".portfolio-expanded-video");
   if (video) {
-    // Store reference to expanded video
     portfolioState.expandedVideo = video;
-
-    // Start with sound (unmuted) for expanded view
-    video.muted = false;
-
-    // Add mute toggle on click
-    video.addEventListener("click", function (e) {
-      e.stopPropagation(); // Prevent event bubbling
-      this.muted = !this.muted;
-
-      // Add visual feedback when unmuted
-      if (this.muted) {
-        this.style.boxShadow = "none";
-        this.title = "Click to unmute";
-      } else {
-        this.style.boxShadow = "0 0 20px rgba(0, 255, 238, 0.5)";
-        this.title = "Click to mute";
-      }
+    video.muted = false; // Expanded view plays with audio
+    video.play().catch(() => {
+      video.muted = true; // Fallback if browser blocks sound
+      video.play();
     });
-
-    // Set initial title and visual feedback
-    video.title = "Click to mute";
-    video.style.boxShadow = "0 0 20px rgba(0, 255, 238, 0.5)";
-
-    // Play with sound
-    video.play().catch((e) => {
-      console.log("Video autoplay prevented:", e);
-      // If autoplay fails due to sound policy, set to muted and try again
-      video.muted = true;
-      video.title = "Click to unmute";
-      video.style.boxShadow = "none";
-      video.play().catch((e2) => console.log("Muted play also failed:", e2));
-    });
-
-    // Also pause video when user closes via overlay click
-    video.addEventListener(
-      "click",
-      function (e) {
-        e.stopPropagation();
-      },
-      true
-    );
   }
 }
 
 function portfolioToggleComment(commentId) {
-  const shortComment = document.getElementById(
-    `portfolio-comment-${commentId}`
-  );
-  const fullComment = document.getElementById(
-    `portfolio-full-comment-${commentId}`
-  );
-  const button = document.querySelector(`button[onclick*="${commentId}"]`);
-
-  if (!shortComment || !fullComment || !button) return;
-
-  if (fullComment.style.display === "none") {
-    shortComment.style.display = "none";
-    fullComment.style.display = "block";
-    button.textContent = "Show less";
+  const short = document.getElementById(`portfolio-comment-${commentId}`);
+  const full = document.getElementById(`portfolio-full-comment-${commentId}`);
+  const btn = document.querySelector(`button[onclick*="${commentId}"]`);
+  if (full.style.display === "none") {
+    short.style.display = "none";
+    full.style.display = "block";
+    btn.textContent = "Show less";
   } else {
-    shortComment.style.display = "block";
-    fullComment.style.display = "none";
-    button.textContent = "Read more";
+    short.style.display = "block";
+    full.style.display = "none";
+    btn.textContent = "Read more";
   }
 }
 
 function restartGridVideos() {
-  // Clear any existing observers
-  if (window.portfolioVideoObserver) {
-    window.portfolioVideoObserver.disconnect();
-  }
+  if (window.portfolioVideoObserver) window.portfolioVideoObserver.disconnect();
 
-  // Create new observer for grid videos
   window.portfolioVideoObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         const video = entry.target.querySelector(".portfolio-project-video");
         if (video) {
-          // Reset video to muted for grid view
           video.muted = true;
 
-          if (entry.isIntersecting) {
-            video.play().catch((e) => {
-              // Autoplay was prevented
-              console.log("Grid video autoplay prevented");
-            });
+          // ONLY play if screen is wider than 600px
+          if (entry.isIntersecting && window.innerWidth > 600) {
+            video.play().catch(() => console.log("Grid playback blocked"));
           } else {
             video.pause();
-            video.currentTime = 0; // Reset to start
+            video.currentTime = 0;
           }
         }
       });
@@ -1146,9 +1075,9 @@ function restartGridVideos() {
     { threshold: 0.5 }
   );
 
-  document.querySelectorAll(".portfolio-project-card").forEach((card) => {
-    window.portfolioVideoObserver.observe(card);
-  });
+  document
+    .querySelectorAll(".portfolio-project-card")
+    .forEach((card) => window.portfolioVideoObserver.observe(card));
 }
 
 // ==================================== Event Listeners ====================================
@@ -1342,14 +1271,19 @@ document.addEventListener("DOMContentLoaded", function () {
 // ==================================== 3D Background & Animations ====================================
 document.addEventListener("DOMContentLoaded", () => {
   // Check if THREE is loaded
-  if (typeof THREE === 'undefined') return;
+  if (typeof THREE === "undefined") return;
 
-  const container = document.getElementById('canvas-container');
+  const container = document.getElementById("canvas-container");
   if (!container) return;
 
   // Scene Setup
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
@@ -1359,27 +1293,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const count = 5000;
   const positions = new Float32Array(count * 3);
 
-  for(let i = 0; i < count * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 15;
+  for (let i = 0; i < count * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 15;
   }
 
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  particlesGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(positions, 3)
+  );
   const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.015,
-      color: 0x00f3ff,
-      transparent: true,
-      opacity: 0.8
+    size: 0.015,
+    color: 0x00f3ff,
+    transparent: true,
+    opacity: 0.8,
   });
   const particleMesh = new THREE.Points(particlesGeometry, particlesMaterial);
   scene.add(particleMesh);
 
   // Central Hologram (A wireframe dodecahedron)
   const geometry = new THREE.IcosahedronGeometry(2, 1);
-  const material = new THREE.MeshBasicMaterial({ 
-      color: 0x00f3ff, 
-      wireframe: true,
-      transparent: true,
-      opacity: 0.2
+  const material = new THREE.MeshBasicMaterial({
+    color: 0x00f3ff,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.2,
   });
   const sphere = new THREE.Mesh(geometry, material);
   scene.add(sphere);
@@ -1389,57 +1326,57 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mouse Movement Effect
   let mouseX = 0;
   let mouseY = 0;
-  window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) - 0.5;
-      mouseY = (e.clientY / window.innerHeight) - 0.5;
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX / window.innerWidth - 0.5;
+    mouseY = e.clientY / window.innerHeight - 0.5;
   });
 
   // Animation Loop
   function animate() {
-      requestAnimationFrame(animate);
-      
-      // Smooth Camera Follow
-      camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
+    requestAnimationFrame(animate);
 
-      particleMesh.rotation.y += 0.001;
-      sphere.rotation.x += 0.002;
-      
-      renderer.render(scene, camera);
+    // Smooth Camera Follow
+    camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+    camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+
+    particleMesh.rotation.y += 0.001;
+    sphere.rotation.x += 0.002;
+
+    renderer.render(scene, camera);
   }
 
   animate();
 
   // Handle Resize
-  window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
   // Scroll Animations with GSAP
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
 
-      gsap.to(camera.position, {
-          z: 2,
-          scrollTrigger: {
-              trigger: "#education", // Mapped from #about in index2.html
-              start: "top bottom",
-              end: "top top",
-              scrub: 1
-          }
-      });
+    gsap.to(camera.position, {
+      z: 2,
+      scrollTrigger: {
+        trigger: "#education", // Mapped from #about in index2.html
+        start: "top bottom",
+        end: "top top",
+        scrub: 1,
+      },
+    });
 
-      gsap.to(sphere.rotation, {
-          y: Math.PI * 2,
-          scrollTrigger: {
-              trigger: "body", // Mapped to body to cover full page scroll
-              start: "top top",
-              end: "bottom bottom",
-              scrub: 2
-          }
-      });
+    gsap.to(sphere.rotation, {
+      y: Math.PI * 2,
+      scrollTrigger: {
+        trigger: "body", // Mapped to body to cover full page scroll
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 2,
+      },
+    });
   }
 });
