@@ -1,6 +1,6 @@
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 /* Reset and Base */
 * {
   margin: 0;
@@ -59,7 +59,7 @@ body {
 
 :root {
   /* Fonts */
-  --font-heading: 'Orbitron', sans-serif;
+  --font-heading: "Orbitron", sans-serif;
 
   /* Theme Colors from style2.css */
   --neon-cyan: #00f3ff;
@@ -121,7 +121,12 @@ body {
 /* (duplicate reset removed to keep stylesheet concise) */
 
 /* Global Heading Styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   letter-spacing: 0.05em;
   line-height: 1.2;
@@ -136,7 +141,10 @@ h2 {
   font-weight: 800;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
 }
 
@@ -201,23 +209,23 @@ h3, h4, h5, h6 {
 #intro-overlay,
 section,
 .demo-section {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* Ensure header stays above 3D background */
 #main-header {
-    z-index: 1000;
+  z-index: 1000;
 }
 
 /* Intro overlay should be above 3D background but below header */
 #intro-overlay {
-    z-index: 500;
+  z-index: 500;
 }
 
 /* Fallback for no 3D support */
 .no-webgl body {
-    background: var(--bg-color) !important;
+  background: var(--bg-color) !important;
 }
 
 /* Content should receive pointer events */
@@ -225,7 +233,7 @@ section,
 section,
 .demo-section,
 #intro-overlay {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
 /* Header when scrolled */
@@ -588,9 +596,8 @@ section,
   opacity: 0 !important;
   transform: translateX(-150px) !important;
   filter: blur(15px);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 1.2s ease, 
-              filter 1.2s ease;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease,
+    filter 1.2s ease;
 }
 
 .home-left h3 {
@@ -858,17 +865,15 @@ section,
   opacity: 0 !important;
   transform: translateX(150px) !important;
   filter: blur(15px);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 1.2s ease, 
-              filter 1.2s ease;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease,
+    filter 1.2s ease;
 }
 
 /* Bottom-up elements */
 .cinematic-hidden-bottom {
   opacity: 0 !important;
   transform: translateY(100px) !important;
-  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 1.4s ease;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.4s ease;
 }
 
 /* --- THE TRIGGER (Lens Effect Activation) --- */
@@ -977,6 +982,86 @@ section,
   }
   100% {
     transform: translateX(100%) translateY(100%) rotate(30deg);
+  }
+}
+
+/* Container provides the 3D depth */
+.carousel-container {
+  width: 320px;
+  height: 450px;
+  perspective: 1500px; /* Essential for 3D effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The actual "Top" that spins */
+.spinning-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  /* 3s spin + 2s show = 5s per side. 10s total for full loop */
+  animation: top-wood-spin 10s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back of the image when flipped */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Position the back image behind the front */
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ANIMATION KEYFRAMES
+   0-30%: Spin 180 degrees (3 seconds)
+   30-50%: Stay at 180 degrees (2 seconds)
+   50-80%: Spin back to 360/0 degrees (3 seconds)
+   80-100%: Stay at 0 degrees (2 seconds)
+*/
+@keyframes top-wood-spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  30% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  80% {
+    transform: rotateY(360deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Optional: Slight vertical "wobble" like a real spinning top */
+.carousel-container {
+  animation: top-wobble 4s infinite ease-in-out;
+}
+
+@keyframes top-wobble {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(2deg);
   }
 }
 
@@ -1803,8 +1888,7 @@ section,
   stroke-width: 3;
   fill: none;
   /* Chasing physics + Color cycle */
-  animation: 
-    geminiChaser 1.5s ease-in-out infinite,
+  animation: geminiChaser 1.5s ease-in-out infinite,
     cyanColorCycle 3s linear infinite;
 }
 
@@ -1814,7 +1898,9 @@ section,
 
 /* Rotates the entire coordinate system */
 @keyframes fullRotate {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* The "Chasing" segment logic (Expanding/Contracting) */
@@ -1837,9 +1923,16 @@ section,
 
 /* Cycles through technical cyan shades */
 @keyframes cyanColorCycle {
-  0%, 100% { stroke: var(--cyan-bright); }
-  33% { stroke: var(--cyan-mid); }
-  66% { stroke: var(--cyan-dark); }
+  0%,
+  100% {
+    stroke: var(--cyan-bright);
+  }
+  33% {
+    stroke: var(--cyan-mid);
+  }
+  66% {
+    stroke: var(--cyan-dark);
+  }
 }
 
 /* Inner Icon - Static or subtle pulse */
@@ -1885,18 +1978,21 @@ section,
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   /* --- FIX 1: Strict Hidden State --- */
   opacity: 0;
   visibility: hidden; /* This prevents the "ghosting" bleed-through */
   z-index: 1;
-  
+
   /* --- FIX 2: Prevent 3D Ghosting --- */
-  backface-visibility: hidden; 
-  background-color: var(--light-black); /* Matches your site bg to block light */
-  
+  backface-visibility: hidden;
+  background-color: var(
+    --light-black
+  ); /* Matches your site bg to block light */
+
   transform: translateX(35px) rotateY(-15deg) scale(0.9);
-  transition: opacity 0.8s ease, visibility 0.8s, transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity 0.8s ease, visibility 0.8s,
+    transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
   transform-style: preserve-3d;
   border-radius: 8px;
   overflow: hidden;
@@ -1908,7 +2004,7 @@ section,
   opacity: 1 !important;
   visibility: visible;
   z-index: 10; /* Bring it far above the "ghost" slides */
-  
+
   background-color: #000; /* Ensures 100% opacity even if image has light spots */
   transform: translateX(0) rotateY(0deg) scale(1);
   border-color: rgba(0, 255, 238, 0.4);
@@ -1984,7 +2080,7 @@ section,
 @media (max-width: 576px) {
   .carousel-container {
     max-width: 250px;
-    max-height: 340px;
+    max-height: 300px;
   }
 }
 
@@ -2037,7 +2133,7 @@ section,
   align-items: center;
   z-index: 9999;
   /* 1. KEY FOR 3D: Adds depth to the container */
-  perspective: 1000px; 
+  perspective: 1000px;
   transform-style: preserve-3d;
   overflow: hidden;
 }
@@ -2049,10 +2145,12 @@ section,
   left: 0;
   width: 100%;
   height: 30%;
-  background: linear-gradient(to top, 
-    rgba(0, 255, 255, 0.15) 0%, 
+  background: linear-gradient(
+    to top,
+    rgba(0, 255, 255, 0.15) 0%,
     rgba(0, 255, 255, 0.05) 30%,
-    transparent 100%);
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 1;
 }
@@ -2073,17 +2171,22 @@ section,
 }
 
 @keyframes stream-rise {
-  0% { 
+  0% {
     /* Starts at the bottom with custom Z depth */
-    transform: translateZ(var(--z-depth)) translateY(0) scaleY(0.5); 
-    opacity: 0; 
+    transform: translateZ(var(--z-depth)) translateY(0) scaleY(0.5);
+    opacity: 0;
   }
-  20% { opacity: var(--stream-opacity); }
-  80% { opacity: var(--stream-opacity); }
-  100% { 
+  20% {
+    opacity: var(--stream-opacity);
+  }
+  80% {
+    opacity: var(--stream-opacity);
+  }
+  100% {
     /* Ends at the top, closer to the screen */
-    transform: translateZ(calc(var(--z-depth) + 300px)) translateY(-120vh) scaleY(2); 
-    opacity: 0; 
+    transform: translateZ(calc(var(--z-depth) + 300px)) translateY(-120vh)
+      scaleY(2);
+    opacity: 0;
   }
 }
 
@@ -2095,11 +2198,11 @@ section,
   border-right: 3px solid var(--main-color);
   letter-spacing: 10px;
   /* 3. KEY FOR 3D: Ensures text stays in the middle of the "depth" */
-  z-index: 100; 
+  z-index: 100;
   background: linear-gradient(to bottom, #fff 0%, var(--main-color) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
+
   filter: drop-shadow(0 0 15px rgba(var(--main-color-rgb), 0.5));
   pointer-events: none;
 }
@@ -2110,19 +2213,19 @@ section,
     justify-content: center;
     align-items: center;
     text-align: center;
-    
+
     /* 1. Prevent text from wrapping into two lines */
-    white-space: nowrap; 
-    
+    white-space: nowrap;
+
     /* 2. Slightly reduce letter-spacing so it fits on mobile screens */
-    letter-spacing: 4px; 
-    
+    letter-spacing: 4px;
+
     /* 3. Reduce font size slightly for better fit */
     font-size: clamp(1.2rem, 5vw, 2.2rem);
-    
+
     /* 4. Fix: 'center' is not a valid flex-direction. Use 'column' or 'row' */
-    flex-direction: column; 
-    
+    flex-direction: column;
+
     /* Ensure it doesn't overflow the screen width */
     max-width: 90vw;
     overflow: visible;
@@ -2157,6 +2260,11 @@ section,
 .logo-text.anchor-hidden {
   visibility: hidden;
 }
+
+
+
+
+
 
 /* ---------Education------------ */
 
@@ -2653,8 +2761,8 @@ section,
 .progress-container {
   height: 8px;
   /* This is the 'remaining' or 'background' color */
-  background: rgba(0, 243, 255, 0.2); 
-  
+  background: rgba(0, 243, 255, 0.2);
+
   border-radius: 0; /* Changed from 0px for a smoother look, but keep 0px if you prefer sharp edges */
   overflow: hidden;
   position: relative;
@@ -2664,10 +2772,10 @@ section,
   height: 100%;
   width: 0;
   border-radius: 0px;
-  
+
   /* Active fill colors (Keep your individual skill colors) */
-  box-shadow: 2px 0 8px rgba(0, 243, 255, 0.4); 
-  
+  box-shadow: 2px 0 8px rgba(0, 243, 255, 0.4);
+
   transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -3136,17 +3244,16 @@ section,
 .portfolio-tech-icon {
   display: flex;
   /* 1. Change direction to stack vertically */
-  flex-direction: column; 
-  
+  flex-direction: column;
+
   /* 2. Center the icon and text horizontally */
-  align-items: center;    
-  
+  align-items: center;
+
   /* 3. Space between the icon and the name */
-  gap: 5px;               
-  
+  gap: 5px;
+
   font-size: 0.9rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
   cursor: default;
 }
 
@@ -3230,7 +3337,6 @@ section,
   color: #0078d4;
 }
 
-
 /* ==================================== Action Buttons (Your Original Styles) ==================================== */
 /* --- Desktop/Base Action Container --- */
 .portfolio-card-actions {
@@ -3238,7 +3344,7 @@ section,
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: auto;        /* Pushes buttons to bottom */
+  margin-top: auto; /* Pushes buttons to bottom */
   padding-top: 1.5rem;
   width: 100%;
 }
@@ -3251,7 +3357,7 @@ section,
   font-weight: 500;
   transition: all 0.3s ease;
   text-align: center;
-  flex-grow: 1;            /* Helps buttons fill space evenly on PC */
+  flex-grow: 1; /* Helps buttons fill space evenly on PC */
   border: none;
   font-size: 0.9em;
   cursor: pointer;
@@ -3260,22 +3366,22 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 200px;        /* Prevents buttons from getting too wide on desktop */
+  max-width: 200px; /* Prevents buttons from getting too wide on desktop */
 }
 
 /* --- Mobile Specific (600px or below) --- */
 @media (max-width: 600px) {
   .portfolio-card-actions {
     flex-direction: column; /* Stacks buttons vertically */
-    gap: 10px;              /* Spacing between stacked buttons */
-    padding-bottom: 1rem;   /* Safe space at the bottom of card */
+    gap: 10px; /* Spacing between stacked buttons */
+    padding-bottom: 1rem; /* Safe space at the bottom of card */
   }
 
   .portfolio-action-btn {
-    width: 90%;             /* Your specific requirement */
-    flex-grow: 0;           /* Disables growing to allow exact 90% width */
-    max-width: none;        /* Removes the desktop width limit */
-    font-size: 1rem;        /* Slightly larger font for mobile clarity */
+    width: 90%; /* Your specific requirement */
+    flex-grow: 0; /* Disables growing to allow exact 90% width */
+    max-width: none; /* Removes the desktop width limit */
+    font-size: 1rem; /* Slightly larger font for mobile clarity */
   }
 }
 
@@ -3307,32 +3413,34 @@ section,
   box-shadow: 0 12px 30px rgba(0, 255, 238, 0.12);
 }
 
-
 .expanded-layout {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+  padding: 20px;
 }
 
 #active-expanded-video {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
 /* Add a "Scanning" effect overlay to the expanded video */
 .video-side {
-    position: relative;
+  position: relative;
 }
 .video-side::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(0,255,255,0.05) 50%, transparent 50%);
-    background-size: 100% 4px;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 255, 255, 0.05) 50%, transparent 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
 }
 
 /* ==================================== EXPANDED VIEW ==================================== */
@@ -3659,14 +3767,14 @@ section,
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
+
     /* Box shadow to lift the card from the page */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
     /* The "Curtain": We use a semi-transparent black layer OVER the image */
     /* Note: In CSS, the first background declared is the top-most layer */
     background-blend-mode: multiply; /* 'Multiply' creates a better darkened curtain effect than 'overlay' */
-    
+
     transition: transform 0.3s ease;
     border: 1px solid rgba(0, 243, 255, 0.4); /* Subtle border to define the card edges */
   }
@@ -3674,15 +3782,18 @@ section,
   /* 3. Unique Backgrounds with the Black Curtain Layer included */
   /* The rgba(0,0,0,0.5) is your "Curtain" */
   .portfolio-project-card[data-portfolio-project-id="1"] {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/DSA-Poster.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("Pics/DSA-Poster.png");
   }
 
   .portfolio-project-card[data-portfolio-project-id="2"] {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/Flood-Aid-Poster.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("Pics/Flood-Aid-Poster.png");
   }
 
   .portfolio-project-card[data-portfolio-project-id="3"] {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/Whiteboard-Poster.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("Pics/Whiteboard-Poster.png");
   }
 
   /* 4. Info Section: Glassmorphism effect for content clarity */
@@ -3694,10 +3805,15 @@ section,
     align-items: center;
     text-align: center;
     padding: 2rem 1rem;
-    
+
     /* This makes the "Curtain" feel more real by blurring the image behind the text */
-    backdrop-filter: blur(3px); 
-    background: rgba(0, 0, 0, 0.4); /* Additional darkening for text protection */
+    backdrop-filter: blur(3px);
+    background: rgba(
+      0,
+      0,
+      0,
+      0.4
+    ); /* Additional darkening for text protection */
     color: #ffffff;
   }
 
@@ -3722,7 +3838,6 @@ section,
     flex-grow: 0;
   }
 }
-
 
 /* Ensure the Expanded View Video ALWAYS shows, regardless of screen size */
 .portfolio-expanded-video-container video {
@@ -3890,7 +4005,7 @@ section,
     flex-direction: row;
     text-align: left;
   }
-  .portfolio-container{
+  .portfolio-container {
     background: transparent;
   }
 }
@@ -4024,8 +4139,6 @@ section,
   border-bottom: 1px solid var(--main-color);
 }
 
-
-
 /* Directional Entrance Positions */
 .project-card.from-left {
   transform: translateX(-100vw);
@@ -4097,16 +4210,16 @@ section,
 
 .portfolio-tech-icon img {
   /* Match the visual size of the devicon fonts */
-  width: 24px; 
+  width: 24px;
   height: 24px;
-  
+
   /* Ensures the PNG doesn't stretch and stays sharp */
   object-fit: contain;
-  
+
   /* Vertically aligns it perfectly with the font-based icons */
   display: inline-block;
   vertical-align: middle;
-  
+
   /* Optional: Adjust brightness if the PNG is too dark compared to icons */
   filter: brightness(1.1);
 
@@ -4167,18 +4280,16 @@ section,
 .hover-title {
   font-size: 1.5rem;
   margin-bottom: 0.8rem;
-  
+
   /* Deep Slate/Teal: High contrast against light cyan */
-  color: #0b3d41; 
-  
+  color: #0b3d41;
+
   /* Text Shadow for "Realness" and Clarity:
      1. White glow (3px) to prevent color bleeding into the cyan bg.
      2. Soft dark shadow (6px) to give it physical depth.
   */
-  text-shadow: 
-    0 0 3px rgba(255, 255, 255, 0.9), 
-    2px 4px 6px rgba(0, 0, 0, 0.15);
-    
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 2px 4px 6px rgba(0, 0, 0, 0.15);
+
   font-weight: 700;
   letter-spacing: -0.02em; /* Makes the heading look tighter and more modern */
   transition: color 0.3s ease;
@@ -4510,7 +4621,6 @@ footer {
   padding: 40px 20px;
   /* top border; */
   border-top: 2px solid var(--main-color);
-
 }
 
 .footer-container {

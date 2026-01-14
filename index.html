@@ -77,7 +77,6 @@
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    
 
     <!-- 3D Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -335,15 +334,29 @@
 
         <div class="home-right cinematic-hidden-right">
           <div class="carousel-container">
-            <div class="carousel-slides">
-              <div class="slide active" data-index="4">
+            <div class="spinning-card-inner">
+              <div class="card-face card-front">
                 <div class="slide-image-container">
                   <img
                     src="Pics/Pic_Sitting.png"
-                    alt="Muhammad Mustaqeem"
+                    alt="Front View"
                     class="slide-image"
                     loading="eager"
                   />
+                  <div class="image-overlay"></div>
+                  <div class="image-shine"></div>
+                </div>
+              </div>
+
+              <div class="card-face card-back">
+                <div class="slide-image-container">
+                  <img
+                    src="Pics/Pic_Library.png"
+                    alt="Back View"
+                    class="slide-image"
+                  />
+                  <div class="image-overlay"></div>
+                  <div class="image-shine"></div>
                 </div>
               </div>
             </div>
