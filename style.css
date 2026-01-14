@@ -2954,29 +2954,50 @@ section,
 }
 
 /* ==================================== Project Card (Your Original Layout) ==================================== */
+/* --- Base Card Styles --- */
 .portfolio-project-card {
-  /* background: var(--portfolio-card-bg); */
-  border-radius: 12px;
-  width: 100%;
-  max-width: 380px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  border: var(--portfolio-neon-border);
-  transition: all 0.5s ease;
   position: relative;
-  z-index: 10;
+  border-radius: 15px;
   overflow: hidden;
+  background: transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 420px;
+  max-width: 380px;
   width: 320px;
+  height: 420px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  border: var(--portfolio-neon-border);
   border-bottom: 1px solid var(--main-color);
+  z-index: 10;
+}
+
+.portfolio-card-video-section {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.portfolio-project-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-card-info-section {
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 @media (max-width: 420px) {
   .portfolio-project-grid {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers all cards */
+    align-items: center;
   }
 
   .portfolio-project-card {
@@ -3007,30 +3028,6 @@ section,
   display: none !important;
 }
 
-/* Video section in collapsed card */
-.portfolio-card-video-section {
-  aspect-ratio: 16/9;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.portfolio-project-video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Card info section */
-.portfolio-card-info-section {
-  padding: 20px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .portfolio-card-info-section h3 {
   color: var(--main-color);
   margin-top: 0;
@@ -3043,28 +3040,56 @@ section,
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 15px;
+  margin: 0.8rem 0;
 }
 
 .portfolio-tech-icon {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
+  /* 1. Change direction to stack vertically */
+  flex-direction: column; 
+  
+  /* 2. Center the icon and text horizontally */
+  align-items: center;    
+  
+  /* 3. Space between the icon and the name */
+  gap: 5px;               
+  
+  font-size: 0.9rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              filter 0.3s ease;
+  cursor: default;
+}
+
+/* Specific styling for the PNG icon to match devicons */
+.portfolio-tech-icon img {
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: contain;
+  vertical-align: middle;
   transition: transform 0.3s ease;
 }
 
 .portfolio-tech-icon:hover {
-  transform: translateY(-3px);
+  /* A subtle lift combined with a slight scale-up makes it feel "tactile" */
+  transform: translateY(-4px) scale(1.05);
+  filter: brightness(1.2); /* Makes the icon "pop" against the dark curtain */
 }
 
 .portfolio-tech-icon i {
   font-size: 1.8rem;
+  /* Ensure the icon color also transitions smoothly if you change it */
+  transition: color 0.3s ease;
 }
 
 .portfolio-tech-icon span {
-  font-size: 0.7rem;
+  font-size: 0.75rem; /* Slightly larger for readability */
   color: var(--portfolio-muted-text);
+  transition: color 0.3s ease;
+}
+
+/* Optional: Highlight the text on hover too */
+.portfolio-tech-icon:hover span {
+  color: #ffffff; /* Or your main-color */
 }
 
 /* Tech brand colors */
@@ -3117,30 +3142,51 @@ section,
 
 
 /* ==================================== Action Buttons (Your Original Styles) ==================================== */
+/* --- Desktop/Base Action Container --- */
 .portfolio-card-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;        /* Pushes buttons to bottom */
+  padding-top: 1.5rem;
+  width: 100%;
 }
 
+/* --- Base Action Buttons --- */
 .portfolio-action-btn {
-  flex-grow: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex-grow: 1;            /* Helps buttons fill space evenly on PC */
+  border: none;
   font-size: 0.9em;
   cursor: pointer;
-  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.18s;
-  text-align: center;
   white-space: nowrap;
-  will-change: transform, box-shadow, opacity;
   min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 200px;        /* Prevents buttons from getting too wide on desktop */
+}
+
+/* --- Mobile Specific (600px or below) --- */
+@media (max-width: 600px) {
+  .portfolio-card-actions {
+    flex-direction: column; /* Stacks buttons vertically */
+    gap: 10px;              /* Spacing between stacked buttons */
+    padding-bottom: 1rem;   /* Safe space at the bottom of card */
+  }
+
+  .portfolio-action-btn {
+    width: 90%;             /* Your specific requirement */
+    flex-grow: 0;           /* Disables growing to allow exact 90% width */
+    max-width: none;        /* Removes the desktop width limit */
+    font-size: 1rem;        /* Slightly larger font for mobile clarity */
+  }
 }
 
 .portfolio-btn-live {
@@ -3510,19 +3556,83 @@ section,
   }
 }
 
-/* Mobile grid video - show poster only, no autoplay */
+/* --- Mobile Transformation (600px or below) --- */
 @media (max-width: 600px) {
-  /* Hide the actual video stream but keep the poster area */
-  .portfolio-project-card .portfolio-project-video {
-    object-fit: cover;
-    height: 200px;
+  /* 1. Hide the video section */
+  .portfolio-card-video-section {
+    display: none;
   }
 
-  /* Disable hover-to-play or intersection observer auto-play logic via CSS */
-  .portfolio-project-card .portfolio-project-video {
-    pointer-events: none; /* User can't click to play on mobile grid */
+  /* 2. Setup Card with "Curtain" effect */
+  .portfolio-project-card {
+    min-height: 400px; /* Slightly taller for better mobile impact */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Box shadow to lift the card from the page */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    
+    /* The "Curtain": We use a semi-transparent black layer OVER the image */
+    /* Note: In CSS, the first background declared is the top-most layer */
+    background-blend-mode: multiply; /* 'Multiply' creates a better darkened curtain effect than 'overlay' */
+    
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define the card edges */
+  }
+
+  /* 3. Unique Backgrounds with the Black Curtain Layer included */
+  /* The rgba(0,0,0,0.5) is your "Curtain" */
+  .portfolio-project-card[data-portfolio-project-id="1"] {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/DSA-Poster.png');
+  }
+
+  .portfolio-project-card[data-portfolio-project-id="2"] {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/Flood-Aid-Poster.png');
+  }
+
+  .portfolio-project-card[data-portfolio-project-id="3"] {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Pics/Whiteboard-Poster.png');
+  }
+
+  /* 4. Info Section: Glassmorphism effect for content clarity */
+  .portfolio-card-info-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    
+    /* This makes the "Curtain" feel more real by blurring the image behind the text */
+    backdrop-filter: blur(3px); 
+    background: rgba(0, 0, 0, 0.4); /* Additional darkening for text protection */
+    color: #ffffff;
+  }
+
+  /* 5. Center Tech Stack and Buttons */
+  .portfolio-tech-stack {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .portfolio-card-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* 6. Buttons reaching 90% width */
+  .portfolio-action-btn {
+    width: 90% !important;
+    max-width: none;
+    flex-grow: 0;
   }
 }
+
 
 /* Ensure the Expanded View Video ALWAYS shows, regardless of screen size */
 .portfolio-expanded-video-container video {
@@ -3967,7 +4077,26 @@ section,
 .hover-title {
   font-size: 1.5rem;
   margin-bottom: 0.8rem;
-  color: var(--bg-color);
+  
+  /* Deep Slate/Teal: High contrast against light cyan */
+  color: #0b3d41; 
+  
+  /* Text Shadow for "Realness" and Clarity:
+     1. White glow (3px) to prevent color bleeding into the cyan bg.
+     2. Soft dark shadow (6px) to give it physical depth.
+  */
+  text-shadow: 
+    0 0 3px rgba(255, 255, 255, 0.9), 
+    2px 4px 6px rgba(0, 0, 0, 0.15);
+    
+  font-weight: 700;
+  letter-spacing: -0.02em; /* Makes the heading look tighter and more modern */
+  transition: color 0.3s ease;
+}
+
+/* Optional: Slight color shift on hover to make it feel interactive */
+.portfolio-project-card:hover .hover-title {
+  color: #005f6b;
 }
 
 .hover-description {
