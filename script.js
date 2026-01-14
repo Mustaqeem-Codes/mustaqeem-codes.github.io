@@ -7,20 +7,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const introOverlay = document.getElementById("intro-overlay");
   const navLinks = document.querySelectorAll(".nav-link");
 
+  // Create Energy Floor
+  const floor = document.createElement('div');
+  floor.className = 'energy-floor';
+  introOverlay.appendChild(floor);
+
+  // Function to create random data streams
+  function createStream() {
+    const stream = document.createElement('div');
+    stream.className = 'stream';
+    
+    const leftPos = Math.random() * 100;
+    const duration = Math.random() * 2 + 2; // Fast and cinematic
+    const height = Math.random() * 100 + 50; // Random height 50-150px
+    
+    // 4. KEY FOR 3D: Randomize the horizontal "depth"
+    // Higher value = closer to user, Lower value = farther back
+    const zDepth = Math.random() * 800 - 400; 
+    
+    stream.style.left = `${leftPos}%`;
+    stream.style.height = `${height}px`;
+    stream.style.animationDuration = `${duration}s`;
+    
+    // Use CSS custom property for Z depth to avoid transform conflict
+    stream.style.setProperty('--z-depth', `${zDepth}px`);
+    
+    // Adjust opacity based on depth (farther = dimmer)
+    stream.style.setProperty('--stream-opacity', (zDepth + 400) / 800);
+
+    introOverlay.appendChild(stream);
+    
+    setTimeout(() => stream.remove(), duration * 1000);
+  }
+
+  // Initial burst of streams
+  for(let i=0; i<30; i++) createStream();
+  // Continuous generation
+  const streamInterval = setInterval(createStream, 150);
+
   let charIndex = 0;
 
   function typeEffect() {
     if (charIndex < nameToType.length) {
       typingElement.textContent += nameToType.charAt(charIndex);
       charIndex++;
-      setTimeout(typeEffect, 160);
+      // Cinematic slow speed
+      setTimeout(typeEffect, Math.random() * (400 - 250) + 250);
     } else {
-      setTimeout(startIdentityFlow, 900);
+      setTimeout(startDirectFlow, 1000);
     }
   }
 
-  function startIdentityFlow() {
+  function startDirectFlow() {
+    clearInterval(streamInterval);
     typingElement.style.borderRight = "none";
+    
+    // Calculate DIRECT diagonal path to top-left logo
     const startRect = typingElement.getBoundingClientRect();
     const endRect = logoText.getBoundingClientRect();
 
@@ -28,14 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const moveY = endRect.top - startRect.top;
     const scale = endRect.height / startRect.height;
 
-    typingElement.style.transition =
-      "transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)";
+    // Movement animation
+    typingElement.style.transition = "transform 1.4s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.4s ease 1.2s";
     typingElement.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
 
+    // Fade out overlay
     setTimeout(() => {
-      introOverlay.style.background = "transparent";
+      introOverlay.style.transition = "opacity 1s ease";
+      introOverlay.style.opacity = "0";
       header.classList.add("flow-active");
-      homeSection.classList.add("flow-active"); // Make home section visible
+      homeSection.classList.add("flow-active");
 
       navLinks.forEach((link, index) => {
         link.style.transitionDelay = `${index * 0.1}s`;
@@ -43,13 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Trigger the Home Section Showcase
       setTimeout(triggerHomeCinematic, 800);
-    }, 300);
+    }, 800);
 
     setTimeout(() => {
       logoText.classList.remove("anchor-hidden");
-      typingElement.style.opacity = "0";
       introOverlay.style.display = "none";
-    }, 1300);
+    }, 1800);
   }
 
   function triggerHomeCinematic() {
