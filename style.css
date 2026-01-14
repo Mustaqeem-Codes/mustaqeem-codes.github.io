@@ -2716,7 +2716,7 @@ section,
 .circle-progress {
   fill: transparent;
   stroke-width: 8;
-  stroke-linecap: round;
+  /* stroke-linecap: round; */
   stroke-dasharray: 314;
   stroke-dashoffset: 314;
   transform-origin: 50% 50%;
@@ -3664,7 +3664,7 @@ section,
     background-blend-mode: multiply; /* 'Multiply' creates a better darkened curtain effect than 'overlay' */
     
     transition: transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define the card edges */
+    border: 1px solid rgba(0, 243, 255, 0.4); /* Subtle border to define the card edges */
   }
 
   /* 3. Unique Backgrounds with the Black Curtain Layer included */
