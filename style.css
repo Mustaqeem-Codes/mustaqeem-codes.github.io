@@ -2100,6 +2100,31 @@ section,
   pointer-events: none;
 }
 
+@media (max-width: 950px) {
+  #intro-typing-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* 1. Prevent text from wrapping into two lines */
+    white-space: nowrap; 
+    
+    /* 2. Slightly reduce letter-spacing so it fits on mobile screens */
+    letter-spacing: 4px; 
+    
+    /* 3. Reduce font size slightly for better fit */
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+    
+    /* 4. Fix: 'center' is not a valid flex-direction. Use 'column' or 'row' */
+    flex-direction: column; 
+    
+    /* Ensure it doesn't overflow the screen width */
+    max-width: 90vw;
+    overflow: visible;
+  }
+}
+
 /* 3. Staggered Nav Links (The flow effect) */
 .nav-link {
   opacity: 0;
@@ -2623,15 +2648,22 @@ section,
 
 .progress-container {
   height: 8px;
-  /* background: var(--progress-bg); */
-  border-radius: 0px;
+  /* This is the 'remaining' or 'background' color */
+  background: rgba(0, 243, 255, 0.2); 
+  
+  border-radius: 0; /* Changed from 0px for a smoother look, but keep 0px if you prefer sharp edges */
   overflow: hidden;
+  position: relative;
 }
 
 .progress-bar {
   height: 100%;
   width: 0;
   border-radius: 0px;
+  
+  /* Active fill colors (Keep your individual skill colors) */
+  box-shadow: 2px 0 8px rgba(0, 243, 255, 0.4); 
+  
   transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -2677,7 +2709,7 @@ section,
 
 .circle-bg {
   fill: transparent;
-  stroke: var(--progress-bg);
+  stroke: rgba(0, 243, 255, 0.2);
   stroke-width: 8;
 }
 
