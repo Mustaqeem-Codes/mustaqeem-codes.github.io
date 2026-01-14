@@ -1,6 +1,6 @@
 /* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 /* Reset and Base */
 * {
   margin: 0;
@@ -2096,7 +2096,11 @@ section,
   letter-spacing: 10px;
   /* 3. KEY FOR 3D: Ensures text stays in the middle of the "depth" */
   z-index: 100; 
-  text-shadow: 0 0 20px rgba(var(--main-color-rgb), 0.6);
+  background: linear-gradient(to bottom, #fff 0%, var(--main-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  filter: drop-shadow(0 0 15px rgba(var(--main-color-rgb), 0.5));
   pointer-events: none;
 }
 
