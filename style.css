@@ -3020,7 +3020,7 @@ section,
 .portfolio-project-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Card info section */
@@ -3811,7 +3811,8 @@ section,
 .project-card {
   width: 320px;
   height: 420px;
-  background-color: var(--progress-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  border: var(--portfolio-neon-border);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -3822,6 +3823,8 @@ section,
   /* updated */
   border-bottom: 1px solid var(--main-color);
 }
+
+
 
 /* Directional Entrance Positions */
 .project-card.from-left {
@@ -3864,6 +3867,9 @@ section,
 .project-info {
   padding: 1.2rem;
   transition: all 0.3s ease;
+  background: transparent; /* Kept transparent as requested */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-title {
@@ -3874,15 +3880,55 @@ section,
 
 .project-description {
   color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  margin-bottom: 0; /* Reduced since the tech para is gone */
   font-size: 0.9rem;
+}
+
+.tech-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0.5rem 0 0.8rem 0; /* Spacing between title and description */
+  font-size: 1.5rem;
+  color: var(--main-color);
+}
+
+.portfolio-tech-icon img {
+  /* Match the visual size of the devicon fonts */
+  width: 24px; 
+  height: 24px;
+  
+  /* Ensures the PNG doesn't stretch and stays sharp */
+  object-fit: contain;
+  
+  /* Vertically aligns it perfectly with the font-based icons */
+  display: inline-block;
+  vertical-align: middle;
+  
+  /* Optional: Adjust brightness if the PNG is too dark compared to icons */
+  filter: brightness(1.1);
+
+  border-radius: 20%;
 }
 
 .project-tech {
   font-style: italic;
   color: var(--text-secondary);
   font-size: 0.8rem;
+}
+
+@media (max-width: 577px) {
+  .project-title {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .project-description {
+    font-size: 10px;
+  }
 }
 
 .project-hover {
