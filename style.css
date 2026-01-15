@@ -2261,11 +2261,6 @@ section,
   visibility: hidden;
 }
 
-
-
-
-
-
 /* ---------Education------------ */
 
 /* --- Education Cinematic Entrance --- */
@@ -4621,16 +4616,24 @@ footer {
   padding: 40px 20px;
   /* top border; */
   border-top: 2px solid var(--main-color);
+  overflow-x: hidden;
 }
 
 .footer-container {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  max-width: 1200px;
+  max-width: 1200px; /* Limits content width on large screens */
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   /* Added 20px gap from left and right */
+}
+footer,
+.footer-container,
+.footer-section,
+.copyright {
+  box-sizing: border-box;
 }
 
 .footer-left {
@@ -4690,54 +4693,6 @@ footer {
   text-align: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  background: #333;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 4px;
-}
-
-.contact-form input:hover,
-.contact-form textarea:hover {
-  width: 100%;
-
-  border: 1px solid cyan;
-  color: white;
-}
-
-.contact-form textarea {
-  height: 150px;
-  /* Fixed height */
-  width: 100%;
-  /* Full width */
-  max-width: 100%;
-  /* Ensure it doesn't overflow */
-  resize: vertical;
-}
-
-.submit-btn {
-  width: 100%;
-  /* Full width button */
-  background: #00ffee;
-  color: #111;
-  border: none;
-  padding: 12px 25px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-  /* Added some spacing */
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-}
-
 .copyright {
   text-align: center;
   padding-top: 30px;
@@ -4747,12 +4702,9 @@ footer {
   color: #aaa;
 }
 
-.error {
-  color: #ff4444;
-  font-size: 0.8rem;
-  margin-top: -10px;
-  margin-bottom: 10px;
-  display: none;
+.copyright p:hover {
+  color: rgb(237, 219, 219);
+  transition: all 0.8s ease;
 }
 
 .social {
@@ -4946,19 +4898,6 @@ footer {
   /* white icon on main-color background */
 }
 
-.contact-form {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0 10px;
-  /* Adds consistent padding on both sides */
-}
-
-.contact-form input,
-.contact-form textarea,
-.contact-form button {
-  box-sizing: border-box;
-}
-
 /* Responsive adjustments */
 
 /* Global fix for all viewports */
@@ -4967,17 +4906,6 @@ footer {
   box-sizing: border-box;
   padding: 0 10px;
   /* Consistent padding on both sides */
-}
-
-.contact-form input,
-.contact-form textarea,
-.contact-form button {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.contact-form textarea {
-  min-height: 45px;
 }
 
 /* Specific fix for 412px and below */
@@ -4993,12 +4921,6 @@ footer {
     /* Accounts for padding */
     padding: 0;
     margin: 0;
-  }
-}
-/* Responsive: separate lines for dates on small screens */
-@media (max-width: 1200px) {
-  p#dates {
-    white-space: normal;
   }
 }
 
@@ -5022,7 +4944,7 @@ footer {
 
 .footer-section {
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
 }
 
 .footer-section h4 {
@@ -5230,4 +5152,11 @@ footer {
     margin: 0 5px;
     font-size: 0.85rem;
   }
+}
+
+.footer-section h4, 
+.footer-heading {
+  font-size: clamp(1.8rem, 8vw, 60px); /* Dynamically scales font between 1.8rem and 60px */
+  word-wrap: break-word; /* Prevents long words from stretching width */
+  margin-bottom: 20px;
 }
