@@ -1,0 +1,255 @@
+:root{
+  --main-color: #00ffee;
+  --neon-glow: 0 0 10px rgba(0, 255, 255, 0.4);
+  --portfolio-neon-border: 1px solid rgba(0, 255, 255, 0.2);
+  --muted-text: #a0a0a0;
+  --text-color: #e0e0e0;
+}
+.education-section {
+  width: 100%;
+  padding: 30px 4% 40px;
+  overflow: hidden;
+}
+
+.education-section.cinematic-reveal .cinematic-hidden-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  filter: blur(15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.education-section.cinematic-reveal .cinematic-hidden-right {
+  opacity: 0;
+  transform: translateX(100px);
+  filter: blur(15px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.education-section.cinematic-reveal .cinematic-hidden-bottom {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.education-section.cinematic-reveal.active .cinematic-hidden-left,
+.education-section.cinematic-reveal.active .cinematic-hidden-right {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.education-section.cinematic-reveal.active .cinematic-hidden-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.education-section h2 {
+  font-size: 2.3em;
+  color: var(--main-color);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-shadow: var(--neon-glow);
+}
+
+.university-card {
+  display: flex;
+  border: var(--neon-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  height: 350px;
+}
+
+.university-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+  border-color: rgba(0, 255, 238, 0.8);
+}
+
+.uni-image-container {
+  flex: 0 0 40%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.vertical-slider {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-item {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+.active-slide {
+  position: relative;
+}
+
+.active-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: pulse 2s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.uni-details {
+  flex: 1;
+  padding: 30px;
+}
+
+.uni-details h3 {
+  font-size: 1.8em;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+
+.uni-details p {
+  margin-bottom: 10px;
+  color: var(--muted-text);
+}
+
+.uni-details strong {
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .university-card {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .uni-image-container {
+    height: 250px;
+    flex: none;
+    width: 100%;
+    min-height: 250px;
+  }
+
+  .slider-container {
+    height: 250px;
+  }
+
+  .slide-item {
+    height: 250px;
+    min-height: 250px;
+  }
+
+  .slide-img {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .uni-details {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .education-section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+
+  .education-section {
+    padding: 40px 4%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .uni-image-container {
+    height: 200px;
+  }
+
+  .slider-container {
+    height: 200px;
+  }
+
+  .slide-item {
+    height: 200px;
+  }
+
+  .slide-img {
+    height: 250px;
+  }
+
+  .education-section h2 {
+    font-size: 1.8em;
+  }
+
+  .uni-details h3 {
+    font-size: 1.5em;
+  }
+
+  .uni-details p {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .university-card {
+    height: 300px;
+  }
+
+  .uni-image-container {
+    height: 300px;
+  }
+
+  .slide-item {
+    height: 300px;
+  }
+
+  .uni-details {
+    padding: 25px;
+  }
+
+  .uni-details h3 {
+    font-size: 1.6em;
+  }
+}

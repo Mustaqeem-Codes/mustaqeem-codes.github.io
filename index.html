@@ -77,6 +77,14 @@
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/test.css" />
+    <link rel="stylesheet" href="styles/Navbar.css" />
+    <link rel="stylesheet" href="styles/Home.css" />
+    <link rel="stylesheet" href="styles/Education.css" />
+    <link rel="stylesheet" href="styles/Skills.css" />
+    <link rel="stylesheet" href="styles/Dynamic_Projects.css" />
+    <link rel="stylesheet" href="styles/Static_Projects.css" />
+    <link rel="stylesheet" href="styles/Footer.css" />
 
     <!-- 3D Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -159,7 +167,7 @@
 
       <div id="intro-typing-text"></div>
     </div>
-    <div id="canvas-container"></div>
+    <div id="td-canvas-container"></div>
     <header id="main-header">
       <div class="header-container">
         <div class="logo">
@@ -332,34 +340,15 @@
           </div>
         </div>
 
-        <div class="home-right cinematic-hidden-right">
-          <div class="carousel-container">
-            <div class="spinning-card-inner">
-              <div class="card-face card-front">
-                <div class="slide-image-container">
-                  <img
-                    src="Pics/Pic_Sitting.png"
-                    alt="Front View"
-                    class="slide-image"
-                    loading="eager"
-                  />
-                  <div class="image-overlay"></div>
-                  <div class="image-shine"></div>
-                </div>
-              </div>
-
-              <div class="card-face card-back">
-                <div class="slide-image-container">
-                  <img
-                    src="Pics/Pic_Library.png"
-                    alt="Back View"
-                    class="slide-image"
-                  />
-                  <div class="image-overlay"></div>
-                  <div class="image-shine"></div>
-                </div>
-              </div>
-            </div>
+        <div class="home-right">
+          <div class="image-container">
+            <img
+              src="Pics/Pic_Sitting.png"
+              alt="Muhammad Mustaqeem"
+              class="profile-image"
+            />
+            <div class="image-overlay"></div>
+            <div class="image-shine"></div>
           </div>
         </div>
       </div>
@@ -1164,6 +1153,12 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="js/Navbar.js"></script>
+    <script src="js/Home.js"></script>
+    <script src="js/Education.js"></script>
+    <script src="js/Skills.js"></script>
+    <script src="js/Dynamic_Projects.js"></script>
+    <script src="js/Static_Projects.js"></script>
     <script>
       // Safe version
       const homeSection = document.getElementById("home");
