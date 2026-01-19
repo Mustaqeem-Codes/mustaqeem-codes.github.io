@@ -1,7 +1,7 @@
 const imageUrls = [
-  "../Pics/home-intro.jpg",
-  "../Pics/UET-Lahore-Admissions-Entry-Test.jpg",
-  "../Pics/smart-classroom_01.jpg",
+  "Pics/home-intro.jpg",
+  "Pics/UET-Lahore-Admissions-Entry-Test.jpg",
+  "Pics/smart-classroom_01.jpg",
 ];
 
 const slider = document.getElementById("verticalSlider");
