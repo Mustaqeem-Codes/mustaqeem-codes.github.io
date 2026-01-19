@@ -22,6 +22,12 @@ function initSlider() {
     img.src = url;
     img.className = "slide-img";
     img.alt = `University Image ${(index % imageUrls.length) + 1}`;
+    
+    // Debugging: Log error if image fails (Case sensitivity check)
+    img.onerror = () => console.error(`Failed to load: ${url}. Check filename case sensitivity.`);
+    
+    // Fix: Recalculate slider height once the reference image (index 0) loads
+    img.onload = () => { if (index === 0) updateSlider(); };
 
     slide.appendChild(img);
     slider.appendChild(slide);

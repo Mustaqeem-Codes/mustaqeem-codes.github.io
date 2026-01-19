@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const url = this.getAttribute("data-url");
                     const btnText = this.querySelector(".btn-text");
                     const checkmark = this.querySelector(".checkmark");
-
+                    
                     this.classList.add("downloading");
                     btnText.textContent = "Downloading...";
                     checkmark.style.display = "none";
