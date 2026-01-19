@@ -20,7 +20,7 @@
                 },
                 2: {
                     title: "Flood Aid Website",
-                    videoSrc: "Pics/Khush Naseeb.mp4",
+                    videoSrc: "Pics/DSA-Web.webm",
                     posterSrc: "Pics/Flood-Aid-Poster.png",
                     timeline: { start: "November 2025", end: "January 2026" },
                     description: "A responsive, full-stack web platform to support flood relief coordination and assistance efforts. Built with a React frontend, C# backend API, and MongoDB database, the site enables users to submit and view requests for aid, connect with volunteers or helpers, and access essential information during flood emergencies. The system streamlines relief efforts by organizing real-time requests, fostering community support, and ensuring effective resource distribution when every moment counts.",
@@ -43,7 +43,7 @@
                 },
                 3: {
                     title: "Collaborative White Board",
-                    videoSrc: "Pics/Khush Naseeb.mp4",
+                    videoSrc: "Pics/DSA-Web.webm",
                     posterSrc: "Pics/Whiteboard-Poster.png",
                     timeline: { start: "November 2025", end: "January 2026" },
                     description: "A Windows desktop application built with C# and .NET Framework, designed for real-time collaborative whiteboarding. Users can draw, write, and share ideas simultaneously, making it ideal for team collaboration, brainstorming sessions, and interactive presentations. The system supports multiple users, session management, and intuitive drawing tools, providing a seamless and responsive experience on Windows platforms.",

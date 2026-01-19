@@ -1,152 +1,96 @@
-const imageUrls = [
-  "Pics/home-intro.jpg",
-  "Pics/UET-Lahore-Admissions-Entry-Test.jpg",
-  "Pics/smart-classroom_01.jpg",
-];
+// 1. Network Globe Animation Logic
+const canvas = document.getElementById('networkGlobe');
+const ctx = canvas.getContext('2d');
 
-const slider = document.getElementById("verticalSlider");
-let currentSlide = 0;
-let isAnimating = false;
+let particles = [];
+const particleCount = 80;
 
-function initSlider() {
-  slider.innerHTML = "";
-  const allImages = [...imageUrls, ...imageUrls, ...imageUrls];
-
-  allImages.forEach((url, index) => {
-    const slide = document.createElement("div");
-    slide.className = `slide-item ${
-      index === imageUrls.length ? "active-slide" : ""
-    }`;
-
-    const img = document.createElement("img");
-    img.src = url;
-    img.className = "slide-img";
-    img.alt = `University Image ${(index % imageUrls.length) + 1}`;
-    
-    // Debugging: Log error if image fails (Case sensitivity check)
-    img.onerror = () => console.error(`Failed to load: ${url}. Check filename case sensitivity.`);
-    
-    // Fix: Recalculate slider height once the reference image (index 0) loads
-    img.onload = () => { if (index === 0) updateSlider(); };
-
-    slide.appendChild(img);
-    slider.appendChild(slide);
-  });
-
-  currentSlide = imageUrls.length;
-  updateSlider();
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 
-function updateSlider() {
-  const firstSlide = document.querySelector(".slide-item");
-  const slideHeight = firstSlide ? firstSlide.offsetHeight : 400;
-
-  const slides = document.querySelectorAll(".slide-item");
-  slides.forEach((slide) => slide.classList.remove("active-slide"));
-
-  if (slides[currentSlide]) {
-    slides[currentSlide].classList.add("active-slide");
-  }
-
-  slider.style.transition = "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
-  const translateY = -(currentSlide * slideHeight);
-  slider.style.transform = `translateY(${translateY}px)`;
-}
-
-function nextSlide() {
-  if (isAnimating) return;
-
-  isAnimating = true;
-  currentSlide++;
-
-  updateSlider();
-
-  if (currentSlide >= imageUrls.length * 2) {
-    setTimeout(() => {
-      slider.style.transition = "none";
-      currentSlide = imageUrls.length;
-      updateSlider();
-
-      setTimeout(() => {
-        slider.style.transition = "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
-        isAnimating = false;
-      }, 50);
-    }, 800);
-  } else {
-    setTimeout(() => {
-      isAnimating = false;
-    }, 800);
-  }
-}
-
-function prevSlide() {
-  if (isAnimating) return;
-
-  isAnimating = true;
-  currentSlide--;
-
-  updateSlider();
-
-  if (currentSlide < imageUrls.length) {
-    setTimeout(() => {
-      slider.style.transition = "none";
-      currentSlide = imageUrls.length * 2 - 1;
-      updateSlider();
-
-      setTimeout(() => {
-        slider.style.transition = "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
-        isAnimating = false;
-      }, 50);
-    }, 800);
-  } else {
-    setTimeout(() => {
-      isAnimating = false;
-    }, 800);
-  }
-}
-
-function autoSlide() {
-  if (!isAnimating) {
-    nextSlide();
-  }
-}
-
-function initEducationObserver() {
-  const educationSection = document.getElementById("education");
-  if (!educationSection) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          educationSection.classList.add("active");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  observer.observe(educationSection);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  initSlider();
-  initEducationObserver();
-
-  setInterval(autoSlide, 4000);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      prevSlide();
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      nextSlide();
+class Particle {
+    constructor() {
+        this.init();
     }
-  });
+    init() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 2;
+    }
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+    draw() {
+        ctx.fillStyle = 'rgba(0, 210, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+                ctx.strokeStyle = `rgba(0, 210, 255, ${0.2 * (1 - dist / 150)})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    resize();
+    createParticles();
 });
 
-window.addEventListener("resize", () => {
-  updateSlider();
+// 2. Scroll Reveal Animation
+const observerOptions = { threshold: 0.2 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.university-card').forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+    card.style.transition = "all 1s ease-out";
+    observer.observe(card);
 });
+
+// Initialize
+resize();
+createParticles();
+animate();

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Nexus | University Archive</title>
+    <style>
+        :root {
+            --main-color: #00f2ff;
+            --bg-color: #0a0a0c;
+            --card-bg: rgba(20, 20, 25, 0.8);
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- Ambient Background --- */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            perspective: 1000px;
+            transform: rotateX(60deg) translateY(-200px);
+            opacity: 0.3;
+        }
+
+        /* --- Project Header --- */
+        .header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            background: linear-gradient(to bottom, #fff, var(--main-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Project Grid --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 10%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hover Effect: Scale and Glow */
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--main-color);
+            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15);
+            z-index: 10;
+        }
+
+        /* Dim others when one is hovered */
+        .project-grid:hover .project-card:not(:hover) {
+            opacity: 0.4;
+            filter: blur(2px) grayscale(100%);
+        }
+
+        /* --- Project Image Wrapper --- */
+        .img-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .project-card:hover .img-container img {
+            transform: scale(1.15);
+        }
+
+        /* --- Project Info --- */
+        .project-content {
+            padding: 25px;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--main-color);
+            border: 1px solid var(--main-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* --- Fill Button (Using your requested style) --- */
+        .view-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            background: transparent;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+
+        .view-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--main-color);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .view-btn:hover { color: var(--bg-color); }
+        .view-btn:hover::before { transform: scaleX(1); }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <section class="header">
+        <div class="tag">University Archive</div>
+        <h1>PROJECTS</h1>
+    </section>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="Tech">
+            </div>
+            <div class="project-content">
+                <span class="tag">AI & Machine Learning</span>
+                <h3 class="project-title">Neural Nexus</h3>
+                <p class="project-desc">A deep learning model developed to predict campus energy usage with 98% accuracy.</p>
+                <a href="#" class="view-btn">Full Case Study</a>
+            </div>
+        </div>
+
+        <div class="project-2 project-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Security">
+            </div>
+            <div class="project-content">
+                <span class="tag">Cyber Security</span>
+                <h3 class="project-title">Sentinel OS</h3>
+                <p class="project-desc">Custom encrypted operating system designed for secure academic data transfers.</p>
+                <a href="#" class="view-btn">Full Case Study</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" alt="Space">
+            </div>
+            <div class="project-content">
+                <span class="tag">Data Science</span>
+                <h3 class="project-title">Star Chart v2</h3>
+                <p class="project-desc">Interactive visualization of astronomical data collected from the university observatory.</p>
+                <a href="#" class="view-btn">Full Case Study</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Magnetic Tilt Effect for cards
+        const cards = document.querySelectorAll('.project-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) translateY(0) rotateX(0) rotateY(0)`;
+            });
+        });
+    </script>
+</body>
+</html>

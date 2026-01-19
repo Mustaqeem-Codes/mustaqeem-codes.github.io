@@ -1,255 +1,219 @@
-:root{
-  --main-color: #00ffee;
-  --neon-glow: 0 0 10px rgba(0, 255, 255, 0.4);
-  --portfolio-neon-border: 1px solid rgba(0, 255, 255, 0.2);
-  --muted-text: #a0a0a0;
-  --text-color: #e0e0e0;
+:root {
+  --primary-glow: #00d2ff;
+  --card-bg: rgba(10, 10, 10, 0.7); /* Slightly darker for the curtain effect */
+  --glass-border: rgba(255, 255, 255, 0.15);
 }
+
 .education-section {
-  width: 100%;
-  padding: 30px 4% 40px;
-  overflow: hidden;
-}
-
-.education-section.cinematic-reveal .cinematic-hidden-left {
-  opacity: 0;
-  transform: translateX(-100px);
-  filter: blur(15px);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.education-section.cinematic-reveal .cinematic-hidden-right {
-  opacity: 0;
-  transform: translateX(100px);
-  filter: blur(15px);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.education-section.cinematic-reveal .cinematic-hidden-bottom {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease-out;
-}
-
-.education-section.cinematic-reveal.active .cinematic-hidden-left,
-.education-section.cinematic-reveal.active .cinematic-hidden-right {
-  opacity: 1;
-  transform: translateX(0);
-  filter: blur(0);
-}
-
-.education-section.cinematic-reveal.active .cinematic-hidden-bottom {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.education-section h2 {
-  font-size: 2.3em;
-  color: var(--main-color);
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 30px;
-  text-shadow: var(--neon-glow);
-}
-
-.university-card {
-  display: flex;
-  border: var(--neon-border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 40px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-  height: 350px;
-}
-
-.university-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
-  border-color: rgba(0, 255, 238, 0.8);
-}
-
-.uni-image-container {
-  flex: 0 0 40%;
-  height: 400px;
-  overflow: hidden;
   position: relative;
-  border-radius: 10px;
-}
-
-.slider-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  padding: 100px 0;
+  background: #050505;
+  color: #fff;
   overflow: hidden;
-}
-
-.vertical-slider {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-item {
-  width: 100%;
-  height: 400px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  font-family: 'Inter', sans-serif;
 }
 
-.slide-img {
+/* Network Globe Canvas */
+.network-globe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: filter 0.3s ease;
+  z-index: 1;
+  opacity: 0.3;
 }
 
-.active-slide {
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
   position: relative;
+  z-index: 10;
 }
 
-.active-slide::before {
+.section-title {
+  text-align: center;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--main-color);
+  position: relative;
+  margin-bottom: 25px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* University Card - Base State (Transparent) */
+.university-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 50px;
+  overflow: hidden;
+  background: transparent; /* Keep base card transparent */
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* The Background Image Layer (Hidden by default) */
+.university-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  animation: pulse 2s infinite;
-  pointer-events: none;
+  background-image: url("../Pics/home-intro.jpg");
+  background-size: cover;
+  background-position: center;
+  
+  /* Initial state: Invisible and slightly zoomed out */
+  opacity: 0;
+  filter: grayscale(40%) brightness(0.6) blur(2px);
+  transform: scale(1);
+  z-index: -2;
+  transition: opacity 0.6s ease, transform 0.8s ease, filter 0.5s ease;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
+/* The Dark Curtain (Veil) Layer (Hidden by default) */
+.card-curtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,10,10,0.6) 100%);
+  z-index: -1;
+  opacity: 0; /* Invisible initially */
+  transition: opacity 0.5s ease;
 }
 
-.uni-details {
-  flex: 1;
-  padding: 30px;
+/* HOVER STATE: Show Image and Curtain */
+.university-card:hover::before {
+  opacity: 1; /* Show image */
+  transform: scale(1.05);
+  filter: grayscale(0%) brightness(1) blur(0px); /* Clear image on hover */
 }
 
-.uni-details h3 {
-  font-size: 1.8em;
-  color: var(--main-color);
-  margin-bottom: 10px;
+/* If you want the curtain to be visible on hover to help text readability */
+.university-card:hover .card-curtain {
+  opacity: 1; 
 }
 
-.uni-details p {
-  margin-bottom: 10px;
-  color: var(--muted-text);
+.university-card:hover {
+  border-color: var(--primary-glow);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
 }
 
-.uni-details strong {
-  color: var(--text-color);
+/* Content Layout */
+.card-inner {
+  position: relative;
+  z-index: 2;
+  transition: text-shadow 0.5s ease, transform 0.5s ease;
 }
 
-@media (max-width: 768px) {
-  .university-card {
-    flex-direction: column;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .uni-image-container {
-    height: 250px;
-    flex: none;
-    width: 100%;
-    min-height: 250px;
-  }
-
-  .slider-container {
-    height: 250px;
-  }
-
-  .slide-item {
-    height: 250px;
-    min-height: 250px;
-  }
-
-  .slide-img {
-    height: 250px;
-    object-fit: cover;
-  }
-
-  .uni-details {
-    padding: 20px;
-    width: 100%;
-  }
-
-  .education-section h2 {
-    font-size: 2em;
-    margin-bottom: 30px;
-    padding: 0 10px;
-  }
-
-  .education-section {
-    padding: 40px 4%;
-    width: 100%;
-    margin: 0;
-  }
+/* Optional: Slight text shadow on hover for contrast against the image */
+.university-card:hover .card-inner {
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
 
-@media (max-width: 480px) {
-  .uni-image-container {
-    height: 200px;
-  }
-
-  .slider-container {
-    height: 200px;
-  }
-
-  .slide-item {
-    height: 200px;
-  }
-
-  .slide-img {
-    height: 250px;
-  }
-
-  .education-section h2 {
-    font-size: 1.8em;
-  }
-
-  .uni-details h3 {
-    font-size: 1.5em;
-  }
-
-  .uni-details p {
-    font-size: 0.9em;
-    margin-bottom: 8px;
-  }
-
-  body {
-    padding: 10px;
-  }
+.card-header {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 25px;
+  margin-bottom: 30px;
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .university-card {
-    height: 300px;
-  }
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.degree-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(90deg, #ffffff, #88eaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-  .uni-image-container {
-    height: 300px;
-  }
+.degree-badge {
+  background: rgba(0, 210, 255, 0.15);
+  color: var(--primary-glow);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid var(--primary-glow);
+  white-space: nowrap;
+}
 
-  .slide-item {
-    height: 300px;
-  }
+.institution-name {
+  font-size: 1.1rem;
+  color: #bdc3c7;
+  margin-top: 8px;
+}
 
-  .uni-details {
-    padding: 25px;
-  }
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
 
-  .uni-details h3 {
-    font-size: 1.6em;
-  }
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #7f8c8d;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #eee;
+}
+
+.status-active {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+/* Coursework Tags */
+.course-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin: 0 8px 8px 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.course-tag:hover {
+  background: var(--primary-glow);
+  color: #000;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.section-subtitle {
+  color: var(--primary-glow);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.description-text {
+  color: #bdc3c7;
+  line-height: 1.7;
+  font-style: italic;
 }
