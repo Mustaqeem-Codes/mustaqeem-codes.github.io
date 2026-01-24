@@ -1,36 +1,44 @@
+/* MASTER EDUCATION CSS 
+   Architecture: Bento-inspired Split Layout
+   Animations: Cinematic Entrance (Left/Right)
+*/
+
 :root {
-  --primary-glow: #00d2ff;
-  --card-bg: rgba(10, 10, 10, 0.7); /* Slightly darker for the curtain effect */
-  --glass-border: rgba(255, 255, 255, 0.15);
+  /* Colors & Branding */
+  --accent-color: #00ffee;
+  --primary-glow: rgba(0, 255, 238, 0.3);
+  --bg-dark: #080808;
+  --text-main: #ffffff;
+  --text-muted: #b0b0b0;
+
+  /* Glassmorphism System - Transparent for 3D BG */
+  --card-bg-glass: rgba(15, 15, 15, 0.4);
+  --inner-item-bg: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.12);
+
+  /* Status Colors */
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+
+  /* Animation Timings */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --entrance-speed: 1.4s;
 }
 
+/* 1. SECTION CONTAINER */
 .education-section {
   position: relative;
-  padding: 100px 0;
-  background: #050505;
-  color: #fff;
+  padding: 100px 5%;
+  background: transparent; /* Allows 3D Animation to show through */
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   overflow: hidden;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  font-family: 'Inter', sans-serif;
 }
 
-/* Network Globe Canvas */
-.network-globe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.3;
-}
-
-.container {
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto;
+/* 2. HEADER STYLING */
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
   position: relative;
   z-index: 10;
 }
@@ -46,174 +54,310 @@
   margin-right: auto;
 }
 
-/* University Card - Base State (Transparent) */
-.university-card {
-  position: relative;
-  border-radius: 28px;
-  padding: 50px;
-  overflow: hidden;
-  background: transparent; /* Keep base card transparent */
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* The Background Image Layer (Hidden by default) */
-.university-card::before {
+.section-title::after {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../Pics/home-intro.jpg");
-  background-size: cover;
-  background-position: center;
-  
-  /* Initial state: Invisible and slightly zoomed out */
-  opacity: 0;
-  filter: grayscale(40%) brightness(0.6) blur(2px);
-  transform: scale(1);
-  z-index: -2;
-  transition: opacity 0.6s ease, transform 0.8s ease, filter 0.5s ease;
-}
-
-/* The Dark Curtain (Veil) Layer (Hidden by default) */
-.card-curtain {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,10,10,0.6) 100%);
-  z-index: -1;
-  opacity: 0; /* Invisible initially */
-  transition: opacity 0.5s ease;
-}
-
-/* HOVER STATE: Show Image and Curtain */
-.university-card:hover::before {
-  opacity: 1; /* Show image */
-  transform: scale(1.05);
-  filter: grayscale(0%) brightness(1) blur(0px); /* Clear image on hover */
-}
-
-/* If you want the curtain to be visible on hover to help text readability */
-.university-card:hover .card-curtain {
-  opacity: 1; 
-}
-
-.university-card:hover {
-  border-color: var(--primary-glow);
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
-}
-
-/* Content Layout */
-.card-inner {
-  position: relative;
-  z-index: 2;
-  transition: text-shadow 0.5s ease, transform 0.5s ease;
-}
-
-/* Optional: Slight text shadow on hover for contrast against the image */
-.university-card:hover .card-inner {
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
-}
-
-.card-header {
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 25px;
-  margin-bottom: 30px;
-}
-
-.header-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
-.degree-title {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(90deg, #ffffff, #88eaff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.degree-badge {
-  background: rgba(0, 210, 255, 0.15);
-  color: var(--primary-glow);
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  border: 1px solid var(--primary-glow);
-  white-space: nowrap;
-}
-
-.institution-name {
-  font-size: 1.1rem;
-  color: #bdc3c7;
-  margin-top: 8px;
-}
-
-/* Info Grid */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 25px;
-  margin-bottom: 40px;
-}
-
-.info-label {
   display: block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: #7f8c8d;
-  letter-spacing: 1.5px;
-  margin-bottom: 5px;
-}
-
-.info-value {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #eee;
-}
-
-.status-active {
-  color: #2ecc71;
-  font-weight: 600;
-}
-
-/* Coursework Tags */
-.course-tag {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  margin: 0 8px 8px 0;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: 0.3s;
-}
-
-.course-tag:hover {
-  background: var(--primary-glow);
-  color: #000;
-  transform: translateY(-2px);
-  cursor: pointer;
+  width: 100px;
+  height: 4px;
+  background: var(--accent-color);
+  margin: 15px auto 0;
+  box-shadow: 0 0 15px var(--accent-color);
 }
 
 .section-subtitle {
-  color: var(--primary-glow);
-  margin-bottom: 15px;
+  color: var(--text-muted);
   font-size: 1.1rem;
-  font-weight: 600;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
-.description-text {
-  color: #bdc3c7;
-  line-height: 1.7;
-  font-style: italic;
+/* 3. MAIN LAYOUT GRID */
+.education-horizontal {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* 4. ENTRANCE ANIMATION LOGIC (OUT OF SCREEN) */
+.university-overview {
+  transform: translateX(-110vw); /* Fly in from far left */
+  opacity: 0;
+  transition:
+    transform var(--entrance-speed) var(--ease-cinematic),
+    opacity var(--entrance-speed) ease;
+}
+
+.right-cards-container {
+  transform: translateX(110vw); /* Fly in from far right */
+  opacity: 0;
+  transition:
+    transform var(--entrance-speed) var(--ease-cinematic),
+    opacity var(--entrance-speed) ease;
+}
+
+/* When JS adds .animate-in class */
+.university-overview.animate-in,
+.right-cards-container.animate-in {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* 5. CARD CORE STYLING */
+.university-overview,
+.detail-card,
+.timeline-card {
+  background: var(--card-bg-glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  padding: 45px;
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.university-overview:hover,
+.detail-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 255, 238, 0.1);
+}
+
+/* 6. UNIVERSITY CONTENT ALIGNMENT */
+.university-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.university-logo {
+  width: 90px;
+  height: 90px;
+  background: var(--inner-item-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: var(--accent-color);
+  margin: 0 auto 25px;
+}
+
+.degree-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.university-name {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.duration-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+}
+
+/* 7. PROGRESS BARS */
+.progress-stats {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.stat-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), #00d2ff);
+  width: 0; /* Animated via JS or Inline */
+  transition: width 2s var(--ease-cinematic);
+}
+
+/* 8. RIGHT SIDE CARDS (COURSEWORK & DESCRIPTION) */
+.right-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* COURSE GRID ALIGNMENT - PIXEL PERFECT */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between; /* Fixes alignment: Name left, Grade right */
+  align-items: center;
+  background: var(--inner-item-bg);
+  border: 1px solid var(--border-color);
+  padding: 18px 22px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.course-item:hover {
+  background: rgba(0, 255, 238, 0.08);
+  border-color: var(--accent-color);
+}
+
+.course-grade {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  color: var(--accent-color);
+  background: rgba(0, 255, 238, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.education-paragraph {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* 9. ACADEMIC TIMELINE / GPA TREND */
+.academic-timeline-section {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.timeline-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.semester-card {
+  background: var(--inner-item-bg);
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.semester-card:hover {
+  border-color: var(--accent-color);
+  background: rgba(0, 255, 238, 0.05);
+}
+
+.semester-gpa {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 10px 0;
+}
+
+.trend-up {
+  color: var(--success-color);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* 10. RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1100px) {
+  .education-horizontal {
+    grid-template-columns: 1fr;
+  }
+  .university-overview {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  .right-cards-container {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-section {
+    padding: 60px 20px;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+  .university-overview,
+  .detail-card {
+    padding: 30px;
+  }
+}
+
+.timeline-summary {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+  width: 100%;
+}
+
+.summary-text {
+  color: var(--muted-text);
+  font-size: 1rem;
+  line-height: 1.6;
 }

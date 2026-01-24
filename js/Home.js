@@ -69,3 +69,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (homeSection) observer.observe(homeSection);
 });
+
+
+// Hide default browser tooltip for download button
+document.addEventListener('DOMContentLoaded', function() {
+  const downloadBtn = document.querySelector('.cv-portfolio-download-btn');
+  if (downloadBtn) {
+    // Store original title
+    const originalTitle = downloadBtn.getAttribute('title');
+    
+    // Remove title attribute to hide default tooltip
+    downloadBtn.removeAttribute('title');
+    
+    // Optional: Restore title when leaving page (for accessibility)
+    downloadBtn.addEventListener('mouseleave', function() {
+      // Only restore if not already restored
+      if (!this.getAttribute('title')) {
+        setTimeout(() => {
+          this.setAttribute('title', originalTitle);
+        }, 100);
+      }
+    });
+    
+    // Remove again on hover
+    downloadBtn.addEventListener('mouseenter', function() {
+      this.removeAttribute('title');
+    });
+  }
+});

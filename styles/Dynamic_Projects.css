@@ -217,7 +217,6 @@
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
   text-align: center;
   flex-grow: 1;
   border: none;
@@ -229,28 +228,86 @@
   align-items: center;
   justify-content: center;
   max-width: 200px;
+  /* NEW: Add these properties */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* NEW: Add this pseudo-element rule */
+.portfolio-action-btn::before {
+  content: '';
+  position: absolute;
+  top: -2px; /* CHANGED from 0 to -2px */
+  left: -2px; /* CHANGED from 0 to -2px */
+  width: calc(100% + 4px); /* CHANGED to cover border */
+  height: calc(100% + 4px); /* CHANGED to cover border */
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+  border-radius: 8px; /* ADDED to match button border-radius */
 }
 
 .portfolio-btn-live {
-  background: var(--portfolio-btn-primary);
-  color: var(--portfolio-dark-color);
+  background: transparent; /* CHANGED from gradient */
+  color: var(--portfolio-primary-color); /* Updated color */
+  border: 2px solid var(--portfolio-primary-color); /* NEW: Added border */
+}
+
+.portfolio-btn-live::before {
+  background: var(--portfolio-btn-primary); /* Gradient for fill */
+}
+
+.portfolio-btn-live:hover {
+  color: var(--portfolio-dark-color); /* Dark text on hover */
+  transform: translateY(-2px) scale(1.02); /* Updated */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-btn-live:hover::before {
+  transform: scaleX(1);
 }
 
 .portfolio-btn-github {
+  background-color: transparent; /* CHANGED from solid */
+  color: var(--portfolio-primary-color); /* Updated */
+  border: 2px solid var(--portfolio-primary-color); /* NEW */
+}
+
+.portfolio-btn-github::before {
   background-color: var(--portfolio-primary-color);
-  color: var(--portfolio-dark-color);
+}
+
+.portfolio-btn-github:hover {
+  color: var(--portfolio-dark-color); /* Dark text on hover */
+  transform: translateY(-2px) scale(1.02); /* Updated */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-btn-github:hover::before {
+  transform: scaleX(1);
 }
 
 .portfolio-btn-readmore {
-  background-color: var(--portfolio-dark-color);
+  background-color: transparent; /* CHANGED from dark */
   color: var(--portfolio-main-color);
-  border: 1px solid var(--portfolio-main-color);
+  border: 2px solid var(--portfolio-main-color); /* Updated from 1px to 2px */
 }
 
-.portfolio-action-btn:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0, 255, 238, 0.06);
-  opacity: 1;
+.portfolio-btn-readmore::before {
+  background-color: var(--portfolio-main-color);
+}
+
+.portfolio-btn-readmore:hover {
+  color: var(--portfolio-dark-color); /* Dark text on hover */
+  transform: translateY(-2px) scale(1.02); /* Updated */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-btn-readmore:hover::before {
+  transform: scaleX(1);
 }
 
 .portfolio-action-btn:focus-visible {
