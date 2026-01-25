@@ -1,1578 +1,510 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Education | Portfolio</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      :root {
-        --main-color: #00ffee;
-        --bg-color: #080808;
-        --card-bg: rgba(26, 26, 26, 0.85);
-        --text-color: #ffffff;
-        --muted-text: #b0b0b0;
-        --border-color: rgba(255, 255, 255, 0.15);
-        --accent-color: #00ffee;
-        --success-color: #4caf50;
-        --warning-color: #ff9800;
-        --shadow-color: rgba(0, 255, 238, 0.08);
-        --glass-bg: rgba(255, 255, 255, 0.05);
-        --glass-border: rgba(255, 255, 255, 0.1);
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications - Professional Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* 1. ROOT & CORE VARIABLES - UNIQUE PREFIX */
+    :root {
+      --cert-accent: #00ffee;
+      --cert-accent-dark: #00ccbb;
+      --cert-glass-bg: rgba(255, 255, 255, 0.03);
+      --cert-glass-border: rgba(255, 255, 255, 0.1);
+      --cert-glass-hover: rgba(0, 255, 238, 0.08);
+      --cert-text-primary: #ffffff;
+      --cert-text-muted: #b0b0b0;
+      --cert-ease-curtain: cubic-bezier(0.33, 1, 0.68, 1);
+      --cert-transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --cert-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* CERTIFICATIONS SECTION - UNIQUE CLASS NAMES */
+    .cert-section {
+      position: relative;
+      padding: 100px 5%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .cert-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .cert-header {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    .cert-section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--cert-text-primary);
+      text-shadow: 0 4px 20px rgba(0, 255, 238, 0.2);
+    }
+
+    .cert-curtain-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      perspective: 2000px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CARD COMPONENT */
+    .cert-card {
+      background: var(--cert-glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--cert-glass-border);
+      border-radius: 24px;
+      padding: 25px;
+      cursor: default;
+      position: relative;
+      opacity: 0;
+      transform: translateX(-100px) rotateY(30deg) scale(0.95);
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transition: var(--cert-transition-smooth);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cert-card.visible {
+      opacity: 1;
+      transform: translateX(0) rotateY(0deg) scale(1);
+      transition: opacity 0.8s var(--cert-ease-curtain),
+        transform 0.8s var(--cert-ease-curtain);
+    }
+
+    .cert-card:hover {
+      border-color: var(--cert-accent);
+      background: var(--cert-glass-hover);
+      transform: translateY(-10px) rotateY(0deg) scale(1.02) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 255, 238, 0.15);
+      z-index: 10;
+    }
+
+    .cert-thumbnail {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      border: 1px solid var(--cert-glass-border);
+      transition: border-color 0.4s var(--cert-ease-out);
+    }
+
+    .cert-card:hover .cert-thumbnail {
+      border-color: var(--cert-accent);
+    }
+
+    .cert-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--cert-ease-curtain);
+      pointer-events: none;
+    }
+
+    .cert-card:hover .cert-thumbnail img {
+      transform: scale(1.08);
+    }
+
+    .cert-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--cert-accent);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      z-index: 2;
+      transition: all 0.3s var(--cert-ease-out);
+    }
+
+    .cert-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--cert-text-primary);
+      transition: color 0.3s ease;
+    }
+
+    .cert-content p {
+      color: var(--cert-text-muted);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    /* BUTTONS */
+    .cert-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .cert-download-btn,
+    .cert-view-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s var(--cert-ease-out);
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cert-download-btn {
+      background: var(--cert-accent);
+      color: #000;
+    }
+
+    .cert-download-btn:hover {
+      background: var(--cert-accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 255, 238, 0.4);
+    }
+
+    .cert-view-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--cert-glass-border);
+    }
+
+    .cert-view-btn:hover {
+      border-color: var(--cert-accent);
+      background: rgba(0, 255, 238, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 255, 238, 0.2);
+    }
+
+    /* UNIQUE MODAL CLASSES - CRITICAL FIX */
+    .cert-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+      z-index: 99999; /* Very high z-index */
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .cert-modal-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .cert-modal-image-container {
+      width: 90%;
+      max-width: 1200px;
+      height: 90%;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-modal-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(0, 255, 238, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: scale(0.9);
+      transition: transform 0.5s var(--cert-ease-curtain);
+    }
+
+    .cert-modal.active .cert-modal-image {
+      transform: scale(1);
+    }
+
+    .cert-modal-close {
+      position: fixed; /* Fixed to viewport */
+      top: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s var(--cert-ease-out);
+      z-index: 100000; /* Even higher than modal */
+    }
+
+    .cert-modal-close:hover {
+      background: var(--cert-accent);
+      color: #000;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .cert-curtain-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .cert-section {
+        padding: 80px 5%;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cert-curtain-row {
+        grid-template-columns: 1fr;
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+      .cert-modal-image-container {
+        width: 95%;
+        height: 80%;
       }
-
-      body {
-        font-family:
-          "Segoe UI",
-          system-ui,
-          -apple-system,
-          sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
-        padding: 20px;
-        max-width: 1400px;
-        margin: 0 auto;
-        min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      /* Background 3D Animation */
-      .bg-animation {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.15;
-        pointer-events: none;
-      }
-
-      .cube {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        transform-style: preserve-3d;
-        animation: rotate 20s infinite linear;
-      }
-
-      .cube:nth-child(1) {
-        top: 10%;
-        left: 10%;
-        animation-delay: 0s;
-      }
-
-      .cube:nth-child(2) {
-        top: 70%;
-        left: 80%;
-        animation-delay: -5s;
-      }
-
-      .cube:nth-child(3) {
-        top: 40%;
-        left: 90%;
-        animation-delay: -10s;
-      }
-
-      .cube:nth-child(4) {
-        top: 85%;
-        left: 15%;
-        animation-delay: -15s;
-      }
-
-      .face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 1px solid rgba(0, 255, 238, 0.2);
-        background: rgba(0, 255, 238, 0.05);
-      }
-
-      .front {
-        transform: translateZ(30px);
-      }
-      .back {
-        transform: rotateY(180deg) translateZ(30px);
-      }
-      .right {
-        transform: rotateY(90deg) translateZ(30px);
-      }
-      .left {
-        transform: rotateY(-90deg) translateZ(30px);
-      }
-      .top {
-        transform: rotateX(90deg) translateZ(30px);
-      }
-      .bottom {
-        transform: rotateX(-90deg) translateZ(30px);
-      }
-
-      @keyframes rotate {
-        0% {
-          transform: rotateX(0) rotateY(0) rotateZ(0);
-        }
-        100% {
-          transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-        }
-      }
-
-      /* Floating Particles */
-      .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: rgba(0, 255, 238, 0.3);
-        border-radius: 50%;
-        animation: float 8s infinite ease-in-out;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0) translateX(0);
-        }
-        50% {
-          transform: translateY(-20px) translateX(20px);
-        }
-      }
-
-      /* Education Section */
-      .education-section {
-        margin: 40px 0;
-        padding: 40px;
-        background: rgba(10, 10, 10, 0.7);
-        border-radius: 24px;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
-        box-shadow:
-          0 20px 60px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s ease;
-      }
-
-      .education-section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .education-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--accent-color),
-          transparent
-        );
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 60px;
-        position: relative;
-      }
-
-      .section-title {
-        font-size: 3rem;
-        color: var(--text-color);
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 20px;
-        font-weight: 700;
-        position: relative;
-        display: inline-block;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 3px;
-        background: var(--accent-color);
-        border-radius: 2px;
-      }
-
-      .section-subtitle {
-        color: var(--muted-text);
-        font-size: 1.2rem;
-        max-width: 600px;
-        margin: 30px auto 0;
-        font-weight: 300;
-        line-height: 1.8;
-      }
-
-      /* Horizontal Layout - Updated for equal height */
-      .education-horizontal {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 40px;
-        align-items: stretch; /* Changed to stretch for equal height */
-        min-height: 680px; /* Minimum height to match cards */
-      }
-
-      /* University Overview (Left Side) */
-      .university-overview {
-        background: var(--card-bg);
-        border-radius: 20px;
-        padding: 35px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        display: flex;
+      
+      .cert-actions {
         flex-direction: column;
-        opacity: 0;
-        transform: translateX(-100px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      .university-overview.animate-in {
-        opacity: 1;
-        transform: translateX(0);
+      
+      .cert-modal-close {
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
       }
+    }
 
-      .university-header {
-        text-align: center;
-        margin-bottom: 35px;
+    @media (max-width: 480px) {
+      .cert-section {
+        padding: 60px 5%;
       }
-
-      .university-logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 2px solid var(--border-color);
-        margin: 0 auto 25px;
+      
+      .cert-card {
         padding: 20px;
-        background: var(--glass-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.8rem;
-        color: var(--text-color);
-        transition: all 0.3s ease;
       }
-
-      .university-logo:hover {
-        border-color: var(--accent-color);
-        transform: rotate(10deg);
-      }
-
-      .degree-title {
-        font-size: 1.8rem;
-        color: var(--text-color);
-        margin-bottom: 12px;
-        font-weight: 600;
-        line-height: 1.3;
-      }
-
-      .university-name {
-        font-size: 1.3rem;
-        color: var(--muted-text);
-        margin-bottom: 20px;
-        font-weight: 400;
-      }
-
-      .duration-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--glass-bg);
-        color: var(--text-color);
-        padding: 10px 22px;
-        border-radius: 25px;
-        font-size: 0.95rem;
-        border: 1px solid var(--border-color);
-      }
-
-      /* Progress Stats */
-      .progress-stats {
-        margin: 35px 0;
-        flex: 1; /* Take available space to push content down */
-      }
-
-      .stat-item {
-        margin-bottom: 25px;
-      }
-
-      .stat-label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-        color: var(--text-color);
-        font-size: 0.95rem;
-        font-weight: 500;
-      }
-
-      .stat-value {
-        color: var(--accent-color);
-        font-weight: 600;
-      }
-
-      .progress-bar {
-        height: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .progress-fill {
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          rgba(0, 255, 238, 0.3),
-          var(--accent-color)
-        );
-        border-radius: 4px;
-        position: relative;
-        transition: width 1.5s ease-out;
-      }
-
-      .progress-fill::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        animation: shimmer 2s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
-
-      /* Details Section (Right Side) */
-      .education-details {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-      }
-
-      /* Right side cards container */
-      .right-cards-container {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        flex: 1;
-      }
-
-      .detail-card {
-        background: var(--card-bg);
-        border-radius: 18px;
-        padding: 30px;
-        border: 1px solid var(--border-color);
-        backdrop-filter: blur(10px);
-        opacity: 0;
-        transform: translateX(100px);
-        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        /* Base shadow */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .detail-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.05),
-          transparent
-        );
-        transition: left 1s ease;
-        z-index: 1;
-      }
-
-      .detail-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 18px;
-        padding: 1px;
-        background: linear-gradient(
-          135deg,
-          transparent,
-          var(--accent-color),
-          transparent
-        );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-      }
-
-      .detail-card.animate-in {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      /* Main hover effect - Combined smooth transformations */
-      .detail-card:hover {
-        transform: translateY(-8px) translateX(0) !important;
-        box-shadow:
-          0 20px 50px rgba(0, 255, 238, 0.15),
-          0 8px 25px rgba(0, 0, 0, 0.3);
-        border-color: transparent;
-      }
-
-      .detail-card:hover::before {
-        left: 100%;
-      }
-
-      .detail-card:hover::after {
-        opacity: 1;
-        animation: borderGlow 2s ease-in-out infinite;
-      }
-
-      /* Smooth shadow transition */
-      .detail-card {
-        transition:
-          transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          border-color 0.4s ease,
-          opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-          backdrop-filter 0.5s ease;
-      }
-
-      /* Content scaling effect */
-      .detail-card .card-header,
-      .detail-card .course-grid,
-      .detail-card .education-paragraph {
-        transition: transform 0.4s ease;
-      }
-
-      .detail-card:hover .card-header {
-        transform: translateY(-2px);
-      }
-
-      .detail-card:hover .course-grid {
-        transform: scale(1.01);
-      }
-
-      /* Individual card item enhancements */
-      .course-item {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        z-index: 2;
-      }
-
-      .course-item:hover {
-        transform: translateY(-4px) scale(1.05);
-        background: rgba(0, 255, 238, 0.12) !important;
-        box-shadow: 0 8px 20px rgba(0, 255, 238, 0.15);
-      }
-
-      /* Border glow animation */
-      @keyframes borderGlow {
-        0%,
-        100% {
-          opacity: 0.7;
-          background: linear-gradient(
-            135deg,
-            transparent,
-            var(--accent-color),
-            transparent
-          );
-        }
-        50% {
-          opacity: 1;
-          background: linear-gradient(
-            135deg,
-            transparent,
-            var(--accent-color),
-            rgba(0, 255, 238, 0.8),
-            var(--accent-color),
-            transparent
-          );
-        }
-      }
-
-      /* Subtle pulse effect on hover */
-      @keyframes subtlePulse {
-        0%,
-        100% {
-          box-shadow:
-            0 20px 50px rgba(0, 255, 238, 0.15),
-            0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        50% {
-          box-shadow:
-            0 25px 60px rgba(0, 255, 238, 0.2),
-            0 10px 30px rgba(0, 0, 0, 0.35);
-        }
-      }
-
-      .detail-card:hover {
-        animation: subtlePulse 3s ease-in-out infinite;
-      }
-
-      /* Smooth content reveal effect */
-      .detail-card > * {
-        opacity: 0.95;
-        transition: opacity 0.3s ease;
-      }
-
-      .detail-card:hover > * {
-        opacity: 1;
-      }
-
-      /* Enhanced card icon hover */
-      .card-icon {
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .detail-card:hover .card-icon {
-        transform: rotate(10deg) scale(1.1);
-        background: linear-gradient(
-          135deg,
-          rgba(0, 255, 238, 0.2),
-          rgba(0, 255, 238, 0.1)
-        );
-        box-shadow: 0 0 20px rgba(0, 255, 238, 0.3);
-      }
-
-      /* Gradient text effect on hover */
-      .card-title {
-        background: linear-gradient(
-          90deg,
-          var(--text-color),
-          var(--muted-text)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        transition: all 0.4s ease;
-      }
-
-      .detail-card:hover .card-title {
-        background: linear-gradient(
-          90deg,
-          var(--accent-color),
-          var(--text-color)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-      }
-
-      /* Smooth scale-in for course items on card hover */
-      .detail-card:hover .course-item {
-        animation: fadeInUp 0.5s ease forwards;
-        animation-delay: calc(var(--item-index, 0) * 0.05s);
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0.8;
-          transform: translateY(5px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Apply animation delays to course items */
-      .course-item:nth-child(1) {
-        --item-index: 1;
-      }
-      .course-item:nth-child(2) {
-        --item-index: 2;
-      }
-      .course-item:nth-child(3) {
-        --item-index: 3;
-      }
-      .course-item:nth-child(4) {
-        --item-index: 4;
-      }
-      .course-item:nth-child(5) {
-        --item-index: 5;
-      }
-      .course-item:nth-child(6) {
-        --item-index: 6;
-      }
-      .course-item:nth-child(7) {
-        --item-index: 7;
-      }
-      .course-item:nth-child(8) {
-        --item-index: 8;
-      }
-
-      /* Responsive adjustments for hover effects */
-      @media (max-width: 768px) {
-        .detail-card:hover {
-          transform: translateY(-5px) translateX(0) !important;
-          box-shadow:
-            0 15px 35px rgba(0, 255, 238, 0.12),
-            0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .detail-card::after {
-          display: none; /* Reduce GPU load on mobile */
-        }
-      }
-
-      /* Reduced motion preference */
-      @media (prefers-reduced-motion: reduce) {
-        .detail-card,
-        .detail-card::before,
-        .detail-card::after,
-        .course-item,
-        .card-icon {
-          transition-duration: 0.1s !important;
-          animation: none !important;
-        }
-
-        .detail-card:hover {
-          transform: translateY(-3px) translateX(0) !important;
-        }
-      }
-
-      .card-header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .card-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        background: var(--glass-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: var(--text-color);
-      }
-
-      .card-title {
-        font-size: 1.5rem;
-        color: var(--text-color);
-        font-weight: 600;
-      }
-
-      /* Course Grid */
-      .course-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 15px;
-      }
-
-      .course-item {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
-        padding: 18px 15px;
-        border-radius: 12px;
-        font-size: 0.95rem;
-        color: var(--text-color);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .course-item:hover {
-        background: rgba(0, 255, 238, 0.08);
-        transform: translateY(-3px);
-        border-color: var(--accent-color);
-      }
-
-      .course-grade {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 0.8rem;
-        color: var(--accent-color);
-        font-weight: 600;
-      }
-
-      /* Education Paragraph */
-      .education-paragraph {
-        color: var(--muted-text);
-        line-height: 1.8;
-        font-size: 1rem;
-      }
-
-      .education-paragraph p {
-        margin-bottom: 20px;
-      }
-
-      /* Full Width Timeline Section */
-      .academic-timeline-section {
-        margin-top: 50px;
-        width: 100%;
-        opacity: 0;
-        transform: translateY(100px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .academic-timeline-section.animate-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .timeline-card {
-        background: var(--card-bg);
-        border-radius: 18px;
-        padding: 35px;
-        border: 1px solid var(--border-color);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      .timeline-header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .timeline-title {
-        font-size: 1.8rem;
-        color: var(--text-color);
-        font-weight: 600;
-      }
-
-      .timeline-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        padding: 20px 0;
-      }
-
-      .semester-card {
-        flex: 1;
-        min-width: 120px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.3s ease;
-      }
-
-      .semester-card:hover {
-        background: rgba(0, 255, 238, 0.05);
-        transform: translateY(-5px);
-        border-color: var(--accent-color);
-      }
-
-      .semester-number {
-        font-size: 0.9rem;
-        color: var(--muted-text);
-        margin-bottom: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .semester-gpa {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--text-color);
-        margin-bottom: 8px;
-      }
-
-      .gpa-trend {
-        font-size: 0.8rem;
-        padding: 4px 12px;
-        border-radius: 12px;
-        display: inline-block;
-      }
-
-      .trend-up {
-        background: rgba(76, 175, 80, 0.2);
-        color: var(--success-color);
-      }
-      .trend-down {
-        background: rgba(244, 67, 54, 0.2);
-        color: #f44336;
-      }
-      .trend-neutral {
-        background: rgba(255, 193, 7, 0.2);
-        color: var(--warning-color);
-      }
-
-      .timeline-summary {
-        margin-top: 30px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 12px;
-        border-left: 4px solid var(--accent-color);
-      }
-
-      .summary-text {
-        color: var(--muted-text);
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 1024px) {
-        .education-horizontal {
-          grid-template-columns: 1fr;
-          gap: 30px;
-          min-height: auto;
-        }
-
-        .course-grid {
-          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        }
-
-        .timeline-container {
-          justify-content: center;
-        }
-
-        .semester-card {
-          min-width: 140px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .education-section {
-          padding: 25px;
-        }
-
-        .section-title {
-          font-size: 2.2rem;
-        }
-
-        .course-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .timeline-container {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .semester-card {
-          width: 100%;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .education-section {
-          padding: 20px;
-        }
-
-        .section-title {
-          font-size: 1.8rem;
-          letter-spacing: 1px;
-        }
-
-        .course-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .university-logo {
-          width: 80px;
-          height: 80px;
-          font-size: 2rem;
-        }
-
-        .degree-title {
-          font-size: 1.4rem;
-        }
-
-        .timeline-card {
-          padding: 25px;
-        }
-      }
-
-      /* Animation Classes */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.8s ease forwards;
-      }
-
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .delay-1 {
-        animation-delay: 0.2s;
-      }
-      .delay-2 {
-        animation-delay: 0.4s;
-      }
-      .delay-3 {
-        animation-delay: 0.6s;
-      }
-
-      /* Lens Effect Overlay */
-      .lens-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-          ellipse at center,
-          rgba(0, 255, 238, 0.1) 0%,
-          rgba(0, 255, 238, 0.05) 25%,
-          transparent 70%
-        );
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-      }
-
-      .education-section:hover .lens-overlay {
-        opacity: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Background 3D Animation -->
-    <div class="bg-animation">
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-      </div>
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-      </div>
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-      </div>
-      <div class="cube">
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-        <div class="face top"></div>
-        <div class="face bottom"></div>
+      
+      .cert-modal-image-container {
+        width: 98%;
+        height: 70%;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="certificates" class="cert-section">
+    <div class="cert-container">
+      <div class="cert-header">
+        <h1 class="cert-section-title">Certifications</h1>
       </div>
 
-      <!-- Floating Particles -->
-      <div
-        class="particle"
-        style="top: 20%; left: 30%; animation-delay: 0s"
-      ></div>
-      <div
-        class="particle"
-        style="top: 60%; left: 70%; animation-delay: 2s"
-      ></div>
-      <div
-        class="particle"
-        style="top: 80%; left: 40%; animation-delay: 4s"
-      ></div>
-      <div
-        class="particle"
-        style="top: 30%; left: 80%; animation-delay: 6s"
-      ></div>
+      <div class="cert-curtain-row">
+        <div class="cert-card" data-pdf="Pics/DSA Certificate.pdf">
+          <div class="cert-thumbnail">
+            <img src="Pics/DSA Certificate.png" alt="DSA Certificate">
+            <div class="cert-badge">DSA</div>
+          </div>
+          <div class="cert-content">
+            <h3>Data Structures and Algorithms</h3>
+            <p>SimpliLearn</p>
+            <div class="cert-actions">
+              <button class="cert-download-btn" onclick="downloadPDF('Pics/DSA Certificate.pdf')">
+                <i class="fas fa-download"></i> Download
+              </button>
+              <button class="cert-view-btn">
+                <i class="fas fa-eye"></i> Preview
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Add more certificates as needed -->
+      </div>
     </div>
 
-    <!-- Education Section -->
-    <section id="education" class="education-section">
-      <div class="lens-overlay"></div>
-
-      <div class="section-header">
-        <h1 class="section-title fade-in">Education</h1>
-        <p class="section-subtitle fade-in delay-1">
-          A comprehensive journey through academic excellence, technical
-          mastery, and continuous learning in Computer Science
-        </p>
-      </div>
-
-      <div class="education-horizontal">
-        <!-- Left Column: University Overview -->
-        <div class="university-overview fade-in delay-1">
-          <div class="university-header">
-            <div class="university-logo">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h2 class="degree-title">
-              Bachelor of Technology<br />Computer Science
-            </h2>
-            <h3 class="university-name">
-              Indian Institute of Technology, Delhi
-            </h3>
-            <div class="duration-badge">
-              <i class="far fa-calendar-alt"></i>
-              <span>Aug 2021 - May 2025 (Expected)</span>
-            </div>
-          </div>
-
-          <div class="progress-stats">
-            <div class="stat-item">
-              <div class="stat-label">
-                <span>Credit Hours</span>
-                <span class="stat-value">142/165</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 86%"></div>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-label">
-                <span>Course Completion</span>
-                <span class="stat-value">38/42</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 90.5%"></div>
-              </div>
-            </div>
-
-            <div class="stat-item">
-              <div class="stat-label">
-                <span>Laboratory Hours</span>
-                <span class="stat-value">620+</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 100%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Details -->
-        <div class="right-cards-container">
-          <!-- Coursework Card -->
-          <div class="detail-card fade-in delay-2">
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fas fa-book"></i>
-              </div>
-              <h3 class="card-title">Core Coursework</h3>
-            </div>
-            <div class="course-grid">
-              <div class="course-item">
-                Data Structures & Algorithms
-                <span class="course-grade">A+</span>
-              </div>
-              <div class="course-item">
-                Database Systems
-                <span class="course-grade">A</span>
-              </div>
-              <div class="course-item">
-                Operating Systems
-                <span class="course-grade">A</span>
-              </div>
-              <div class="course-item">
-                Computer Networks
-                <span class="course-grade">A</span>
-              </div>
-              <div class="course-item">
-                Software Engineering
-                <span class="course-grade">A-</span>
-              </div>
-              <div class="course-item">
-                Machine Learning
-                <span class="course-grade">A+</span>
-              </div>
-              <div class="course-item">
-                Computer Architecture
-                <span class="course-grade">B+</span>
-              </div>
-              <div class="course-item">
-                Theory of Computation
-                <span class="course-grade">A</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Education Context Card -->
-          <div class="detail-card fade-in delay-2">
-            <div class="card-header">
-              <div class="card-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <h3 class="card-title">Education</h3>
-            </div>
-            <div class="education-paragraph">
-              <p>
-                Currently pursuing a Bachelor's degree in Computer Science at
-                UET Lahore, my academic journey has provided a structured
-                foundation in problem-solving, system-level thinking, and
-                disciplined engineering practices. The program complements my
-                professional work by equipping me with the theoretical and
-                practical knowledge required to design, develop, and maintain
-                scalable web applications.
-              </p>
-              <!-- <p>
-                            Through rigorous coursework in algorithms, data structures, and software engineering principles, I've developed a strong analytical mindset and the ability to architect efficient, maintainable solutions. This academic foundation serves as the bedrock upon which I build practical, real-world applications.
-                        </p> -->
-            </div>
-          </div>
+    <!-- UNIQUE MODAL ELEMENT -->
+    <div id="cert-image-modal" class="cert-modal">
+      <div class="cert-modal-content">
+        <div class="cert-modal-close"><i class="fas fa-times"></i></div>
+        <div class="cert-modal-image-container">
+          <img id="cert-modal-image" class="cert-modal-image" src="" alt="Certificate Preview">
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Full Width Academic Progress Timeline -->
-      <div class="academic-timeline-section">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <div class="card-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3 class="timeline-title">Academic Progress Timeline</h3>
-          </div>
-
-          <div class="timeline-container">
-            <div class="semester-card">
-              <div class="semester-number">Semester 1</div>
-              <div class="semester-gpa">8.2</div>
-              <div class="gpa-trend trend-neutral">—</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 2</div>
-              <div class="semester-gpa">8.5</div>
-              <div class="gpa-trend trend-up">+0.3</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 3</div>
-              <div class="semester-gpa">8.7</div>
-              <div class="gpa-trend trend-up">+0.2</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 4</div>
-              <div class="semester-gpa">8.8</div>
-              <div class="gpa-trend trend-up">+0.1</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 5</div>
-              <div class="semester-gpa">8.4</div>
-              <div class="gpa-trend trend-down">-0.4</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 6</div>
-              <div class="semester-gpa">8.9</div>
-              <div class="gpa-trend trend-up">+0.5</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 7</div>
-              <div class="semester-gpa">—</div>
-              <div class="gpa-trend trend-neutral">Ongoing</div>
-            </div>
-            <div class="semester-card">
-              <div class="semester-number">Semester 8</div>
-              <div class="semester-gpa">—</div>
-              <div class="gpa-trend trend-neutral">Upcoming</div>
-            </div>
-          </div>
-
-          <div class="timeline-summary">
-            <p class="summary-text">
-              <strong>Overall Trend:</strong> Consistent academic performance
-              with a net improvement of
-              <span style="color: var(--accent-color)">+0.7 CGPA</span> since
-              the first semester. Demonstrated resilience in Semester 5 with
-              quick recovery in subsequent semesters, showcasing adaptability
-              and continuous improvement.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script>
-      // Master Animation Controller
-      class EducationAnimator {
-        constructor() {
-          this.section = document.getElementById("education");
-          this.leftCard = document.querySelector(".university-overview");
-          this.rightCards = document.querySelectorAll(".detail-card");
-          this.timelineSection = document.querySelector(
-            ".academic-timeline-section",
-          );
-          this.hasAnimated = false;
-          this.init();
+  <script>
+    // 1. SCROLL ANIMATION
+    function handleCertCurtain() {
+      const container = document.querySelector('.cert-section');
+      const cards = document.querySelectorAll('.cert-card');
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      const sectionRect = container.getBoundingClientRect();
+      const sectionTop = sectionRect.top + scrollY;
+      const sectionHeight = sectionRect.height;
+      
+      const startTrigger = sectionTop - (windowHeight * 0.3);
+      const endTrigger = sectionTop + (sectionHeight * 0.7);
+      
+      let progress = (scrollY - startTrigger) / (endTrigger - startTrigger);
+      progress = Math.min(Math.max(progress, 0), 1);
+      
+      const easedProgress = easeOutCubic(progress);
+      
+      cards.forEach((card, index) => {
+        const stagger = index * 0.1;
+        let cardProgress = Math.min(Math.max((progress - stagger) / (1 - stagger), 0), 1);
+        
+        const easedCardProgress = easeOutCubic(cardProgress);
+        const xPos = -100 + (easedCardProgress * 100);
+        const rotation = 30 - (easedCardProgress * 30);
+        
+        card.style.transform = `translateX(${xPos}px) rotateY(${rotation}deg) scale(${0.95 + (easedCardProgress * 0.05)})`;
+        card.style.opacity = easedCardProgress;
+        
+        if (easedCardProgress > 0.9 && !card.classList.contains('visible')) {
+          card.classList.add('visible');
+        } else if (easedCardProgress <= 0.1 && card.classList.contains('visible')) {
+          card.classList.remove('visible');
         }
-
-        init() {
-          // Create additional particles
-          this.createParticles();
-
-          // Set up intersection observer for scroll animations
-          this.setupScrollObserver();
-
-          // Set up refresh listener
-          window.addEventListener("load", () => this.animateOnLoad());
-
-          // Set up visibility change listener
-          document.addEventListener("visibilitychange", () => {
-            if (!document.hidden && this.isInViewport()) {
-              this.triggerAnimations();
-            }
-          });
-
-          // Initial check
-          if (this.isInViewport()) {
-            this.animateOnLoad();
-          }
-        }
-
-        isInViewport() {
-          const rect = this.section.getBoundingClientRect();
-          return (
-            rect.top <= window.innerHeight * 0.75 &&
-            rect.bottom >= window.innerHeight * 0.25
-          );
-        }
-
-        setupScrollObserver() {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting && !this.hasAnimated) {
-                  this.triggerAnimations();
-                  this.hasAnimated = true;
-                }
-              });
-            },
-            {
-              threshold: 0.2,
-              rootMargin: "50px",
-            },
-          );
-
-          observer.observe(this.section);
-        }
-
-        animateOnLoad() {
-          // Show main section
-          this.section.classList.add("visible");
-
-          // Trigger animations with delays
-          setTimeout(() => this.triggerAnimations(), 300);
-        }
-
-        triggerAnimations() {
-          // Animate left card (slide from left)
-          setTimeout(() => {
-            this.leftCard.classList.add("animate-in");
-
-            // Add lens effect during animation
-            this.leftCard.style.boxShadow = "0 0 60px rgba(0, 255, 238, 0.3)";
-            setTimeout(() => {
-              this.leftCard.style.boxShadow = "";
-            }, 1000);
-          }, 200);
-
-          // Animate right cards (slide from right with staggered delays)
-          this.rightCards.forEach((card, index) => {
-            setTimeout(
-              () => {
-                card.classList.add("animate-in");
-
-                // Add lens effect during animation
-                card.style.boxShadow = "0 0 60px rgba(0, 255, 238, 0.3)";
-                setTimeout(() => {
-                  card.style.boxShadow = "";
-                }, 1000);
-              },
-              400 + index * 200,
-            );
-          });
-
-          // Animate timeline section (slide from bottom)
-          setTimeout(() => {
-            this.timelineSection.classList.add("animate-in");
-
-            // Add lens effect during animation
-            this.timelineSection.style.boxShadow =
-              "0 0 80px rgba(0, 255, 238, 0.4)";
-            setTimeout(() => {
-              this.timelineSection.style.boxShadow = "";
-            }, 1000);
-          }, 800);
-
-          // Animate progress bars
-          this.animateProgressBars();
-
-          // Trigger 3D animation enhancement
-          this.enhance3DEffect();
-        }
-
-        animateProgressBars() {
-          const progressBars = document.querySelectorAll(".progress-fill");
-
-          progressBars.forEach((bar, index) => {
-            setTimeout(
-              () => {
-                const width = bar.style.width;
-                bar.style.width = "0%";
-                bar.style.opacity = "1";
-
-                setTimeout(() => {
-                  bar.style.width = width;
-                  bar.style.transition =
-                    "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)";
-                }, 100 * index);
-              },
-              1000 + index * 200,
-            );
-          });
-        }
-
-        enhance3DEffect() {
-          const cubes = document.querySelectorAll(".cube");
-          cubes.forEach((cube) => {
-            cube.style.animationDuration = "15s";
-            setTimeout(() => {
-              cube.style.animationDuration = "20s";
-            }, 2000);
-          });
-
-          // Add more particles during animation
-          setTimeout(() => this.createParticles(), 500);
-        }
-
-        createParticles() {
-          const bgAnimation = document.querySelector(".bg-animation");
-          const particleCount = 12;
-
-          for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement("div");
-            particle.className = "particle";
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 8}s`;
-            particle.style.width = `${Math.random() * 6 + 2}px`;
-            particle.style.height = particle.style.width;
-            particle.style.opacity = Math.random() * 0.4 + 0.1;
-            particle.style.animationDuration = `${Math.random() * 4 + 6}s`;
-            bgAnimation.appendChild(particle);
-
-            // Remove particles after animation to prevent memory issues
-            setTimeout(() => {
-              if (particle.parentNode) {
-                particle.remove();
-              }
-            }, 15000);
-          }
-        }
-
-        resetAnimations() {
-          this.hasAnimated = false;
-          this.leftCard.classList.remove("animate-in");
-          this.rightCards.forEach((card) =>
-            card.classList.remove("animate-in"),
-          );
-          this.timelineSection.classList.remove("animate-in");
-          this.section.classList.remove("visible");
-
-          // Reset progress bars
-          const progressBars = document.querySelectorAll(".progress-fill");
-          progressBars.forEach((bar) => {
-            bar.style.width = "0%";
-            bar.style.transition = "none";
-          });
-        }
-      }
-
-      // Initialize when DOM is loaded
-      document.addEventListener("DOMContentLoaded", () => {
-        const animator = new EducationAnimator();
-
-        // Add manual reset button for testing (can be removed in production)
-        const resetBtn = document.createElement("button");
-        resetBtn.textContent = "Reset Animations";
-        resetBtn.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                background: var(--accent-color);
-                color: var(--bg-color);
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                z-index: 1000;
-                opacity: 0.7;
-                transition: opacity 0.3s;
-            `;
-        resetBtn.onmouseenter = () => (resetBtn.style.opacity = "1");
-        resetBtn.onmouseleave = () => (resetBtn.style.opacity = "0.7");
-        resetBtn.onclick = () => animator.resetAnimations();
-        document.body.appendChild(resetBtn);
-
-        // Add keyboard shortcut for reset (R key)
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "r" && e.ctrlKey) {
-            animator.resetAnimations();
-            setTimeout(() => animator.triggerAnimations(), 500);
-          }
-        });
-
-        // Add hover effects to semester cards
-        const semesterCards = document.querySelectorAll(".semester-card");
-        semesterCards.forEach((card) => {
-          card.addEventListener("mouseenter", () => {
-            card.style.transform = "translateY(-8px) scale(1.05)";
-            card.style.boxShadow = "0 15px 30px rgba(0, 255, 238, 0.2)";
-          });
-
-          card.addEventListener("mouseleave", () => {
-            card.style.transform = "";
-            card.style.boxShadow = "";
-          });
-        });
-
-        // Add scroll-based parallax to cubes
-        let lastScrollY = window.scrollY;
-        const cubes = document.querySelectorAll(".cube");
-
-        function updateParallax() {
-          const scrollY = window.scrollY;
-          const delta = scrollY - lastScrollY;
-
-          cubes.forEach((cube, index) => {
-            const speed = 0.5 + index * 0.1;
-            const rotation = delta * speed * 0.1;
-
-            cube.style.transform += ` rotateX(${rotation}deg) rotateY(${rotation * 0.5}deg)`;
-          });
-
-          lastScrollY = scrollY;
-        }
-
-        let ticking = false;
-        window.addEventListener("scroll", () => {
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              updateParallax();
-              ticking = false;
-            });
-            ticking = true;
-          }
-        });
       });
+    }
 
-      // Optional: Print functionality
-      function printEducationSection() {
-        const printSection = document
-          .querySelector(".education-section")
-          .cloneNode(true);
-        const printWindow = window.open("", "_blank");
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
 
-        // Remove background animation for print
-        const bgAnimation = printSection.querySelector(".bg-animation");
-        if (bgAnimation) bgAnimation.remove();
+    // 2. MODAL LOGIC - USING UNIQUE CLASSES
+    const certModal = document.getElementById('cert-image-modal');
+    const certModalImg = document.getElementById('cert-modal-image');
+    const certModalClose = document.querySelector('.cert-modal-close');
 
-        printWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Education - Portfolio</title>
-                        <style>
-                            body { 
-                                font-family: Arial, sans-serif; 
-                                padding: 20px; 
-                                color: #000;
-                                background: #fff;
-                            }
-                            .education-section { 
-                                max-width: 1000px; 
-                                margin: 0 auto;
-                                background: #fff !important;
-                                color: #000 !important;
-                                box-shadow: none !important;
-                                border: 1px solid #ddd !important;
-                            }
-                            .card-icon { 
-                                background: #f0f0f0 !important;
-                                color: #000 !important;
-                            }
-                            .progress-fill { 
-                                background: #00bcd4 !important;
-                            }
-                            .course-grade { color: #00bcd4 !important; }
-                            .semester-card { 
-                                border: 1px solid #ddd !important;
-                                margin: 5px !important;
-                            }
-                            @media print {
-                                .detail-card, .timeline-card { 
-                                    break-inside: avoid;
-                                    page-break-inside: avoid;
-                                }
-                                .education-horizontal {
-                                    display: block !important;
-                                }
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        ${printSection.innerHTML}
-                    </body>
-                </html>
-            `);
-
-        printWindow.document.close();
-        printWindow.print();
+    // Add event listeners to all view buttons
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.cert-view-btn')) {
+        const card = e.target.closest('.cert-card');
+        const imgSrc = card.querySelector('.cert-thumbnail img').src;
+        certModalImg.src = imgSrc;
+        certModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
-    </script>
-  </body>
+    });
+
+    // Close modal functionality
+    certModalClose.onclick = () => {
+      certModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    };
+
+    // Close modal when clicking outside the image
+    certModal.onclick = (e) => {
+      if (e.target === certModal) {
+        certModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    };
+
+    // 3. DOWNLOAD LOGIC
+    function downloadPDF(path) {
+      const link = document.createElement('a');
+      link.href = path;
+      link.download = path.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Visual feedback
+      const btn = event.target.closest('.cert-download-btn');
+      if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Downloaded';
+        btn.style.background = '#4CAF50';
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.background = '';
+        }, 1500);
+      }
+    }
+
+    // 4. INITIALIZE
+    function initCertificates() {
+      handleCertCurtain();
+      
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleCertCurtain();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      
+      window.addEventListener('resize', handleCertCurtain);
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && certModal.classList.contains('active')) {
+          certModal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', initCertificates);
+    window.addEventListener('load', () => {
+      setTimeout(handleCertCurtain, 100);
+    });
+  </script>
+</body>
+
 </html>
