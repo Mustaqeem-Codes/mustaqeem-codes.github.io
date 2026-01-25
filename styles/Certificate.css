@@ -147,9 +147,15 @@
 
 .cert-content h3 {
   font-size: 1.3rem;
+  margin-top: 0;      /* Removes potential offset from top */
   margin-bottom: 8px;
   color: var(--cert-text-primary);
   transition: color 0.3s ease;
+  
+  /* Centering Logic */
+  text-align: center; 
+  width: 100%;        /* Ensures it takes full width to calculate center */
+  display: block;     /* Forces it to act as a full-width block */
 }
 
 .cert-content p {
