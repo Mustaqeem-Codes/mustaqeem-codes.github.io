@@ -225,6 +225,29 @@
 .icon-item:nth-child(12) {
   color: #d83b01;
 }
+/* ===============================
+   3rd Semester Icons Colors
+   =============================== */
+
+.icon-item:nth-child(13) {
+  color: #9b5cff; /* DSA – logic / algorithmic purple */
+}
+
+.icon-item:nth-child(14) {
+  color: #00c2ff; /* Computer Networks – networking blue */
+}
+
+.icon-item:nth-child(15) {
+  color: #00ff9c; /* Software Engineering – system green */
+}
+
+/* Optional: slightly stronger hover glow for new icons */
+.icon-item:nth-child(13):hover,
+.icon-item:nth-child(14):hover,
+.icon-item:nth-child(15):hover {
+  box-shadow: 0 14px 30px rgba(0, 255, 238, 0.35);
+}
+
 
 .icon-item::after {
   content: attr(title);
