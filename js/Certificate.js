@@ -9,8 +9,8 @@ function handleCertCurtain() {
   const sectionTop = sectionRect.top + scrollY;
   const sectionHeight = sectionRect.height;
 
-  const startTrigger = sectionTop - windowHeight * 0.6;
-  const endTrigger = sectionTop + sectionHeight * 0.5;
+  const startTrigger = sectionTop - windowHeight * 0.4;
+  const endTrigger = sectionTop + sectionHeight * 0.4;
 
   let progress = (scrollY - startTrigger) / (endTrigger - startTrigger);
   progress = Math.min(Math.max(progress, 0), 1);
