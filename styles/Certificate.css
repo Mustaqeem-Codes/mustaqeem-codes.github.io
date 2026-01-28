@@ -222,7 +222,7 @@
   box-shadow: 0 5px 15px rgba(0, 255, 238, 0.2);
 }
 
-/* MODAL - GLASS EFFECT */
+/* MODAL - GLASS EFFECT - IMPROVED FOR MOBILE */
 .cert-modal {
   display: none;
   position: fixed;
@@ -267,6 +267,7 @@
   border: 1px solid rgba(0, 255, 238, 0.15);
   border-radius: 12px;
   padding: 20px;
+  position: relative;
 }
 
 .cert-modal-image {
@@ -284,24 +285,31 @@
   transform: scale(1);
 }
 
+/* FIXED CLOSE BUTTON - SINGLE X CENTERED PROPERLY */
+/* FIXED CLOSE BUTTON - SINGLE X CENTERED PROPERLY */
 .cert-modal-close {
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  position: fixed; /* Changed from absolute to fixed */
+  top: 80px;
+  right: 20px;
   width: 50px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(0, 255, 238, 0.15);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(0, 255, 238, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 1000000000;
+  z-index: 1000001; /* Increased from 1000000 */
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 255, 238, 0.2);
 }
 
 .cert-modal-close:hover {
@@ -309,6 +317,24 @@
   color: #000;
   border-color: rgba(0, 255, 238, 0.9);
   transform: rotate(90deg) scale(1.1);
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(0, 255, 238, 0.4);
+}
+/* REMOVED THE DUPLICATE INSIDE CLOSE BUTTON */
+.cert-modal-close-inside {
+  display: none; /* Completely hide the duplicate */
+}
+
+/* TOUCH-AREA EXTENSION FOR BETTER MOBILE UX */
+.cert-modal-close-touch-area {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  z-index: 999999;
+  display: none;
 }
 
 /* RESPONSIVE */
@@ -321,6 +347,12 @@
     padding: 80px 5%;
     min-height: auto;
   }
+  
+  .cert-modal-image-container {
+    width: 95%;
+    height: 85%;
+    padding: 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -330,19 +362,35 @@
 
   .cert-modal-image-container {
     width: 95%;
-    height: 80%;
+    height: 75%;
+    padding: 10px;
+    margin-top: 50px;
   }
-
+  
+  .cert-modal-close {
+    top: 95px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(0, 255, 238, 0.6);
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(0, 255, 238, 0.3);
+  }
+  
+  /* Hide the touch area extension */
+  .cert-modal-close-touch-area {
+    display: block;
+  }
+  
+  .cert-modal-content {
+    padding: 20px 15px;
+  }
+  
   .cert-actions {
     flex-direction: column;
-  }
-
-  .cert-modal-close {
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
   }
 }
 
@@ -357,7 +405,132 @@
 
   .cert-modal-image-container {
     width: 98%;
-    height: 70%;
-    padding: 10px;
+    height: 65%;
+    padding: 8px;
+    margin-top: 60px;
+  }
+  
+  .cert-modal-close {
+    position: absolute; /* Changed from absolute to fixed */
+    margin-top: 35px; /* Increased from 10px */
+    right: 15px; /* Increased from 10px */
+    width: 45px; /* Increased from 40px */
+    height: 45px; /* Increased from 40px */
+    font-size: 24px; /* Increased from 20px */
+    background: rgba(0, 0, 0, 0.95); /* Increased opacity */
+    border: 3px solid rgba(0, 255, 238, 0.9); /* Thicker, brighter border */
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(0, 255, 238, 0.5); /* Stronger glow */
+    z-index: 1000001; /* Higher z-index */
+  }
+  
+  .cert-modal-close-touch-area {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80px; /* Increased from 70px */
+    height: 80px; /* Increased from 70px */
+    z-index: 1000000;
+    background: transparent;
+  }
+  
+  /* Add this to ensure modal content doesn't overlap close button */
+  .cert-modal-content {
+    padding-top: 70px; /* Add padding at top for close button */
+  }
+}
+
+/* VERY SMALL SCREENS (iPhone SE, Galaxy Fold, etc.) */
+@media (max-width: 375px) {
+  .cert-modal-image-container {
+    height: 60%;
+    margin-top: 70px;
+  }
+  
+  .cert-modal-close {
+    position: absolute;
+    margin-top: 170px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid rgba(0, 255, 238, 0.9);
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(0, 255, 238, 0.6);
+    z-index: 1000001;
+  }
+  
+  .cert-modal-content {
+    padding: 15px 10px;
+    padding-top: 65px;
+  }
+  
+  .cert-modal-close-touch-area {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+/* LANDSCAPE MODE FOR MOBILE */
+@media (max-height: 600px) and (orientation: landscape) {
+  .cert-modal-image-container {
+    height: 85%;
+    width: 90%;
+    margin-top: 15px;
+  }
+  
+  .cert-modal-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 3px solid rgba(0, 255, 238, 0.9);
+    z-index: 1000001;
+  }
+  
+  .cert-modal-content {
+    padding-top: 60px;
+  }
+}
+
+/* EXTRA SMALL HEIGHT SCREENS */
+@media (max-height: 500px) {
+  .cert-modal-close {
+    top: 8px;
+    right: 8px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+  
+  .cert-modal-content {
+    padding-top: 50px;
+  }
+}
+
+/* DARK MODE ENHANCEMENTS */
+@media (prefers-color-scheme: dark) {
+  .cert-modal-close {
+    background: rgba(0, 0, 0, 0.95); /* Increased opacity */
+    border-color: rgba(0, 255, 238, 0.8); /* Brighter border for dark mode */
+  }
+}
+
+/* HIGH CONTRAST MODE SUPPORT */
+@media (prefers-contrast: high) {
+  .cert-modal-close {
+    background: #000;
+    border: 3px solid #00ffee;
+    color: #fff;
+    box-shadow: 
+      0 0 0 3px #000, /* Outer black border for extra contrast */
+      0 4px 20px rgba(0, 0, 0, 0.9),
+      0 0 30px rgba(0, 255, 238, 0.8);
   }
 }
