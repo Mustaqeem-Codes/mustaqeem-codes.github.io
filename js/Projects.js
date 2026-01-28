@@ -69,7 +69,7 @@ const projectsData = {
         { type: "icon", class: "devicon-nodejs-plain", name: "Node.js" },
         { type: "icon", class: "devicon-express-original", name: "Express" },
       ],
-      videoSrc: "Pics/DSA-Web.webm",
+      videoSrc: "Pics/Flood.webm",
       poster: "Pics/Flood-Aid-Poster.png",
       liveDemo: "https://flood-aid-94zg.vercel.app/",
       github: "https://github.com/FarhanShakeel25/Flood_Aid/",
