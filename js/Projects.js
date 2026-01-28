@@ -38,7 +38,7 @@ const projectsData = {
         { type: "icon", class: "devicon-css3-plain", name: "CSS3" },
         { type: "icon", class: "devicon-github-original", name: "GitHub" },
       ],
-      videoSrc: "Pics/DSA-Web.webm",
+      videoSrc: "Pics/DSA.webm",
       poster: "Pics/DSA-Poster.png",
       liveDemo: "https://dsa-insight.vercel.app/",
       github: "https://github.com/Mustaqeem-Codes/DSA_Insight",
