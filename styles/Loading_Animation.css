@@ -1,89 +1,13 @@
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.image-container {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  max-width: 450px;
-  height: auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0 55px 0 55px;
-  transition: all 0.4s ease;
-  /* Added for loading animation */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-container:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 60px rgba(0, 255, 238, 0.4);
-  border-radius: 55px 55px 55px 55px;
-}
-
-.profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: grayscale(15%) contrast(110%) brightness(1.05);
-  transition: all 0.5s ease;
-  background: transparent !important;
-  display: block;
-  position: relative;
-  z-index: 1;
-  object-position: top;
-  /* Loading state */
-  opacity: 0;
-}
-
-.profile-image.loaded {
-  opacity: 1;
-  animation: imageReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.image-container:hover .profile-image {
-  filter: grayscale(0%) contrast(120%) brightness(1.1);
-  transform: scale(1.05);
-}
-
-.image-shine {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
-  );
-  transform: rotate(30deg);
-  z-index: 3;
-  pointer-events: none;
-  animation: shine 6s infinite linear;
-  opacity: 0;
-}
-
-.profile-image.loaded ~ .image-shine {
-  opacity: 1;
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(30deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(30deg);
-  }
-}
-
-/* ===== 3D RING LOADING ANIMATION ===== */
+/* ===== LOADING ANIMATION BASE STYLES ===== */
 .loading-overlay {
+  --ring-radius: 4rem;
+  --ring-sectors: 30;
+  --anim-duration: 6s;
+  --ring-count: 2;
+  --primary-color: #00ffee;
+  --secondary-color: #00b4b4;
+  --bg-color: transparent;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -93,37 +17,48 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background: var(--bg-color);
   z-index: 20;
   opacity: 1;
-  transition:
-    opacity 0.8s ease,
-    transform 1s ease;
   pointer-events: none;
-  border-radius: inherit; /* Match container border-radius */
+  border-radius: inherit;
 }
 
+/* Remove error states completely - animation stays as-is */
 .loading-overlay.fade-out {
   opacity: 0;
   transform: scale(1.1);
-  pointer-events: none;
 }
 
 /* Preloader Container */
 .preloader {
-  --ring-radius: 5rem;
-  --ring-sectors: 30;
-  --anim-duration: 6s;
-  --ring-count: 2;
-
   animation: tiltSpin var(--anim-duration) linear infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 10em;
+  height: 10em;
+  transform-style: preserve-3d;
+}
+
+/* Size Variations */
+.loading-overlay.small .preloader {
+  width: 6em;
+  height: 6em;
+  --ring-radius: 2.5rem;
+}
+
+.loading-overlay.medium .preloader {
+  width: 8em;
+  height: 8em;
+  --ring-radius: 3.5rem;
+}
+
+.loading-overlay.large .preloader {
   width: 12em;
   height: 12em;
-  transform-style: preserve-3d;
+  --ring-radius: 5rem;
 }
 
 /* Individual Rings */
@@ -136,7 +71,6 @@
   transform-style: preserve-3d;
 }
 
-/* Reverse every even ring */
 .preloader__ring:nth-child(even) {
   animation-direction: reverse;
 }
@@ -157,7 +91,6 @@
   opacity: 0.8;
 }
 
-/* Empty sectors with line indicator */
 .preloader__sector:empty::before {
   content: "";
   display: inline-block;
@@ -170,23 +103,24 @@
   );
 }
 
-/* Sectors with text */
 .preloader__sector:not(:empty) {
-  color: #00ffee;
+  color: var(--primary-color);
   text-shadow:
     0 0 8px currentColor,
     0 0 16px rgba(0, 255, 238, 0.5);
 }
 
-/* Loading progress indicator */
+/* Loading Progress */
 .loading-progress {
   position: absolute;
   bottom: 20px;
-  width: 180px;
+  width: 70%;
+  max-width: 180px;
   height: 2px;
   background: rgba(0, 255, 238, 0.1);
   border-radius: 1px;
   overflow: hidden;
+  opacity: 0.7;
 }
 
 .loading-progress-bar {
@@ -195,10 +129,20 @@
   left: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #00ffee, #00b4b4);
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   border-radius: 1px;
   transition: width 0.3s ease;
-  box-shadow: 0 0 10px #00ffee;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Media States */
+.media-loading {
+  opacity: 0;
+}
+
+.media-loaded {
+  opacity: 1;
+  animation: imageReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Animations */
@@ -231,50 +175,70 @@
   }
 }
 
-/* Background Animation */
-.bg-animation {
-  position: fixed;
+/* Responsive */
+@media (max-width: 768px) {
+  .preloader {
+    width: 8em;
+    height: 8em;
+  }
+  
+  .loading-overlay.small .preloader {
+    width: 5em;
+    height: 5em;
+  }
+  
+  .loading-overlay.large .preloader {
+    width: 10em;
+    height: 10em;
+  }
+}
+
+
+/* ===== VIDEO SPECIFIC LOADING STYLES ===== */
+.video-loading-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Video poster loading state */
+.video-poster-loading {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%);
-  z-index: -1;
-  overflow: hidden;
+  z-index: 1;
+  background: rgba(10, 10, 10, 0.9);
 }
 
-.bg-particle {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0, 255, 238, 0.05);
-  animation: float 15s infinite linear;
+/* Video element loading state */
+.video-element-loading {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(100px, 50px) rotate(90deg);
-  }
-  50% {
-    transform: translate(50px, 100px) rotate(180deg);
-  }
-  75% {
-    transform: translate(-50px, 50px) rotate(270deg);
-  }
+/* When video is loaded, show it */
+.video-loaded {
+  opacity: 1;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .preloader {
-    width: 10em;
-    height: 10em;
-    --ring-radius: 4rem;
-  }
+.video-loading .project-video,
+.video-loading .modal-video {
+  opacity: 0;
+}
 
-  .loading-progress {
-    width: 150px;
-  }
+/* Specific sizes for different containers */
+.project-video-container .loading-overlay.small .preloader {
+  width: 5em;
+  height: 5em;
+  --ring-radius: 2.5rem;
+}
+
+.modal-container .loading-overlay.large .preloader {
+  width: 8em;
+  height: 8em;
+  --ring-radius: 4rem;
 }
