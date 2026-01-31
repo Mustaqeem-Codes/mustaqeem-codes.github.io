@@ -404,6 +404,7 @@
   margin-bottom: 6px;
   padding: 0;
   width: 100%;
+  flex-wrap: nowrap;
 }
 
 .cv-portfolio-view-btn {
@@ -420,7 +421,7 @@
   color: var(--main-color);
   border: 2px solid var(--main-color);
   min-width: 140px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   /* Added for filling effect */
   position: relative;
   overflow: hidden;
@@ -478,7 +479,7 @@
   margin: 0;
   cursor: pointer;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .download-icon-wrapper {
@@ -778,6 +779,9 @@
   .stat-item {
     min-width: 45%; /* Show stats in a 2x2 grid on tiny phones */
   }
+  .cv-buttons-wrapper {
+    flex-wrap: wrap;
+  }
 }
 
 .spinning-card-inner {
@@ -822,13 +826,14 @@
   overflow: visible;
 }
 
-/* Label that appears on hover - RIGHT SIDE */
+/* Label that appears on hover - TOP POSITION */
 .cv-portfolio-download-btn::after {
   content: attr(data-label);
   position: absolute;
-  left: 100%; /* Position to the right of button */
-  top: 50%;
-  transform: translateX(10px) translateY(-50%) scale(0.95);
+  /* CHANGE THESE: Position above the button */
+  bottom: 100%; /* Changed from left: 100% */
+  left: 50%; /* Changed from top: 50% */
+  transform: translateX(-50%) translateY(-10px) scale(0.95); /* Changed */
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -854,37 +859,40 @@
   text-align: center;
 }
 
-/* Arrow/triangle pointer pointing LEFT */
+/* Arrow/triangle pointer pointing DOWN (toward button) */
+/* Alternative simpler arrow pointing down */
 .cv-portfolio-download-btn::before {
   content: '';
   position: absolute;
-  left: 100%; /* Position at right edge of button */
-  top: 50%;
-  transform: translateX(0) translateY(-50%) rotate(180deg);
-  border-left: 8px solid rgba(0, 255, 238, 0.3);
+  bottom: 100%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%) translateY(-18px);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
+  border-top: 8px solid rgba(0, 255, 238, 0.3);
+  border-bottom: none;
   opacity: 0;
   visibility: hidden;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
-  filter: drop-shadow(-2px 0 3px rgba(0, 0, 0, 0.3));
 }
 
-/* Hover effects */
-.cv-portfolio-download-btn:hover::after,
+/* Hover effects - UPDATED */
+.cv-portfolio-download-btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-15px) scale(1); /* Changed */
+}
+
 .cv-portfolio-download-btn:hover::before {
   opacity: 1;
   visibility: visible;
-  transform: translateX(15px) translateY(-50%) scale(1);
+  transform: translateX(-50%) translateY(-13px) rotate(0deg); /* Changed */
 }
 
-.cv-portfolio-download-btn:hover::before {
-  transform: translateX(5px) translateY(-50%) rotate(180deg);
-}
-
-/* Optional: Add a subtle glow animation */
+/* Optional: Keep the glow animation */
 .cv-portfolio-download-btn:hover::after {
   animation: labelGlow 3s ease-in-out infinite;
 }
@@ -952,6 +960,10 @@
   
   .cv-portfolio-download-btn:hover::before {
     transform: translateX(3px) translateY(-50%) rotate(180deg);
+  }
+  .cv-portfolio-download-btn,
+  .cv-portfolio-view-btn{
+    margin-bottom: 12px;
   }
 }
 
