@@ -24,6 +24,7 @@
   /* Guidance: Changed opacity to 1 and removed transform to show content immediately */
   opacity: 1 !important;
   transform: none !important;
+  border: 2px solid red;
 }
 
 .home.flow-active {
@@ -41,6 +42,7 @@
   align-items: center;
   width: 100%;
   padding: 2rem 0;
+  border: 2px solid green;
 }
 
 .home-left {
@@ -569,6 +571,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* Added for floating icons overlay */
   height: auto; /* Allows natural centering */
 }
 
@@ -685,6 +688,7 @@
   filter: blur(15px);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease,
     filter 1.2s ease;
+    border: 2px solid green;
 }
 
 #home.content-visible .cinematic-hidden-left,
