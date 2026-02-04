@@ -192,51 +192,15 @@ certModal.onclick = (e) => {
   }
 };
 
-// 3. DOWNLOAD LOGIC - Fixed for proper PDF download
-function downloadPDF(path) {
-  // Encode the path to handle spaces and special characters
-  const encodedPath = path.split('/').map(part => encodeURIComponent(part)).join('/');
-  
-  // Use fetch + blob approach for reliable binary file downloads
-  fetch(encodedPath)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.blob();
-    })
-    .then(blob => {
-      // Create blob URL with correct PDF MIME type
-      const blobUrl = URL.createObjectURL(new Blob([blob], { type: 'application/pdf' }));
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = path.split("/").pop();
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Clean up blob URL after download
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
-      
-      // Visual feedback
-      showDownloadSuccess();
-    })
-    .catch(error => {
-      console.error('Download failed:', error);
-      // Fallback to direct link method
-      const link = document.createElement("a");
-      link.href = path;
-      link.download = path.split("/").pop();
-      link.target = "_blank";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      showDownloadSuccess();
-    });
-}
+// 3. DOWNLOAD LOGIC - For PNG/Image downloads
+function downloadCertificate(path) {
+  const link = document.createElement("a");
+  link.href = path;
+  link.download = path.split("/").pop();
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 
-function showDownloadSuccess() {
   // Visual feedback
   const btn = event && event.target ? event.target.closest(".cert-download-btn") : null;
   if (btn) {
@@ -248,6 +212,11 @@ function showDownloadSuccess() {
       btn.style.background = "";
     }, 1500);
   }
+}
+
+// Keep old function name for backwards compatibility
+function downloadPDF(path) {
+  downloadCertificate(path);
 }
 
 // 4. INITIALIZE
