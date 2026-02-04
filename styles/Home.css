@@ -24,7 +24,6 @@
   /* Guidance: Changed opacity to 1 and removed transform to show content immediately */
   opacity: 1 !important;
   transform: none !important;
-  border: 2px solid red;
 }
 
 .home.flow-active {
@@ -42,7 +41,6 @@
   align-items: center;
   width: 100%;
   padding: 2rem 0;
-  border: 2px solid green;
 }
 
 .home-left {
@@ -328,7 +326,6 @@
   height: 100%;
 }
 
-/* Add to your existing home CSS file */
 .image-container {
   position: relative; /* ← ADD THIS LINE */
   width: 100%;
@@ -482,6 +479,8 @@
   cursor: pointer;
   position: relative;
   margin-bottom: 0;
+  color: inherit;
+  overflow: visible;
 }
 
 .download-icon-wrapper {
@@ -688,7 +687,6 @@
   filter: blur(15px);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease,
     filter 1.2s ease;
-    border: 2px solid green;
 }
 
 #home.content-visible .cinematic-hidden-left,
@@ -815,19 +813,6 @@
   );
   z-index: 2;
   pointer-events: none;
-}
-
-
-/* Professional Download Button Label - RIGHT SIDE POSITION */
-.cv-portfolio-download-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: inherit;
-  /* Hide default browser tooltip */
-  overflow: visible;
 }
 
 /* Label that appears on hover - TOP POSITION */
