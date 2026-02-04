@@ -1,17 +1,29 @@
-/* UPDATED: Simplified Main Logic */
+/* UPDATED: Simplified Main Logic with Performance Optimizations */
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("main-header");
   const menuIcon = document.getElementById("menu-icon");
   const nav = document.getElementById("nav");
 
-  // 1. Sticky Header on Scroll
+  // Throttle utility for scroll events
+  let scrollTicking = false;
+  let lastScrollY = 0;
+
+  // 1. Sticky Header on Scroll - Throttled with requestAnimationFrame
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
+    lastScrollY = window.scrollY;
+    
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        if (lastScrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
-  });
+  }, { passive: true });
 
   // 2. Mobile Menu Toggle
   if (menuIcon) {

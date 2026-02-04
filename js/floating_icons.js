@@ -201,12 +201,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Animation state management
+    let isAnimating = true;
+
     function animate() {
+        if (!isAnimating) return;
+        
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         rotationY += 0.15;
         rotationX += 0.07;
         updateSocialIcons();
         animationId = requestAnimationFrame(animate);
+    }
+
+    // Pause animation when page is not visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            isAnimating = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        } else {
+            isAnimating = true;
+            animate();
+        }
+    });
+
+    // Pause animation when home section scrolls out of view
+    const homeSection = document.getElementById('home');
+    if (homeSection) {
+        const floatingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !document.hidden) {
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        animate();
+                    }
+                } else {
+                    isAnimating = false;
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        floatingObserver.observe(homeSection);
     }
 
     // Initialize
@@ -215,5 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     animate();
 
-    window.addEventListener('resize', updateDimensions);
+    // Debounced resize handler
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateDimensions, 150);
+    });
 });

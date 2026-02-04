@@ -402,6 +402,9 @@ function loadProjects(category) {
     projectsGrid.appendChild(projectCard);
   });
 
+  // Initialize MediaLoader for project video containers
+  initProjectVideoLoaders();
+
   // Setup video autoplay and hover effects
   setupVideoEffects();
 }
@@ -495,9 +498,9 @@ function createProjectCard(project) {
             `;
 
   card.innerHTML = `
-                <!-- Video Section - FIXED: Added autoplay attribute -->
-                <div class="project-video-container">
-                    <video class="project-video" muted loop playsinline autoplay preload="auto" poster="${project.poster}">
+                <!-- Video Section - Optimized: Changed preload to metadata for faster load -->
+                <div class="project-video-container" data-loading="true" data-loading-size="small">
+                    <video class="project-video" muted loop playsinline autoplay preload="metadata" poster="${project.poster}">
                         <source src="${project.videoSrc}" type="video/mp4" />
                     </video>
                 </div>
@@ -617,6 +620,162 @@ function showEmptyState() {
                 </div>
             `;
   projectsGrid.classList.add("animate-in");
+}
+
+// Initialize loading animation for project video containers
+function initProjectVideoLoaders() {
+  const videoContainers = document.querySelectorAll('.project-video-container[data-loading="true"]');
+  
+  if (!window.MediaLoader) {
+    console.warn('MediaLoader not available');
+    return;
+  }
+  
+  videoContainers.forEach((container) => {
+    // Skip if already initialized
+    if (container.querySelector('.loading-overlay')) return;
+    
+    const video = container.querySelector('video');
+    if (!video) return;
+    
+    // Ensure container has positioning
+    container.style.position = 'relative';
+    
+    // Create overlay using the MediaLoader pattern
+    const overlay = createVideoLoadingOverlay(container);
+    container.appendChild(overlay);
+    
+    // Handle poster/video loading
+    const posterSrc = video.getAttribute('poster');
+    let posterLoaded = false;
+    let videoReady = false;
+    
+    const checkAndHideLoader = () => {
+      if (posterLoaded || videoReady) {
+        // Update progress bar to 100%
+        const progressBar = overlay.querySelector('.loading-progress-bar');
+        if (progressBar) progressBar.style.width = '100%';
+        
+        // Fade out loading overlay
+        setTimeout(() => {
+          overlay.classList.add('fade-out');
+          video.classList.remove('media-loading');
+          video.classList.add('media-loaded');
+        }, 300);
+      }
+    };
+    
+    // Add loading class to video
+    video.classList.add('media-loading');
+    container.classList.add('video-loading');
+    
+    // Load poster image
+    if (posterSrc) {
+      const img = new Image();
+      img.onload = () => {
+        posterLoaded = true;
+        checkAndHideLoader();
+      };
+      img.onerror = () => {
+        // Poster failed, wait for video
+        posterLoaded = false;
+      };
+      img.src = posterSrc;
+    } else {
+      posterLoaded = true;
+    }
+    
+    // Handle video ready state
+    if (video.readyState >= 3) {
+      videoReady = true;
+      checkAndHideLoader();
+    } else {
+      video.addEventListener('loadeddata', () => {
+        videoReady = true;
+        checkAndHideLoader();
+      });
+      video.addEventListener('canplay', () => {
+        videoReady = true;
+        checkAndHideLoader();
+      });
+    }
+    
+    // Simulate progress
+    simulateVideoProgress(overlay);
+  });
+}
+
+// Create loading overlay for video containers
+function createVideoLoadingOverlay(container) {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay small';
+  
+  const preloader = document.createElement('div');
+  preloader.className = 'preloader';
+  
+  const loadingText = "LOADING...";
+  const ringSectors = 30;
+  const radius = 2.5;
+  
+  // Create 2 rings
+  for (let r = 0; r < 2; r++) {
+    const ring = document.createElement('div');
+    ring.className = 'preloader__ring';
+    
+    for (let s = 0; s < ringSectors; s++) {
+      const sector = document.createElement('div');
+      sector.className = 'preloader__sector';
+      const char = loadingText[s] || "";
+      if (char) {
+        sector.textContent = char;
+        const hue = 180;
+        const saturation = 100;
+        const lightness = 70 + (s % 2) * 10;
+        sector.style.color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
+      const angle = (360 / ringSectors) * s;
+      sector.style.transform = `rotateY(${angle}deg) translateZ(${radius}rem)`;
+      ring.appendChild(sector);
+    }
+    preloader.appendChild(ring);
+  }
+  
+  const progressContainer = document.createElement('div');
+  progressContainer.className = 'loading-progress';
+  const progressBar = document.createElement('div');
+  progressBar.className = 'loading-progress-bar';
+  progressContainer.appendChild(progressBar);
+  
+  overlay.appendChild(preloader);
+  overlay.appendChild(progressContainer);
+  
+  overlay.style.setProperty('--ring-radius', `${radius}rem`);
+  overlay.style.setProperty('--ring-sectors', ringSectors);
+  overlay.style.setProperty('--anim-duration', '6s');
+  overlay.style.setProperty('--ring-count', 2);
+  
+  return overlay;
+}
+
+// Simulate progress bar animation
+function simulateVideoProgress(overlay) {
+  const progressBar = overlay.querySelector('.loading-progress-bar');
+  if (!progressBar) return;
+  
+  let progress = 0;
+  const interval = setInterval(() => {
+    if (overlay.classList.contains('fade-out')) {
+      clearInterval(interval);
+      return;
+    }
+    if (progress < 90) {
+      progress += Math.random() * 15;
+      progress = Math.min(progress, 90);
+      progressBar.style.width = `${progress}%`;
+    } else {
+      clearInterval(interval);
+    }
+  }, 200);
 }
 
 function setupVideoEffects() {

@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Particles (Digital Dust)
     const particlesGeometry = new THREE.BufferGeometry();
-    const count = 5000;
+    // Optimize particle count for mobile devices and low-end hardware
+    const isMobile = window.innerWidth < 768;
+    const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    const count = isMobile ? 1000 : (isLowEnd ? 2500 : 5000);
     const positions = new Float32Array(count * 3);
 
     for(let i = 0; i < count * 3; i++) {
@@ -45,10 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     camera.position.z = 5;
 
-    // Mouse Movement Effect
+    // Mouse Movement Effect with throttling
     let mouseX = 0;
     let mouseY = 0;
+    let lastMouseUpdate = 0;
+    const MOUSE_THROTTLE = 33; // ~30fps for mouse updates
+    
     document.addEventListener('mousemove', (event) => {
+        const now = performance.now();
+        if (now - lastMouseUpdate < MOUSE_THROTTLE) return;
+        lastMouseUpdate = now;
         mouseX = (event.clientX / window.innerWidth) - 0.5;
         mouseY = (event.clientY / window.innerHeight) - 0.5;
     });
@@ -80,9 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('GSAP or ScrollTrigger not loaded. Scroll animations disabled.');
     }
 
+    // Animation state management
+    let isAnimating = true;
+    let animationFrameId = null;
+
     // Animation Loop
     function animate() {
-        requestAnimationFrame(animate);
+        if (!isAnimating) return;
+        
+        animationFrameId = requestAnimationFrame(animate);
         
         // Smooth Camera Follow
         camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
@@ -95,13 +110,51 @@ document.addEventListener('DOMContentLoaded', function() {
         renderer.render(scene, camera);
     }
 
+    // Pause animation when page is not visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            isAnimating = false;
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        } else {
+            isAnimating = true;
+            animate();
+        }
+    });
+
+    // Pause animation when canvas scrolls out of view
+    const canvasObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !document.hidden) {
+                if (!isAnimating) {
+                    isAnimating = true;
+                    animate();
+                }
+            } else {
+                isAnimating = false;
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    canvasObserver.observe(container);
+
     animate();
 
-    // Handle Resize
+    // Handle Resize with debouncing
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        }, 150);
     });
 });

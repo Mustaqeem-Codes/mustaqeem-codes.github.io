@@ -4,13 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const textElement = document.getElementById('intro-typing-text');
     const body = document.body;
     const brandName = "MUHAMMAD MUSTAQEEM";
+    
+    // Track if exit has already been triggered to prevent double execution
+    let exitTriggered = false;
 
     // A. Initial State: Lock Scroll
     body.classList.add('intro-active');
 
-    // B. Build Advanced 3D Warp Field
+    // B. Build Advanced 3D Warp Field - Reduced particle count for better performance
     function initWarp() {
-        for (let i = 0; i < 120; i++) {
+        const isMobile = window.innerWidth < 768;
+        const particleCount = isMobile ? 60 : 120; // Fewer particles on mobile
+        
+        for (let i = 0; i < particleCount; i++) {
             const stream = document.createElement('div');
             stream.className = 'data-stream';
             const angle = Math.random() * Math.PI * 2;
@@ -37,8 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // D. UPDATED CLEANUP SEQUENCE - CRITICAL FIX
+    // D. UPDATED CLEANUP SEQUENCE - WITH MEMORY CLEANUP
     function triggerExit() {
+        // Prevent double execution
+        if (exitTriggered) return;
+        exitTriggered = true;
+        
         // Step 1: Start exit animation
         overlay.classList.add('zoom-out-exit');
         
@@ -60,8 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
             void body.offsetHeight;
         }, 800); // Slightly before animation ends
 
-        // Step 4: Remove overlay from DOM
+        // Step 4: Remove overlay from DOM and cleanup memory
         setTimeout(() => {
+            // Remove all data-stream elements first to help garbage collection
+            if (bgContainer) {
+                while (bgContainer.firstChild) {
+                    bgContainer.removeChild(bgContainer.firstChild);
+                }
+            }
+            
             if (overlay && overlay.parentNode) {
                 overlay.parentNode.removeChild(overlay);
             }
@@ -84,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' || e.key === ' ') {
             triggerExit();
         }
-    });
+    }, { once: true });
     
     document.addEventListener('click', (e) => {
         // If user clicks during intro, skip to end
@@ -92,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             triggerExit();
         }
-    });
+    }, { once: true });
 
     initWarp();
     type();
