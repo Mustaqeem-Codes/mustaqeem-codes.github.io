@@ -1,7 +1,7 @@
 # 👋 Muhammad Mustaqeem  
 ### Computer Science Student • Full-Stack Developer • Problem Solver
 
-🌐 **Portfolio:** https://mustaqeem-codes.github.io/
+🌐 **Portfolio:** https://mustaqeem-codes.github.io/  
 💼 **GitHub:** https://github.com/Mustaqeem-Codes  
 
 ---
@@ -94,16 +94,6 @@ Currently seeking **internship opportunities** where I can learn, contribute, an
 - 🌐 Portfolio: https://mustaqeem-codes.github.io/
 - 💻 GitHub: https://github.com/Mustaqeem-Codes  
 - 🔗 LinkedIn: https://linkedin.com/in/muhammad-mustaqeem-95656b331  
-
----
-
-## 📝 Notes & Branding
-
-All study notes shared publicly are:
-- **Original**
-- **Watermarked**
-- **Hosted live (no downloads)**  
-to maintain quality, attribution, and academic integrity.
 
 ---
 
