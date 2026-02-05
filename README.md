@@ -1,8 +1,7 @@
 # 👋 Muhammad Mustaqeem  
 ### Computer Science Student • Full-Stack Developer • Problem Solver
 
-🌐 **Portfolio:** https://mustaqeem.bytewisdom.tech  
-📚 **Study Notes:** https://mustaqeem.bytewisdom.tech/Notes.html  
+🌐 **Portfolio:** https://mustaqeem-codes.github.io/
 💼 **GitHub:** https://github.com/Mustaqeem-Codes  
 
 ---
@@ -44,10 +43,7 @@ Currently seeking **internship opportunities** where I can learn, contribute, an
 
 ---
 
-## 📘 Featured Projects
-
-### 📚 Interactive Notes Viewer  
-**Live:** https://mustaqeem.bytewisdom.tech/Notes.html  
+## 📘 Featured Projects  
 
 - Image-based A4 notes viewer
 - Keyboard navigation (← → Esc)
@@ -103,7 +99,7 @@ Currently seeking **internship opportunities** where I can learn, contribute, an
 
 ## 🤝 Let’s Connect
 
-- 🌐 Portfolio: https://mustaqeem.bytewisdom.tech  
+- 🌐 Portfolio: https://mustaqeem-codes.github.io/
 - 💻 GitHub: https://github.com/Mustaqeem-Codes  
 - 🔗 LinkedIn: https://linkedin.com/in/muhammad-mustaqeem-95656b331  
 
