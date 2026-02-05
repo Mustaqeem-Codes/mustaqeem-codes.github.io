@@ -45,14 +45,6 @@ Currently seeking **internship opportunities** where I can learn, contribute, an
 
 ## 📘 Featured Projects  
 
-- Image-based A4 notes viewer
-- Keyboard navigation (← → Esc)
-- Clean fullscreen experience
-- SEO-optimized static deployment
-- Built with **HTML, CSS & JavaScript**
-
----
-
 ### ✈️ Airline Management System (C++)
 - Console-based application
 - File handling for persistent storage
