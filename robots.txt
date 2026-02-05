@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mustaqeem.bytewisdom.tech/sitemap.xml
+Sitemap: https://mustaqeem-codes.github.io/sitemap.xml
