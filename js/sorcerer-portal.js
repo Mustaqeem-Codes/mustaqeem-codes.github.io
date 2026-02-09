@@ -33,14 +33,18 @@
 
   // Icon definitions with brand colors
   const ICONS = [
-    { class: 'fa-github', brandClass: 'icon-github', name: 'GitHub', link: 'https://github.com/Mustaqeem-Codes' },
-    { class: 'fa-linkedin-in', brandClass: 'icon-linkedin', name: 'LinkedIn', link: 'https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/' },
-    { class: 'fa-react', brandClass: 'icon-react', name: 'React' },
-    { class: 'fa-node-js', brandClass: 'icon-nodejs', name: 'Node.js' },
-    { class: 'fa-code', brandClass: 'icon-code', name: 'Code' },
-    { class: 'fa-js', brandClass: 'icon-js', name: 'JavaScript' },
-    { class: 'fa-python', brandClass: 'icon-python', name: 'Python' },
-    { class: 'fa-aws', brandClass: 'icon-aws', name: 'AWS' }
+    // 12:00
+    { class: 'fab fa-react', brandClass: 'icon-react', name: 'React' },
+    // 02:00
+    { class: 'fab fa-js-square', brandClass: 'icon-js', name: 'JavaScript' },
+    // 04:00
+    { class: 'fab fa-node-js', brandClass: 'icon-nodejs', name: 'Node.js' },
+    // 06:00
+    { class: 'fas fa-database', brandClass: 'icon-database', name: 'Database' },
+    // 08:00
+    { class: 'fab fa-css3-alt', brandClass: 'icon-css3', name: 'CSS3' },
+    // 10:00
+    { class: 'fab fa-git-alt', brandClass: 'icon-git', name: 'Git' }
   ];
 
   /**
@@ -72,7 +76,7 @@
     ICONS.forEach((icon, index) => {
       const el = document.createElement('a');
       el.className = `portal-icon ${icon.brandClass}`;
-      el.innerHTML = `<i class="fa-brands ${icon.class}"></i>`;
+      el.innerHTML = `<i class="${icon.class}"></i>`;
       el.title = icon.name;
 
       if (icon.link) {

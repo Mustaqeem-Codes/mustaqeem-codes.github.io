@@ -82,36 +82,28 @@
 }
 
 /* ===== BRAND-SPECIFIC ICON COLORS ===== */
-.sorcerer-portal .icon-github {
-  color: #f0f0f0;
-}
-
-.sorcerer-portal .icon-linkedin {
-  color: #0077b5;
-}
-
 .sorcerer-portal .icon-react {
   color: #61dafb;
-}
-
-.sorcerer-portal .icon-nodejs {
-  color: #68a063;
-}
-
-.sorcerer-portal .icon-code {
-  color: #ff8c00;
 }
 
 .sorcerer-portal .icon-js {
   color: #f7df1e;
 }
 
-.sorcerer-portal .icon-python {
-  color: #3776ab;
+.sorcerer-portal .icon-nodejs {
+  color: #68a063;
 }
 
-.sorcerer-portal .icon-aws {
-  color: #ff9900;
+.sorcerer-portal .icon-database {
+  color: #336791;
+}
+
+.sorcerer-portal .icon-css3 {
+  color: #264de4;
+}
+
+.sorcerer-portal .icon-git {
+  color: #f05032;
 }
 
 /* ===== BACKGROUND GLOW ===== */
