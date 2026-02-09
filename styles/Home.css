@@ -124,6 +124,10 @@
 }
 
 .stat-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1.2rem 0.8rem;
   background: rgba(0, 255, 238, 0.05);
   backdrop-filter: blur(5px);
@@ -343,11 +347,11 @@
 /* Ensure loading overlay is visible */
 
 
-.image-container:hover {
+/* .image-container:hover {
   transform: scale(1.03);
   box-shadow: 0 0 60px rgba(0, 255, 238, 0.4);
   border-radius: 55px 55px 55px 55px;
-}
+} */
 
 .profile-image {
   width: 100%;
@@ -362,10 +366,10 @@
   object-position: top;
 }
 
-.image-container:hover .profile-image {
+/* .image-container:hover .profile-image {
   filter: grayscale(0%) contrast(120%) brightness(1.1);
   transform: scale(1.05);
-}
+} */
 
 .image-shine {
   position: absolute;

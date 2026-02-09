@@ -203,6 +203,7 @@
   border-radius: 12px;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
+  align-items: stretch;
 }
 
 .progress-stats .stat-item:hover {
@@ -297,8 +298,8 @@
 
 /* 9. SEMESTER ACCORDION - DIFFERENT STYLE */
 .semester-accordion {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 

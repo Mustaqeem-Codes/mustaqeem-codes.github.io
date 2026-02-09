@@ -66,7 +66,7 @@
   <link rel="stylesheet" href="styles/Static_Projects.css" />
   <link rel="stylesheet" href="styles/Footer.css" />
   <link rel="stylesheet" href="styles/Loading_Animation.css">
-  <link rel="stylesheet" href="styles/floating_icons.css">
+  <link rel="stylesheet" href="styles/sorcerer-portal.css">
 
   <!-- 3D Animation Libraries -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -304,11 +304,14 @@
             <div class="image-shine"></div>
           </div>
         </div>
-        <!-- Floating Icons Overlay -->
-        <div class="floating-icons-overlay">
-          <div id="particles"></div>
-          <canvas id="invisibleLines"></canvas>
-          <div id="githubIcons"></div>
+        
+        <!-- Sorcerer Portal Animation -->
+        <div class="sorcerer-portal">
+          <div class="portal-glow"></div>
+          <div class="portal">
+            <canvas class="portal-canvas"></canvas>
+            <div class="icon-layer"></div>
+          </div>
         </div>
       </div>
   </section>
@@ -1044,7 +1047,7 @@
   <script defer src="js/Static_Projects.js"></script>
   <script defer src="js/background-3d.js"></script>
   <script defer src="js/Loading_Animation.js"></script>
-  <script defer src="js/floating_icons.js"></script>
+  <script defer src="js/sorcerer-portal.js"></script>
   <script>
     // Safe version
     const homeSection = document.getElementById("home");
