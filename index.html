@@ -45,7 +45,8 @@
   <!-- Performance Optimization: Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
@@ -59,6 +60,7 @@
   <link rel="stylesheet" href="styles/Intro.css" />
   <link rel="stylesheet" href="styles/Navbar.css" />
   <link rel="stylesheet" href="styles/Home.css" />
+  <link rel="stylesheet" href="styles/About Me.css">
   <link rel="stylesheet" href="styles/Education.css" />
   <link rel="stylesheet" href="styles/Certificate.css" />
   <link rel="stylesheet" href="styles/Skills.css" />
@@ -132,7 +134,9 @@
   <!-- Preload critical resources -->
   <link rel="preload" as="image" href="Pics/logo.png" />
   <link rel="preload" as="image" href="Pics/Pic_Sitting.png" fetchpriority="high" />
-  <link rel="preload" as="font" href="https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6xpmIyXjU1pg.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font"
+    href="https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6xpmIyXjU1pg.woff2"
+    type="font/woff2" crossorigin />
 
 
 <body>
@@ -161,6 +165,7 @@
       <!-- Nav Links -->
       <nav class="nav" id="nav">
         <a href="#home" class="nav-link"><span>Home</span></a>
+        <a href="#About" class="nav-link">About Me</a>
         <a href="#education" class="nav-link"><span>Education</span></a>
         <a href="#certificates" class="nav-link"><span>Certificates</span></a>
         <a href="#skills" class="nav-link"><span>Skills</span></a>
@@ -186,10 +191,7 @@
         <p>
           A passionate Full Stack Developer specializing in the MERN stack and
           modern web technologies. I build scalable, user-centric applications
-          using <strong>React.js, Node.js, and PostgreSQL</strong>,
-          translating complex problems into clean, efficient solutions. My
-          work emphasizes practical, real-world impact and innovation in web
-          development.
+          using <strong>React.js, Node.js, and PostgreSQL.</strong>
         </p>
 
         <!-- Centered Stats -->
@@ -211,56 +213,7 @@
         </div>
 
         <!-- Centered Tech Icons -->
-        <div class="centered-icons cinematic-hidden-bottom">
-          <div class="icon-item" title="C++">
-            <i class="fab fa-cuttlefish"></i>
-          </div>
-          <div class="icon-item" title="Python">
-            <i class="fab fa-python"></i>
-          </div>
-          <div class="icon-item" title="C#">
-            <i class="fas fa-hashtag"></i>
-          </div>
-          <div class="icon-item" title="HTML">
-            <i class="fab fa-html5"></i>
-          </div>
-          <div class="icon-item" title="CSS">
-            <i class="fab fa-css3-alt"></i>
-          </div>
-          <div class="icon-item" title="JavaScript">
-            <i class="fab fa-js-square"></i>
-          </div>
-          <div class="icon-item" title="React">
-            <i class="fab fa-react"></i>
-          </div>
-          <div class="icon-item" title="Node.js">
-            <i class="fab fa-node-js"></i>
-          </div>
-          <div class="icon-item" title="Git & GitHub">
-            <i class="fab fa-git-alt"></i>
-          </div>
-          <div class="icon-item" title="PostgreSQL">
-            <i class="fas fa-database"></i>
-          </div>
-          <div class="icon-item" title="Oracle SQL">
-            <i class="fas fa-server"></i>
-          </div>
-          <div class="icon-item" title="MS Office">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <div class="icon-item" title="DSA">
-            <i class="fas fa-project-diagram"></i>
-          </div>
 
-          <div class="icon-item" title="Computer Networks">
-            <i class="fas fa-network-wired"></i>
-          </div>
-
-          <div class="icon-item" title="Software Engineering">
-            <i class="fas fa-sitemap"></i>
-          </div>
-
-        </div>
 
         <div class="cv-buttons-wrapper cinematic-hidden-bottom">
           <!-- View CV Button -->
@@ -304,7 +257,7 @@
             <div class="image-shine"></div>
           </div>
         </div>
-        
+
         <!-- Sorcerer Portal Animation -->
         <div class="sorcerer-portal">
           <div class="portal-glow"></div>
@@ -316,6 +269,86 @@
       </div>
   </section>
 
+
+
+  <div class="about-register" id="About">
+        <h1 class="register-title">📔 About Me</h1>
+        <div class="register-container">
+            <!-- Left side: image with ring binding -->
+            <div class="register-left">
+                <img src="Pics/Pic_Face.png" alt="Portrait sitting">
+            </div>
+
+            <!-- Right side: clean content (no lines) -->
+            <div class="register-right">
+                <div class="register-content">
+                    <p>
+                        ⚡ I'm a developer & creative thinker. This spread reflects my process —
+                        the analog warmth of a diary on one side, digital clarity on the other.
+                        The background is completely transparent, so your 3D world shines through.
+                    </p>
+
+                    <div class="tech-cards">
+                        <div class="card">frontend</div>
+                        <div class="card">UI/UX · 3D</div>
+                        <div class="card">backend</div>
+                        <div class="card">creative tech</div>
+                    </div>
+
+                    <div class="icos">
+                        <div class="centered-icons cinematic-hidden-bottom">
+                            <div class="icon-item" title="C++">
+                                <i class="fab fa-cuttlefish"></i>
+                            </div>
+                            <div class="icon-item" title="Python">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="icon-item" title="C#">
+                                <i class="fas fa-hashtag"></i>
+                            </div>
+                            <div class="icon-item" title="HTML">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="icon-item" title="CSS">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <div class="icon-item" title="JavaScript">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="icon-item" title="React">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="icon-item" title="Node.js">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="icon-item" title="Git & GitHub">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <div class="icon-item" title="PostgreSQL">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="icon-item" title="Oracle SQL">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="icon-item" title="MS Office">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="icon-item" title="DSA">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+
+                            <div class="icon-item" title="Computer Networks">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+
+                            <div class="icon-item" title="Software Engineering">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
   <!--============= Education =======================================-->
 
   <!-- Education Section -->
