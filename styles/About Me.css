@@ -172,62 +172,167 @@
   color: var(--text-muted);
 }
 
-.about-register .tech-cards {
+.centered-stats {
+  margin: 1rem 0 2.5rem 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 30px 0;
+  justify-content: center;
 }
 
-.about-register .card {
-  background: var(--card-bg-glass);
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 0.8rem;
+  background: rgba(0, 255, 238, 0.05);
   backdrop-filter: blur(5px);
-  border: 1px solid var(--border-color);
-  border-bottom: 2px solid var(--accent-color);
-  border-radius: 8px;
-  padding: 8px 20px;
-  font-weight: bold;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 238, 0.1);
+  min-width: 110px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 255, 238, 0.08);
+  border-color: rgba(0, 255, 238, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 255, 238, 0.15);
+}
+
+.stat-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--main-color);
+  margin-bottom: 0.4rem;
+  background: linear-gradient(135deg, #00ffee, #0088ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--text-color);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--text-main);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  transition: 0.2s;
+  letter-spacing: 0.8px;
 }
 
-.about-register .card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 20px var(--accent-color);
-}
-
-.about-register .tech-icons {
+.centered-icons {
   display: flex;
-  gap: 25px;
-  font-size: 2.5rem;
-  filter: drop-shadow(0 0 10px var(--accent-color));
-  margin-top: 20px;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem 0;
+  flex-wrap: wrap;
 }
 
-.about-register .icon {
-  transition: 0.2s;
-  cursor: help;
-  color: var(--text-main);
+.icon-item {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(0, 255, 238, 0.08);
+  border: 1px solid rgba(0, 255, 238, 0.15);
+  font-size: 1.8rem;
+  color: var(--main-color);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.about-register .icon:hover {
-  transform: scale(1.3) rotate(5deg);
-  filter: drop-shadow(0 0 20px var(--accent-color));
+.icon-item:hover {
+  background: rgba(0, 255, 238, 0.15);
+  transform: translateY(-6px) scale(1.1);
+  border-color: rgba(0, 255, 238, 0.4);
+  box-shadow: 0 12px 25px rgba(0, 255, 238, 0.2);
 }
 
-.about-register .page-number {
-  margin-top: 30px;
-  text-align: right;
-  color: var(--text-muted);
-  border-top: 1px dashed var(--accent-color);
-  padding-top: 10px;
-  font-size: 1rem;
-  letter-spacing: 3px;
+.icon-item:nth-child(2) {
+  color: #f7df1e;
 }
+.icon-item:nth-child(1) {
+  color: #00599c;
+}
+.icon-item:nth-child(3) {
+  color: #239120;
+}
+.icon-item:nth-child(4) {
+  color: #e44d26;
+}
+.icon-item:nth-child(5) {
+  color: #264de4;
+}
+.icon-item:nth-child(6) {
+  color: #f7df1e;
+}
+.icon-item:nth-child(7) {
+  color: #61dafb;
+}
+.icon-item:nth-child(8) {
+  color: #339933;
+}
+.icon-item:nth-child(9) {
+  color: #f05032;
+}
+.icon-item:nth-child(10) {
+  color: #336791;
+}
+.icon-item:nth-child(11) {
+  color: #f80000;
+}
+.icon-item:nth-child(12) {
+  color: #d83b01;
+}
+/* ===============================
+   3rd Semester Icons Colors
+   =============================== */
+
+.icon-item:nth-child(13) {
+  color: #9b5cff; /* DSA – logic / algorithmic purple */
+}
+
+.icon-item:nth-child(14) {
+  color: #00c2ff; /* Computer Networks – networking blue */
+}
+
+.icon-item:nth-child(15) {
+  color: #00ff9c; /* Software Engineering – system green */
+}
+
+/* Optional: slightly stronger hover glow for new icons */
+.icon-item:nth-child(13):hover,
+.icon-item:nth-child(14):hover,
+.icon-item:nth-child(15):hover {
+  box-shadow: 0 14px 30px rgba(0, 255, 238, 0.35);
+}
+
+
+.icon-item::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.icon-item:hover::after {
+  opacity: 1;
+}
+
 
 /* Responsive */
 @media (max-width: 800px) {
@@ -265,5 +370,58 @@
 
   .about-register .register-left::after {
     display: none;
+  }
+
+    .stats-grid {
+    gap: 1.2rem;
+  }
+
+  .stat-item {
+    padding: 1rem 0.6rem;
+    min-width: 90px;
+  }
+
+  .stat-number {
+    font-size: 1.7rem;
+  }
+
+  .centered-icons {
+    gap: 1.2rem;
+  }
+
+  .icon-item {
+    width: 46px;
+    height: 46px;
+    font-size: 1.6rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .about-register .register  .stats-grid {
+    gap: 0.8rem;
+  }
+
+  .stat-item {
+    padding: 0.8rem 0.4rem;
+    min-width: 80px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .centered-icons {
+    gap: 0.8rem;
+  }
+
+  .icon-item {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
   }
 }
