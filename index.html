@@ -57,7 +57,7 @@
 
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="styles/Intro.css" />
+  <!-- <link rel="stylesheet" href="styles/Intro.css" /> -->
   <link rel="stylesheet" href="styles/Navbar.css" />
   <link rel="stylesheet" href="styles/Home.css" />
   <link rel="stylesheet" href="styles/About Me.css">
@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="styles/Static_Projects.css" />
   <link rel="stylesheet" href="styles/Footer.css" />
   <link rel="stylesheet" href="styles/Loading_Animation.css">
-  <link rel="stylesheet" href="styles/sorcerer-portal.css">
+  <!-- <link rel="stylesheet" href="styles/sorcerer-portal.css"> -->
 
   <!-- 3D Animation Libraries -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -201,13 +201,14 @@
               <div class="stat-number">20+</div>
               <div class="stat-label">Projects</div>
             </div>
-            <div class="stat-item">
-              <div class="stat-number">8+</div>
-              <div class="stat-label">Technologies</div>
-            </div>
+            
             <div class="stat-item">
               <div class="stat-number">2+</div>
               <div class="stat-label">Years Exp</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">8+</div>
+              <div class="stat-label">Technologies</div>
             </div>
           </div>
         </div>
@@ -246,22 +247,13 @@
         <!-- Centered Social Icons -->
       </div>
 
-      <!-- Your EXACT HTML Structure -->
+      <!-- Profile Image -->
       <div class="home-right cinematic-hidden-right">
         <div class="image-wrapper" data-loading="true" data-loading-size="large">
           <div class="image-container">
             <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem" class="profile-image media-loading"
               crossorigin="anonymous" fetchpriority="high" />
             <div class="image-shine"></div>
-          </div>
-        </div>
-
-        <!-- Sorcerer Portal Animation -->
-        <div class="sorcerer-portal">
-          <div class="portal-glow"></div>
-          <div class="portal">
-            <canvas class="portal-canvas"></canvas>
-            <div class="icon-layer"></div>
           </div>
         </div>
       </div>
@@ -1075,13 +1067,167 @@
   <script defer src="js/Static_Projects.js"></script>
   <script defer src="js/background-3d.js"></script>
   <script defer src="js/Loading_Animation.js"></script>
-  <script defer src="js/sorcerer-portal.js"></script>
+  <!-- <script defer src="js/sorcerer-portal.js"></script> -->
+
+  <!-- Floating CV Download Button -->
+  <a href="Pics/CV.png" download="my-cv.jpg" class="floating-cv-btn" id="floatingCvBtn" title="Download Resume">
+    <!-- Circular Text Arc -->
+    <svg class="circular-text" viewBox="0 0 100 100">
+      <defs>
+        <path id="textArc" d="M 15,50 A 35,35 0 0,1 85,50" fill="none"/>
+      </defs>
+      <text>
+        <textPath href="#textArc" startOffset="50%" text-anchor="middle">Download CV</textPath>
+      </text>
+    </svg>
+    <!-- Icon with Progress Rings -->
+    <div class="download-icon-wrapper">
+      <div class="progress-ring-container">
+        <!-- Scroll Progress Ring -->
+        <svg class="scroll-progress-ring" viewBox="0 0 50 50">
+          <circle class="progress-ring-circle" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+        </svg>
+        <!-- Hover Rotating Ring -->
+        <svg class="hover-rotating-ring" viewBox="0 0 50 50">
+          <circle class="rotating-ring-circle" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+        </svg>
+        <!-- Download Progress Ring -->
+        <svg class="download-progress-ring" viewBox="0 0 50 50">
+          <circle class="download-ring-circle" cx="25" cy="25" r="20" fill="none" stroke-width="3"></circle>
+        </svg>
+        <i class="fas fa-download floating-download-icon"></i>
+        <i class="fas fa-check floating-check-icon"></i>
+      </div>
+    </div>
+  </a>
+
   <script>
     // Safe version
     const homeSection = document.getElementById("home");
     if (homeSection) {
       homeSection.classList.add("flow-active");
     }
+
+    // Floating CV Button scroll behavior with progress ring
+    document.addEventListener('DOMContentLoaded', function() {
+      const floatingBtn = document.getElementById('floatingCvBtn');
+      const originalBtn = document.querySelector('.cv-portfolio-download-btn');
+      const progressCircle = document.querySelector('.progress-ring-circle');
+      const downloadCircle = document.querySelector('.download-ring-circle');
+      
+      if (!floatingBtn || !originalBtn) return;
+
+      // Calculate circle circumference (2 * PI * r, where r = 20)
+      const circumference = 2 * Math.PI * 20;
+      
+      if (progressCircle) {
+        progressCircle.style.strokeDasharray = circumference;
+        progressCircle.style.strokeDashoffset = circumference;
+      }
+      
+      if (downloadCircle) {
+        downloadCircle.style.strokeDasharray = circumference;
+        downloadCircle.style.strokeDashoffset = circumference;
+      }
+
+      function updateFloatingBtn() {
+        const originalRect = originalBtn.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const threshold = originalRect.bottom + scrollY;
+        
+        // Toggle fixed position
+        if (scrollY > threshold - window.innerHeight + 100) {
+          floatingBtn.classList.add('fixed');
+        } else {
+          floatingBtn.classList.remove('fixed');
+        }
+
+        // Update scroll progress ring (only if not downloading)
+        if (progressCircle && !floatingBtn.classList.contains('downloading')) {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollProgress = Math.min(scrollY / docHeight, 1);
+          const offset = circumference - (scrollProgress * circumference);
+          progressCircle.style.strokeDashoffset = offset;
+        }
+      }
+
+      // Download progress tracking
+      floatingBtn.addEventListener('click', function(e) {
+        if (floatingBtn.classList.contains('downloading') || floatingBtn.classList.contains('completed')) {
+          e.preventDefault();
+          return;
+        }
+        
+        e.preventDefault();
+        floatingBtn.classList.add('downloading');
+        
+        // Fetch file with progress tracking
+        const fileUrl = floatingBtn.href;
+        
+        fetch(fileUrl)
+          .then(response => {
+            const contentLength = response.headers.get('content-length');
+            const total = parseInt(contentLength, 10) || 0;
+            let loaded = 0;
+            
+            const reader = response.body.getReader();
+            const chunks = [];
+            
+            function read() {
+              return reader.read().then(({ done, value }) => {
+                if (done) {
+                  // Download complete
+                  const blob = new Blob(chunks);
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'my-cv.jpg';
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+                  
+                  // Show completion state
+                  floatingBtn.classList.remove('downloading');
+                  floatingBtn.classList.add('completed');
+                  
+                  setTimeout(() => {
+                    floatingBtn.classList.remove('completed');
+                    if (downloadCircle) {
+                      downloadCircle.style.strokeDashoffset = circumference;
+                    }
+                  }, 1500);
+                  
+                  return;
+                }
+                
+                chunks.push(value);
+                loaded += value.length;
+                
+                // Update download progress ring
+                if (downloadCircle && total > 0) {
+                  const progress = loaded / total;
+                  const offset = circumference - (progress * circumference);
+                  downloadCircle.style.strokeDashoffset = offset;
+                }
+                
+                return read();
+              });
+            }
+            
+            return read();
+          })
+          .catch(err => {
+            console.error('Download failed:', err);
+            floatingBtn.classList.remove('downloading');
+            // Fallback to normal download
+            window.location.href = fileUrl;
+          });
+      });
+
+      window.addEventListener('scroll', updateFloatingBtn);
+      updateFloatingBtn();
+    });
   </script>
 </body>
 

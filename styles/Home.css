@@ -860,3 +860,239 @@
     transform: translateX(100%) translateY(100%) rotate(30deg);
   }
 }
+
+/* ========== Floating CV Download Button ========== */
+.floating-cv-btn {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 90px;
+  height: 90px;
+}
+
+.floating-cv-btn.fixed {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Circular Text Arc */
+.floating-cv-btn .circular-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.floating-cv-btn .circular-text text {
+  fill: var(--main-color, #00ffee);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.floating-cv-btn .download-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.floating-cv-btn .progress-ring-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 255, 238, 0.1), rgba(0, 136, 255, 0.1));
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 255, 238, 0.3),
+              0 0 40px rgba(0, 255, 238, 0.1);
+  transition: all 0.3s ease;
+}
+
+.floating-cv-btn:hover .progress-ring-container {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(0, 255, 238, 0.5),
+              0 0 60px rgba(0, 255, 238, 0.2);
+}
+
+.floating-cv-btn:hover .circular-text text {
+  fill: #fff;
+  text-shadow: 0 0 10px var(--main-color, #00ffee);
+}
+
+.floating-cv-btn .scroll-progress-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  transition: opacity 0.3s ease;
+}
+
+.floating-cv-btn .progress-ring-circle {
+  stroke: #ffffff;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s ease;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Hide scroll progress on hover, show rotating ring */
+.floating-cv-btn:hover .scroll-progress-ring {
+  opacity: 0;
+}
+
+/* Hover Rotating Ring */
+.floating-cv-btn .hover-rotating-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rotateRing 2s linear infinite;
+}
+
+.floating-cv-btn:hover .hover-rotating-ring {
+  opacity: 1;
+}
+
+.floating-cv-btn .rotating-ring-circle {
+  stroke: var(--main-color, #00ffee);
+  stroke-linecap: round;
+  stroke-dasharray: 80, 200;
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 238, 0.8));
+}
+
+@keyframes rotateRing {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Download Progress Ring */
+.floating-cv-btn .download-progress-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.floating-cv-btn.downloading .download-progress-ring {
+  opacity: 1;
+}
+
+.floating-cv-btn.downloading .scroll-progress-ring,
+.floating-cv-btn.downloading .hover-rotating-ring {
+  opacity: 0;
+}
+
+.floating-cv-btn .download-ring-circle {
+  stroke: #4ade80;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s ease;
+  filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.8));
+}
+
+/* Icons */
+.floating-cv-btn .floating-download-icon {
+  color: var(--main-color, #00ffee);
+  font-size: 1.2rem;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.floating-cv-btn .floating-check-icon {
+  position: absolute;
+  color: #4ade80;
+  font-size: 1.2rem;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Completed state */
+.floating-cv-btn.completed .floating-download-icon {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.floating-cv-btn.completed .floating-check-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.floating-cv-btn.completed .scroll-progress-ring,
+.floating-cv-btn.completed .hover-rotating-ring,
+.floating-cv-btn.completed .download-progress-ring {
+  opacity: 0;
+}
+
+.floating-cv-btn.completed .progress-ring-container {
+  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.5),
+              0 0 40px rgba(74, 222, 128, 0.2);
+}
+
+/* Mobile responsiveness for floating CV button */
+@media (max-width: 768px) {
+  .floating-cv-btn {
+    width: 80px;
+    height: 80px;
+  }
+
+  .floating-cv-btn.fixed {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floating-cv-btn .progress-ring-container {
+    width: 42px;
+    height: 42px;
+  }
+
+  .floating-cv-btn .circular-text text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-cv-btn {
+    width: 70px;
+    height: 70px;
+  }
+
+  .floating-cv-btn.fixed {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .floating-cv-btn .progress-ring-container {
+    width: 38px;
+    height: 38px;
+  }
+
+  .floating-cv-btn .circular-text text {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .floating-cv-btn .floating-download-icon,
+  .floating-cv-btn .floating-check-icon {
+    font-size: 1rem;
+  }
+}
