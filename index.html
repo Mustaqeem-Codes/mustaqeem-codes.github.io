@@ -60,6 +60,7 @@
   <!-- <link rel="stylesheet" href="styles/Intro.css" /> -->
   <link rel="stylesheet" href="styles/Navbar.css" />
   <link rel="stylesheet" href="styles/Home.css" />
+  <link rel="stylesheet" href="styles/Home-HUD.css" />
   <link rel="stylesheet" href="styles/About Me.css">
   <link rel="stylesheet" href="styles/Education.css" />
   <link rel="stylesheet" href="styles/Certificate.css" />
@@ -166,7 +167,6 @@
       <nav class="nav" id="nav">
         <a href="#home" class="nav-link"><span>Home</span></a>
         <a href="#About" class="nav-link">About Me</a>
-        <a href="#education" class="nav-link"><span>Education</span></a>
         <a href="#certificates" class="nav-link"><span>Certificates</span></a>
         <a href="#skills" class="nav-link"><span>Skills</span></a>
         <a href="#projects" class="nav-link"><span>Projects</span></a>
@@ -195,23 +195,22 @@
         </p>
 
         <!-- Centered Stats -->
-        <div class="centered-stats cinematic-hidden-bottom">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-number">20+</div>
-              <div class="stat-label">Projects</div>
-            </div>
-            
-            <div class="stat-item">
-              <div class="stat-number">2+</div>
-              <div class="stat-label">Years Exp</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">8+</div>
-              <div class="stat-label">Technologies</div>
-            </div>
-          </div>
-        </div>
+        <div class="ms-stats-container ms-hidden-bottom">
+  <div class="ms-stats-grid">
+    <div class="ms-stat-item">
+      <div class="ms-stat-number">20+</div>
+      <div class="ms-stat-label">Projects</div>
+    </div>
+    <div class="ms-stat-item">
+      <div class="ms-stat-number">2+</div>
+      <div class="ms-stat-label">Years Exp</div>
+    </div>
+    <div class="ms-stat-item">
+      <div class="ms-stat-number">8+</div>
+      <div class="ms-stat-label">Technologies</div>
+    </div>
+  </div>
+</div>
 
 
         <div class="cv-buttons-wrapper cinematic-hidden-bottom">
@@ -243,99 +242,86 @@
             <a href="https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/" class="linkedin"
               data-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
+
+
         </div>
         <!-- Centered Social Icons -->
       </div>
 
-      <!-- Profile Image -->
+      <!-- Profile Image with HUD Interface -->
       <div class="home-right cinematic-hidden-right">
-        <div class="image-wrapper" data-loading="true" data-loading-size="large">
-          <div class="image-container">
-            <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem" class="profile-image media-loading"
-              crossorigin="anonymous" fetchpriority="high" />
-            <div class="image-shine"></div>
+        <div class="hud-wrapper">
+          <!-- Animated Rings -->
+          <div class="hud-ring r1"></div>
+          <div class="hud-ring r2"></div>
+          <div class="hud-ring r3"></div>
+          <div class="hud-ring r4"></div>
+          <div class="hud-ring r5"></div>
+
+          <!-- Revolving Text SVG -->
+          <svg class="hud-text-svg" viewBox="0 0 700 700">
+            <defs>
+              <path id="hudCirclePath" d="M 350, 350 m -280, 0 a 280,280 0 1,1 560,0 a 280,280 0 1,1 -560,0" />
+            </defs>
+            <text class="hud-revolving-text">
+              <textPath xlink:href="#hudCirclePath">
+                AI/ML ENGINEER | TECH ENTHUSIAST | FULL STACK DEVELOPER
+              </textPath>
+            </text>
+          </svg>
+
+          <!-- Center Profile Image -->
+          <div class="hud-image-container">
+            <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem" class="hud-profile-pic">
           </div>
         </div>
       </div>
   </section>
 
   <!--============= About me =======================================-->
+  <section id="About" class="about-section">
+    <div class=" left-panel">
+      <div class="uet-card" id="uet-card">
+        <div class="uet-ring"></div>
+        <div class="uet-strap left"></div>
+        <div class="uet-strap right"></div>
+        <div class="uet-glare" id="uet-glare"></div>
 
-  <div class="about-register" id="About">
-        <h1 class="register-title">📔 About Me</h1>
-        <div class="register-container">
-            <!-- Left side: image with ring binding -->
-            <div class="register-left">
-                <img src="Pics/Pic_Face.png" alt="Portrait sitting">
-            </div>
-
-            <!-- Right side: clean content (no lines) -->
-            <div class="register-right">
-                <div class="register-content">
-                    <p>
-                        ⚡ I'm a developer & creative thinker. This spread reflects my process —
-                        the analog warmth of a diary on one side, digital clarity on the other.
-                        The background is completely transparent, so your 3D world shines through.
-                    </p>
-
-                    <div class="icos">
-                        <div class="centered-icons cinematic-hidden-bottom">
-                            <div class="icon-item" title="C++">
-                                <i class="fab fa-cuttlefish"></i>
-                            </div>
-                            <div class="icon-item" title="Python">
-                                <i class="fab fa-python"></i>
-                            </div>
-                            <div class="icon-item" title="C#">
-                                <i class="fas fa-hashtag"></i>
-                            </div>
-                            <div class="icon-item" title="HTML">
-                                <i class="fab fa-html5"></i>
-                            </div>
-                            <div class="icon-item" title="CSS">
-                                <i class="fab fa-css3-alt"></i>
-                            </div>
-                            <div class="icon-item" title="JavaScript">
-                                <i class="fab fa-js-square"></i>
-                            </div>
-                            <div class="icon-item" title="React">
-                                <i class="fab fa-react"></i>
-                            </div>
-                            <div class="icon-item" title="Node.js">
-                                <i class="fab fa-node-js"></i>
-                            </div>
-                            <div class="icon-item" title="Git & GitHub">
-                                <i class="fab fa-git-alt"></i>
-                            </div>
-                            <div class="icon-item" title="PostgreSQL">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="icon-item" title="Oracle SQL">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="icon-item" title="MS Office">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <div class="icon-item" title="DSA">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-
-                            <div class="icon-item" title="Computer Networks">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-
-                            <div class="icon-item" title="Software Engineering">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="uet-layer uet-uni-header">
+          University of Engineering<br>and Technology (UET) Lahore
         </div>
+
+        <div class="uet-photo-box">
+          <!-- Image paths unchanged – replace with your actual images if needed -->
+          <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem">
+        </div>
+
+        <div class="uet-layer">
+          <div class="uet-name">MUHAMMAD MUSTAQEEM</div>
+          <div class="uet-role">AI/ML ENGINEER</div>
+          <div class="uet-degree">BS Computer Science</div>
+        </div>
+
+        <div class="uet-footer uet-layer">
+          <div class="uet-valid-box">
+            <div class="uet-valid-label">VALID THRU</div>
+            <div class="uet-valid-year">2028</div>
+          </div>
+          <img src="Pics/QR.png" alt="QR Code" class="uet-qr-code">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL (70%) : your custom content goes here -->
+    <div class="right-panel">
+      <!-- You can put any HTML content here later -->
+      <span style="opacity: 0.5;">← your content (70%)</span>
+    </div>
+  </section>
   <!--============= Education =======================================-->
 
   <!-- Education Section -->
-  <section id="education" class="education-section">
+  <!-- <section id="education" class="education-section">
     <div class="lens-overlay"></div>
 
     <div class="section-header">
@@ -346,9 +332,9 @@
       </p>
     </div>
 
-    <div class="education-horizontal">
+    <div class="education-horizontal"> -->
       <!-- Left Column: University Overview -->
-      <div class="university-overview fade-in delay-1">
+      <!-- <div class="university-overview fade-in delay-1">
         <div class="university-header">
 
           <h2 class="degree-title">
@@ -382,7 +368,7 @@
             <div class="progress-bar">
               <div class="progress-fill" style="width: 90.5%"></div>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div class="stat-item">
             <div class="stat-label">
@@ -404,11 +390,10 @@
             </div>
           </div> -->
 
-        </div>
+        <!-- </div>
       </div>
 
       <div class="right-cards-container">
-        <!-- Coursework Card -->
         <div class="detail-card fade-in delay-2">
           <div class="card-header">
             <h3 class="card-title">Core Coursework</h3>
@@ -416,7 +401,6 @@
 
           <div class="semester-accordion">
 
-            <!-- SEMESTER 1 -->
             <div class="semester-strip active">
               <button class="semester-header">
                 <span>Semester 1</span>
@@ -432,10 +416,8 @@
                   <span class="course-grade">A-</span>
                 </div>
               </div>
-            </div>
-
-
-            <!-- SEMESTER 2 -->
+            </div> -->
+<!-- 
             <div class="semester-strip">
               <button class="semester-header">
                 <span>Semester 2</span>
@@ -451,10 +433,10 @@
                   <span class="course-grade">A-</span>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- SEMESTER 3 -->
-            <div class="semester-strip">
+            <!-- <div class="semester-strip">
               <button class="semester-header">
                 <span>Semester 3</span>
                 <span class="toggle-icon">+</span>
@@ -471,7 +453,6 @@
               </div>
             </div>
 
-            <!-- SEMESTER 4 -->
             <div class="semester-strip">
               <button class="semester-header">
                 <span>Semester 4 (Continue...)</span>
@@ -491,7 +472,7 @@
                   <span class="course-grade"></span>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- SEMESTER 5 -->
             <!-- <div class="semester-strip">
@@ -565,12 +546,12 @@
               </div>
             </div> -->
 
-          </div>
+          <!-- </div>
         </div>
       </div>
     </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ========================= Certificates ==============================-->
 
@@ -1060,6 +1041,7 @@
   <script defer src="script.js"></script>
   <script defer src="js/Navbar.js"></script>
   <script defer src="js/Home.js"></script>
+  <script defer src="js/About Me.js"></script>
   <script defer src="js/Education.js"></script>
   <script defer src="js/Certificate.js"></script>
   <script defer src="js/Skills.js"></script>
@@ -1074,7 +1056,7 @@
     <!-- Circular Text Arc -->
     <svg class="circular-text" viewBox="0 0 100 100">
       <defs>
-        <path id="textArc" d="M 15,50 A 35,35 0 0,1 85,50" fill="none"/>
+        <path id="textArc" d="M 15,50 A 35,35 0 0,1 85,50" fill="none" />
       </defs>
       <text>
         <textPath href="#textArc" startOffset="50%" text-anchor="middle">Download CV</textPath>
@@ -1109,22 +1091,22 @@
     }
 
     // Floating CV Button scroll behavior with progress ring
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const floatingBtn = document.getElementById('floatingCvBtn');
       const originalBtn = document.querySelector('.cv-portfolio-download-btn');
       const progressCircle = document.querySelector('.progress-ring-circle');
       const downloadCircle = document.querySelector('.download-ring-circle');
-      
+
       if (!floatingBtn || !originalBtn) return;
 
       // Calculate circle circumference (2 * PI * r, where r = 20)
       const circumference = 2 * Math.PI * 20;
-      
+
       if (progressCircle) {
         progressCircle.style.strokeDasharray = circumference;
         progressCircle.style.strokeDashoffset = circumference;
       }
-      
+
       if (downloadCircle) {
         downloadCircle.style.strokeDasharray = circumference;
         downloadCircle.style.strokeDashoffset = circumference;
@@ -1134,7 +1116,7 @@
         const originalRect = originalBtn.getBoundingClientRect();
         const scrollY = window.scrollY;
         const threshold = originalRect.bottom + scrollY;
-        
+
         // Toggle fixed position
         if (scrollY > threshold - window.innerHeight + 100) {
           floatingBtn.classList.add('fixed');
@@ -1152,27 +1134,27 @@
       }
 
       // Download progress tracking
-      floatingBtn.addEventListener('click', function(e) {
+      floatingBtn.addEventListener('click', function (e) {
         if (floatingBtn.classList.contains('downloading') || floatingBtn.classList.contains('completed')) {
           e.preventDefault();
           return;
         }
-        
+
         e.preventDefault();
         floatingBtn.classList.add('downloading');
-        
+
         // Fetch file with progress tracking
         const fileUrl = floatingBtn.href;
-        
+
         fetch(fileUrl)
           .then(response => {
             const contentLength = response.headers.get('content-length');
             const total = parseInt(contentLength, 10) || 0;
             let loaded = 0;
-            
+
             const reader = response.body.getReader();
             const chunks = [];
-            
+
             function read() {
               return reader.read().then(({ done, value }) => {
                 if (done) {
@@ -1186,35 +1168,35 @@
                   a.click();
                   document.body.removeChild(a);
                   URL.revokeObjectURL(url);
-                  
+
                   // Show completion state
                   floatingBtn.classList.remove('downloading');
                   floatingBtn.classList.add('completed');
-                  
+
                   setTimeout(() => {
                     floatingBtn.classList.remove('completed');
                     if (downloadCircle) {
                       downloadCircle.style.strokeDashoffset = circumference;
                     }
                   }, 1500);
-                  
+
                   return;
                 }
-                
+
                 chunks.push(value);
                 loaded += value.length;
-                
+
                 // Update download progress ring
                 if (downloadCircle && total > 0) {
                   const progress = loaded / total;
                   const offset = circumference - (progress * circumference);
                   downloadCircle.style.strokeDashoffset = offset;
                 }
-                
+
                 return read();
               });
             }
-            
+
             return read();
           })
           .catch(err => {
@@ -1227,6 +1209,34 @@
 
       window.addEventListener('scroll', updateFloatingBtn);
       updateFloatingBtn();
+    });
+    // Glass Card 3D Interactive Effect
+    document.addEventListener('DOMContentLoaded', function () {
+      const glassCard = document.getElementById('glassCard');
+      const glassGlare = document.getElementById('glassGlare');
+
+      if (glassCard && glassGlare) {
+        glassCard.addEventListener('mousemove', (e) => {
+          const rect = glassCard.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (centerY - y) / 30;
+          const rotateY = (x - centerX) / 30;
+
+          glassCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+          glassGlare.style.setProperty('--x', `${x}px`);
+          glassGlare.style.setProperty('--y', `${y}px`);
+        });
+
+        glassCard.addEventListener('mouseleave', () => {
+          glassCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+      }
     });
   </script>
 </body>

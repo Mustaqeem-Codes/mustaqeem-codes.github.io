@@ -1,427 +1,207 @@
-.about-register {
-  --accent-color: #00ffee;
-  --primary-glow: rgba(0, 255, 238, 0.3);
-  --bg-dark: #080808;
-  --text-main: #ffffff;
-  --text-muted: #b0b0b0;
-  --card-bg-glass: rgba(255, 255, 255, 0.05);
-  --border-color: rgba(0, 255, 238, 0.15);
-  --hover-border-color: rgba(0, 255, 238, 0.4);
-  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
-  --entrance-speed: 1.4s;
-
-  font-family: "Courier New", monospace;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+.about-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    background: transparent; /* dark background for contrast */
 }
-
-/* Section title */
-.about-register .register-title {
-  text-align: center;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--accent-color);
-  position: relative;
-  margin-bottom: 25px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Main container (two‑column spread) */
-.about-register .register-container {
-  width: 90%;
-  max-width: 1200px;
-  min-height: 550px;
-  background-color: transparent;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 0;
-  position: relative;
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  
-}
-
-.about-register .register-container:hover{
-  backdrop-filter: blur(2px);
-}
-/* Left side: image with ring binding */
-.about-register .register-left {
-  width: 35%;
-  background-color: transparent;
-  position: relative;
+.left-panel {
+  width: 30%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px 0 0 20px;
-  min-height: 550px;
-  transform: rotate(1deg) translateY(-5px);
-  transition: transform 0.3s ease;
-  transform-origin: center right;
+  background: none;
 }
 
-.about-register .register-left:hover {
-  transform: rotate(1.5deg) translateY(-8px);
-}
-
-/* Right side: content panel */
-.about-register .register-right {
-  width: 65%;
-  background-color: transparent;
-  border-radius: 0 20px 20px 0;
-  padding: 30px;
+/* --- RIGHT COLUMN (70%) : placeholder for your future content --- */
+.right-panel {
+  width: 70%;
+  height: 100vh;
+  background: transparent; /* slightly different tint to visualise area, you can replace */
+  /* border-left: 1px dashed #2a3a4a; */
   display: flex;
-  flex-direction: column;
-  position: relative;
-  min-height: 550px;
-}
-
-/* Image styling with white gap (margin) */
-.about-register .register-left img {
-  margin: 20px;
-  border: 1px solid var(--accent-color);
-  background-color: var(--bg-dark);
-  max-width: calc(100% - 40px);
-  height: auto;
-  display: block;
-  box-shadow:
-    20px 20px 30px rgba(0, 0, 0, 0.7),
-    0 0 0 2px var(--accent-color),
-    0 0 30px var(--primary-glow);
-  transform: none;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border-radius: 10px;
-  position: relative;
-  z-index: 5;
-}
-
-.about-register .register-left img:hover {
-  box-shadow:
-    25px 25px 40px rgba(0, 0, 0, 0.8),
-    0 0 0 3px var(--accent-color),
-    0 0 40px var(--accent-color);
-}
-
-/* ----- RING MECHANISM (realistic metal rings) ----- */
-.about-register .register-left::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  /* sits on the left edge, overlapping image margin */
-  top: 15%;
-  bottom: 15%;
-  width: 22px;
-  background: repeating-linear-gradient(
-    to bottom,
-    #6a6e7a 0px,
-    #9aa1b0 4px,
-    #6a6e7a 8px,
-    transparent 8px,
-    transparent 24px
-  );
-  background-size: 100% 32px;
-  border-radius: 30px;
-  box-shadow:
-    inset -2px -2px 5px #2f3540,
-    inset 2px 2px 5px #bdc3d0;
-  z-index: 10;
-  pointer-events: none;
-  border: 1px solid rgba(0, 255, 238, 0.3);
-}
-
-/* inner page curve shadow (optional) */
-.about-register .register-left::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  left: 0px;
-  width: 12px;
-  background: radial-gradient(
-    ellipse at right,
-    rgba(0, 255, 238, 0.15),
-    transparent 80%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Right side content – clean, no lines */
-.about-register .register-content {
-  /* give pure shine white color */
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
-  line-height: 2rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.about-register .register-content p {
-  margin-bottom: 2rem;
-  border-left: 2px solid var(--accent-color);
-  padding-left: 20px;
-  color: var(--text-muted);
-}
-
-.centered-stats {
-  margin: 1rem 0 2.5rem 0;
-  display: flex;
-  justify-content: center;
-}
-
-.stats-grid {
-  display: flex;
-  justify-content: center;
-  gap: 1.8rem;
-  text-align: center;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 0.8rem;
-  background: rgba(0, 255, 238, 0.05);
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
-  border: 1px solid rgba(0, 255, 238, 0.1);
-  min-width: 110px;
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-  background: rgba(0, 255, 238, 0.08);
-  border-color: rgba(0, 255, 238, 0.3);
-  box-shadow: 0 10px 25px rgba(0, 255, 238, 0.15);
-}
-
-.stat-number {
-  font-size: 1.9rem;
-  font-weight: 800;
-  color: var(--main-color);
-  margin-bottom: 0.4rem;
-  background: linear-gradient(135deg, #00ffee, #0088ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.stat-label {
-  font-size: 0.82rem;
-  color: var(--text-color);
-  font-weight: 500;
+  color: #607b96;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
 }
 
-.centered-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 1.5rem 0 2.5rem 0;
-  flex-wrap: wrap;
+/* ---------- GLASS ID CARD (all classes prefixed with uet-) ---------- */
+:root {
+  --uet-cyan: #00e5ff;
+  --uet-glass: rgba(0, 229, 255, 0.06);
+  --uet-border: rgba(0, 229, 255, 0.4);
+  --uet-ribbon: #006699;
+  --uet-metal: linear-gradient(145deg, #aaa, #666);
 }
 
-.icon-item {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  background: rgba(0, 255, 238, 0.08);
-  border: 1px solid rgba(0, 255, 238, 0.15);
-  font-size: 1.8rem;
-  color: var(--main-color);
-  transition: all 0.3s ease;
+.uet-card {
   position: relative;
+  width: 280px;
+  height: 400px;
+  /* background: var(--uet-glass); */
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid var(--uet-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  color: #fff;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(0, 229, 255, 0.1);
+  flex-shrink: 0; /* keep exact size */
 }
 
-.icon-item:hover {
-  background: rgba(0, 255, 238, 0.15);
-  transform: translateY(-6px) scale(1.1);
-  border-color: rgba(0, 255, 238, 0.4);
-  box-shadow: 0 12px 25px rgba(0, 255, 238, 0.2);
-}
-
-.icon-item:nth-child(2) {
-  color: #f7df1e;
-}
-.icon-item:nth-child(1) {
-  color: #00599c;
-}
-.icon-item:nth-child(3) {
-  color: #239120;
-}
-.icon-item:nth-child(4) {
-  color: #e44d26;
-}
-.icon-item:nth-child(5) {
-  color: #264de4;
-}
-.icon-item:nth-child(6) {
-  color: #f7df1e;
-}
-.icon-item:nth-child(7) {
-  color: #61dafb;
-}
-.icon-item:nth-child(8) {
-  color: #339933;
-}
-.icon-item:nth-child(9) {
-  color: #f05032;
-}
-.icon-item:nth-child(10) {
-  color: #336791;
-}
-.icon-item:nth-child(11) {
-  color: #f80000;
-}
-.icon-item:nth-child(12) {
-  color: #d83b01;
-}
-/* ===============================
-   3rd Semester Icons Colors
-   =============================== */
-
-.icon-item:nth-child(13) {
-  color: #9b5cff; /* DSA – logic / algorithmic purple */
-}
-
-.icon-item:nth-child(14) {
-  color: #00c2ff; /* Computer Networks – networking blue */
-}
-
-.icon-item:nth-child(15) {
-  color: #00ff9c; /* Software Engineering – system green */
-}
-
-/* Optional: slightly stronger hover glow for new icons */
-.icon-item:nth-child(13):hover,
-.icon-item:nth-child(14):hover,
-.icon-item:nth-child(15):hover {
-  box-shadow: 0 14px 30px rgba(0, 255, 238, 0.35);
-}
-
-
-.icon-item::after {
-  content: attr(title);
+.uet-ring {
   position: absolute;
-  bottom: -22px;
+  top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: var(--text-color);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-  font-weight: 500;
+  width: 24px;
+  height: 24px;
+  background: var(--uet-metal);
+  border-radius: 50%;
+  border: 2px solid #444;
+  box-shadow:
+    0 0 15px rgba(0, 229, 255, 0.6),
+    inset 0 2px 5px rgba(255, 255, 255, 0.5);
+  z-index: 10;
+  pointer-events: none;
 }
 
-.icon-item:hover::after {
-  opacity: 1;
+.uet-strap {
+  position: absolute;
+  width: 10px;
+  height: 135px;
+  background: linear-gradient(to bottom, #88ccff, #004466);
+  border-radius: 20px;
+  bottom: 400px;
+  left: 50%;
+  transform-origin: bottom center;
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 229, 255, 0.3);
+  z-index: 5;
+  pointer-events: none;
 }
 
-
-/* Responsive */
-@media (max-width: 800px) {
-  .about-register .register-container {
-    flex-direction: column;
-  }
-
-  .about-register .register-left,
-  .about-register .register-right {
-    width: 100%;
-    min-height: auto;
-  }
-
-  .about-register .register-right {
-    border-radius: 0 0 20px 20px;
-  }
-
-  .about-register .register-left::before {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 22px;
-    top: 5px;
-    bottom: auto;
-    background: repeating-linear-gradient(
-      to right,
-      #6a6e7a 0px,
-      #9aa1b0 4px,
-      #6a6e7a 8px,
-      transparent 8px,
-      transparent 24px
-    );
-    background-size: 32px 100%;
-  }
-
-  .about-register .register-left::after {
-    display: none;
-  }
-
-    .stats-grid {
-    gap: 1.2rem;
-  }
-
-  .stat-item {
-    padding: 1rem 0.6rem;
-    min-width: 90px;
-  }
-
-  .stat-number {
-    font-size: 1.7rem;
-  }
-
-  .centered-icons {
-    gap: 1.2rem;
-  }
-
-  .icon-item {
-    width: 46px;
-    height: 46px;
-    font-size: 1.6rem;
-  }
-
+.uet-strap.left {
+  transform: translateX(-50%) rotate(-28deg);
 }
 
-@media (max-width: 480px) {
-  .about-register .register  .stats-grid {
-    gap: 0.8rem;
-  }
+.uet-strap.right {
+  transform: translateX(-50%) rotate(28deg);
+}
 
-  .stat-item {
-    padding: 0.8rem 0.4rem;
-    min-width: 80px;
-  }
+.uet-layer {
+  transform: translateZ(50px);
+  text-align: center;
+}
 
-  .stat-number {
-    font-size: 1.5rem;
-  }
+.uet-uni-header {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--uet-cyan);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
 
-  .stat-label {
-    font-size: 0.75rem;
-  }
+.uet-photo-box {
+  width: 120px;
+  height: 180px;
+  margin: 0 auto 15px;
+  border: 1px solid var(--uet-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transform: translateZ(70px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
 
-  .centered-icons {
-    gap: 0.8rem;
-  }
+.uet-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: contrast(1.1);
+}
 
-  .icon-item {
-    width: 42px;
-    height: 42px;
-    font-size: 1.5rem;
-  }
+.uet-name {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 19px;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+.uet-role {
+  font-family: "Courier New", Courier, monospace;
+  color: var(--uet-cyan);
+  font-weight: bold;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.uet-degree {
+  font-size: 10px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  letter-spacing: 2px;
+}
+
+.uet-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transform: translateZ(40px);
+  padding: 10px 5px;
+}
+
+.uet-valid-box {
+  text-align: left;
+}
+
+.uet-valid-label {
+  font-size: 8px;
+  color: var(--uet-cyan);
+  font-weight: bold;
+}
+
+.uet-valid-year {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.uet-qr-code {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  padding: 3px;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+.uet-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  border-radius: 15px;
+  pointer-events: none;
 }

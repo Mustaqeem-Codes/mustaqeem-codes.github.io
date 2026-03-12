@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UET Glass ID with V‑Lanyard · 30/70 layout</title>
+    <style>
+        /* ----- global / reset ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #010409;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* --- LEFT COLUMN (30%) : contains the card, centered --- */
+        .left-panel {
+            width: 30%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #010409; /* same as body to blend */
+        }
+
+        /* --- RIGHT COLUMN (70%) : placeholder for your future content --- */
+        .right-panel {
+            width: 70%;
+            height: 100vh;
+            background: #0b0e14; /* slightly different tint to visualise area, you can replace */
+            border-left: 1px dashed #2a3a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #607b96;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ---------- GLASS ID CARD (all classes prefixed with uet-) ---------- */
+        :root {
+            --uet-cyan: #00e5ff;
+            --uet-glass: rgba(0, 229, 255, 0.06);
+            --uet-border: rgba(0, 229, 255, 0.4);
+            --uet-ribbon: #006699;
+            --uet-metal: linear-gradient(145deg, #aaa, #666);
+        }
+
+        .uet-card {
+            position: relative;
+            width: 280px;
+            height: 400px;
+            background: var(--uet-glass);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid var(--uet-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 229, 255, 0.1);
+            flex-shrink: 0; /* keep exact size */
+        }
+
+        .uet-ring {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--uet-metal);
+            border-radius: 50%;
+            border: 2px solid #444;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .uet-strap {
+            position: absolute;
+            width: 10px;
+            height: 180px;
+            background: linear-gradient(to bottom, #88ccff, #004466);
+            border-radius: 20px;
+            bottom: 450px;
+            left: 50%;
+            transform-origin: bottom center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 229, 255, 0.3);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .uet-strap.left {
+            transform: translateX(-50%) rotate(-28deg);
+        }
+
+        .uet-strap.right {
+            transform: translateX(-50%) rotate(28deg);
+        }
+
+        .uet-layer {
+            transform: translateZ(50px);
+            text-align: center;
+        }
+
+        .uet-uni-header {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--uet-cyan);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .uet-photo-box {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 15px;
+            border: 1px solid var(--uet-border);
+            border-radius: 10px;
+            overflow: hidden;
+            transform: translateZ(70px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .uet-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: contrast(1.1);
+        }
+
+        .uet-name {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-size: 19px;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .uet-role {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--uet-cyan);
+            font-weight: bold;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+
+        .uet-degree {
+            font-size: 10px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 2px;
+        }
+
+        .uet-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            transform: translateZ(40px);
+            padding: 10px 5px;
+        }
+
+        .uet-valid-box {
+            text-align: left;
+        }
+
+        .uet-valid-label {
+            font-size: 8px;
+            color: var(--uet-cyan);
+            font-weight: bold;
+        }
+
+        .uet-valid-year {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .uet-qr-code {
+            width: 50px;
+            height: 50px;
+            background: var(--uet-cyan);
+            padding: 3px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .uet-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- LEFT PANEL (30%) : card container -->
+    <div class="left-panel">
+        <div class="uet-card" id="uet-card">
+            <div class="uet-ring"></div>
+            <div class="uet-strap left"></div>
+            <div class="uet-strap right"></div>
+            <div class="uet-glare" id="uet-glare"></div>
+
+            <div class="uet-layer uet-uni-header">
+                University of Engineering<br>and Technology (UET) Lahore
+            </div>
+
+            <div class="uet-photo-box">
+                <!-- Image paths unchanged – replace with your actual images if needed -->
+                <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem">
+            </div>
+
+            <div class="uet-layer">
+                <div class="uet-name">MUHAMMAD MUSTAQEEM</div>
+                <div class="uet-role">AI/ML ENGINEER</div>
+                <div class="uet-degree">BS Computer Science</div>
+            </div>
+
+            <div class="uet-footer uet-layer">
+                <div class="uet-valid-box">
+                    <div class="uet-valid-label">VALID THRU</div>
+                    <div class="uet-valid-year">2028</div>
+                </div>
+                <img src="Pics/Airline.jpg" class="uet-qr-code" alt="QR">
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL (70%) : your custom content goes here -->
+    <div class="right-panel">
+        <!-- You can put any HTML content here later -->
+        <span style="opacity: 0.5;">← your content (70%)</span>
+    </div>
+
+    <script>
+        // JavaScript works exactly as before, IDs are unchanged
+        const uetCard = document.getElementById('uet-card');
+        const uetGlare = document.getElementById('uet-glare');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const rotateX = (centerY - y) / 30;
+            const rotateY = (x - centerX) / 30;
+
+            uetCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            const rect = uetCard.getBoundingClientRect();
+            uetGlare.style.setProperty('--x', `${x - rect.left}px`);
+            uetGlare.style.setProperty('--y', `${y - rect.top}px`);
+        });
+
+        document.addEventListener('mouseleave', () => {
+            uetCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+    </script>
+</body>
+</html>

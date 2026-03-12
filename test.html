@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .centered-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(0, 255, 238, 0.08);
+            border: 1px solid rgba(0, 255, 238, 0.15);
+            font-size: 1.8rem;
+            color: var(--main-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .icon-item:hover {
+            background: rgba(0, 255, 238, 0.15);
+            transform: translateY(-6px) scale(1.1);
+            border-color: rgba(0, 255, 238, 0.4);
+            box-shadow: 0 12px 25px rgba(0, 255, 238, 0.2);
+        }
+
+        .icon-item:nth-child(2) {
+            color: #f7df1e;
+        }
+
+        .icon-item:nth-child(1) {
+            color: #00599c;
+        }
+
+        .icon-item:nth-child(3) {
+            color: #239120;
+        }
+
+        .icon-item:nth-child(4) {
+            color: #e44d26;
+        }
+
+        .icon-item:nth-child(5) {
+            color: #264de4;
+        }
+
+        .icon-item:nth-child(6) {
+            color: #f7df1e;
+        }
+
+        .icon-item:nth-child(7) {
+            color: #61dafb;
+        }
+
+        .icon-item:nth-child(8) {
+            color: #339933;
+        }
+
+        .icon-item:nth-child(9) {
+            color: #f05032;
+        }
+
+        .icon-item:nth-child(10) {
+            color: #336791;
+        }
+
+        .icon-item:nth-child(11) {
+            color: #f80000;
+        }
+
+        .icon-item:nth-child(12) {
+            color: #d83b01;
+        }
+
+        /* ===============================
+   3rd Semester Icons Colors
+   =============================== */
+
+        .icon-item:nth-child(13) {
+            color: #9b5cff;
+            /* DSA – logic / algorithmic purple */
+        }
+
+        .icon-item:nth-child(14) {
+            color: #00c2ff;
+            /* Computer Networks – networking blue */
+        }
+
+        .icon-item:nth-child(15) {
+            color: #00ff9c;
+            /* Software Engineering – system green */
+        }
+
+        /* Optional: slightly stronger hover glow for new icons */
+        .icon-item:nth-child(13):hover,
+        .icon-item:nth-child(14):hover,
+        .icon-item:nth-child(15):hover {
+            box-shadow: 0 14px 30px rgba(0, 255, 238, 0.35);
+        }
+
+        .icon-item::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .icon-item:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="icos">
+        <div class="centered-icons cinematic-hidden-bottom">
+            <div class="icon-item" title="C++">
+                <i class="fab fa-cuttlefish"></i>
+            </div>
+            <div class="icon-item" title="Python">
+                <i class="fab fa-python"></i>
+            </div>
+            <div class="icon-item" title="C#">
+                <i class="fas fa-hashtag"></i>
+            </div>
+            <div class="icon-item" title="HTML">
+                <i class="fab fa-html5"></i>
+            </div>
+            <div class="icon-item" title="CSS">
+                <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="icon-item" title="JavaScript">
+                <i class="fab fa-js-square"></i>
+            </div>
+            <div class="icon-item" title="React">
+                <i class="fab fa-react"></i>
+            </div>
+            <div class="icon-item" title="Node.js">
+                <i class="fab fa-node-js"></i>
+            </div>
+            <div class="icon-item" title="Git & GitHub">
+                <i class="fab fa-git-alt"></i>
+            </div>
+            <div class="icon-item" title="PostgreSQL">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="icon-item" title="Oracle SQL">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="icon-item" title="MS Office">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="icon-item" title="DSA">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+
+            <div class="icon-item" title="Computer Networks">
+                <i class="fas fa-network-wired"></i>
+            </div>
+
+            <div class="icon-item" title="Software Engineering">
+                <i class="fas fa-sitemap"></i>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
