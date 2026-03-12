@@ -78,18 +78,16 @@
 
 .text-animation {
   margin-bottom: 1.5rem;
-  font-size: 32px !important;
+  font-size: 2rem;
   color: var(--text-color);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 95%;
+  overflow: visible;
 }
 
 @media (max-width: 768px) {
   .text-animation {
-    font-size: 24px !important;
-    white-space: wrap;
+    font-size: 1.7rem;
+    white-space: normal;
   }
 }
 
@@ -576,6 +574,10 @@
   }
 
   .home-left h3 {
+    font-size: 1.6rem;
+  }
+
+  .text-animation {
     font-size: 1.6rem;
   }
 

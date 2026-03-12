@@ -6,182 +6,451 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .centered-icons {
+        body{
+            background: black;
+        }
+        .about-section {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0 2.5rem 0;
-            flex-wrap: wrap;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+            background: transparent;
+            /* dark background for contrast */
         }
 
-        .icon-item {
-            width: 50px;
-            height: 50px;
+        .left-panel {
+            width: 30%;
+            height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            background: rgba(0, 255, 238, 0.08);
-            border: 1px solid rgba(0, 255, 238, 0.15);
-            font-size: 1.8rem;
-            color: var(--main-color);
-            transition: all 0.3s ease;
+            background: none;
+        }
+
+        /* --- RIGHT COLUMN (70%) : placeholder for your future content --- */
+
+        /* ---------- GLASS ID CARD (all classes prefixed with uet-) ---------- */
+        :root {
+            --uet-cyan: #00e5ff;
+            --uet-glass: rgba(0, 229, 255, 0.06);
+            --uet-border: rgba(0, 229, 255, 0.4);
+            --uet-ribbon: #006699;
+            --uet-metal: linear-gradient(145deg, #aaa, #666);
+        }
+
+        .uet-card {
             position: relative;
+            width: 280px;
+            height: 400px;
+            /* background: var(--uet-glass); */
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid var(--uet-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            color: #fff;
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 229, 255, 0.1);
+            flex-shrink: 0;
+            /* keep exact size */
         }
 
-        .icon-item:hover {
-            background: rgba(0, 255, 238, 0.15);
-            transform: translateY(-6px) scale(1.1);
-            border-color: rgba(0, 255, 238, 0.4);
-            box-shadow: 0 12px 25px rgba(0, 255, 238, 0.2);
-        }
-
-        .icon-item:nth-child(2) {
-            color: #f7df1e;
-        }
-
-        .icon-item:nth-child(1) {
-            color: #00599c;
-        }
-
-        .icon-item:nth-child(3) {
-            color: #239120;
-        }
-
-        .icon-item:nth-child(4) {
-            color: #e44d26;
-        }
-
-        .icon-item:nth-child(5) {
-            color: #264de4;
-        }
-
-        .icon-item:nth-child(6) {
-            color: #f7df1e;
-        }
-
-        .icon-item:nth-child(7) {
-            color: #61dafb;
-        }
-
-        .icon-item:nth-child(8) {
-            color: #339933;
-        }
-
-        .icon-item:nth-child(9) {
-            color: #f05032;
-        }
-
-        .icon-item:nth-child(10) {
-            color: #336791;
-        }
-
-        .icon-item:nth-child(11) {
-            color: #f80000;
-        }
-
-        .icon-item:nth-child(12) {
-            color: #d83b01;
-        }
-
-        /* ===============================
-   3rd Semester Icons Colors
-   =============================== */
-
-        .icon-item:nth-child(13) {
-            color: #9b5cff;
-            /* DSA – logic / algorithmic purple */
-        }
-
-        .icon-item:nth-child(14) {
-            color: #00c2ff;
-            /* Computer Networks – networking blue */
-        }
-
-        .icon-item:nth-child(15) {
-            color: #00ff9c;
-            /* Software Engineering – system green */
-        }
-
-        /* Optional: slightly stronger hover glow for new icons */
-        .icon-item:nth-child(13):hover,
-        .icon-item:nth-child(14):hover,
-        .icon-item:nth-child(15):hover {
-            box-shadow: 0 14px 30px rgba(0, 255, 238, 0.35);
-        }
-
-        .icon-item::after {
-            content: attr(title);
+        .uet-ring {
             position: absolute;
-            bottom: -22px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
-            color: var(--text-color);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
-            font-weight: 500;
+            width: 24px;
+            height: 24px;
+            background: var(--uet-metal);
+            border-radius: 50%;
+            border: 2px solid #444;
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.6),
+                inset 0 2px 5px rgba(255, 255, 255, 0.5);
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .icon-item:hover::after {
-            opacity: 1;
+        .uet-strap {
+            position: absolute;
+            width: 10px;
+            height: 135px;
+            background: linear-gradient(to bottom, #88ccff, #004466);
+            border-radius: 20px;
+            bottom: 400px;
+            left: 50%;
+            transform-origin: bottom center;
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(0, 229, 255, 0.3);
+            z-index: 5;
+            pointer-events: none;
         }
+
+        .uet-strap.left {
+            transform: translateX(-50%) rotate(-28deg);
+        }
+
+        .uet-strap.right {
+            transform: translateX(-50%) rotate(28deg);
+        }
+
+        .uet-layer {
+            transform: translateZ(50px);
+            text-align: center;
+        }
+
+        .uet-uni-header {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--uet-cyan);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+        .uet-photo-box {
+            width: 120px;
+            height: 180px;
+            margin: 0 auto 15px;
+            border: 1px solid var(--uet-border);
+            border-radius: 10px;
+            overflow: hidden;
+            transform: translateZ(70px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .uet-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: contrast(1.1);
+        }
+
+        .uet-name {
+            font-family: "Arial Black", Gadget, sans-serif;
+            font-size: 19px;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .uet-role {
+            font-family: "Courier New", Courier, monospace;
+            color: var(--uet-cyan);
+            font-weight: bold;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+
+        .uet-degree {
+            font-size: 10px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 2px;
+        }
+
+        .uet-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            transform: translateZ(40px);
+            padding: 10px 5px;
+        }
+
+        .uet-valid-box {
+            text-align: left;
+        }
+
+        .uet-valid-label {
+            font-size: 8px;
+            color: var(--uet-cyan);
+            font-weight: bold;
+        }
+
+        .uet-valid-year {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .uet-qr-code {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            padding: 3px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .uet-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y),
+                    rgba(255, 255, 255, 0.12) 0%,
+                    transparent 60%);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .right-panel {
+            width: 70%;
+            height: 100vh;
+            background: transparent;
+            /* slightly different tint to visualise area, you can replace */
+            /* border-left: 1px dashed #2a3a4a; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ==================== RIGHT PANEL BASE ==================== */
+        /* ==================== RIGHT PANEL REFINEMENT ==================== */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Aligned left for better readability */
+    height: 100%;
+    gap: 30px; /* Increased gap for breathing room */
+    padding: 60px;
+    max-width: 800px;
+}
+
+/* Description Text Refinement */
+.description-text {
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(224, 224, 224, 0.8);
+    max-width: 90%;
+    border-left: 2px solid var(--uet-cyan);
+    padding-left: 20px;
+}
+
+.highlight {
+    color: var(--uet-cyan);
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+/* Row & Label Styling */
+.stack-row {
+    display: flex;
+    flex-direction: column; /* Stacked labels for a cleaner look */
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.stack-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(156, 163, 175, 0.6);
+    position: relative;
+}
+
+.stack-label::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--uet-cyan);
+    margin-top: 4px;
+    opacity: 0.4;
+}
+
+.stack-label.active-focus {
+    color: var(--uet-cyan);
+    opacity: 1;
+}
+
+/* Pill Containers */
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Refined Skill Pills */
+.skill-pill {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: #b0b0b0;
+    padding: 6px 14px;
+    border-radius: 4px; /* Slightly more angular for tech look */
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.skill-pill-active {
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid var(--uet-cyan);
+    color: var(--uet-cyan);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+    text-transform: uppercase;
+}
+
+/* Icon Grid Polishing */
+.centered-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 15px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.icon-item {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.icon-item:hover {
+    background: rgba(0, 229, 255, 0.1);
+    border-color: var(--uet-cyan);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Tooltip Refinement */
+.icon-item::after {
+    font-family: 'Rajdhani', sans-serif;
+    background: #000;
+    padding: 4px 8px;
+    border: 1px solid var(--uet-cyan);
+    border-radius: 4px;
+    bottom: -30px;
+}
     </style>
 </head>
 
 <body>
-    <div class="icos">
-        <div class="centered-icons cinematic-hidden-bottom">
-            <div class="icon-item" title="C++">
-                <i class="fab fa-cuttlefish"></i>
-            </div>
-            <div class="icon-item" title="Python">
-                <i class="fab fa-python"></i>
-            </div>
-            <div class="icon-item" title="C#">
-                <i class="fas fa-hashtag"></i>
-            </div>
-            <div class="icon-item" title="HTML">
-                <i class="fab fa-html5"></i>
-            </div>
-            <div class="icon-item" title="CSS">
-                <i class="fab fa-css3-alt"></i>
-            </div>
-            <div class="icon-item" title="JavaScript">
-                <i class="fab fa-js-square"></i>
-            </div>
-            <div class="icon-item" title="React">
-                <i class="fab fa-react"></i>
-            </div>
-            <div class="icon-item" title="Node.js">
-                <i class="fab fa-node-js"></i>
-            </div>
-            <div class="icon-item" title="Git & GitHub">
-                <i class="fab fa-git-alt"></i>
-            </div>
-            <div class="icon-item" title="PostgreSQL">
-                <i class="fas fa-database"></i>
-            </div>
-            <div class="icon-item" title="Oracle SQL">
-                <i class="fas fa-server"></i>
-            </div>
-            <div class="icon-item" title="MS Office">
-                <i class="fas fa-file-alt"></i>
-            </div>
-            <div class="icon-item" title="DSA">
-                <i class="fas fa-project-diagram"></i>
-            </div>
+    <h1>👋 About Me</h1>
+    <section id="About" class="about-section">
+        <div class=" left-panel">
+            <div class="uet-card" id="uet-card">
+                <div class="uet-ring"></div>
+                <div class="uet-strap left"></div>
+                <div class="uet-strap right"></div>
+                <div class="uet-glare" id="uet-glare"></div>
 
-            <div class="icon-item" title="Computer Networks">
-                <i class="fas fa-network-wired"></i>
-            </div>
+                <div class="uet-layer uet-uni-header">
+                    University of Engineering<br>and Technology (UET) Lahore
+                </div>
 
-            <div class="icon-item" title="Software Engineering">
-                <i class="fas fa-sitemap"></i>
+                <div class="uet-photo-box">
+                    <!-- Image paths unchanged – replace with your actual images if needed -->
+                    <img src="Pics/Pic_Sitting.png" alt="Muhammad Mustaqeem">
+                </div>
+
+                <div class="uet-layer">
+                    <div class="uet-name">MUHAMMAD MUSTAQEEM</div>
+                    <div class="uet-role">AI/ML ENGINEER</div>
+                    <div class="uet-degree">BS Computer Science</div>
+                </div>
+
+                <div class="uet-footer uet-layer">
+                    <div class="uet-valid-box">
+                        <div class="uet-valid-label">VALID THRU</div>
+                        <div class="uet-valid-year">2028</div>
+                    </div>
+                    <img src="Pics/QR.png" alt="QR Code" class="uet-qr-code">
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="right-panel">
+            <!-- 1. Description paragraph -->
+            <p class="description-text">
+                Merging the architectural rigor of a Computer Scientist with the agility of a Full-Stack Developer.
+                I engineer systems that solve complex logic, currently focused on integrating
+                <span class="highlight">Generative AI</span> into production-ready environments.
+            </p>
+
+            <!-- 2. Core Courses (regular pills) -->
+            <div class="stack-row">
+                <span class="stack-label">Core Courses</span>
+                <div class="pill-container">
+                    <span class="skill-pill">Data Structures</span>
+                    <span class="skill-pill">Algorithms</span>
+                    <span class="skill-pill">Operating Systems</span>
+                    <span class="skill-pill">Database Systems</span>
+                    <span class="skill-pill">Computer Networks</span>
+                </div>
+            </div>
+
+            <!-- 3. Active Focus (highlighted pills) -->
+            <div class="stack-row">
+                <span class="stack-label active-focus">Active Focus</span>
+                <div class="pill-container">
+                    <span class="skill-pill-active">GenAI</span>
+                    <span class="skill-pill-active">Prompt Eng.</span>
+                    <span class="skill-pill-active">LLM Ops</span>
+                </div>
+            </div>
+
+            <!-- 4. Core Stack (icon grid) -->
+            <div class="stack-row">
+                <span class="stack-label">Core Stack</span>
+                <div class="icos">
+                    <div class="centered-icons cinematic-hidden-bottom">
+                        <!-- Icons (your existing list) -->
+                        <div class="icon-item" title="C++"><i class="fab fa-cuttlefish"></i></div>
+                        <div class="icon-item" title="Python"><i class="fab fa-python"></i></div>
+                        <div class="icon-item" title="C#"><i class="fas fa-hashtag"></i></div>
+                        <div class="icon-item" title="HTML"><i class="fab fa-html5"></i></div>
+                        <div class="icon-item" title="CSS"><i class="fab fa-css3-alt"></i></div>
+                        <div class="icon-item" title="JavaScript"><i class="fab fa-js-square"></i></div>
+                        <div class="icon-item" title="React"><i class="fab fa-react"></i></div>
+                        <div class="icon-item" title="Node.js"><i class="fab fa-node-js"></i></div>
+                        <div class="icon-item" title="Git & GitHub"><i class="fab fa-git-alt"></i></div>
+                        <div class="icon-item" title="PostgreSQL"><i class="fas fa-database"></i></div>
+                        <div class="icon-item" title="Oracle SQL"><i class="fas fa-server"></i></div>
+                        <div class="icon-item" title="MS Office"><i class="fas fa-file-alt"></i></div>
+                        <div class="icon-item" title="DSA"><i class="fas fa-project-diagram"></i></div>
+                        <div class="icon-item" title="Computer Networks"><i class="fas fa-network-wired"></i></div>
+                        <div class="icon-item" title="Software Engineering"><i class="fas fa-sitemap"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

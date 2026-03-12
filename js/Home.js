@@ -1,8 +1,8 @@
 const words = [
-  "Full Stack Developer",
-  "React.js Specialist",
-  "Node.js Developer",
-  "JavaScript Developer",
+  "AI-Integrated Developer",
+  "Full Stack Architect",
+  "Algorithmic Logic Designer",
+  "GenAI Solutions Builder",
 ];
 let wordIndex = 0;
 let charIndex = 0;
