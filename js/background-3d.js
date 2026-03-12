@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         gsap.to(camera.position, {
             z: 2,
             scrollTrigger: {
-                trigger: "#education",
+                trigger: "#About",
                 start: "top bottom",
                 end: "top top",
                 scrub: 1
