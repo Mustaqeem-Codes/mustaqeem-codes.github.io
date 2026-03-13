@@ -41,6 +41,20 @@
   background: none;
 }
 
+@media (max-width: 992px) {
+  .left-panel {
+    width: 100%;
+    min-height: 400px;
+    padding: 20px 0;
+  }
+  
+  .uet-card {
+    max-width: 90vw;
+    height: auto;
+    min-height: 350px;
+  }
+}
+
 /* --- RIGHT COLUMN (70%) : placeholder for your future content --- */
 
 /* ---------- GLASS ID CARD (all classes prefixed with uet-) ---------- */
@@ -106,6 +120,12 @@
     0 0 10px rgba(0, 229, 255, 0.3);
   z-index: 5;
   pointer-events: none;
+}
+
+@media (max-width: 992px) {
+  .uet-strap {
+    height: 40px;
+  }
 }
 
 .uet-strap.left {
@@ -234,6 +254,18 @@
   background: transparent;
 }
 
+@media (max-width: 992px) {
+  .about-section {
+    flex-direction: column;
+  }
+  
+  .right-panel {
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+  }
+}
+
 /* ==================== DESCRIPTION TEXT ==================== */
 .description-text {
   margin: 0;
@@ -276,6 +308,15 @@
   transition: all 0.3s ease;
   width: 90%;
   max-width: 900px;
+}
+
+@media (max-width: 992px) {
+  .stack-row {
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    gap: 12px;
+  }
 }
 
 .stack-row:hover {
@@ -359,6 +400,33 @@
   gap: 0.8rem 1.2rem; /* responsive gap */
   margin: 0.5rem 0 0.5rem 0; /* reduced vertical margin to fit panel */
   flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .centered-icons {
+    gap: 0.5rem 0.8rem;
+  }
+  
+  .icon-item {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+  
+  .icon-item::after {
+    font-size: 0.55rem;
+    bottom: -18px;
+  }
+  
+  .description-text {
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+  
+  .stack-label {
+    font-size: 0.65rem;
+    min-width: 80px;
+  }
 }
 
 .icon-item {
@@ -448,10 +516,4 @@
 
 .icon-item:hover::after {
   opacity: 1;
-}
-
-.text-animation {
-  white-space: nowrap;
-  overflow: visible;  /* or remove overflow entirely */
-  /* remove text-overflow: ellipsis */
 }

@@ -84,6 +84,21 @@
   overflow: visible;
 }
 
+@media (max-width: 992px) {
+  .text-animation {
+    font-size: 1.7rem;
+    /* This allows the text to break into new lines */
+    white-space: normal; 
+    /* This ensures long words break if they exceed the container width */
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* Legacy support */
+    /* Ensure the height can expand to fit the new lines */
+    height: auto; 
+    /* If you were using a 'typing' animation, disable the fixed width */
+    width: 100%; 
+  }
+}
+
 @media (max-width: 768px) {
   .text-animation {
     font-size: 1.7rem;
