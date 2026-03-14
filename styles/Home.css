@@ -1123,6 +1123,45 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* NEW SOCIAL ICONS - Twitter/X and Email */
+.social2 a.twitter {
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 50%;
+}
+
+.social2 a.twitter:hover {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #000000;
+  text-shadow: 0 0 15px #000000;
+  border-radius: 50%;
+}
+
+.social2 a.twitter:hover::after {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.social2 a.email {
+  color: #00ffee;
+  border-color: #00ffee;
+  border-radius: 50%;
+}
+
+.social2 a.email:hover {
+  color: #080808;
+  background-color: #00ffee;
+  border-color: #00ffee;
+  text-shadow: 0 0 15px #00ffee;
+  border-radius: 50%;
+}
+
+.social2 a.email:hover::after {
+  color: #00ffee;
+  border-color: #00ffee;
+}
+
 /* Completed state */
 .floating-cv-btn.completed .floating-download-icon {
   opacity: 0;
