@@ -10,6 +10,11 @@
   --glow-shadow: rgba(0, 255, 238, 0.4);
 }
 
+/* Lenis: Disable native smooth scroll to prevent jitters */
+html {
+  scroll-behavior: auto !important;
+}
+
 #home {
   scroll-margin-top: 80px;
 }

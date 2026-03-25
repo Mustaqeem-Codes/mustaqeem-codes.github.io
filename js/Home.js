@@ -97,3 +97,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Lenis Smooth Scroll Integration (60fps RAF + GSAP ScrollTrigger sync)
+let lenisInstance = null;
+
+function initLenis() {
+  if (typeof Lenis !== 'undefined' && window.gsap && window.ScrollTrigger) {
+    lenisInstance = new Lenis({
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      smooth: true
+    });
+
+    // RAF loop for 60fps smoothness
+    function raf(time) {
+      lenisInstance?.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // GSAP ScrollTrigger sync
+    lenisInstance.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.refresh();
+  }
+}
+
+window.destroyLenis = function() {
+  if (lenisInstance) {
+    lenisInstance.destroy();
+    lenisInstance = null;
+  }
+};
+
+// Initialize Lenis
+document.addEventListener('DOMContentLoaded', initLenis);
