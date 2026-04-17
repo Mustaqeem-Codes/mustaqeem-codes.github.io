@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optimize particle count for mobile devices and low-end hardware
     const isMobile = window.innerWidth < 768;
     const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-    const count = isMobile ? 1000 : (isLowEnd ? 2500 : 5000);
+const count = isMobile ? 500 : (isLowEnd ? 1000 : 2000);
     const positions = new Float32Array(count * 3);
 
     for(let i = 0; i < count * 3; i++) {
@@ -142,19 +142,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.1 });
 
-    canvasObserver.observe(container);
+canvasObserver.observe(container);
 
-    animate();
+// Performance metrics
+console.log(`3D Background: ${count} particles, Mobile:${isMobile?'Y':'N'}, LowEnd:${isLowEnd?'Y':'N'}`);
+
+animate();
 
     // Handle Resize with debouncing
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        }, 150);
-    });
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // More conservative
+        
+        // Update particle positions for new size if needed
+    }, 250);
+});
 });

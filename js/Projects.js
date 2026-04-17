@@ -46,7 +46,7 @@ const projectsData = {
       collaborators: [
         {
           name: "Abdullah Umar",
-          avatar: "Pics/Abdullah_Umar.png",
+          avatar: "Pics/Abdullah_Umar.webp",
           link: "https://www.linkedin.com/in/abdullah-umar-990562352/",
           role: "UI/UX Design & Frontend",
         },
@@ -102,12 +102,12 @@ const projectsData = {
         "A Windows desktop application for real-time collaborative whiteboarding with team collaboration features.",
       techStack: [
         { type: "icon", class: "devicon-csharp-plain", name: "C#" },
-        { type: "image", src: "Pics/WinForm.png", name: "WinForms" },
+        { type: "image", src: "Pics/WinForm.webp", name: "WinForms" },
         { type: "icon", class: "devicon-dot-net-plain", name: ".NET" },
         { type: "icon", class: "fas fa-cubes", name: "OOP" },
       ],
       videoSrc: "Pics/DSA-Web.webm",
-      poster: "Pics/Whiteboard-Poster.png",
+      poster: "Pics/Whiteboard-Poster.webp",
       liveDemo: null, // No live demo for desktop apps
       github: "#",
       downloadUrl:
@@ -115,7 +115,7 @@ const projectsData = {
       collaborators: [
         {
           name: "Adil Ur Rehman",
-          avatar: "Pics/Adil.png",
+          avatar: "Pics/Adil.webp",
           link: "https://www.linkedin.com/in/adilurrehmanofficial/",
           role: "Frontend Developer",
         },
