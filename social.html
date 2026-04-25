@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Social Share Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #0f0f0f;
+        }
+
+        .menu {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Central Share Button */
+        .toggle {
+            position: absolute;
+            height: 45px; 
+            width: 45px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .menu.active .toggle {
+            background: #ff4757;
+            color: #fff;
+            transform: scale(0.9); /* Slight press effect when active */
+        }
+
+        .menu li {
+            position: absolute;
+            list-style: none;
+            left: calc(50% - 17.5px); 
+            top: calc(50% - 17.5px);
+            transform-origin: 17.5px 17.5px;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition-delay: calc(0.04s * var(--i));
+        }
+
+        .menu.active li {
+            visibility: visible;
+            opacity: 1;
+            /* Using translate for the orbit distance */
+            transform: rotate(calc(360deg / 8 * var(--i))) translate(65px);
+        }
+
+        .menu li a {
+            display: flex;
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            color: var(--clr);
+            text-decoration: none;
+            transition: 0.3s ease;
+            /* We combine the counter-rotation and scale here */
+            transform: rotate(calc(360deg / -8 * var(--i))) scale(1);
+            /* Pre-defining box shadow as transparent to prevent "blink" */
+            box-shadow: 0 0 0 0px #fff, 0 0 0 0px var(--clr);
+        }
+
+        .menu li:hover a {
+            background: var(--clr);
+            color: #fff;
+            /* GPU-accelerated scaling and counter-rotation */
+            transform: rotate(calc(360deg / -8 * var(--i))) scale(1.2);
+            /* Box shadow creates the rings without shifting layout */
+            box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--clr);
+        }
+
+        /* Prevent icon jitter by giving the i tag its own transition */
+        .menu li a i {
+            transition: transform 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="toggle" role="button" aria-label="Toggle share menu">
+            <i class="fas fa-share-nodes"></i>
+        </div>
+        
+        <li style="--i: 0; --clr: #1877f2;"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li style="--i: 1; --clr: #1da1f2;"><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li style="--i: 2; --clr: #e4405f;"><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li style="--i: 3; --clr: #0077b5;"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        <li style="--i: 4; --clr: #333;"><a href="#"><i class="fab fa-github"></i></a></li>
+        <li style="--i: 5; --clr: #ff0000;"><a href="#"><i class="fab fa-youtube"></i></a></li>
+        <li style="--i: 6; --clr: #25d366;"><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+        <li style="--i: 7; --clr: #bd081c;"><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+    </div>
+
+    <script>
+        const toggle = document.querySelector('.toggle');
+        const menu = document.querySelector('.menu');
+
+        toggle.onclick = function() {
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

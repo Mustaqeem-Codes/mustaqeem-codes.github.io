@@ -39,7 +39,7 @@ const projectsData = {
         { type: "icon", class: "devicon-github-original", name: "GitHub" },
       ],
       videoSrc: "Pics/DSA.webm",
-      poster: "Pics/DSA-Poster.png",
+      poster: "Pics/DSA-Poster.webp",
       liveDemo: "https://dsa-insight.vercel.app/",
       github: "https://github.com/Mustaqeem-Codes/DSA_Insight",
       downloadUrl: null, // No download for web projects
@@ -70,20 +70,20 @@ const projectsData = {
         { type: "icon", class: "devicon-express-original", name: "Express" },
       ],
       videoSrc: "Pics/Flood.webm",
-      poster: "Pics/Flood-Aid-Poster.png",
+      poster: "Pics/Flood-Aid-Poster.webp",
       liveDemo: "https://flood-aid-94zg.vercel.app/",
       github: "https://github.com/FarhanShakeel25/Flood_Aid/",
       downloadUrl: null,
       collaborators: [
         {
           name: "Farhan Shakeel",
-          avatar: "Pics/Farhan_Shakeel.png",
+          avatar: "Pics/Farhan_Shakeel.webp",
           link: "https://www.linkedin.com/in/farhan-shakeel-47b505349/",
           role: "Backend Developer",
         },
         {
           name: "Muhammad Umair",
-          avatar: "Pics/Muhammad_Umair.png",
+          avatar: "Pics/Muhammad_Umair.webp",
           link: "https://www.linkedin.com/in/muhammad-umair-03037b338/",
           role: "Frontend Developer",
         },
@@ -121,7 +121,7 @@ const projectsData = {
         },
         {
           name: "Farhan Shakeel",
-          avatar: "Pics/Farhan_Shakeel.png",
+          avatar: "Pics/Farhan_Shakeel.webp",
           link: "https://www.linkedin.com/in/farhan-shakeel-47b505349/",
           role: "Backend Developer",
         },
@@ -166,7 +166,7 @@ const projectsData = {
         { type: "icon", class: "fas fa-trophy", name: "Scoring" },
       ],
       videoSrc: "Pics/DSA-Web.webm",
-      poster: "Pics/NGG.png",
+      poster: "Pics/NGG.webp",
       liveDemo: null,
       github: "https://github.com/Mustaqeem-Codes/Number_Guess_Game",
       downloadUrl:
