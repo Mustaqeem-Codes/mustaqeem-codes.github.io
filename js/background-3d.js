@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function initBackground3D() {
     const container = document.getElementById('canvas-container');
     if (!container) {
         console.error('Canvas container not found!');
@@ -165,4 +165,23 @@ window.addEventListener('resize', () => {
         // Update particle positions for new size if needed
     }, 250);
 });
-});
+}
+
+function scheduleBackground3DInit() {
+    const start = () => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initBackground3D, { timeout: 1500 });
+        } else {
+            setTimeout(initBackground3D, 0);
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        start();
+        return;
+    }
+
+    window.addEventListener('load', start, { once: true });
+}
+
+scheduleBackground3DInit();

@@ -500,9 +500,7 @@ function createProjectCard(project) {
   card.innerHTML = `
                 <!-- Video Section - Optimized: Changed preload to metadata for faster load -->
                 <div class="project-video-container" data-loading="true" data-loading-size="small">
-                    <video class="project-video" muted loop playsinline autoplay preload="metadata" poster="${project.poster}">
-                        <source src="${project.videoSrc}" type="video/mp4" />
-                    </video>
+            <video class="project-video" muted loop playsinline preload="none" poster="${project.poster}" data-src="${project.videoSrc}"></video>
                 </div>
                 
                 <!-- GitHub Corner (Top Right) -->
@@ -578,9 +576,13 @@ function createProjectCard(project) {
   setTimeout(() => {
     const watchBtn = card.querySelector(".watch-video-btn");
     if (watchBtn) {
-      watchBtn.addEventListener("click", () =>
-        openVideoModal(project.videoSrc),
-      );
+      watchBtn.addEventListener("click", () => {
+        const video = card.querySelector(".project-video");
+        if (video) {
+          loadProjectVideo(video, { autoplay: true });
+        }
+        openVideoModal(project.videoSrc);
+      });
     }
 
     const downloadBtn = card.querySelector(".download-btn");
@@ -705,6 +707,40 @@ function initProjectVideoLoaders() {
   });
 }
 
+function getVideoMimeType(videoSrc) {
+  if (!videoSrc) return "video/mp4";
+
+  const extension = videoSrc.split("?")[0].split(".").pop()?.toLowerCase();
+
+  if (extension === "webm") return "video/webm";
+  if (extension === "ogv" || extension === "ogg") return "video/ogg";
+  return "video/mp4";
+}
+
+function loadProjectVideo(video, { autoplay = false } = {}) {
+  if (!video || video.dataset.loaded === "true") {
+    if (autoplay) {
+      video.play().catch(() => {});
+    }
+    return;
+  }
+
+  const videoSrc = video.dataset.src;
+  if (!videoSrc) return;
+
+  const source = document.createElement("source");
+  source.src = videoSrc;
+  source.type = getVideoMimeType(videoSrc);
+  video.appendChild(source);
+  video.dataset.loaded = "true";
+  video.preload = "metadata";
+  video.load();
+
+  if (autoplay) {
+    video.play().catch(() => {});
+  }
+}
+
 // Create loading overlay for video containers
 function createVideoLoadingOverlay(container) {
   const overlay = document.createElement('div');
@@ -781,22 +817,24 @@ function simulateVideoProgress(overlay) {
 function setupVideoEffects() {
   const videos = document.querySelectorAll(".project-video");
 
-  // Autoplay all videos on load (muted)
-  videos.forEach((video) => {
-    video.muted = true; // Always muted
-    video.play().catch((e) => {
-      // If autoplay fails, it's okay
-      console.log("Initial autoplay blocked");
-    });
-  });
-
-  // Remove hover unmute - keep videos always muted
+  // Load previews only when a card is interacted with.
   document.querySelectorAll(".project-card").forEach((card) => {
     const video = card.querySelector(".project-video");
     if (!video) return;
 
-    // REMOVE hover event listeners completely
-    // No hover effects on videos - they just keep playing
+    const startPreview = () => loadProjectVideo(video, { autoplay: true });
+
+    card.addEventListener("mouseenter", startPreview, { passive: true });
+    card.addEventListener("focusin", startPreview);
+    card.addEventListener("touchstart", startPreview, { passive: true, once: true });
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+        video.pause();
+      },
+      { passive: true },
+    );
   });
 }
 

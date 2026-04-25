@@ -195,6 +195,12 @@ h6 {
   contain-intrinsic-size: 0 800px;
 }
 
+.about-section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 900px;
+}
+
 /* Ensure content appears above 3D background */
 #intro-overlay,
 section,
