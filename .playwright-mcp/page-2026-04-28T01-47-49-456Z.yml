@@ -1,0 +1,419 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]: MUHAMMAD MU
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: MUHAMMAD MUSTAQEEM .
+      - navigation [ref=e7]:
+        - link "Home" [ref=e8] [cursor=pointer]:
+          - /url: "#home"
+        - link "About Me" [ref=e9] [cursor=pointer]:
+          - /url: "#About"
+        - link "Certificates" [ref=e10] [cursor=pointer]:
+          - /url: "#certificates"
+        - link "Skills" [ref=e11] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Projects" [ref=e12] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: "#footer"
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - heading "Muhammad Mustaqeem" [level=3] [ref=e17]
+      - heading "I'm a AI-Inte" [level=3] [ref=e18]: I'm a AI-Inte
+      - paragraph [ref=e19]:
+        - text: Architecting high-performance web systems and AI-driven interfaces. Specialized in the MERN stack and currently bridging the gap between complex
+        - strong [ref=e20]: Algorithmic Logic
+        - text: and
+        - strong [ref=e21]: Generative AI.
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]: 15+
+          - generic [ref=e26]: Deployed Apps
+        - generic [ref=e27]:
+          - generic [ref=e28]: 2+
+          - generic [ref=e29]: Years Exp
+        - generic [ref=e30]:
+          - generic [ref=e31]: GenAI
+          - generic [ref=e32]: "& MERN"
+      - generic [ref=e33]:
+        - link "Resume " [ref=e34] [cursor=pointer]:
+          - /url: https://mustaqeem.vercel.app/
+          - text: Resume
+          - generic [ref=e35]: 
+        - link "" [ref=e36] [cursor=pointer]:
+          - /url: Pics/Mustaqeem_CV.pdf
+          - generic [ref=e38]:
+            - img [ref=e39]
+            - generic [ref=e41]: 
+        - generic [ref=e42]:
+          - link " GitHub" [ref=e43] [cursor=pointer]:
+            - /url: https://github.com/Mustaqeem-Codes
+            - generic [ref=e44]: 
+            - text: GitHub
+          - link " LinkedIn" [ref=e45] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/
+            - generic [ref=e46]: 
+            - text: LinkedIn
+          - link " Email" [ref=e47] [cursor=pointer]:
+            - /url: mailto:mustaqeem.business@gmail.com
+            - generic [ref=e48]: 
+            - text: Email
+    - generic [ref=e50]:
+      - img:
+        - generic: AI/ML ENGINEER • FULL STACK ARCHITECT • DSA SPECIALIST • MERN STACK EXPERT • SYSTEM DESIGNER • SCALABLE WEB SOLUTIONS • GENERATIVE AI
+      - img "Muhammad Mustaqeem" [ref=e52]
+  - heading "👋 About Me" [level=1] [ref=e53]
+  - generic [ref=e54]:
+    - generic [ref=e56]:
+      - generic [ref=e57]:
+        - text: University of Engineering
+        - text: and Technology (UET) Lahore
+      - img "Muhammad Mustaqeem" [ref=e59]
+      - generic [ref=e60]:
+        - generic [ref=e61]: MUHAMMAD MUSTAQEEM
+        - generic [ref=e62]: BS Computer Science
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]: EXPECTED GRAD
+          - generic [ref=e66]: "2028"
+        - link "QR Code" [ref=e67] [cursor=pointer]:
+          - /url: https://github.com/Mustaqeem-Codes
+          - img "QR Code" [ref=e68]
+    - generic [ref=e69]:
+      - paragraph [ref=e70]:
+        - text: I bridge the gap between architectural rigor and modern web scalability. My work focuses on transforming complex data structures into high-performance interfaces—exemplified by my
+        - strong [ref=e71]: DSA Insight
+        - text: engine. Currently, I am engineering the future of the web by integrating Generative AI into production-ready MERN environments.
+      - generic [ref=e73]: Core Stack
+      - generic [ref=e77]:
+        - generic "C++" [ref=e78]:
+          - generic [ref=e79]: 
+          - text: C++
+        - generic "Python" [ref=e80]:
+          - generic [ref=e81]: 
+          - text: Python
+        - generic "C#" [ref=e82]:
+          - generic [ref=e83]: "#"
+          - text: C#
+        - generic "HTML" [ref=e84]:
+          - generic [ref=e85]: 
+          - text: HTML
+        - generic "CSS" [ref=e86]:
+          - generic [ref=e87]: 
+          - text: CSS
+        - generic "JavaScript" [ref=e88]:
+          - generic [ref=e89]: 
+          - text: JavaScript
+        - generic "React" [ref=e90]:
+          - generic [ref=e91]: 
+          - text: React
+        - generic "Node.js" [ref=e92]:
+          - generic [ref=e93]: 
+          - text: Node.js
+        - generic "Git & GitHub" [ref=e94]:
+          - generic [ref=e95]: 
+          - text: Git & GitHub
+        - generic "PostgreSQL" [ref=e96]:
+          - generic [ref=e97]: 
+          - text: PostgreSQL
+        - generic "Oracle SQL" [ref=e98]:
+          - generic [ref=e99]: 
+          - text: Oracle SQL
+        - generic "LLM Prompting" [ref=e100]:
+          - generic [ref=e101]: 
+          - text: LLM Prompting
+        - generic "DSA" [ref=e102]:
+          - generic [ref=e103]: 
+          - text: DSA
+        - generic "Computer Networks" [ref=e104]:
+          - generic [ref=e105]: 
+          - text: Computer Networks
+        - generic "Software Engineering" [ref=e106]:
+          - generic [ref=e107]: 
+          - text: Software Engineering
+  - generic [ref=e108]:
+    - generic [ref=e109]:
+      - heading "🏅 Certifications" [level=1] [ref=e111]
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - img "DSA Certificate"
+            - generic [ref=e115]: DSA
+            - generic:
+              - generic:
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+            - generic:
+              - generic:
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+          - generic [ref=e116]:
+            - heading "Data Structure and Algorithm" [level=3] [ref=e117]
+            - paragraph [ref=e118]: SimpliLearn
+            - generic [ref=e119]:
+              - button " Download" [ref=e120] [cursor=pointer]:
+                - generic [ref=e121]: 
+                - text: Download
+              - button " Preview" [ref=e122] [cursor=pointer]:
+                - generic [ref=e123]: 
+                - text: Preview
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - img "AI Prompt Certificate"
+            - generic [ref=e126]: AI Prompt
+            - generic:
+              - generic:
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+            - generic:
+              - generic:
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+                - generic:
+                  - generic: L
+                  - generic: O
+                  - generic: A
+                  - generic: D
+                  - generic: I
+                  - generic: "N"
+                  - generic: G
+                  - generic: .
+                  - generic: .
+                  - generic: .
+          - generic [ref=e127]:
+            - heading "AI Prompt Engineering" [level=3] [ref=e128]:
+              - text: AI Prompt
+              - text: Engineering
+            - paragraph [ref=e129]: Google - Coursera
+            - generic [ref=e130]:
+              - button " Download" [ref=e131] [cursor=pointer]:
+                - generic [ref=e132]: 
+                - text: Download
+              - button " Preview" [ref=e133] [cursor=pointer]:
+                - generic [ref=e134]: 
+                - text: Preview
+    - text: 
+  - main [ref=e135]:
+    - heading "⚡ Skills" [level=1] [ref=e136]
+    - generic [ref=e137]:
+      - generic [ref=e138]:
+        - progressbar [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - generic [ref=e142]: 
+              - generic [ref=e143]: Object-Oriented Programming
+            - generic [ref=e144]: 0%
+        - progressbar [ref=e146]:
+          - generic [ref=e147]:
+            - generic [ref=e148]:
+              - generic [ref=e149]: 
+              - generic [ref=e150]: Database Design & SQL Queries
+            - generic [ref=e151]: 0%
+        - progressbar [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: 
+              - generic [ref=e157]: Frontend Development
+            - generic [ref=e158]: 0%
+        - progressbar [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - generic [ref=e163]: 
+              - generic [ref=e164]: Backend Fundamentals
+            - generic [ref=e165]: 0%
+        - progressbar [ref=e167]:
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: 
+              - generic [ref=e171]: Problem Solving & Logic
+            - generic [ref=e172]: 0%
+        - progressbar [ref=e174]:
+          - generic [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]: 
+              - generic [ref=e178]: Version Control
+            - generic [ref=e179]: 0%
+      - generic [ref=e181]:
+        - generic:
+          - progressbar:
+            - generic: 0%
+          - generic:
+            - generic: 
+            - generic: MS Office
+        - generic:
+          - progressbar:
+            - generic: 0%
+          - generic:
+            - generic: 
+            - generic: Communication
+        - generic:
+          - progressbar:
+            - generic: 0%
+          - generic:
+            - generic: 
+            - generic: Team Work
+        - generic:
+          - progressbar:
+            - generic: 0%
+          - generic:
+            - generic: 
+            - generic: Git & GitHub
+  - generic [ref=e183]:
+    - heading "🎯 Featured Projects" [level=2] [ref=e184]
+    - paragraph [ref=e185]:
+      - generic [ref=e186]: 💡
+      - text: Browse project categories by clicking folders below. Each folder contains related projects with videos, descriptions, and collaboration details.
+    - generic [ref=e188]:
+      - generic [ref=e189] [cursor=pointer]:
+        - img [ref=e191]
+        - generic [ref=e194]:
+          - heading "Web Projects" [level=3] [ref=e195]
+          - paragraph [ref=e196]: React, JavaScript, HTML5, CSS3
+          - generic [ref=e197]: "2"
+      - generic [ref=e198] [cursor=pointer]:
+        - img [ref=e200]
+        - generic [ref=e203]:
+          - heading "Desktop Apps" [level=3] [ref=e204]
+          - paragraph [ref=e205]: C#, .NET, Windows Forms
+          - generic [ref=e206]: "2"
+      - generic [ref=e207] [cursor=pointer]:
+        - img [ref=e209]
+        - generic [ref=e213]:
+          - heading "Console Apps" [level=3] [ref=e214]
+          - paragraph [ref=e215]: Python, C++, Bash
+          - generic [ref=e216]: "2"
+    - text: 
+  - contentinfo [ref=e217]:
+    - generic [ref=e218]:
+      - generic [ref=e219]:
+        - heading "Vision & Leadership" [level=2] [ref=e220]
+        - paragraph [ref=e221]: Driving technological innovation and sustainable growth through ethical leadership and strategic execution. Prepared to lead and deliver measurable results.
+      - generic [ref=e222]:
+        - heading "Contact Me" [level=2] [ref=e223]
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - generic [ref=e226]: 
+            - link "mustaqeem.business@gmail.com" [ref=e227] [cursor=pointer]:
+              - /url: mailto:mustaqeem.business@gmail.com
+          - generic [ref=e228]:
+            - generic [ref=e229]: 
+            - link "mustaqeem.uet@gmail.com" [ref=e230] [cursor=pointer]:
+              - /url: mailto:mustaqeem.uet@gmail.com
+          - generic [ref=e231]:
+            - generic [ref=e232]: 
+            - link "+923225379161" [ref=e233] [cursor=pointer]:
+              - /url: tel:+923225379161
+        - generic [ref=e234]:
+          - link " GitHub" [ref=e235] [cursor=pointer]:
+            - /url: https://github.com/Mustaqeem-Codes
+            - generic [ref=e236]: 
+            - text: GitHub
+          - link " Twitter/X" [ref=e237] [cursor=pointer]:
+            - /url: https://x.com/MustaqeemCodes
+            - generic [ref=e238]: 
+            - text: Twitter/X
+          - link " Facebook" [ref=e239] [cursor=pointer]:
+            - /url: https://web.facebook.com/MustaqeemCodes/
+            - generic [ref=e240]: 
+            - text: Facebook
+          - link " Instagram" [ref=e241] [cursor=pointer]:
+            - /url: https://www.instagram.com/mustaqeem_codes/#
+            - generic [ref=e242]: 
+            - text: Instagram
+          - link " LinkedIn" [ref=e243] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/muhammad-mustaqeem-95656b331/
+            - generic [ref=e244]: 
+            - text: LinkedIn
+          - link " Email" [ref=e245] [cursor=pointer]:
+            - /url: mailto:mustaqeem.business@gmail.com
+            - generic [ref=e246]: 
+            - text: Email
+    - generic [ref=e247]:
+      - paragraph [ref=e248]: Copyright © 2025 Muhammad Mustaqeem. Created with passion and purpose.
+      - paragraph [ref=e249]:
+        - link "Privacy Policy" [ref=e250] [cursor=pointer]:
+          - /url: Privacy Policy.html
+        - text: "|"
+        - link "Terms and Condition" [ref=e251] [cursor=pointer]:
+          - /url: Terms and Conditions.html
+        - text: "| All Rights Reserved."
+  - link " ":
+    - /url: Pics/Mustaqeem_CV.pdf
+    - img:
+      - generic: Download CV
+    - generic:
+      - generic:
+        - img
+        - img
+        - img
+        - generic: 
+        - generic: 

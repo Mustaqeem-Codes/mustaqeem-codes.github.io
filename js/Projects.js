@@ -141,8 +141,8 @@ const projectsData = {
         { type: "icon", class: "fas fa-server", name: "Server" },
         { type: "icon", class: "fas fa-object-group", name: "UI Design" },
       ],
-      videoSrc: "Pics/DSA-Web.webm",
-      poster: "Pics/Job(1).jpg",
+      videoSrc: "Pics/JPMS.webm",
+      poster: "Pics/Job(1).webp",
       liveDemo: null,
       github: "https://github.com/Mustaqeem-Codes/Job_Portal_Management_System",
       downloadUrl:
