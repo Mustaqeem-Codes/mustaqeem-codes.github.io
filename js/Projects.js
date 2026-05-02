@@ -177,7 +177,7 @@ const projectsData = {
         end: "August 2024",
       },
     },
-    {
+{
       id: "console-2",
       title: "Airline Management System",
       description:
@@ -187,12 +187,12 @@ const projectsData = {
         { type: "icon", class: "fas fa-terminal", name: "Console" },
         { type: "icon", class: "fas fa-database", name: "Database" },
       ],
-      videoSrc: "Pics/DSA-Web.webm",
-      poster: "Pics/airline.jpg",
+      videoSrc: "Pics/AMS.webm",
+      poster: "Pics/Airline.webp",
       liveDemo: null,
       github: "https://github.com/Mustaqeem-Codes/Airline_Management_System",
       downloadUrl:
-        "https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/AMS.zip",
+        "https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/Airline Management System.zip",
       collaborators: [],
       timeline: {
         start: "May 2024",
