@@ -192,7 +192,7 @@ const projectsData = {
       liveDemo: null,
       github: "https://github.com/Mustaqeem-Codes/Airline_Management_System",
       downloadUrl:
-        "https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/Airline Management System.zip",
+        "https://github.com/Mustaqeem-Codes/Airline_Management_System/raw/main/AMS.zip",
       collaborators: [],
       timeline: {
         start: "May 2024",
